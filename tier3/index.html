@@ -315,8 +315,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .futbtn{width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);min-height:52px;font-weight:700;color:var(--steel);cursor:pointer;font-size:16px}
 .ws.hidefut tr.fut{display:none}
 .growrow{display:grid;gap:10px;padding:12px 14px;border-radius:var(--r-sm);background:var(--soft)}
-.growrow .chk{display:flex;gap:10px;align-items:center;font-weight:600;cursor:pointer}
-.growrow .chk input{width:22px;height:22px;accent-color:var(--steel);margin:0;flex:none}
+.chk{display:flex;gap:10px;align-items:center;font-weight:600;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--steel);margin:0;flex:none}
 .growrow .inp{max-width:140px;min-height:44px}
 
 /* results */
@@ -523,10 +523,10 @@ body.has-pbar .app{padding-bottom:110px}
       <p>Once you have <b>20 years</b> on the job, you can retire and collect <b>50% of your final average salary</b> for the rest of your life. That comes from S4727, signed into law as Chapter 692 of the Laws of 2025.</p>
       <p>The 50% doesn't go up if you stay longer. (A bill in Albany, S5058A, would add 1/40th of your final average salary for each year past 20. It hasn't passed. See <a href="#bills">Bills in Albany</a>.) Staying can still raise your pension in three ways: your final average salary is usually higher, your pension can grow with inflation (escalation), and you bank extra VSF payments.</p>
       <p>FDNY members must retire by age 62.</p></div></details>
-    <details><summary>I bought back military time. Does it count?</summary><div class="ans">
-      <p>Yes. You can buy up to <b>3 years</b> of military service once you have 5 years in (Chapter 548 of the Laws of 2000). Uniformed service right before the FDNY, like EMS, police or Correction, can count too, and it can be much longer than 3 years. The Pension Fund then counts your service from an earlier <b>equated date</b>, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus.</p>
+    <details><summary>What is an equated date?</summary><div class="ans">
+      <p>It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to <b>3 years</b> of military service once you have 5 years in (Chapter 548 of the Laws of 2000). Uniformed service right before the FDNY, like EMS, police or Correction, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier <b>equated date</b>, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus.</p>
       <p>Appointed in May 2012 with 3 years of military bought back? Your equated date is May 2009, so you hit 20 years in May 2029, at 17 years on the job.</p>
-      <p>On the personal numbers page, check “I bought back military time or other service” in step 1 and enter your equated date. Your pay still counts from your appointment. Confirm your equated date with the Pension Fund.</p></div></details>
+      <p>On the personal numbers page, check “Do you have a different equated date?” in step 1 and enter your equated date. Your pay still counts from your appointment. Confirm your equated date with the Pension Fund.</p></div></details>
     <details><summary>What is my final average salary?</summary><div class="ans">
       <p>It's the average of your <b>best 3 calendar years in a row</b>, overtime included.</p>
       <p>There's one limit: a year only counts up to 10% more than the average of the 2 years before it. Anything above that is cut.</p>
@@ -598,7 +598,7 @@ body.has-pbar .app{padding-bottom:110px}
     <summary style="cursor:pointer;font-weight:700;font-size:18px">The fine print: how the calculators work</summary>
     <div class="fineprint" style="margin-top:14px">
       <p><strong>Pension:</strong> 50% of final average salary at 20+ years of service, under S4727 (Chapter 692 of the Laws of 2025, signed Dec. 19, 2025). Tier 3 is capped at 50%.</p>
-      <p><strong>Equated date:</strong> if you bought back military time or have prior uniformed service that counts, the personal numbers page counts years of service from the equated date you enter, which moves the 20-year date, escalation at 23 years, the banked variable and the longevity bonus. Earnings still count from your appointment date. The quick calculator's years are years of service, so count bought-back time there. Source: the Fund’s Tier 3 Summary Plan Description (Dec. 2019).</p>
+      <p><strong>Equated date:</strong> if you bought back military time, have prior uniformed service that counts, or were given an earlier date because you were entitled to be hired sooner, the personal numbers page counts years of service from the equated date you enter, which moves the 20-year date, escalation at 23 years, the banked variable and the longevity bonus. Earnings still count from your appointment date. The quick calculator's years are years of service, so count bought-back time there. Source: the Fund’s Tier 3 Summary Plan Description (Dec. 2019).</p>
       <p><strong>Final average salary:</strong> the highest average of 3 consecutive calendar years. Any year more than 10% above the average of the 2 years before it counts only up to that line. The personal numbers page uses full calendar years before the year you retire. Unpaid leave (for example, a suspension) inside the period is swapped for earlier time; the calculator doesn't model that.</p>
       <p><strong>Longevity:</strong> with 20 to under 25 years, the pension counts longevity pay only at the 10-year level; at 25 or more years, at the 20-year level (the Fund’s Tier 3 Summary Plan Description). The calculators don’t adjust for this yet; they use full W-2 pay, so results between 20 and 25 years can be a little high.</p>
       <p><strong>Your earnings:</strong> imported numbers come from the Medicare Wages column of your NYCAPS Tax Summary: all taxable pay, overtime included, without the Social Security cap. That's close to what the Pension Fund counts, but not exact; it can include pay the Fund leaves out, such as uniform allowance. Future years repeat your last known year unless you choose a yearly raise.</p>
@@ -678,12 +678,12 @@ body.has-pbar .app{padding-bottom:110px}
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 2</b><span>Members appointed before July 1, 2009 are generally Tier 2, which has different rules. These Tier 3 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier2/#personal">Switch to Tier 2 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="field">
-          <label class="chk"><input type="checkbox" id="eqOn"> I bought back military time or other service</label>
+          <label class="chk"><input type="checkbox" id="eqOn"> <span>Do you have a different equated date?<span class="hint" style="display:block;font-weight:400">EMS, military, NYPD, or a retroactive hire date</span></span></label>
           <div id="eqBox" class="field" hidden>
             <span class="flabel" id="eqLbl">Equated date</span>
             <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
             <span class="hint" id="eqBad" style="color:var(--accent)" hidden>Your equated date should be before your appointment date.</span>
-            <span class="hint">The date the Pension Fund counts your service from, after bought-back time: up to 3 years of military, or prior EMS, police or other uniformed service, which can be longer. Your 20, 23 and 25-year marks count from it. Your pay still counts from your appointment.</span>
+            <span class="hint">The date the Pension Fund counts your service from. It’s earlier than your appointment if you bought back up to 3 years of military, have prior EMS, police or other uniformed service (which can be longer), or were given an earlier date because you were entitled to be hired sooner. Your 20, 23 and 25-year marks count from it. Your pay still counts from your appointment.</span>
           </div>
         </div>
         <div class="field" id="rankStep">
