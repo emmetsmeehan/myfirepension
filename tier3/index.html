@@ -523,6 +523,10 @@ body.has-pbar .app{padding-bottom:110px}
       <p>Once you have <b>20 years</b> on the job, you can retire and collect <b>50% of your final average salary</b> for the rest of your life. That comes from S4727, signed into law as Chapter 692 of the Laws of 2025.</p>
       <p>The 50% doesn't go up if you stay longer. (A bill in Albany, S5058A, would add 1/40th of your final average salary for each year past 20. It hasn't passed. See <a href="#bills">Bills in Albany</a>.) Staying can still raise your pension in three ways: your final average salary is usually higher, your pension can grow with inflation (escalation), and you bank extra VSF payments.</p>
       <p>FDNY members must retire by age 62.</p></div></details>
+    <details><summary>I bought back military time. Does it count?</summary><div class="ans">
+      <p>Yes. You can buy up to <b>3 years</b> of wartime military service once you have 5 years in (Chapter 548 of the Laws of 2000). Police, EMT, Correction and some other uniformed service right before the FDNY can count too. The Pension Fund then counts your service from an earlier <b>equated date</b>, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus.</p>
+      <p>Appointed in May 2012 with 3 years of military bought back? Your equated date is May 2009, so you hit 20 years in May 2029, at 17 years on the job.</p>
+      <p>On the personal numbers page, check “I bought back military time or other service” in step 1 and enter your equated date. Your pay still counts from your appointment. Confirm your equated date with the Pension Fund.</p></div></details>
     <details><summary>What is my final average salary?</summary><div class="ans">
       <p>It's the average of your <b>best 3 calendar years in a row</b>, overtime included.</p>
       <p>There's one limit: a year only counts up to 10% more than the average of the 2 years before it. Anything above that is cut.</p>
@@ -594,6 +598,7 @@ body.has-pbar .app{padding-bottom:110px}
     <summary style="cursor:pointer;font-weight:700;font-size:18px">The fine print: how the calculators work</summary>
     <div class="fineprint" style="margin-top:14px">
       <p><strong>Pension:</strong> 50% of final average salary at 20+ years of service, under S4727 (Chapter 692 of the Laws of 2025, signed Dec. 19, 2025). Tier 3 is capped at 50%.</p>
+      <p><strong>Equated date:</strong> if you bought back military time or have prior uniformed service that counts, the personal numbers page counts years of service from the equated date you enter, which moves the 20-year date, escalation at 23 years, the banked variable and the longevity bonus. Earnings still count from your appointment date. The quick calculator's years are years of service, so count bought-back time there. Source: the Fund’s Tier 3 Summary Plan Description (Dec. 2019).</p>
       <p><strong>Final average salary:</strong> the highest average of 3 consecutive calendar years. Any year more than 10% above the average of the 2 years before it counts only up to that line. The personal numbers page uses full calendar years before the year you retire. Unpaid leave (for example, a suspension) inside the period is swapped for earlier time; the calculator doesn't model that.</p>
       <p><strong>Longevity:</strong> with 20 to under 25 years, the pension counts longevity pay only at the 10-year level; at 25 or more years, at the 20-year level (the Fund’s Tier 3 Summary Plan Description). The calculators don’t adjust for this yet; they use full W-2 pay, so results between 20 and 25 years can be a little high.</p>
       <p><strong>Your earnings:</strong> imported numbers come from the Medicare Wages column of your NYCAPS Tax Summary: all taxable pay, overtime included, without the Social Security cap. That's close to what the Pension Fund counts, but not exact; it can include pay the Fund leaves out, such as uniform allowance. Future years repeat your last known year unless you choose a yearly raise.</p>
@@ -671,6 +676,15 @@ body.has-pbar .app{padding-bottom:110px}
           <span class="flabel" id="apLbl">Appointment date</span>
           <div class="dsel" role="group" aria-labelledby="apLbl"><span><select id="apM" aria-label="Appointment month"></select></span><span><select id="apD" aria-label="Appointment day"></select></span><span><select id="apY" aria-label="Appointment year"></select></span></div>
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 2</b><span>Members appointed before July 1, 2009 are generally Tier 2, which has different rules. These Tier 3 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier2/#personal">Switch to Tier 2 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+        <div class="field">
+          <label class="chk"><input type="checkbox" id="eqOn"> I bought back military time or other service</label>
+          <div id="eqBox" class="field" hidden>
+            <span class="flabel" id="eqLbl">Equated date</span>
+            <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
+            <span class="hint" id="eqBad" style="color:var(--accent)" hidden>Your equated date should be before your appointment date.</span>
+            <span class="hint">The date the Pension Fund counts your service from, after bought-back time (up to 3 years of wartime military, or police, EMT or other uniformed service before the FDNY). Your 20, 23 and 25-year marks count from it. Your pay still counts from your appointment.</span>
+          </div>
         </div>
         <div class="field" id="rankStep">
           <div class="rankbox"><span class="flabel" style="font-size:16px" id="curLbl">Current rank</span>
@@ -906,7 +920,7 @@ $('billsTag').textContent=`${PENDING.length} being considered · ${BILLS.filter(
 const KEY='fdny-tier3-v2';
 const DEF={
   q:{fas:'',svc:276,dis:false,esc:23,rank:'LT',topPay:140212,b40:false},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:23,rank:'LT',topPay:140212,cur:'',rankSet:false,ss:2400,cpi:3,goal:'',b40:false}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:23,rank:'LT',topPay:140212,cur:'',rankSet:false,eqOn:false,eq:'',ss:2400,cpi:3,goal:'',b40:false}
 };
 let ST;
 function loadState(){
@@ -1071,6 +1085,9 @@ function setupDate(pre,y0,y1,iso,onChange){
 }
 const dobPick=setupDate('dob',1945,NOW_Y-18,ST.p.dob,v=>{ST.p.dob=v;renderP()});
 const apPick=setupDate('ap',1985,NOW_Y,ST.p.appt,v=>{ST.p.appt=v;wsKey='';renderP()});
+setupDate('eq',1960,NOW_Y,ST.p.eq,v=>{ST.p.eq=v;wsKey='';renderP()});
+$('eqOn').checked=ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn;
+$('eqOn').addEventListener('change',e=>{ST.p.eqOn=e.target.checked;$('eqBox').hidden=!ST.p.eqOn;wsKey='';renderP()});
 
 const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;renderP()}});
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP(),()=>false);
@@ -1111,7 +1128,11 @@ document.addEventListener('change',e=>{const c=e.target;if(c.type!=='checkbox')r
 });
 $('grow').addEventListener('input',e=>{ST.p.grow=num(e.target.value);renderP()});
 
-function pDates(){const dob=ST.p.dob?fromISO(ST.p.dob):null,appt=ST.p.appt?fromISO(ST.p.appt):null;return {dob,appt,ok:!!(dob&&appt),age:dob&&appt?yrsBetween(dob,appt):0}}
+/* eq: the equated date, which service counts from (bought-back military or prior uniformed time); the appointment date if none.
+   off: months between them. Service marks (20, 23, 25 years) count from eq; earnings still start at appointment. */
+function pDates(){const p=ST.p,dob=p.dob?fromISO(p.dob):null,appt=p.appt?fromISO(p.appt):null,e=p.eqOn&&p.eq?fromISO(p.eq):null;
+  const eq=appt&&e&&e<appt?e:appt,off=appt?(appt.getFullYear()-eq.getFullYear())*12+appt.getMonth()-eq.getMonth()-(appt.getDate()<eq.getDate()?1:0):0;
+  return {dob,appt,eq,off,ok:!!(dob&&appt),age:dob&&eq?yrsBetween(dob,eq):0}}
 
 /* Earnings for the chosen mode. In import mode, verified years come from NYCAPS and can't be edited; other years can be typed. */
 function known(){const p=ST.p;return p.mode==='import'?{...p.extra,...p.imported}:{...p.manual}}
@@ -1146,7 +1167,7 @@ function fasFromEarnings(retDate,appt){
 function pParams(){const d=pDates(),p=ST.p;return {...d,dis:p.dis,esc:p.dis?LAW_ESC:p.esc,b40:!p.dis&&!!p.b40,bonus:p.dis?'':LAW_BONUS,topPay:num(p.topPay),ss:num(p.ss),cpi:num(p.cpi)/100}}
 
 function scenario(months,c){
-  const S=months/12,retDate=addM(c.appt,months);
+  const S=months/12,retDate=addM(c.eq,months);
   const fr=fasFromEarnings(retDate,c.appt),baseFas=fr.best?fr.best.fas:0;
   const bp=c.dis?0:bonusPct(S,c.bonus),bonusAdd=baseFas?bp*c.topPay:0,fas=baseFas+bonusAdd;
   const extra=c.b40?baseFas*Math.max(0,months-240)/12/40:0,base=(c.dis?0.75:0.5)*fas+extra,retAge=c.age+S;
@@ -1173,8 +1194,8 @@ function scenario(months,c){
 let wsKey='',showFut=false,wsOpen=false;
 document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}});
 function renderWorksheet(c,m){
-  const p=ST.p,retDate=addM(c.appt,m),apptY=c.appt.getFullYear();
-  const showTo=Math.max(retDate.getFullYear(),addM(c.appt,300).getFullYear());
+  const p=ST.p,retDate=addM(c.eq,m),apptY=c.appt.getFullYear();
+  const showTo=Math.max(retDate.getFullYear(),addM(c.eq,300).getFullYear());
   const key=[apptY,showTo,p.mode,Object.keys(p.imported).join(',')].join('|');
   if(key!==wsKey){
     wsKey=key;let h='';
@@ -1247,6 +1268,7 @@ function renderP(){
   $('needDates').hidden=!folded||c.ok;
   $('wsNeed').hidden=c.ok||folded;if(!c.ok) $('wsBox').hidden=true;
   document.querySelector('.growrow').hidden=$('wsBox').hidden;
+  $('eqBad').hidden=!(p.eqOn&&p.eq&&c.appt&&fromISO(p.eq)>=c.appt);
   $('tierWarn').hidden=!(c.appt&&c.appt<new Date(2009,6,1));
   $('tierGo').href=`../tier2/?dob=${p.dob}&appt=${p.appt}#personal`;
   $('pBills').hidden=c.dis;$('ssField').hidden=c.dis;
