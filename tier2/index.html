@@ -110,7 +110,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .btn:disabled{opacity:.55;cursor:default}
 .btnrow{display:flex;gap:10px;flex-wrap:wrap}
 #cmpMore{min-height:44px;font-size:16.5px}
-.linkbtn{background:none;border:0;padding:6px 0;color:var(--steel);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+#moreOpts>summary{padding:10px 0;min-height:44px}
+.linkbtn{background:none;border:0;padding:6px 0;min-height:44px;color:var(--steel);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 
 /* big 3/4s checkbox */
 .bigcheck{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;border:2px solid var(--line);border-radius:var(--r);padding:14px 16px;cursor:pointer;background:var(--surface)}
@@ -215,7 +216,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 @media (prefers-reduced-motion:reduce){.now .dot::after{animation:none;opacity:0}}
 .billfoot{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:14px}
 .billfoot .read{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:16px}
-.billfoot .read a{display:inline-flex;align-items:center;gap:4px;font-weight:700;text-decoration:none}
+.billfoot .read a{display:inline-flex;align-items:center;min-height:44px;gap:4px;font-weight:700;text-decoration:none}
 .billfoot .read a svg{width:16px;height:16px}
 .billfoot .try{justify-self:start}
 .bill.lawcard{border-color:color-mix(in srgb,var(--shine) 55%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--shine) 7%,var(--surface)),var(--surface) 40%)}
@@ -417,7 +418,9 @@ table{border-collapse:collapse;width:100%}
 .pbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--ink);color:var(--bg);border-radius:var(--r);padding:10px 10px 10px 16px;box-shadow:0 8px 30px color-mix(in srgb,#000 30%,transparent);transition:transform .25s,opacity .25s}
 .pbar.off{transform:translateY(140%);opacity:0;pointer-events:none}
 .pbar b{font-size:22px;font-weight:800;display:block;line-height:1.1}
-.pbar small{font-size:13.5px;opacity:.8}
+.pbar>div{min-width:0}
+.pbar small{font-size:13.5px;opacity:.8;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html:has(body.has-pbar){scroll-padding-bottom:120px}
 .pbar button{background:var(--bg);color:var(--ink);border:0;border-radius:999px;min-height:44px;padding:0 16px;font-weight:700;cursor:pointer;white-space:nowrap}
 @media (min-width:980px){.pbar{display:none}}
 body.has-pbar .app{padding-bottom:110px}
@@ -444,7 +447,7 @@ body.has-pbar .app{padding-bottom:110px}
 @media (max-width:360px){.ws td,.ws th{padding-left:6px;padding-right:6px}.ws th:nth-child(1){width:29%}.ws th:nth-child(2){width:41%}.ws th:nth-child(3){width:30%}.ws td:nth-child(3){font-size:14px}.ws .inp>span{padding-left:6px}.ws .inp input{font-size:16px}}
 /* On narrow phones the retirement line under the slider can take two lines; keep room for both so the slider doesn't jump. */
 @media (max-width:400px){#pSlider .sub{min-height:3em}}
-@media (max-width:360px){#cmp th,#cmp td{font-size:12px;padding:7px 3px}#cmp th:first-child,#cmp td:first-child{width:25%}.growtbl td,.growtbl th{padding-left:7px;padding-right:7px}}
+@media (max-width:360px){#cmp th,#cmp td{font-size:13px;padding:7px 3px}#cmp th:first-child,#cmp td:first-child{width:25%}.growtbl td,.growtbl th{padding-left:7px;padding-right:7px}}
 </style>
 </head>
 <body>
@@ -631,7 +634,8 @@ body.has-pbar .app{padding-bottom:110px}
       <p><strong>3/4s disability:</strong> 75% of final average salary with no minimum service, plus 1/60th of earnings after 20 years, plus a pension from the ITHP reserve and an annuity from your accumulated contributions. No VSF or banked variable. The COLA starts after 5 years retired, regardless of age. The calculators estimate the ITHP piece only; type your Fund estimate to include your contributions.</p>
       <p><strong>Longevity bonus:</strong> at 25+ years of service, part of the top base pay for your rank is added to final average salary: 5% at 25 years plus 1% for each year after, up to 15% at 35 (FY2027 state budget, signed May 27, 2026: S9008-C/A10008-C, Part AAA, adding Administrative Code § 15-110.1; originally S9202/A10392). The law covers members of any plan in the Fire Pension Fund, and its fiscal note gives a Tier 2 example. Rank pay is the top-step annual base salary from the UFA schedule effective Aug. 1, 2024 (firefighter) and the UFOA schedule effective July 31, 2025 (lieutenant, captain, battalion chief), with no longevity, night differential or overtime; the law says "highest grade of pay" without defining it, so the figure used could be higher. Not applied to 3/4s.</p>
       <p><strong>Proposed bills:</strong> S5058A would change the 1/60th to 1/40th for service and 3/4s pensions. You can switch it on in either calculator to see what it would mean "if it passes".</p>
-      <p><strong>Not included:</strong> retirement options that reduce the pension for a survivor, taxes, loans and account shortages, other credited service (1/80th), ordinary (non-line-of-duty) disability, vested retirement, and Tier 1 rules.</p>
+      <p><strong>Taxes:</strong> the “Don’t forget about taxes” box is a rough 2026 federal figure on the first-year pension plus VSF, for a married couple filing jointly with no other income (single shown as a percent). It leaves out the banked variable lump sum and isn’t tax advice.</p>
+      <p><strong>Not included:</strong> retirement options that reduce the pension for a survivor, loans and account shortages, other credited service (1/80th), ordinary (non-line-of-duty) disability, vested retirement, and Tier 1 rules.</p>
     </div>
   </details>
 
@@ -679,7 +683,7 @@ body.has-pbar .app{padding-bottom:110px}
           <span class="hint" style="margin-top:-4px">For the longevity bonus: at 25+ years, 5% to 15% of your rank's top pay is added to your final average salary.</span>
           <div class="ranks" role="group" aria-label="Rank"></div>
           <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank"></div>
-          <span class="hint">Top-step base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
+          <span class="hint">FF is firefighter, LT lieutenant, CAPT captain, BC battalion chief. Top-step base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
       <div class="billchecks" id="qBills"></div>
     </div>
   </div>
@@ -692,8 +696,8 @@ body.has-pbar .app{padding-bottom:110px}
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <h2 id="pvh">What you'll see</h2>
     <ul>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your monthly pension and VSF in your first year of retirement</span></li>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your banked variable, paid as a lump sum when you retire</span></li>
+      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your monthly pension and VSF (an extra $12,000 a year) in your first year of retirement</span></li>
+      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your banked variable: $12,000 for each year past 20, paid all at once when you retire</span></li>
       <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>What each extra year on the job adds to your pension</span></li>
       <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Retiring soon or working longer, side by side</span></li>
     </ul>
@@ -711,6 +715,7 @@ body.has-pbar .app{padding-bottom:110px}
         <div class="field">
           <span class="flabel" id="apLbl">Appointment date</span>
           <div class="dsel" role="group" aria-labelledby="apLbl"><span><select id="apM" aria-label="Appointment month"></select></span><span><select id="apD" aria-label="Appointment day"></select></span><span><select id="apY" aria-label="Appointment year"></select></span></div>
+          <span class="hint" id="apBad" style="color:var(--accent)" hidden>Check your dates: you’d have been under 17 when you were appointed.</span>
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 3</b><span>Members appointed on or after July 1, 2009 are generally Tier 3, which has different rules. These Tier 2 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier3/#personal">Switch to Tier 3 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="field">
@@ -724,13 +729,13 @@ body.has-pbar .app{padding-bottom:110px}
         </div>
         <div class="field" id="rankStep">
           <div class="rankbox"><span class="flabel" style="font-size:16px" id="curLbl">Current rank</span>
-            <span class="hint" style="margin-top:-4px">Your rank at retirement starts out the same. Change it if you expect a promotion.</span>
+            <span class="hint" style="margin-top:-4px">FF is firefighter, LT lieutenant, CAPT captain, BC battalion chief. Your rank at retirement starts out the same. Change it if you expect a promotion.</span>
             <div class="ranks" id="curRanks" role="group" aria-labelledby="curLbl"></div></div>
           <div class="rankbox" id="pRank" hidden><span class="flabel" style="font-size:16px">Rank at retirement</span>
             <span class="hint" style="margin-top:-4px">For the longevity bonus: at 25+ years, 5% to 15% of your rank's top pay is added to your final average salary.</span>
             <div class="ranks" role="group" aria-label="Rank at retirement"></div>
             <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div>
-            <span class="hint">Top-step base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
+            <span class="hint">FF is firefighter, LT lieutenant, CAPT captain, BC battalion chief. Top-step base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
         </div>
       </section>
 
@@ -849,7 +854,8 @@ body.has-pbar .app{padding-bottom:110px}
 
 <script>
 const $=id=>document.getElementById(id);
-const num=v=>{const n=parseFloat(String(v).replace(/[^0-9.\-]/g,''));return isFinite(n)?n:0};
+/* Amounts as people type them: "$120,000", "120k", or "120.000" with a dot for thousands. Signs and letters are dropped. */
+const num=v=>{let s=String(v).toLowerCase().replace(/[\s$]/g,'');const k=/\dk$/.test(s);if(/^\d{1,3}(\.\d{3})+k?$/.test(s))s=s.replace(/\./g,'');const n=parseFloat(s.replace(/[^0-9.]/g,''));return isFinite(n)?n*(k?1000:1):0};
 const usd=n=>(n<0?'-':'')+'$'+Math.round(Math.abs(n)).toLocaleString('en-US');
 const plural=(n,w)=>n+' '+w+(n===1?'':'s');
 const fmtSvc=m=>{const y=Math.floor(m/12),mo=m%12;return mo===6?y+'½':(y+(mo?' yrs '+mo+' mo':''))};
@@ -885,6 +891,8 @@ const SAMPLE=[118000,124000,129000,133000,138000,142000,147000,151000,156000,160
    at 25+ years, 5% of the rank's top pay plus 1% per year past 25, capped at 15%, added to final average salary. Service retirements only, as on the Tier 3 page.
    Top-step annual base salary by rank: UFA schedule eff. Aug 1, 2024 (FF); UFOA schedule eff. Jul 31, 2025 (LT, CAPT, BC). */
 const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563}];
+const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s'};
+const rankName=pay=>{const r=RANKS.find(x=>x.pay===num(pay));return r?RANK_OF[r.id]:'your rank’s'};
 const kfmt=n=>'$'+(Math.round(n/1000)).toLocaleString('en-US')+'k';
 function bonusPct(S){return S<25-1e-9?0:Math.min(0.15,0.05+0.01*Math.floor(S-25+1e-9))}
 function RankBox(rb,state,onChange,show){
@@ -902,9 +910,9 @@ function RankBox(rb,state,onChange,show){
 const SEN='https://www.nysenate.gov/legislation/bills/';
 const STEP_LABELS=['Introduced','In committee','Passed the Senate','Passed the Assembly','Signed by the governor'];
 const BILLS=[
-  {id:'b40',title:'1/40th instead of 1/60th after 20 years',check:'1/40th after 20 years',nums:['S5058'],yr:2025,intro:'Feb. 18, 2025',
+  {id:'b40',title:'1/40th instead of 1/60th after 20 years',check:'1/40th after 20 years',nums:['S5058A'],yr:2025,intro:'Feb. 18, 2025',
    what:'For each year you work past 20, your pension would add 1/40th of your earnings instead of 1/60th, for service and 3/4s pensions. It would also give Tier 3 members an extra 1/40th of final average salary for each year past 20.',
-   note:'Amended in 2026 (S5058A). An earlier version, S9593, died in committee in 2024.',committee:'Senate Civil Service and Pensions',step:2},
+   note:'Amended in 2026 (S5058A). An earlier version, S9593, died in committee in 2024.',committee:'Senate Civil Service and Pensions',step:1},
   {id:'yearly',law:true,title:'Longevity bonus at 25 years',nums:['S9202','S9008'],yr:2025,intro:'Feb. 13, 2026',signed:'May 27, 2026',chapter:'in the FY2027 state budget',
    what:'If you retire with 25 years or more, part of your rank’s top pay is added to the salary your pension is based on: 5% at 25 years, plus 1% more for each year after, up to 15% at 35. The bill covers members of any plan, Tier 2 included.',
    note:'This passed in the state budget (S9008-C / A10008-C, Part AAA), so the bill’s own page on nysenate.gov still says “in committee.” Its Assembly version is A10392.',step:5},
@@ -922,11 +930,11 @@ function billCard(b){
     let cls,icon,sub='';
     if(b.law&&i===4){cls='done law';icon=ICON.pen;lab='Signed into law';sub=`${b.signed} · ${b.chapter}`}
     else if(i<b.step){cls='done';icon=ICON.check;if(i===0)sub=b.intro.length>4?b.intro:'In '+b.intro;if(i===1&&b.committee)sub=b.committee;if((i===2||i===3)&&/budget/.test(b.chapter||''))sub='As part of the state budget'}
-    else if(i===b.step){cls='now';icon=ICON.clock;sub='In progress: waiting on a committee vote'}
+    else if(i===b.step){cls='now';icon=ICON.clock;sub=(b.committee?b.committee+': ':'')+'waiting on a committee vote'}
     else {cls='todo';icon='';sub='Not yet'}
     return `<li class="${cls}"><span class="dot">${icon}</span><span><span class="lbl">${lab}</span>${sub?`<span class="sub" style="display:block">${sub}</span>`:''}</span></li>`;
   }).join('');
-  const read=b.nums.map(n=>`<a href="${SEN}${b.yr}/${n}" target="_blank" rel="noopener">${n}${ICON.ext}</a>`).join('');
+  const read=b.nums.map(n=>`<a href="${SEN}${b.yr}/${n.replace(/^(S\d+)([A-Z])$/,'$1/amendment/$2')}" target="_blank" rel="noopener">${n}${ICON.ext}</a>`).join('');
   return `<article class="card bill${b.law?' lawcard':''}">
     <div><h3>${b.title}</h3><div class="when">${ICON.cal}${b.intro.length>4?'Introduced '+b.intro:'Introduced in '+b.intro}</div></div>
     <p>${b.what}</p>
@@ -945,7 +953,7 @@ $('billsTag').textContent=`${PENDING.length} being considered · ${BILLS.filter(
 
 /* "If this bill passes" checkboxes, used by both calculators. */
 function BillChecks(root,state,onChange){
-  root.innerHTML=`<div class="lead"><span class="flabel">If this bill passes</span><a href="#bills" class="hint" style="font-weight:600">What's in Albany?</a></div>
+  root.innerHTML=`<div class="lead"><span class="flabel">If this bill passes</span><a href="#bills" class="hint" style="font-weight:600;display:inline-flex;align-items:center;min-height:44px">What are these bills?</a></div>
     <p class="hint" style="margin-top:-4px">Not law yet. Check it to see what it would mean for you.</p>
     ${PENDING.map(b=>`<label class="bc"><input type="checkbox" data-b="${b.id}"><b>${b.check}</b><small>${b.nums.join(' / ')} · in committee</small></label>`).join('')}`;
   const sync=()=>root.querySelectorAll('input[data-b]').forEach(c=>{c.checked=!!state()[c.dataset.b]});
@@ -958,10 +966,23 @@ const billNote=st=>st.b40?'<p class="billnote">Includes a bill that hasn’t pas
 /* ---------- saved state (this device only; separate from the Tier 3 page's numbers) ---------- */
 const KEY='fdny-tier2-v1';
 const DEF={
-  q:{fas:'',svc:300,dis:false,exT:'',exN:'',b40:false,rank:'LT',topPay:140212},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'LT',topPay:140212,cur:'',rankSet:false,eqOn:false,eq:''}
+  q:{fas:'',svc:300,dis:false,exT:'',exN:'',b40:false,rank:'FF',topPay:109352},
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:''}
 };
 let ST;
+/* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
+const realDate=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&toISO(fromISO(v))===v;
+function cleanState(){
+  const p=ST.p;
+  for(const k of ['dob','appt','eq']) if(!realDate(p[k])) p[k]='';
+  for(const k of ['manual','imported','extra']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
+  if(p.mode!=='import') p.mode='manual';
+  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=480))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
+  for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
+  /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
+  if(!p.rankSet&&!p.cur&&p.rank==='LT'&&+p.topPay===140212){p.rank='FF';p.topPay=109352}
+  if(ST.q.rank==='LT'&&+ST.q.topPay===140212){ST.q.rank='FF';ST.q.topPay=109352}
+}
 function loadState(){
   let s=null;try{s=JSON.parse(localStorage.getItem(KEY)||'null')}catch{}
   ST={q:{...DEF.q,...(s&&s.q)},p:{...DEF.p,...(s&&s.p)}};
@@ -969,13 +990,14 @@ function loadState(){
   if(s&&s.p&&!('cur' in s.p)&&(s.p.rank&&s.p.rank!=='LT'||s.p.topPay&&s.p.topPay!==140212)) ST.p.rankSet=true;
   /* The dates used to start filled in with these example dates. Saved untouched, they aren't the member's own. */
   if(ST.p.dob===EX_DOB&&ST.p.appt===EX_APPT){ST.p.dob='';ST.p.appt=''}
+  cleanState();
 }
 let saveT;
 function save(){clearTimeout(saveT);saveT=setTimeout(()=>{if(noSave)return;try{localStorage.setItem(KEY,JSON.stringify(ST))}catch{}},300)}
 loadState();
 /* The other tier's "Switch" button passes the member's dates in the address. They fill in only dates still blank here. */
 (()=>{try{
-  const q=new URLSearchParams(location.search),yr=v=>/^\d{4}-\d{2}-\d{2}$/.test(v||'')?+v.slice(0,4):0,d=q.get('dob'),a=q.get('appt');
+  const q=new URLSearchParams(location.search),yr=v=>realDate(v)?+v.slice(0,4):0,d=q.get('dob'),a=q.get('appt');
   if(!ST.p.dob&&yr(d)>=1935&&yr(d)<=NOW_Y-18) ST.p.dob=d;
   if(!ST.p.appt&&yr(a)>=1973&&yr(a)<=NOW_Y) ST.p.appt=a;
   if(d||a) history.replaceState(null,'',location.pathname+location.hash);
@@ -1057,7 +1079,8 @@ function renderQuick(){
   o.innerHTML=`<div class="k">Your pension in your first year of retirement</div>
     <div class="bignum">${usd(mon)}<span>/month</span></div>
     <div class="u">${usd(base)} a year</div>
-    ${billNote(q)}${add?`<p class="billnote">Includes ${usd(add/2)} a year from the longevity bonus: ${Math.round(bp*100)}% of your rank’s top pay added to your final average salary.</p>`:''}
+    ${fas<20000?'<p class="warn">That looks low for a year’s pay. Type the whole amount, like 120000.</p>':''}
+    ${billNote(q)}${add?`<p class="billnote">Includes ${usd(add/2)} a year from the longevity bonus: ${Math.round(bp*100)}% of ${rankName(q.topPay)} top pay added to your final average salary. Change the rank below.</p>`:''}
     <div class="brk">
       <div class="brow"><div class="bl"><b>${dis?'75%':'50%'} of final average salary</b><small>${dis?'75%':'50%'} of ${usd(fas+add)}${add?' (with the bonus)':''}</small></div><div class="amt"><b>${usd(half/12)}/mo</b></div></div>
       <div class="brow"><div class="bl"><b>1/${dv}th after 20 years</b><small>${sixty?`About ${usd(fas*past)} earned after 20 years, ÷ ${dv}`:'Starts once you pass 20 years'}</small></div><div class="amt"><b>${usd(sixty/12)}/mo</b></div></div>
@@ -1127,7 +1150,7 @@ const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
 $('pDis').checked=ST.p.dis;if(ST.p.dis) pSlider.range(true);pSlider.set(ST.p.svc);
 $('pDis').addEventListener('change',e=>{ST.p.dis=e.target.checked;pSlider.range(ST.p.dis);ST.p.svc=pSlider.value;wsKey='';renderP()});
 bindMoney('exT',ST.p,'exT',()=>renderP());bindMoney('exN',ST.p,'exN',()=>renderP());$('cpi').value=ST.p.cpi;$('goal').value=ST.p.goal?commas(num(ST.p.goal)):'';
-$('cpi').addEventListener('input',e=>{ST.p.cpi=num(e.target.value);renderP()});
+$('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,num(e.target.value));renderP()});
 $('goal').addEventListener('input',e=>{ST.p.goal=num(e.target.value)||'';renderP()});
 $('goal').addEventListener('blur',e=>{const n=num(e.target.value);e.target.value=n?commas(n):''});
 $('growOn').checked=ST.p.growOn;$('grow').value=ST.p.grow;
@@ -1144,13 +1167,13 @@ document.addEventListener('change',e=>{const c=e.target;if(c.type!=='checkbox')r
   if(c.id==='qDis'||$('qBills').contains(c)) toEst($('qOut'));
   else if(c.id==='pDis'||c.id==='growOn'||$('pBills').contains(c)) toEst($('head'));
 });
-$('grow').addEventListener('input',e=>{ST.p.grow=num(e.target.value);renderP()});
+$('grow').addEventListener('input',e=>{ST.p.grow=Math.min(10,num(e.target.value));renderP()});
 
 /* eq: the equated date, which service counts from (bought-back military or prior uniformed time); the appointment date if none.
    off: months between them. Service marks (20, 23, 25 years) count from eq; earnings still start at appointment. */
 function pDates(){const p=ST.p,dob=p.dob?fromISO(p.dob):null,appt=p.appt?fromISO(p.appt):null,e=p.eqOn&&p.eq?fromISO(p.eq):null;
   const eq=appt&&e&&e<appt?e:appt,off=appt?(appt.getFullYear()-eq.getFullYear())*12+appt.getMonth()-eq.getMonth()-(appt.getDate()<eq.getDate()?1:0):0;
-  return {dob,appt,eq,off,ok:!!(dob&&appt),age:dob&&eq?yrsBetween(dob,eq):0}}
+  return {dob,appt,eq,off,ok:!!(dob&&appt&&yrsBetween(dob,appt)>=17),age:dob&&eq?yrsBetween(dob,eq):0}}
 
 /* Earnings for the chosen mode. In import mode, verified years come from NYCAPS and can't be edited; other years can be typed. */
 function known(){const p=ST.p;return p.mode==='import'?{...p.extra,...p.imported}:{...p.manual}}
@@ -1217,8 +1240,8 @@ function scenario(months,c){
   const exAnn=excessAnnuity(exBal,retAge),ann=ithpEst+exAnn,base=ok?half+sixty+ann:0;
   const colaRate=colaRateOf(c.cpi),vsf=c.dis?0:VSF,drop=c.dis?0:vsf*Math.max(0,Math.floor((months-240)/12));
   const rows=[];let pen=base,colaTot=0,life=drop,colaAge=null;
-  for(let t=0;;t++){
-    const age=retAge+t;if(age>90.0001) break;
+  for(let t=0;t<120;t++){
+    const age=retAge+t;if(!(age<=90.0001)) break;
     if(t>=1){
       const colaOk=c.dis?t>=5:(age>=62&&t>=5)||(age>=55&&t>=10);
       if(colaOk){const inc=Math.min(pen,18000)*colaRate;pen+=inc;colaTot+=inc;if(colaAge===null)colaAge=age}
@@ -1265,6 +1288,7 @@ function renderWorksheet(c,m,you){
     else if(y===a20Y&&!c.dis) tag='20 years in '+fmtMY(addM(c.eq,240));
     else if(y===c.appt.getFullYear()) tag='Appointed '+fmtMY(c.appt);
     if((fsP||a20P)&&!(v>0)){tag='Needed: type this year';orange=true}
+    else if(v>0&&v<5000&&kind[y]!=='est'&&y!==c.appt.getFullYear()){tag='Looks low: type the whole year';orange=true}
     const t=$('t-'+y);t.textContent=tag;t.className='tg'+(orange?' orange':'');
     if(inp&&document.activeElement!==inp) inp.placeholder=kind[y]==='est'?commas(v):'';
     const parts=[];
@@ -1296,7 +1320,7 @@ function renderP(){
     const reviewing=!$('impReview').hidden;
     $('impStart').hidden=hasImp||reviewing;$('verBar').hidden=!hasImp||reviewing;
     $('wsBox').hidden=!hasImp&&!reviewing?true:reviewing;
-    if(hasImp){const ys=Object.keys(p.imported).map(Number).sort((a,b)=>a-b);$('verTxt').textContent=`${ys.length} years verified from NYCAPS (${ys[0]}–${ys[ys.length-1]})`}
+    if(hasImp){const ys=Object.keys(p.imported).map(Number).sort((a,b)=>a-b);$('verTxt').textContent=`${plural(ys.length,'year')} verified from NYCAPS (${ys[0]}–${ys[ys.length-1]})`}
   } else $('wsBox').hidden=false;
   /* After an import is locked in, the earnings table folds away behind a button. */
   const folded=p.mode==='import'&&hasImp&&$('impReview').hidden;
@@ -1307,6 +1331,7 @@ function renderP(){
   $('wsNeed').hidden=c.ok||folded;if(!c.ok) $('wsBox').hidden=true;
   document.querySelector('.growrow').hidden=$('wsBox').hidden;
   $('eqBad').hidden=!(p.eqOn&&p.eq&&c.appt&&fromISO(p.eq)>=c.appt);
+  $('apBad').hidden=!(c.dob&&c.appt&&yrsBetween(c.dob,c.appt)<17);
   $('tierWarn').hidden=!(c.appt&&c.appt>=new Date(2009,6,1));
   $('tierGo').href=`../tier3/?dob=${p.dob}&appt=${p.appt}#personal`;
   $('exHint').textContent='';
@@ -1363,7 +1388,7 @@ function renderP(){
       <div class="sub2">About <b>${usd(totY/12)} a month</b>, pension plus VSF</div>
       ${billNote(c)}${tier3}${warn}${past}
       <div class="brk">${brk}
-        <div class="brow"><div class="bl"><b>VSF</b><small>One payment every December or January</small></div><div class="amt"><b>${usd(VSF)}/yr</b><small>about ${usd(VSF/12)}/mo</small></div></div>
+        <div class="brow"><div class="bl"><b>VSF</b><small>Variable Supplements Fund: one payment every December or January</small></div><div class="amt"><b>${usd(VSF)}/yr</b><small>about ${usd(VSF/12)}/mo</small></div></div>
         <div class="brow tot"><div class="bl"><b>Total</b></div><div class="amt"><b>${usd(totY/12)}/mo</b><small>${usd(totY)}/yr</small></div></div>
       </div>
       ${you.drop>0?`<div class="lump"><span class="li">${ICON.up}</span><div><span>Plus, the day you retire</span><b>${usd(you.drop)} lump sum</b><small>Your banked variable: one $12,000 VSF payment for each full year past 20.</small></div></div>`:''}
@@ -1457,9 +1482,9 @@ $('exampleBtn').addEventListener('click',()=>{
 });
 let noSave=false;
 $('clearAll').addEventListener('click',()=>{
-  if(!confirm('Clear all your numbers from this device? This can’t be undone.')) return;
+  if(!confirm('Clear all your numbers from this device, on both the Tier 2 and Tier 3 pages? This can’t be undone.')) return;
   noSave=true;clearTimeout(saveT);
-  try{localStorage.removeItem(KEY)}catch{}
+  try{['fdny-tier3-v2','fdny-tier2-v1'].forEach(k=>localStorage.removeItem(k))}catch{}
   location.hash='#personal';location.reload();
 });
 
@@ -1494,7 +1519,7 @@ function openReview(vals,note){
   const odd=v=>v<5000||v>400000;
   $('reviewRows').innerHTML=ys.map(y=>`<tr><td>${y}${odd(vals[y])?'<span class="tg orange" style="display:block;font-size:13px">Check this one</span>':''}</td><td><div class="inp"><span>$</span><input data-ry="${y}" inputmode="numeric" value="${commas(vals[y])}"></div></td></tr>`).join('');
   $('impReview').hidden=false;$('impStart').hidden=true;imsg('', '');
-  if(note) $('impReview').querySelector('.hint').textContent='These are the Medicare Wages for each year. '+note+' Fix anything that’s off, then lock them in. Once locked, they can’t be changed.';
+  $('impReview').querySelector('.hint').textContent='These are the Medicare Wages for each year. '+(note?note+' ':'')+'Fix anything that’s off, then lock them in. Once locked, they can’t be changed.';
   renderP();$('impReview').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function closeReview(){pending=null;$('impReview').hidden=true}
@@ -1513,8 +1538,9 @@ $('pasteGo').addEventListener('click',()=>handleText($('impTxt').value,false));
 $('shotPick').addEventListener('click',()=>$('shotFile').click());
 $('cancelReview').addEventListener('click',()=>{closeReview();renderP()});
 $('lockBtn').addEventListener('click',()=>{
-  const vals={};$('reviewRows').querySelectorAll('input').forEach(i=>{const n=num(i.value);if(n>0) vals[+i.dataset.ry]=n});
+  const vals={};let bad=0;$('reviewRows').querySelectorAll('input').forEach(i=>{const n=num(i.value);if(n>0) vals[+i.dataset.ry]=n;else bad++});
   if(!Object.keys(vals).length) return;
+  if(bad&&!confirm(`${plural(bad,'year')} ${bad>1?'are':'is'} blank or not a number and will be left out. Lock in the rest?`)) return;
   ST.p.imported=vals;ST.p.extra={};closeReview();$('impTxt').value='';wsKey='';wsOpen=false;renderP();
   $('verBar').scrollIntoView({behavior:'smooth',block:'start'});
 });
@@ -1560,7 +1586,7 @@ function updateBar(you,m){
   $('pbar').classList.toggle('off',!show);document.body.classList.toggle('has-pbar',current==='personal');
   if(barData){$('pbarN').textContent=barData.n;$('pbarS').textContent=barData.s}
 }
-$('pbarGo').addEventListener('click',()=>$('head').scrollIntoView({behavior:'smooth',block:'center'}));
+$('pbarGo').addEventListener('click',()=>{const h=$('head'),bar=h.closest('.view').querySelector('.topbar');scrollBy({top:h.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().bottom:0)-10,behavior:'smooth'})});
 
 /* ---------- views: home and three sections, each with its own address (#basics, #quick, #personal) ---------- */
 const VIEWS=['home','basics','bills','quick','personal'];
