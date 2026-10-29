@@ -845,7 +845,7 @@ body.has-pbar .app{padding-bottom:110px}
   <section class="card escsec" id="cmpSec" aria-labelledby="cmpTitle">
     <div style="display:grid;gap:6px"><h2 id="cmpTitle">Retire soon or work longer?</h2><p class="hint" id="cmpLede"></p></div>
     <div class="tablebox"><table id="cmp"></table></div>
-    <p class="hint">Pay while still working: what you’d earn from the first column’s date to that retirement date. The first column is collecting a pension instead.</p>
+    <p class="hint">Retiring later means fewer years collecting, so the total through 85 can come out lower even when each check is bigger. It doesn’t count the pay you earn while you keep working.</p>
     <p class="swipe" id="swipe" hidden>Swipe the table to see your plan →</p>
     <div><button type="button" class="linkbtn" id="cmpMore" aria-expanded="false" aria-controls="cmp">Show all rows</button></div>
   </section>
@@ -1452,10 +1452,6 @@ function renderGoal(c,m,you){
 const COLORS=['--steel','--gold','--sage','--accent'];
 let cmpAll=false;
 $('cmpMore').addEventListener('click',()=>{cmpAll=!cmpAll;renderP()});
-/* Pay earned between two dates, month by month, from the yearly earnings (future years as estimated). */
-function payBetween(a,b,apptY){if(!(b>a))return 0;const v=yearValues(apptY,b.getFullYear()).vals;let t=0;
-  for(let d=new Date(a.getFullYear(),a.getMonth(),1),e=new Date(b.getFullYear(),b.getMonth(),1);d<e;d=addM(d,1)) t+=(v[d.getFullYear()]||0)/12;
-  return t}
 function renderCompare(c,m,you){
   const lo=soonest(c),hi=maxMonths(c);
   const picks=[[lo,lo===240?'At 20 yrs':'Soonest'],[lo+12,'+1 year'],[lo+36,'+3 years'],[lo+60,'+5 years']].filter(([mm])=>mm<=Math.max(hi,lo));
@@ -1481,7 +1477,6 @@ function renderCompare(c,m,you){
     ${line('With VSF, a year',s=>usd(s.base+VSF))}
     ${line('Banked variable',s=>usd(s.drop))}
     ${line('Yearly at 75',s=>val(s,75),1)}
-    ${line('Pay while still working',s=>big(payBetween(cols[0].s.retDate,s.retDate,c.appt.getFullYear())))}
     ${line('Pension and VSF through age 85',s=>big(s.life))}
   </tbody>`;
   $('cmp').classList.toggle('all',cmpAll);
