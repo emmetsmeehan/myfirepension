@@ -705,7 +705,7 @@ body.has-pbar .app{padding-bottom:110px}
             <span class="hint" style="margin-top:-4px">For the longevity bonus: at 25+ years, 5% to 15% of your rank's top pay is added to your final average salary.</span>
             <div class="ranks" role="group" aria-label="Rank at retirement"></div>
             <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div>
-            <span class="hint">FF is firefighter, LT lieutenant, CAPT captain, BC battalion chief. Top-step base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
+            <span class="hint">Top base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
         </div>
       </section>
 
@@ -1018,7 +1018,7 @@ function BillChecks(root,state,onChange,showRank){
       <span class="hint" style="margin-top:-4px">For the longevity bonus: at 25+ years, 5% to 15% of your rank's top pay is added to your final average salary.</span>
       <div class="ranks" role="group" aria-label="Rank"></div>
       <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank"></div>
-      <span class="hint">FF is firefighter, LT lieutenant, CAPT captain, BC battalion chief. Top-step base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
+      <span class="hint">Top base pay from the UFA (Aug. 2024) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
     <div class="lead"><span class="flabel">If this bill passes</span><a href="#bills" class="hint" style="font-weight:600;display:inline-flex;align-items:center;min-height:44px">What are these bills?</a></div>
     <p class="hint" style="margin-top:-4px">Not law yet. Check it to see what it would mean for you.</p>
     ${PENDING.map(b=>`<label class="bc"><input type="checkbox" data-b="${b.id}"><b>${b.check}</b><small>${b.nums.join(' / ')} · in committee</small></label>`).join('')}`;
