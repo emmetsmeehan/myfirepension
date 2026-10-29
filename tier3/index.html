@@ -829,6 +829,8 @@ body.has-pbar .app{padding-bottom:110px}
 <script>
 const $=id=>document.getElementById(id);
 /* Amounts as people type them: "$120,000", "120k", or "120.000" with a dot for thousands. Signs and letters are dropped. */
+/* Percents: "2.5" or "2,5". */
+const pctNum=v=>{const n=parseFloat(String(v).replace(',','.').replace(/[^0-9.]/g,''));return isFinite(n)?n:0};
 const num=v=>{let s=String(v).toLowerCase().replace(/[\s$]/g,'');const k=/\dk$/.test(s);if(/^\d{1,3}(\.\d{3})+k?$/.test(s))s=s.replace(/\./g,'');const n=parseFloat(s.replace(/[^0-9.]/g,''));return isFinite(n)?n*(k?1000:1):0};
 const usd=n=>(n<0?'-':'')+'$'+Math.round(Math.abs(n)).toLocaleString('en-US');
 const kfmt=n=>'$'+(Math.round(n/1000)).toLocaleString('en-US')+'k';
@@ -952,6 +954,7 @@ function cleanState(){
 }
 function loadState(){
   let s=null;try{s=JSON.parse(localStorage.getItem(KEY)||'null')}catch{}
+  const obj=o=>o&&typeof o==='object'&&!Array.isArray(o)?o:null;s=obj(s)&&{q:obj(s.q),p:obj(s.p)};
   ST={q:{...DEF.q,...(s&&s.q)},p:{...DEF.p,...(s&&s.p)}};
   /* Saved before current rank was asked: keep a rank at retirement the member had picked. */
   if(s&&s.p&&!('cur' in s.p)&&(s.p.rank&&s.p.rank!=='LT'||s.p.topPay&&s.p.topPay!==140212)) ST.p.rankSet=true;
@@ -1137,7 +1140,8 @@ $('pDis').addEventListener('change',e=>{ST.p.dis=e.target.checked;pSlider.range(
 $('ss').value=commas(ST.p.ss);$('cpi').value=ST.p.cpi;$('goal').value=ST.p.goal?commas(num(ST.p.goal)):'';
 $('ss').addEventListener('input',e=>{ST.p.ss=Math.min(6000,num(e.target.value));renderP()});
 $('ss').addEventListener('blur',e=>{e.target.value=commas(ST.p.ss)});
-$('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,num(e.target.value));renderP()});
+$('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,pctNum(e.target.value));renderP()});
+$('cpi').addEventListener('blur',e=>{e.target.value=ST.p.cpi});
 $('goal').addEventListener('input',e=>{ST.p.goal=num(e.target.value)||'';renderP()});
 $('goal').addEventListener('blur',e=>{const n=num(e.target.value);e.target.value=n?commas(n):''});
 $('growOn').checked=ST.p.growOn;$('grow').value=ST.p.grow;
@@ -1154,7 +1158,8 @@ document.addEventListener('change',e=>{const c=e.target;if(c.type!=='checkbox')r
   if(c.id==='qDis'||$('qBills').contains(c)) toEst($('qOut'));
   else if(c.id==='pDis'||c.id==='growOn'||$('pBills').contains(c)) toEst($('head'));
 });
-$('grow').addEventListener('input',e=>{ST.p.grow=Math.min(10,num(e.target.value));renderP()});
+$('grow').addEventListener('input',e=>{ST.p.grow=Math.min(10,pctNum(e.target.value));renderP()});
+$('grow').addEventListener('blur',e=>{e.target.value=ST.p.grow});
 
 /* eq: the equated date, which service counts from (bought-back military or prior uniformed time); the appointment date if none.
    off: months between them. Service marks (20, 23, 25 years) count from eq; earnings still start at appointment. */
@@ -1236,7 +1241,7 @@ function renderWorksheet(c,m){
     const store=p.mode==='import'?p.extra:p.manual;
     $('wsRows').querySelectorAll('input').forEach(inp=>{
       const y=+inp.dataset.y;if(store[y]) inp.value=commas(store[y]);
-      inp.addEventListener('input',()=>{const n=num(inp.value),st=ST.p.mode==='import'?ST.p.extra:ST.p.manual;if(n>0)st[y]=n;else delete st[y];renderP()});
+      inp.addEventListener('input',()=>{const n=num(inp.value),st=ST.p.mode==='import'?ST.p.extra:ST.p.manual;if(n>0&&n<1e7)st[y]=n;else delete st[y];renderP()});
       inp.addEventListener('blur',()=>{const n=num(inp.value);inp.value=n?commas(n):''});
     });
   }
@@ -1565,7 +1570,7 @@ function handleText(text,fromShot){
   if(!ys.length){
     imsg(fromShot?(partial?'We couldn’t see the Medicare Wages column. Turn your phone sideways so the whole table shows, take a new screenshot, and try again.':'We couldn’t read any years from that picture. Make sure the Tax Summary table is in the screenshot and try again.'):'No years found. Copy the whole table, starting from the word Year, and paste it again.','err');return;
   }
-  let note=skipped.length?`${[...new Set(skipped)].join(', ')} isn’t finished yet, so we left it out.`:'';
+  let note=skipped.includes(NOW_Y)?`${NOW_Y} isn’t finished yet, so we left it out.`:'';
   if(fromShot) note=('We read these from your screenshot, so check every digit. '+note).trim();
   openReview(out,note);
 }
@@ -1575,7 +1580,7 @@ $('pasteGo').addEventListener('click',()=>handleText($('impTxt').value,false));
 $('shotPick').addEventListener('click',()=>$('shotFile').click());
 $('cancelReview').addEventListener('click',()=>{closeReview();renderP()});
 $('lockBtn').addEventListener('click',()=>{
-  const vals={};let bad=0;$('reviewRows').querySelectorAll('input').forEach(i=>{const n=num(i.value);if(n>0) vals[+i.dataset.ry]=n;else bad++});
+  const vals={};let bad=0;$('reviewRows').querySelectorAll('input').forEach(i=>{const n=num(i.value);if(n>0&&n<1e7) vals[+i.dataset.ry]=n;else bad++});
   if(!Object.keys(vals).length) return;
   if(bad&&!confirm(`${plural(bad,'year')} ${bad>1?'are':'is'} blank or not a number and will be left out. Lock in the rest?`)) return;
   ST.p.imported=vals;ST.p.extra={};closeReview();$('impTxt').value='';wsKey='';wsOpen=false;renderP();
