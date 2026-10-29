@@ -31,7 +31,7 @@ This repository is the source of truth. The calculator used to live on a claude.
 
 The owner wants it modern and clean but simple: one sans-serif family (Source Sans 3), sentence-case labels, no monospace text, no small uppercase letter-spaced labels, no colored stripes on card edges. Slightly rounded corners and simple line icons are approved (Oct. 2026). FDNY red is the accent. Do not add any mention of AI or Claude to the page.
 
-The disclaimer appears under the home intro and in the footer on every screen: unofficial, not affiliated with the FDNY or the NYC Fire Pension Fund, actual numbers may vary. Keep both.
+The disclaimer appears under the home intro and in the footer on every screen: unofficial, not affiliated with the FDNY or the NYC Fire Pension Fund, actual numbers may vary. Keep both. Exception: the tier chooser (`index.html`) shows it only in the footer; the owner had the copy above "Which tier are you in?" removed as a repeat (Oct. 29, 2026).
 
 ## Page structure
 
