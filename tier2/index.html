@@ -449,6 +449,13 @@ body.has-pbar .app{padding-bottom:110px}
 @media (max-width:400px){#pSlider .sub{min-height:3em}}
 @media (max-width:360px){#cmp th,#cmp td{font-size:13px;padding:7px 3px}#cmp th:first-child,#cmp td:first-child{width:25%}.growtbl td,.growtbl th{padding-left:7px;padding-right:7px}}
 </style>
+<script>
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","z5169eoycz");
+</script>
 </head>
 <body>
 <div class="app">
@@ -1580,7 +1587,7 @@ let headVisible=false,growOpen=false;
 new IntersectionObserver(es=>{es.forEach(e=>{headVisible=e.isIntersecting});updateBar()}).observe($('head'));
 let barData=null;
 function updateBar(you,m){
-  if(you!==undefined) barData=you?{n:usd((you.base+(ST.p.dis?0:VSF))/12)+'/month',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+fmtSvcLong(m)}:null;
+  if(you!==undefined) barData=you?{n:usd((you.base+(ST.p.dis?0:VSF))/12)+'/month',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
   const show=barData&&!headVisible&&current==='personal';
   $('pbar').classList.toggle('off',!show);document.body.classList.toggle('has-pbar',current==='personal');
   if(barData){$('pbarN').textContent=barData.n;$('pbarS').textContent=barData.s}
