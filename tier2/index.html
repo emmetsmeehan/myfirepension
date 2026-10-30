@@ -565,6 +565,11 @@ body.has-pbar .app{padding-bottom:110px}
       </ul>
       <p>So if you retire with, say, 22 years while getting 20-year longevity, the extra above the 10-year amount doesn’t count toward your pension. A vested pension counts no longevity at all.</p>
       <p>The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure.</p></div></details>
+    <details><summary>I was out on LODI. Does that pay count?</summary><div class="ans">
+      <p><b>Yes.</b> Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year.</p>
+      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. For each year you were on LODI, look for <b>LODI</b> in box 14 of that year's W-2 and add it to the year.</p>
+      <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension, so take it out.</p>
+      <p>Already locked in your imported numbers? Tap <b>Start over</b>, import again, and fix those years on the review screen. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>What is the 1/60th?</summary><div class="ans">
       <p>Add up everything you earn after your 20th anniversary and divide by 60. That amount is added to your yearly pension.</p>
       <p class="ex">Example: you stay 5 years past 20 and earn $150,000 each year. That's $750,000, and 1/60th of it is <b>$12,500 a year</b> more pension, about $1,040 a month.</p>
@@ -633,7 +638,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p><strong>ITHP estimate:</strong> the City's 5% of pay after your 20th anniversary, credited 8.25% interest a year until you retire, then paid out evenly to age 85 assuming 7% interest. On a 3/4s it uses your whole career in the table. The Fund's real conversion uses its own tables, so this is rough.</p>
       <p><strong>Excess contributions:</strong> type the taxable and non-taxable excess from ESS. The personal numbers page grows it at the Fund's 8.25% a year until your retirement date (new contributions aren't added); the quick calculator uses it as typed. It's shown both as a lump sum and as an estimated annuity, paid out evenly to age 85 at 7% like the ITHP estimate; the Fund converts with its own tables, so the monthly figure is rough. Taxability doesn't change the amount: the non-taxable part comes back tax-free, and the taxable part is federally taxed when paid (a lump sum of it can carry a 10% penalty under age 50).</p>
       <p><strong>Longevity:</strong> with 20 to under 25 years, the pension counts longevity pay only at the 10-year level; at 25 or more years, at the 20-year level (the Fund’s Tiers 1 &amp; 2 Summary Plan Description). The calculators don’t adjust for this yet; they use full W-2 pay, so results between 20 and 25 years can be a little high.</p>
-      <p><strong>Your earnings:</strong> imported numbers come from the Medicare Wages column of your NYCAPS Tax Summary: all taxable pay, overtime included. That's close to what the Pension Fund counts, but not exact; it can include pay the Fund leaves out, such as uniform allowance. Future years repeat your last known year unless you choose a yearly raise.</p>
+      <p><strong>Your earnings:</strong> imported numbers come from the Medicare Wages column of your NYCAPS Tax Summary: all taxable pay, overtime included. That's close to what the Pension Fund counts, with two exceptions: it leaves out pay while on LODI (tax-free, but pensionable: payroll takes the pension contribution from it, and box 14 of the W-2 shows it as LODI), and it includes one-time bonuses the Fund doesn't count, such as the 2023 healthcare worker bonus (HWB). Add the first and take out the second for those years. Uniform allowance is in neither. Future years repeat your last known year unless you choose a yearly raise.</p>
       <p><strong>COLA:</strong> no escalation. Half of inflation (1% to 3%) on the first $18,000 only, starting at age 62 after 5 years retired, or age 55 after 10 years retired. The COLA reduces the VSF until 62.</p>
       <p><strong>VSF and banked variable:</strong> service retirees with 20+ years get the VSF, $12,000 a year. Each year worked past 20 banks one VSF payment, paid as a lump sum at retirement.</p>
       <p><strong>Social Security:</strong> no offset. The Fund's summary lists the offset only for Tier 3.</p>
@@ -754,7 +759,7 @@ body.has-pbar .app{padding-bottom:110px}
         </div>
 
         <div id="manualPanel" class="field">
-          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Your W-2 (box 5, Medicare wages) is a good place to look.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
+          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Start with box 5 (Medicare wages) on your W-2. If box 14 shows LODI, add it; if it shows a one-time bonus like HWB, take it out.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
         </div>
 
         <div id="importPanel" hidden>
@@ -785,7 +790,7 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
           <div class="panelbox review" id="impReview" hidden>
             <b style="font-size:18px">Check these against your screen</b>
-            <p class="hint">These are the Medicare Wages for each year. Fix anything that's off, then lock them in. Once locked, they can't be changed.</p>
+            <p class="hint">These are the Medicare Wages for each year. Out on LODI in a year? Add the LODI amount from box 14 of that year's W-2: it counts toward your pension but isn't in Medicare Wages. Take out one-time bonuses, like the 2023 healthcare worker bonus (HWB). Fix anything else that's off, then lock them in. Once locked, they can't be changed.</p>
             <table><tbody id="reviewRows"></tbody></table>
             <div class="btnrow"><button type="button" class="btn green" id="lockBtn">These are right, lock them in</button><button type="button" class="btn ghost" id="cancelReview">Cancel</button></div>
           </div>
@@ -1531,7 +1536,7 @@ function openReview(vals,note){
   const odd=v=>v<5000||v>400000;
   $('reviewRows').innerHTML=ys.map(y=>`<tr><td>${y}${odd(vals[y])?'<span class="tg orange" style="display:block;font-size:13px">Check this one</span>':''}</td><td><div class="inp"><span>$</span><input data-ry="${y}" inputmode="numeric" value="${commas(vals[y])}"></div></td></tr>`).join('');
   $('impReview').hidden=false;$('impStart').hidden=true;imsg('', '');
-  $('impReview').querySelector('.hint').textContent='These are the Medicare Wages for each year. '+(note?note+' ':'')+'Fix anything that’s off, then lock them in. Once locked, they can’t be changed.';
+  $('impReview').querySelector('.hint').textContent='These are the Medicare Wages for each year. '+(note?note+' ':'')+'Out on LODI in a year? Add the LODI amount from box 14 of that year’s W-2: it counts toward your pension but isn’t in Medicare Wages. Take out one-time bonuses, like the 2023 healthcare worker bonus (HWB). Fix anything else that’s off, then lock them in. Once locked, they can’t be changed.';
   renderP();$('impReview').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function closeReview(){pending=null;$('impReview').hidden=true}
