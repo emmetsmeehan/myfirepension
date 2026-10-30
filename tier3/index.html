@@ -457,9 +457,13 @@ body.has-pbar .app{padding-bottom:110px}
 @media (max-width:400px){#pSlider .sub{min-height:3em}}
 @media (max-width:360px){.ws td,.ws th{padding-left:6px;padding-right:6px}.ws th:nth-child(1){width:30%}.ws th:nth-child(3){width:30%}.ws td:nth-child(3){font-size:14px}
   #cmp th,#cmp td{font-size:13px;padding:7px 3px}#cmp th:first-child,#cmp td:first-child{width:25%}.growtbl td,.growtbl th{padding-left:7px;padding-right:7px}}
-.news{margin-top:16px;padding:14px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
-.news h2{margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)}
-.news ul{margin:0;padding:0;list-style:none}
+.news{margin-top:16px;border:2px solid var(--gold);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+.news summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:48px;padding:8px 16px;font-size:16.5px;font-weight:800;color:var(--ink)}
+.news summary::-webkit-details-marker{display:none}
+.news summary::after{content:"";width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;flex:none}
+.news[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.news summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:var(--r)}
+.news ul{margin:0;padding:0 16px 10px;list-style:none}
 .news li{padding:7px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.4;color:var(--body)}
 .news li:first-child{border-top:0}
 .news time{display:block;font-size:13.5px;font-weight:700;color:var(--muted)}
@@ -477,14 +481,14 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== HOME ===================== -->
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
-  <section class="news" aria-labelledby="newsH">
-    <h2 id="newsH">Latest updates and fixes</h2>
+  <details class="news">
+    <summary>See updates and fixes to the website</summary>
     <ul>
       <li><time datetime="2026-10-30">Oct. 30, 2026</time>Out on LODI? Your W-2 leaves that pay out. You can now add it back in your personal numbers, and take out one-time bonuses like the healthcare worker bonus paid during COVID.</li>
       <li><time datetime="2026-10-29">Oct. 29, 2026</time>The comparison table explains why retiring later can mean collecting less in total.</li>
       <li><time datetime="2026-10-28">Oct. 28, 2026</time>Equated dates, for bought-back military, prior EMS or a retroactive hire date.</li>
     </ul>
-  </section>
+  </details>
   <a class="switch" href="../tier2/">Want to see Tier 2 instead?<span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   <header class="hero">
     <span class="chip">For FDNY Tier 3 members</span>
