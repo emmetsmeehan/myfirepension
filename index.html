@@ -67,6 +67,12 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .hint{font-size:15.5px;color:var(--muted)}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
 @media (max-width:560px){.card{padding:16px}}
+.news{margin-top:16px;padding:14px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+.news h2{margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)}
+.news ul{margin:0;padding:0;list-style:none}
+.news li{padding:7px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.4;color:var(--body)}
+.news li:first-child{border-top:0}
+.news time{display:block;font-size:13.5px;font-weight:700;color:var(--muted)}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){
@@ -78,6 +84,14 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 </head>
 <body>
 <main class="app">
+  <section class="news" aria-labelledby="newsH">
+    <h2 id="newsH">Latest updates and fixes</h2>
+    <ul>
+      <li><time datetime="2026-10-30">Oct. 30, 2026</time>Out on LODI? Your W-2 leaves that pay out. You can now add it back in your personal numbers, and take out one-time bonuses like the healthcare worker bonus paid during COVID.</li>
+      <li><time datetime="2026-10-29">Oct. 29, 2026</time>The comparison table explains why retiring later can mean collecting less in total.</li>
+      <li><time datetime="2026-10-28">Oct. 28, 2026</time>Equated dates, for bought-back military, prior EMS or a retroactive hire date.</li>
+    </ul>
+  </section>
   <header class="hero">
     <span class="chip">For FDNY uniformed members</span>
     <h1>Learn about your pension.</h1>
