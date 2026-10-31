@@ -327,6 +327,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .ws .locked svg{width:16px;height:16px;color:var(--muted)}
 .ws tr.win td{background:color-mix(in srgb,var(--sage) 12%,var(--surface))}
 .ws tr.after td{opacity:.45}
+.ws .adjn,.wsbox .adjn{display:block;font-size:12.5px;color:var(--muted);line-height:1.25;text-align:right;padding-right:4px}
 .ws .cut{display:block;color:var(--gold);font-size:12.5px;line-height:1.2}
 .futbtn{width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);min-height:52px;font-weight:700;color:var(--steel);cursor:pointer;font-size:16px}
 .ws.hidefut tr.fut{display:none}
@@ -1355,6 +1356,8 @@ function scenario(months,c){
 /* LODI pay (tax-free, so missing from box 5, but pensionable) and one-time bonuses (in box 5, not pensionable), by year, from box 14 of the W-2. */
 /* LODI pay and one-time bonuses read from W-2 box 14, for the verified years they came with. Typed years are taken as typed. */
 const adjOf=y=>isVerified(y)?(ST.p.lodi[y]||0)-(ST.p.onetime[y]||0):0;
+/* Under a verified year that has LODI or a bonus: how the number was put together. */
+const adjNote=y=>{if(!adjOf(y)&&!(isVerified(y)&&(ST.p.lodi[y]||ST.p.onetime[y]))) return '';const l=ST.p.lodi[y]||0,b=ST.p.onetime[y]||0;return `<span class="adjn">Box 5 ${usd(ST.p.imported[y])}${l?` + LODI ${usd(l)}`:''}${b?` − bonus ${usd(b)}`:''}</span>`};
 
 /* ---------- earnings table ---------- */
 let wsKey='',showFut=false,wsOpen=false;
@@ -1362,12 +1365,12 @@ document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFu
 function renderWorksheet(c,m,you){
   const p=ST.p,retY=you.retDate.getFullYear(),firstY=you.first;
   const showTo=Math.max(retY,NOW_Y+1);
-  const key=[firstY,showTo,p.mode,Object.keys(p.imported).join(',')].join('|');
+  const key=[firstY,showTo,p.mode,Object.keys(p.imported).join(','),JSON.stringify([p.lodi,p.onetime])].join('|');
   if(key!==wsKey){
     wsKey=key;let h='';
     for(let y=firstY;y<=showTo;y++){
       h+=isVerified(y)
-        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y])}${ICON.lock}</div></td><td id="c-${y}"></td></tr>`
+        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div>${adjNote(y)}</td><td id="c-${y}"></td></tr>`
         :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
     }
     $('wsRows').innerHTML=h;
@@ -1428,7 +1431,7 @@ function renderP(){
   const folded=impMode(p.mode)&&hasImp&&$('impReview').hidden;
   $('wsTog').hidden=!folded;
   $('impList').hidden=!(folded&&wsOpen&&!c.ok);
-  if(folded&&!c.ok) $('impRows').innerHTML=Object.keys(p.imported).map(Number).sort((a,b)=>a-b).map(y=>`<tr><td>${y}</td><td>${usd(p.imported[y])}</td></tr>`).join('');$('wsTog').setAttribute('aria-expanded',wsOpen);
+  if(folded&&!c.ok) $('impRows').innerHTML=Object.keys(p.imported).map(Number).sort((a,b)=>a-b).map(y=>`<tr><td>${y}</td><td>${usd(p.imported[y]+adjOf(y))}${adjNote(y)}</td></tr>`).join('');$('wsTog').setAttribute('aria-expanded',wsOpen);
   $('wsTogS').textContent=wsOpen?'Tap to hide':c.ok?'Tap to see which years count':'Tap to see your numbers';
   if(folded&&!wsOpen) $('wsBox').hidden=true;
   $('needDates').hidden=!folded||c.ok;
