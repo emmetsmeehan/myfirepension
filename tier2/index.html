@@ -260,7 +260,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .tierbox .btn{margin-top:8px;justify-self:start;min-height:48px}
 .tierbox b{color:var(--accent)}
 .tierbox span{font-size:15px}
-.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mode b,.mode small{overflow-wrap:break-word}
+@media (max-width:360px){.mode{padding:10px 5px}.mode b{font-size:14.5px}.mode small{font-size:12px;overflow-wrap:anywhere}}
 .mode{position:relative;display:grid;gap:6px;justify-items:start;text-align:left;border:2px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 12px;cursor:pointer;min-height:118px;align-content:start}
 .mode .mi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--soft);color:var(--ink)}
 .mode b{font-size:17px;line-height:1.2}
@@ -286,7 +288,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .review table{width:100%;border-collapse:collapse}
 .review td{padding:6px 4px;border-bottom:1px solid var(--line)}
 .review td:first-child{font-weight:700;width:30%}
-.mode.wide{grid-column:1/-1;min-height:0}
+@media (max-width:480px){.modes{gap:6px}.mode{padding:12px 8px;gap:5px}.mode .mi{width:34px;height:34px;border-radius:10px}.mode b{font-size:15.5px}.mode small{font-size:13px}.mode .tick{top:7px;right:7px;width:20px;height:20px}.mode .tick svg{width:12px;height:12px}}
 .w2row td{vertical-align:top}
 .w2row td:first-child{width:auto;padding-top:14px}
 .w2f{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px}
@@ -809,11 +811,11 @@ body.has-pbar .app{padding-bottom:110px}
         <div class="modes" role="group" aria-label="How to enter your earnings">
           <button type="button" class="mode" data-mode="manual" aria-pressed="true"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg></span><b>Type in each year</b><small>Enter by hand what you made each year</small></button>
           <button type="button" class="mode" data-mode="import" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></span><b>Import from NYCAPS ESS</b><small>Your numbers automatically imported from Tax Summary</small></button>
-          <button type="button" class="mode wide" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Upload your W-2s</b><small>Best option: automatically calculates with LODI pay</small></button>
+          <button type="button" class="mode" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Upload your W‑2s</b><small>Best option: automatically calculates with LODI pay</small></button>
         </div>
 
         <div id="manualPanel" class="field">
-          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Your W-2 (box 5, Medicare wages) is a good place to look. Out on LODI? Add it under “Out on LODI, or got a one-time bonus?” below.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
+          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Your W-2 (box 5, Medicare wages) is a good place to look. If you were out on LODI, that pay isn’t in box 5, so it has to be added. You’ll find it as LODI in box 14 of your W-2: put it under “Out on LODI, or got a one-time bonus?” below and we’ll add it for you.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
         </div>
 
         <div id="importPanel" hidden>
