@@ -1859,9 +1859,9 @@ function openW2Review(got,notes){
   got.sort((a,b)=>a.year-b.year);
   const odd=v=>v<5000||v>400000,v=n=>n?commas2(n):'';
   const fld=(i,k,lab,val)=>`<label>${lab}<div class="inp"><span>$</span><input data-w="${k}" data-i="${i}" inputmode="decimal" value="${v(val)}" aria-label="${lab}"></div></label>`;
-  /* The year is a picker, so a W-2 read as the wrong year can be fixed before locking in. */
+  /* The year is plain text. Only when two different W-2s read as the same year does it become a picker, so the member can fix the wrong one. */
   const yrSel=(i,y)=>{let o='';for(let x=NOW_Y-1;x>=NOW_Y-45;x--)o+=`<option${x===y?' selected':''}>${x}</option>`;return `<select class="w2yr" data-i="${i}" aria-label="Tax year">${o}</select>`};
-  $('reviewRows').innerHTML=got.map((g,i)=>`<tr class="w2row"><td>${yrSel(i,g.year)}${g.check||odd(g.wages)?`<span class="tg orange" style="display:block;font-size:13px">${g.dup?'Check the year':'Check this one'}</span>`:''}</td><td><div class="w2f">${fld(i,'wages','Box 5 earnings',g.wages)}${fld(i,'lodi','LODI',g.lodi)}${fld(i,'bonus','One-time bonus',g.bonus)}</div></td></tr>`).join('');
+  $('reviewRows').innerHTML=got.map((g,i)=>`<tr class="w2row" data-y="${g.year}"><td>${g.dup?yrSel(i,g.year):g.year}${g.check||odd(g.wages)?`<span class="tg orange" style="display:block;font-size:13px">${g.dup?'Check the year':'Check this one'}</span>`:''}</td><td><div class="w2f">${fld(i,'wages','Box 5 earnings',g.wages)}${fld(i,'lodi','LODI',g.lodi)}${fld(i,'bonus','One-time bonus',g.bonus)}</div></td></tr>`).join('');
   const h=$('impReview').querySelector('.w2note,.hint');
   h.innerHTML='';h.className='w2note';
   [['From your W-2s.','Check each year against its W-2: box 5, and LODI and any one-time bonus (like HWB) in box 14. Then lock them in.'],...notes.map(n=>['',n])].forEach(([b,t])=>{const p=document.createElement('span');if(b){const e=document.createElement('b');e.textContent=b+' ';p.append(e)}p.append(t);h.append(p)});
@@ -1871,7 +1871,7 @@ function openW2Review(got,notes){
 const commas2=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 function lockW2(){
   const p=ST.p,rows={},list=[];
-  $('reviewRows').querySelectorAll('tr').forEach(tr=>{const r={year:+tr.querySelector('.w2yr').value};tr.querySelectorAll('input[data-w]').forEach(i=>{const n=num(i.value);r[i.dataset.w]=n>0&&n<1e7?n:0});if(r.wages>0)list.push(r)});
+  $('reviewRows').querySelectorAll('tr').forEach(tr=>{const sel=tr.querySelector('.w2yr'),r={year:+(sel?sel.value:tr.dataset.y)};tr.querySelectorAll('input[data-w]').forEach(i=>{const n=num(i.value);r[i.dataset.w]=n>0&&n<1e7?n:0});if(r.wages>0)list.push(r)});
   if(!list.length) return;
   const twice=[...new Set(list.filter(r=>list.filter(q=>q.year===r.year).length>1).map(r=>r.year))];
   if(twice.length){alert(`More than one W-2 is set to ${twice.join(', ')}. Fix the year on the wrong one, then lock them in.`);return}
