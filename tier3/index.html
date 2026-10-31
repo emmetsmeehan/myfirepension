@@ -1854,7 +1854,7 @@ function openW2Review(got,notes){
   const ys=Object.keys(got).map(Number).sort((a,b)=>a-b),odd=v=>v<5000||v>400000,v=n=>n?commas2(n):'';
   const fld=(y,k,lab,val)=>`<label>${lab}<div class="inp"><span>$</span><input data-w="${k}" data-ry="${y}" inputmode="decimal" value="${v(val)}" aria-label="${lab} in ${y}"></div></label>`;
   $('reviewRows').innerHTML=ys.map(y=>{const g=got[y];return `<tr class="w2row"><td>${y}${g.check||odd(g.wages)?'<span class="tg orange" style="display:block;font-size:13px">Check this one</span>':''}</td><td><div class="w2f">${fld(y,'wages','Box 5 earnings',g.wages)}${fld(y,'lodi','LODI',g.lodi)}${fld(y,'bonus','One-time bonus',g.bonus)}</div></td></tr>`}).join('');
-  const h=$('impReview').querySelector('.hint');
+  const h=$('impReview').querySelector('.w2note,.hint');
   h.innerHTML='';h.className='w2note';
   [['From your W-2s.','Check each year against its W-2: box 5, and LODI and any one-time bonus (like HWB) in box 14. Then lock them in.'],...notes.map(n=>['',n])].forEach(([b,t])=>{const p=document.createElement('span');if(b){const e=document.createElement('b');e.textContent=b+' ';p.append(e)}p.append(t);h.append(p)});
   $('impReview').hidden=false;$('impStart').hidden=true;$('w2Start').hidden=true;
