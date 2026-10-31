@@ -286,7 +286,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .review table{width:100%;border-collapse:collapse}
 .review td{padding:6px 4px;border-bottom:1px solid var(--line)}
 .review td:first-child{font-weight:700;width:30%}
-.way.wide{grid-column:1/-1}
+.mode.wide{grid-column:1/-1;min-height:0}
 .w2row td{vertical-align:top}
 .w2row td:first-child{width:auto;padding-top:14px}
 .w2f{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px}
@@ -611,7 +611,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p>The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was out on LODI. Does that pay count?</summary><div class="ans">
       <p><b>Yes.</b> Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year.</p>
-      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Import from NYCAPS</b>, then <b>Upload your W-2s</b>, and the page reads LODI from box 14 for you. Or, for each year you were on LODI, find <b>LODI</b> in box 14 of that year's W-2 and enter it in step 2 under <b>Out on LODI, or got a one-time bonus?</b> The page adds it for you.</p>
+      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. Or, for each year you were on LODI, find <b>LODI</b> in box 14 of that year's W-2 and enter it in step 2 under <b>Out on LODI, or got a one-time bonus?</b> The page adds it for you.</p>
       <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension, so enter it in the same place and the page takes it out.</p>
       <p>This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was on unpaid leave (LWOP). Does that time count?</summary><div class="ans">
@@ -804,6 +804,7 @@ body.has-pbar .app{padding-bottom:110px}
         <div class="modes" role="group" aria-label="How to enter your earnings">
           <button type="button" class="mode" data-mode="manual" aria-pressed="true"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg></span><b>Type in each year</b><small>Enter what you made, year by year</small></button>
           <button type="button" class="mode" data-mode="import" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></span><b>Import from NYCAPS</b><small>Your exact numbers from ESS</small></button>
+          <button type="button" class="mode wide" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Upload your W-2s</b><small>Best option: automatically calculates with LODI pay</small></button>
         </div>
 
         <div id="manualPanel" class="field">
@@ -817,18 +818,13 @@ body.has-pbar .app{padding-bottom:110px}
               <li>Sign in to <b>NYCAPS Employee Self Service</b>.</li>
               <li>Tap the <b>Pay and Tax Information</b> tile.</li>
               <li>In the menu, open <b>Pay and Tax Information</b>, then tap <b>Tax Summary (W-2, 1127 &amp; 1095C)</b>.</li>
-              <li>You'll see a table called <b>Tax Summary for All Years</b>, and your W-2 for each year. Bring your numbers here one of three ways:</li>
+              <li>You'll see a table called <b>Tax Summary for All Years</b>. Bring it here one of two ways:</li>
             </ol>
             <div class="ways">
-              <button type="button" class="way wide" id="wayW2" aria-pressed="false"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>Upload your W-2s<small>Best: includes LODI pay</small></button>
               <button type="button" class="way" id="wayShot" aria-pressed="false"><svg class="i" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg>Upload a screenshot<small>Best on a phone</small></button>
               <button type="button" class="way" id="wayPaste" aria-pressed="false"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V2.5h6V4M9 10h6M9 14h6M9 18h3"/></svg>Copy and paste<small>Best on a computer</small></button>
             </div>
             <input type="file" id="shotFile" accept="image/*" hidden>
-            <div id="w2Box" class="field" hidden>
-              <p class="hint">Open each year's W-2 and save it as a PDF, or take a clear picture of it. Pick all of them at once. We read box 5 (Medicare wages) and box 14 (LODI and one-time bonuses like HWB). Your W-2s are read on your phone and never uploaded anywhere.</p>
-              <div><button type="button" class="btn green" id="w2Pick">Choose my W-2s</button></div>
-            </div>
             <div id="shotBox" class="field" hidden>
               <p class="hint">Take a screenshot of the whole table. If the <b>Medicare Wages</b> column is cut off, turn your phone sideways first. The picture is read on your phone and never uploaded anywhere.</p>
               <div><button type="button" class="btn green" id="shotPick">Choose my screenshot</button></div>
@@ -840,6 +836,16 @@ body.has-pbar .app{padding-bottom:110px}
               <div><button type="button" class="btn green" id="pasteGo">Read my numbers</button></div>
             </div>
             <p class="msg" id="impMsg" role="status" hidden></p>
+          </div>
+          <div class="panelbox" id="w2Start" hidden>
+            <b style="font-size:18px">Get your W-2s</b>
+            <ol>
+              <li>Sign in to <b>NYCAPS Employee Self Service</b>.</li>
+              <li>Tap the <b>Pay and Tax Information</b> tile, then open <b>Tax Summary (W-2, 1127 &amp; 1095C)</b>.</li>
+              <li>Open each year's W-2 and save it as a PDF, or take a clear picture of it.</li>
+            </ol>
+            <p class="hint">Pick all of them at once. We read box 5 (Medicare wages) and box 14 (LODI pay and one-time bonuses like HWB), so LODI is counted for you. Your W-2s are read on your phone and never uploaded anywhere.</p>
+            <div><button type="button" class="btn green" id="w2Pick">Choose my W-2s</button></div>
           </div>
           <div class="panelbox review" id="impReview" hidden>
             <b style="font-size:18px">Check these against your screen</b>
@@ -1049,11 +1055,13 @@ const DEF={
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
 const realDate=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&toISO(fromISO(v))===v;
+/* Import from NYCAPS and Upload your W-2s share the same verified numbers. */
+const impMode=m=>m==='import'||m==='w2';
 function cleanState(){
   const p=ST.p;
   for(const k of ['dob','appt','eq']) if(!realDate(p[k])) p[k]='';
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
-  if(p.mode!=='import') p.mode='manual';
+  if(!impMode(p.mode)) p.mode='manual';
   for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=480))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
   /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
@@ -1254,8 +1262,8 @@ function pDates(){const p=ST.p,dob=p.dob?fromISO(p.dob):null,appt=p.appt?fromISO
   return {dob,appt,eq,off,ok:!!(dob&&appt&&yrsBetween(dob,appt)>=17),age:dob&&eq?yrsBetween(dob,eq):0}}
 
 /* Earnings for the chosen mode. In import mode, verified years come from NYCAPS and can't be edited; other years can be typed. */
-function known(){const p=ST.p;return p.mode==='import'?{...p.extra,...p.imported}:{...p.manual}}
-function isVerified(y){return ST.p.mode==='import'&&ST.p.imported[y]>0}
+function known(){const p=ST.p;return impMode(p.mode)?{...p.extra,...p.imported}:{...p.manual}}
+function isVerified(y){return impMode(ST.p.mode)&&ST.p.imported[y]>0}
 function yearValues(firstY,lastY){
   const k=known(),vals={},kind={};let lastY0=null;
   for(const y of Object.keys(k).map(Number).sort((a,b)=>a-b)) if(y<firstY&&k[y]>0) lastY0=y;
@@ -1366,10 +1374,10 @@ function renderWorksheet(c,m,you){
         :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
     }
     $('wsRows').innerHTML=h;
-    const store=p.mode==='import'?p.extra:p.manual;
+    const store=impMode(p.mode)?p.extra:p.manual;
     $('wsRows').querySelectorAll('input').forEach(inp=>{
       const y=+inp.dataset.y;if(store[y]) inp.value=commas(store[y]);
-      inp.addEventListener('input',()=>{const n=num(inp.value),st=ST.p.mode==='import'?ST.p.extra:ST.p.manual;if(n>0&&n<1e7)st[y]=n;else delete st[y];renderP()});
+      inp.addEventListener('input',()=>{const n=num(inp.value),st=impMode(ST.p.mode)?ST.p.extra:ST.p.manual;if(n>0&&n<1e7)st[y]=n;else delete st[y];renderP()});
       inp.addEventListener('blur',()=>{const n=num(inp.value);inp.value=n?commas(n):''});
     });
   }
@@ -1410,18 +1418,18 @@ function annRow(s,dis){
 function renderP(){
   const p=ST.p,c=pParams(),m=pSlider.value;
   document.querySelectorAll('.mode').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===p.mode));
-  $('manualPanel').hidden=p.mode!=='manual';$('importPanel').hidden=p.mode!=='import';
+  $('manualPanel').hidden=p.mode!=='manual';$('importPanel').hidden=!impMode(p.mode);
   const hasImp=Object.keys(p.imported).length>0;
   renderAdj(c);
   $('manualEmpty').hidden=Object.keys(p.manual).length>0;
-  if(p.mode==='import'){
+  if(impMode(p.mode)){
     const reviewing=!$('impReview').hidden;
-    $('impStart').hidden=hasImp||reviewing;$('verBar').hidden=!hasImp||reviewing;
+    $('impStart').hidden=hasImp||reviewing||p.mode!=='import';$('w2Start').hidden=hasImp||reviewing||p.mode!=='w2';$('verBar').hidden=!hasImp||reviewing;
     $('wsBox').hidden=!hasImp&&!reviewing?true:reviewing;
-    if(hasImp){const ys=Object.keys(p.imported).map(Number).sort((a,b)=>a-b);$('verTxt').textContent=`${plural(ys.length,'year')} verified from NYCAPS (${ys[0]}–${ys[ys.length-1]})`}
+    if(hasImp){const ys=Object.keys(p.imported).map(Number).sort((a,b)=>a-b);$('verTxt').textContent=`${plural(ys.length,'year')} verified from ${p.mode==='w2'?'your W-2s':'NYCAPS'} (${ys[0]}–${ys[ys.length-1]})`}
   } else $('wsBox').hidden=false;
   /* After an import is locked in, the earnings table folds away behind a button. */
-  const folded=p.mode==='import'&&hasImp&&$('impReview').hidden;
+  const folded=impMode(p.mode)&&hasImp&&$('impReview').hidden;
   $('wsTog').hidden=!folded;
   $('impList').hidden=!(folded&&wsOpen&&!c.ok);
   if(folded&&!c.ok) $('impRows').innerHTML=Object.keys(p.imported).map(Number).sort((a,b)=>a-b).map(y=>`<tr><td>${y}</td><td>${usd(p.imported[y])}</td></tr>`).join('');$('wsTog').setAttribute('aria-expanded',wsOpen);
@@ -1632,9 +1640,8 @@ function handleText(text,fromShot){
   if(fromShot) note=('We read these from your screenshot, so check every digit. '+note).trim();
   openReview(out,note);
 }
-/* The three ways in: W-2s, a screenshot of the Tax Summary, or copy and paste. */
-function pickWay(w){[['W2','w2Box'],['Shot','shotBox'],['Paste','pasteBox']].forEach(([k,box])=>{$(box).hidden=k!==w;$('way'+k).setAttribute('aria-pressed',k===w)});imsg('','')}
-$('wayW2').addEventListener('click',()=>pickWay('W2'));
+/* Two ways to bring in the Tax Summary: a screenshot, or copy and paste. */
+function pickWay(w){[['Shot','shotBox'],['Paste','pasteBox']].forEach(([k,box])=>{$(box).hidden=k!==w;$('way'+k).setAttribute('aria-pressed',k===w)});imsg('','')}
 $('wayPaste').addEventListener('click',()=>{pickWay('Paste');$('impTxt').focus()});
 $('wayShot').addEventListener('click',()=>pickWay('Shot'));
 $('pasteGo').addEventListener('click',()=>handleText($('impTxt').value,false));
@@ -1814,7 +1821,7 @@ $('w2File').addEventListener('change',async e=>{
   openW2Review(got,notes);
 });
 function openW2Review(got,notes){
-  if(ST.p.mode!=='import'){w2PrevMode=ST.p.mode;ST.p.mode='import'}
+  if(!impMode(ST.p.mode)){w2PrevMode=ST.p.mode;ST.p.mode='w2'}
   pending=null;w2Pending=got;
   const ys=Object.keys(got).map(Number).sort((a,b)=>a-b),odd=v=>v<5000||v>400000,v=n=>n?commas2(n):'';
   const fld=(y,k,lab,val)=>`<label>${lab}<div class="inp"><span>$</span><input data-w="${k}" data-ry="${y}" inputmode="decimal" value="${v(val)}" aria-label="${lab} in ${y}"></div></label>`;
@@ -1822,7 +1829,7 @@ function openW2Review(got,notes){
   const h=$('impReview').querySelector('.hint');
   h.innerHTML='';h.className='w2note';
   [['From your W-2s.','Check each year against its W-2: box 5, and LODI and any one-time bonus (like HWB) in box 14. Then lock them in.'],...notes.map(n=>['',n])].forEach(([b,t])=>{const p=document.createElement('span');if(b){const e=document.createElement('b');e.textContent=b+' ';p.append(e)}p.append(t);h.append(p)});
-  $('impReview').hidden=false;$('impStart').hidden=true;
+  $('impReview').hidden=false;$('impStart').hidden=true;$('w2Start').hidden=true;
   renderP();$('impReview').scrollIntoView({behavior:'smooth',block:'start'});
 }
 const commas2=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
