@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Updates · My Fire Pension</title>
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=2" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="description" content="Every update and fix to My Fire Pension, the unofficial FDNY pension guide and calculators.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
+<style>
+html{color-scheme:light;-webkit-text-size-adjust:100%}
+body{margin:0}
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --ink:#16202b; --muted:#5a6776; --line:#dce2e8;
+  --accent:#b3261e; --steel:#2f5d8a; --gold:#a8730f; --sage:#2f7d55; --soft:#eef2f6;
+  --body:"Source Sans 3","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r:14px; --r-sm:10px;
+  --shadow:0 1px 2px color-mix(in srgb,var(--ink) 7%,transparent),0 6px 20px color-mix(in srgb,var(--ink) 6%,transparent);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+a{color:var(--steel)}
+a:focus-visible{outline:3px solid color-mix(in srgb,var(--steel) 70%,transparent);outline-offset:2px}
+h1,h2{margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(32px,7.5vw,50px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(23px,4.6vw,28px);font-weight:700}
+p{margin:0}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.app{max-width:1080px;margin:0 auto;padding:0 16px calc(28px + env(safe-area-inset-bottom));display:grid;gap:22px}
+.hero{display:grid;gap:14px;padding:36px 0 6px}
+.chip{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-weight:600;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:5px 12px;border-radius:999px}
+.hero .sub{font-size:clamp(19px,3.6vw,23px);color:var(--muted);max-width:34ch}
+.pick h2{margin-bottom:12px}
+.tiers{display:grid;gap:14px}
+@media (min-width:720px){.tiers{grid-template-columns:1fr 1fr}}
+.tier{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;text-decoration:none;color:var(--ink);background:var(--surface);border:2px solid var(--line);border-radius:var(--r);padding:22px 20px;box-shadow:var(--shadow);min-height:150px;transition:transform .15s,border-color .15s}
+.tier:hover{border-color:var(--c);transform:translateY(-1px)}
+.tier b{font-size:clamp(36px,9vw,46px);font-weight:800;line-height:1;color:var(--c)}
+.tier span{grid-column:1;font-size:18px;font-weight:600}
+.tier small{grid-column:1;font-size:15.5px;color:var(--muted)}
+.tier .go{grid-row:1/span 3;grid-column:2;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#fff}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);display:grid;gap:14px}
+.which{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.which li{display:grid;gap:2px;padding:12px 14px;border-radius:var(--r-sm);background:var(--soft)}
+.which li b{font-size:17.5px}
+.which li span{font-size:16px;color:var(--muted)}
+.hint{font-size:15.5px;color:var(--muted)}
+.foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
+@media (max-width:560px){.card{padding:16px}}
+.news{margin-top:16px;border:2px solid var(--gold);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+.news summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:48px;padding:8px 16px;font-size:16.5px;font-weight:800;color:var(--ink)}
+.news summary::-webkit-details-marker{display:none}
+.news summary::after{content:"";width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;flex:none}
+.news[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.news summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:var(--r)}
+.news ul{margin:0;padding:0 16px 10px;list-style:none}
+.news .newsask{margin:0;padding:12px 16px 14px;border-top:1px solid var(--line);font-size:15.5px;font-weight:700}
+.news .newsask a{color:var(--accent);padding:10px 0}
+.news li{padding:7px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.4;color:var(--body)}
+.news li:first-child{border-top:0}
+.news time{display:block;font-size:13.5px;font-weight:700;color:var(--muted)}
+.field{display:grid;gap:8px}
+.field>label,.flabel{font-weight:700;font-size:17px}
+.inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--bg);min-height:52px;overflow:hidden}
+.inp input{flex:1;min-width:0;width:100%;border:0;background:transparent;font-weight:600;font-size:19px;padding:12px 12px 12px 4px}
+.inp input:focus{outline:none}
+.inp:focus-within{border-color:var(--steel);box-shadow:0 0 0 3px color-mix(in srgb,var(--steel) 25%,transparent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;min-height:50px;padding:0 22px;font-weight:700;font-size:17px;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none}
+.btn:disabled{opacity:.55;cursor:default}
+.msg{font-size:16px;font-weight:600}
+.msg.ok{color:var(--sage)} .msg.err{color:var(--accent)}
+.ask{display:grid;gap:14px}
+.ask form{display:grid;gap:14px;position:relative}
+.ask textarea{background:var(--bg);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:12px;width:100%;min-height:130px;resize:vertical;font-size:17px}
+.ask textarea:focus{outline:none;border-color:var(--steel);box-shadow:0 0 0 3px color-mix(in srgb,var(--steel) 25%,transparent)}
+.ask .inp input{padding-left:14px;font-weight:400;font-size:17px}
+.ask .hp{position:absolute;left:-9999px}
+.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
+button,input,select,textarea{font:inherit;color:inherit}
+.ask h1{margin:0;font-size:30px;line-height:1.15;color:var(--ink)}
+.ask p{margin:0}
+.backbtn svg{width:22px;height:22px}
+.top{padding-top:calc(14px + env(safe-area-inset-top))}
+.upd{display:grid;gap:12px}
+.upd h1{margin:0;font-size:30px;line-height:1.15}
+.upd ul{margin:0;padding:0;list-style:none}
+.upd li{padding:10px 0;border-top:1px solid var(--line);font-size:16.5px;line-height:1.45}
+.upd li:first-child{border-top:0}
+.upd time{font-weight:700;color:var(--muted)}
+.ask h2{margin:0;font-size:26px;line-height:1.15;color:var(--ink)}
+</style>
+<script>
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","z5169eoycz");
+</script>
+</head>
+<body>
+<main class="app">
+  <div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a></div>
+  <section class="card upd" aria-labelledby="updTitle">
+    <h1 id="updTitle">Updates and fixes</h1>
+    <p class="hint">This website gets better every day. Newest first.</p>
+    <ul>
+      <li><time datetime="2026-10-30">10/30/26:</time> Upload your W-2s and the calculator reads your earnings, LODI pay and one-time bonuses straight from them.</li>
+      <li><time datetime="2026-10-30">10/30/26:</time> Fixed: Box 5 on your W-2 and on ESS doesn't include LODI pay. LODI isn't taxable, but it is pensionable. You can now add your LODI back in manually.</li>
+      <li><time datetime="2026-10-30">10/30/26:</time> Fixed: your date of birth and appointment date now stay saved when you close the site and come back.</li>
+      <li><time datetime="2026-10-28">10/28/26:</time> Equated dates, for bought-back military, prior EMS or a retroactive hire date.</li>
+      <li><time datetime="2026-10-12">10/12/26:</time> Fixed: Tier 2 final average salary now uses the higher of your last 12 months or your best 3 years, with the 20% limit on both (Chapter 540 of 2021).</li>
+      <li><time datetime="2026-10-12">10/12/26:</time> A “Don’t forget about taxes” box under your estimate, with a federal ballpark and the states that don’t tax your pension.</li>
+      <li><time datetime="2026-10-12">10/12/26:</time> Tier 2: boxes for your taxable and non-taxable excess contributions, as ESS shows them.</li>
+      <li><time datetime="2026-10-12">10/12/26:</time> Bills in Albany now covers S5058A (an extra 1/40th for each year past 20) and has a Tier 2 version.</li>
+      <li><time datetime="2026-10-12">10/12/26:</time> Pension basics explains the “death gamble” for Tier 2 and Tier 3.</li>
+    </ul>
+  </section>
+  <section class="card ask" aria-labelledby="askTitle">
+    <h2 id="askTitle">Notice something that needs to be fixed?</h2>
+    <p>Send a fix, a question or a suggestion.</p>
+    <form id="askForm" novalidate>
+      <div class="field">
+        <label for="askMsg">Your question or suggestion</label>
+        <textarea id="askMsg" name="message" maxlength="4000" required></textarea>
+      </div>
+      <div class="field">
+        <label for="askEmail">Your email (optional)</label>
+        <div class="inp"><input id="askEmail" name="email" type="email" inputmode="email" autocomplete="email"></div>
+        <div class="hint">Only if you'd like a reply.</div>
+      </div>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" aria-hidden="true">
+      <div><button type="submit" class="btn" id="askBtn">Submit</button></div>
+      <p class="msg" id="askStatus" role="status" hidden></p>
+    </form>
+  </section>
+
+  <footer class="foot">
+    <p><b>Unofficial planning tool.</b> Not affiliated with or endorsed by the FDNY or the NYC Fire Pension Fund. Your actual numbers may vary.</p>
+  </footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const ASK_URL='https://api.web3forms.com/submit';
+const ASK_KEY='0ceb209d-a4a8-4856-90d8-810e48db9ba1';
+$('askForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const st=$('askStatus'),btn=$('askBtn'),msg=$('askMsg').value.trim(),email=$('askEmail').value.trim();
+  const show=(t,cls)=>{st.textContent=t;st.className='msg '+cls;st.hidden=false};
+  if(!msg){show('Please write your question or suggestion first.','err');$('askMsg').focus();return}
+  if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){show('That email address doesn\'t look right. Fix it or leave it blank.','err');$('askEmail').focus();return}
+  btn.disabled=true;btn.textContent='Sending…';st.hidden=true;
+  try{
+    const r=await fetch(ASK_URL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:ASK_KEY,subject:'My Fire Pension: suggestion or fix request (updates page)',from_name:'My Fire Pension',message:msg,email:email||undefined,replyto:email||undefined,botcheck:e.target.botcheck.checked})});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok||j.success===false) throw new Error();
+    e.target.reset();
+    show('Sent. Thanks, your note is on its way.','ok');
+  }catch{
+    show('Sorry, that didn\'t send. Check your connection and try again. Your message is still in the box.','err');
+  }finally{btn.disabled=false;btn.textContent='Submit'}
+});
+</script>
+</body>
+</html>
