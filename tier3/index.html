@@ -291,6 +291,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 @media (max-width:480px){.modes{gap:6px}.mode{padding:12px 8px;gap:5px}.mode .mi{width:34px;height:34px;border-radius:10px}.mode b{font-size:15.5px}.mode small{font-size:13px}.mode .tick{top:7px;right:7px;width:20px;height:20px}.mode .tick svg{width:12px;height:12px}}
 .w2row td{vertical-align:top}
 .w2row td:first-child{width:auto;padding-top:14px}
+.w2yr{font:inherit;font-weight:800;font-size:17px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:8px 4px;min-height:44px}
 .w2f{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px}
 .w2f label{display:grid;gap:3px;font-size:14px;color:var(--muted);font-weight:600}
 .w2f .inp{min-height:44px}
@@ -1734,7 +1735,8 @@ function w2Parse(lines,ocr){
   const all=lines.map(l=>l.map(t=>t.s).join(' ')).join('\n');
   const amts=[];lines.forEach(l=>l.forEach(t=>{const a=w2Amt(t.s,ocr);if(a!==null)amts.push(a)}));
   /* Tax year */
-  let yrs=[...all.matchAll(/\b((?:19|20)\d\d)\s*Tax\s*Year/gi)].map(m=>+m[1]);
+  /* Some PDFs draw the year in pieces ("202" then "4"), so spaces between its digits are allowed. */
+  let yrs=[...all.matchAll(/\b((?:1\s?9|2\s?0)\s?\d\s?\d)\s*Tax\s*Year/gi)].map(m=>+m[1].replace(/\s/g,''));
   if(!yrs.length) yrs=[...all.matchAll(/(?:^|[^\d,.\-\/])((?:19|20)\d\d)(?![\d,.\-\/])/g)].map(m=>+m[1]).filter(y=>y>=1990&&y<NOW_Y);
   const year=yrs.length?w2Mode(yrs):null;
   /* Box 5: the amount whose Medicare tax (box 6) is also on the form */
@@ -1825,7 +1827,7 @@ $('w2File').addEventListener('change',async e=>{
   const files=[...e.target.files].slice(0,40);e.target.value='';if(!files.length||w2Busy) return;
   w2Busy=true;w2msg('','');imsg('','');$('w2Prog').hidden=false;$('w2Bar').style.width='3%';
   $('w2Prog').scrollIntoView({behavior:'smooth',block:'center'});
-  const got={},notes=[],bad=[],other=[],dup=new Set();
+  const got=[],notes=[],bad=[],other=[];
   try{
     for(let i=0;i<files.length;i++){
       const f=files[i],step=p=>{$('w2Bar').style.width=Math.round((i+Math.max(.05,p))/files.length*100)+'%'};
@@ -1835,25 +1837,31 @@ $('w2File').addEventListener('change',async e=>{
       if(!r||!r.year||!r.wages){bad.push(f.name);continue}
       if(!r.nyc&&!r.ocr){other.push(r.year);continue}
       if(r.year>=NOW_Y) continue;
-      /* Two W-2s for one year: a PDF beats a picture; otherwise the later one wins. */
-      if(got[r.year]){dup.add(r.year);if(r.ocr&&!got[r.year].ocr) continue}
-      got[r.year]={wages:r.wages,lodi:r.lodi,bonus:r.bonus,ocr:r.ocr,check:!r.nyc||r.ocr};
+      /* The same W-2 picked twice (same year, same box 5) counts once. */
+      if(got.some(g=>g.year===r.year&&Math.abs(g.wages-r.wages)<1)) continue;
+      got.push({year:r.year,wages:r.wages,lodi:r.lodi,bonus:r.bonus,check:!r.nyc||r.ocr});
     }
   }catch(err){
     w2msg('Couldn’t load the W-2 reader. Check your internet connection and try again.','err');return;
   }finally{$('w2Prog').hidden=true;w2Busy=false}
   if(bad.length) notes.push(`We couldn’t read ${bad.length===1?bad[0]:plural(bad.length,'file')}. Make sure it’s a W-2 and the whole form shows.`);
   if(other.length) notes.push(`${plural(other.length,'W-2')} (${other.join(', ')}) ${other.length>1?'aren’t':'isn’t'} from the City of New York, so we left ${other.length>1?'them':'it'} out.`);
-  if(dup.size) notes.push(`You picked more than one W-2 for ${[...dup].join(', ')}. We used the one we could read best.`);
-  if(!Object.keys(got).length){w2msg(notes.join(' ')||'We couldn’t find a W-2 in that file.','err');return}
+  /* Two different W-2s that read as the same year: keep both, and ask which year each is. */
+  const dup=[...new Set(got.filter(g=>got.filter(h=>h.year===g.year).length>1).map(g=>g.year))];
+  got.forEach(g=>{if(dup.includes(g.year)){g.check=true;g.dup=true}});
+  if(dup.length) notes.push(`Two of your W-2s read as ${dup.join(', ')}. Check the year on each and fix the one that’s wrong.`);
+  if(!got.length){w2msg(notes.join(' ')||'We couldn’t find a W-2 in that file.','err');return}
   openW2Review(got,notes);
 });
 function openW2Review(got,notes){
   if(!impMode(ST.p.mode)){w2PrevMode=ST.p.mode;ST.p.mode='w2'}
   pending=null;w2Pending=got;
-  const ys=Object.keys(got).map(Number).sort((a,b)=>a-b),odd=v=>v<5000||v>400000,v=n=>n?commas2(n):'';
-  const fld=(y,k,lab,val)=>`<label>${lab}<div class="inp"><span>$</span><input data-w="${k}" data-ry="${y}" inputmode="decimal" value="${v(val)}" aria-label="${lab} in ${y}"></div></label>`;
-  $('reviewRows').innerHTML=ys.map(y=>{const g=got[y];return `<tr class="w2row"><td>${y}${g.check||odd(g.wages)?'<span class="tg orange" style="display:block;font-size:13px">Check this one</span>':''}</td><td><div class="w2f">${fld(y,'wages','Box 5 earnings',g.wages)}${fld(y,'lodi','LODI',g.lodi)}${fld(y,'bonus','One-time bonus',g.bonus)}</div></td></tr>`}).join('');
+  got.sort((a,b)=>a.year-b.year);
+  const odd=v=>v<5000||v>400000,v=n=>n?commas2(n):'';
+  const fld=(i,k,lab,val)=>`<label>${lab}<div class="inp"><span>$</span><input data-w="${k}" data-i="${i}" inputmode="decimal" value="${v(val)}" aria-label="${lab}"></div></label>`;
+  /* The year is a picker, so a W-2 read as the wrong year can be fixed before locking in. */
+  const yrSel=(i,y)=>{let o='';for(let x=NOW_Y-1;x>=NOW_Y-45;x--)o+=`<option${x===y?' selected':''}>${x}</option>`;return `<select class="w2yr" data-i="${i}" aria-label="Tax year">${o}</select>`};
+  $('reviewRows').innerHTML=got.map((g,i)=>`<tr class="w2row"><td>${yrSel(i,g.year)}${g.check||odd(g.wages)?`<span class="tg orange" style="display:block;font-size:13px">${g.dup?'Check the year':'Check this one'}</span>`:''}</td><td><div class="w2f">${fld(i,'wages','Box 5 earnings',g.wages)}${fld(i,'lodi','LODI',g.lodi)}${fld(i,'bonus','One-time bonus',g.bonus)}</div></td></tr>`).join('');
   const h=$('impReview').querySelector('.w2note,.hint');
   h.innerHTML='';h.className='w2note';
   [['From your W-2s.','Check each year against its W-2: box 5, and LODI and any one-time bonus (like HWB) in box 14. Then lock them in.'],...notes.map(n=>['',n])].forEach(([b,t])=>{const p=document.createElement('span');if(b){const e=document.createElement('b');e.textContent=b+' ';p.append(e)}p.append(t);h.append(p)});
@@ -1862,10 +1870,12 @@ function openW2Review(got,notes){
 }
 const commas2=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 function lockW2(){
-  const p=ST.p,rows={};
-  $('reviewRows').querySelectorAll('input[data-w]').forEach(i=>{const y=+i.dataset.ry,n=num(i.value);(rows[y]=rows[y]||{})[i.dataset.w]=n>0&&n<1e7?n:0});
-  const ys=Object.keys(rows).filter(y=>rows[y].wages>0);
-  if(!ys.length) return;
+  const p=ST.p,rows={},list=[];
+  $('reviewRows').querySelectorAll('tr').forEach(tr=>{const r={year:+tr.querySelector('.w2yr').value};tr.querySelectorAll('input[data-w]').forEach(i=>{const n=num(i.value);r[i.dataset.w]=n>0&&n<1e7?n:0});if(r.wages>0)list.push(r)});
+  if(!list.length) return;
+  const twice=[...new Set(list.filter(r=>list.filter(q=>q.year===r.year).length>1).map(r=>r.year))];
+  if(twice.length){alert(`More than one W-2 is set to ${twice.join(', ')}. Fix the year on the wrong one, then lock them in.`);return}
+  list.forEach(r=>rows[r.year]=r);const ys=Object.keys(rows);
   if(w2PrevMode==='manual'){p.extra={...p.manual,...p.extra}}
   for(const y of ys){
     const r=rows[y];p.imported[y]=r.wages;delete p.extra[y];
