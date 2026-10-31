@@ -394,6 +394,11 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .goal .gh{display:flex;gap:10px;align-items:center}
 .goal .gh .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--steel) 14%,var(--surface));color:var(--steel)}
 .goal .gout{display:grid;gap:8px;font-size:16.5px}
+.goal .gbody{display:grid;gap:12px}
+.goaltog{display:flex;gap:12px;align-items:center;width:100%;min-height:56px;padding:0;border:0;background:none;color:var(--ink);font:inherit;font-size:17px;text-align:left;cursor:pointer}
+.goaltog .ic{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--steel) 14%,var(--surface));color:var(--steel)}
+.goaltog b{color:var(--steel);text-decoration:underline;text-underline-offset:3px}
+.goaltog .gsub{display:block;color:var(--muted);font-size:15.5px;margin-top:2px}
 .goal .gout b{font-weight:700}
 .goal .big2{font-size:22px;font-weight:800}
 
@@ -905,13 +910,16 @@ body.has-pbar .app{padding-bottom:110px}
 
     <aside class="pside" aria-live="polite">
       <section class="card headline" id="head"></section>
-      <section class="card goal" id="goalCard">
+      <section class="card goal" id="goalCard" hidden>
+        <button type="button" class="goaltog" id="goalTog" aria-expanded="false" aria-controls="goalBody"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>Would you rather set a goal?</b><span class="gsub">See how long you’d have to work, or how much you’d have to make, to get the pension you want.</span></span></button>
+        <div class="gbody" id="goalBody" hidden>
         <div class="gh"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><h3>Set a goal</h3></div>
         <div class="field">
           <label for="goal" style="font-size:16px">How much do you want from your pension each month?</label>
           <div class="inp"><span>$</span><input id="goal" inputmode="numeric" placeholder="9,000"><span class="after">/month</span></div>
         </div>
         <div class="gout" id="goalOut"></div>
+      </div>
       </section>
     </aside>
   </div>
@@ -1236,6 +1244,9 @@ $('pDis').addEventListener('change',e=>{ST.p.dis=e.target.checked;pSlider.range(
 bindMoney('exT',ST.p,'exT',()=>renderP());bindMoney('exN',ST.p,'exN',()=>renderP());$('cpi').value=ST.p.cpi;$('goal').value=ST.p.goal?commas(num(ST.p.goal)):'';
 $('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,pctNum(e.target.value));renderP()});
 $('cpi').addEventListener('blur',e=>{e.target.value=ST.p.cpi});
+function goalShow(o){$('goalBody').hidden=!o;$('goalTog').hidden=o;$('goalTog').setAttribute('aria-expanded',o)}
+goalShow(!!ST.p.goal);
+$('goalTog').addEventListener('click',()=>{goalShow(true);$('goal').focus()});
 $('goal').addEventListener('input',e=>{ST.p.goal=num(e.target.value)||'';renderP()});
 $('goal').addEventListener('blur',e=>{const n=num(e.target.value);e.target.value=n?commas(n):''});
 $('growOn').checked=ST.p.growOn;$('grow').value=ST.p.grow;
@@ -1449,7 +1460,7 @@ function renderP(){
     pSlider.sub('Enter your dates in step 1 to see when you’d retire.');
     $('cmpSec').hidden=true;$('preview').hidden=false;
     $('head').innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Start with your date of birth and appointment date in step 1.</span></div>`;
-    $('goalOut').innerHTML='';updateBar(null);save();return;
+    $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);save();return;
   }
   const you=scenario(m,c);
   $('preview').hidden=you.ok;
@@ -1466,8 +1477,9 @@ function renderP(){
   if(!you.ok){
     const miss=you.missing.length?`Type your earnings for ${you.missing.join(', ')} in step 2.`:'Enter your earnings in step 2.';
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once we have your earnings for your last 12 months${c.dis?'':' and every year after your 20th anniversary'}. ${miss}</span></div>`;
-    $('goalOut').innerHTML='';updateBar(null);return;
+    $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
+  $('goalCard').hidden=false;
   const brk=`<div class="brow"><div class="bl"><b>${c.dis?'75%':'50%'} of final average salary</b><small>${c.dis?'75%':'50%'} of ${usd(you.fs+you.bonusAdd)}${you.bonusAdd?' (with the bonus)':''}, ${you.useBest?`your best 3 years (${fmtMY(you.best.from)} to ${fmtMY(you.best.to)})`:'your last 12 months'}</small></div><div class="amt"><b>${usd(you.half/12)}/mo</b><small>${usd(you.half)}/yr</small></div></div>
         <div class="incl">${ICON.check}<span>The higher of your <b>last 12 months</b> (${usd(you.fs12)}${you.lim12!==null&&you.raw12>you.lim12+0.5?`, cut from ${usd(you.raw12)} by the 20% limit`:''}) and your <b>best 3 years in a row</b> (${you.best?usd(you.best.fas):'not enough years yet'}).</span></div>
         ${you.bonusAdd>0?`<div class="incl">${ICON.check}<span>Includes the <b>longevity bonus</b>: +${usd(you.bonusAdd*(c.dis?0.75:0.5))} a year (${Math.round(you.bonusPct*100)}% of your rank’s top pay added to your final average salary)</span></div>`:''}
