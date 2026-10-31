@@ -979,11 +979,11 @@ const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{i
 const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s'};
 const rankName=pay=>{const r=RANKS.find(x=>x.pay===num(pay));return r?RANK_OF[r.id]:'your rank’s'};
 const kfmt=n=>'$'+(Math.round(n/1000)).toLocaleString('en-US')+'k';
-/* Clarity custom tags (owner, Oct. 30, 2026): Clarity masks every input box in recordings, whatever the setting, so once a result shows the page sends a rounded summary as tags (filters in Clarity). Never dates, W-2 details or exact pay. */
+/* Clarity custom tags (owner, Oct. 30, 2026): Clarity masks every input box in recordings, whatever the setting, so once a result shows the page sends the numbers as tags (shown with each recording and as filters in Clarity): exact pay, each year's earnings, LODI and bonuses (owner, Oct. 30, 2026: pay is public). Never dates of birth or appointment, or anything else from a W-2. */
 var ctT={},ctLast={};
 function ctag(g,o){clearTimeout(ctT[g]);ctT[g]=setTimeout(()=>{try{if(typeof clarity!=='function')return;for(const k in o){const v=String(o[k]);if(ctLast[k]===v)continue;ctLast[k]=v;clarity('set',k,v)}if(!ctLast['ev_'+g]){ctLast['ev_'+g]=1;clarity('event',g+'_result')}}catch(e){}},1500)}
-function bandK(n){const lo=Math.floor(n/10000)*10;return '$'+lo+'-'+(lo+10)+'K'}
-function bandMo(n){const lo=Math.floor(n/500)*500;return '$'+lo.toLocaleString('en-US')+'-'+(lo+500).toLocaleString('en-US')}
+function dol(n){return '$'+Math.round(n).toLocaleString('en-US')}
+function earnTags(){const k=known(),p=ST.p,o={};for(const y in k)if(k[y]>0)o['earn_'+y]=dol(k[y]);for(const y in p.lodi||{})if(p.lodi[y]>0)o['lodi_'+y]=dol(p.lodi[y]);for(const y in p.onetime||{})if(p.onetime[y]>0)o['bonus_'+y]=dol(p.onetime[y]);return o}
 const yn=b=>b?'yes':'no',srcName=m=>m==='w2'?'W-2':m==='import'?'NYCAPS':'typed';
 try{clarity('set','tier','2')}catch(e){}
 function bonusPct(S){return S<25-1e-9?0:Math.min(0.15,0.05+0.01*Math.floor(S-25+1e-9))}
@@ -1169,7 +1169,7 @@ function renderQuick(){
   const note=dis
     ?{c:'var(--steel)',i:ICON.flat,t:'This number won’t grow with inflation.',p:'A 3/4s pension has no escalation. After 5 years retired you get a small COLA on the first $18,000, about $270 a year. The 75% is free of federal tax.'}
     :{c:'var(--steel)',i:ICON.flat,t:'This number won’t grow with inflation.',p:'Tier 2 has no escalation. Later you get a small COLA on the first $18,000 of your pension, about $270 a year at 3% inflation.'};
-  ctag('quick',{q_fas:bandK(fas),q_years:Math.floor(m/12),q_disabled:yn(dis),q_rank:dis||m<300?'n/a':q.rank,q_bills:!dis&&q.b40?'S5058A':'none',q_excess:yn(exT+exN>0),q_monthly:bandMo(mon)});
+  ctag('quick',{q_fas:dol(fas),q_years:Math.floor(m/12),q_disabled:yn(dis),q_rank:dis||m<300?'n/a':q.rank,q_bills:!dis&&q.b40?'S5058A':'none',q_excess:dol(exT+exN),q_monthly:dol(mon)});
   o.innerHTML=`<div class="k">Your pension in your first year of retirement</div>
     <div class="bignum">${usd(mon)}<span>/month</span></div>
     <div class="u">${usd(base)} a year</div>
@@ -1467,7 +1467,7 @@ function renderP(){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once we have your earnings for your last 12 months${c.dis?'':' and every year after your 20th anniversary'}. ${miss}</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
-  ctag('personal',{p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:bandK(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:!c.dis&&c.b40?'S5058A':'none',p_excess:yn(c.exT+c.exN>0),p_goal:yn(num(p.goal)>0),p_monthly:bandMo(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:!c.dis&&c.b40?'S5058A':'none',p_excess:dol(c.exT+c.exN),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
   const brk=`<div class="brow"><div class="bl"><b>${c.dis?'75%':'50%'} of final average salary</b><small>${c.dis?'75%':'50%'} of ${usd(you.fs+you.bonusAdd)}${you.bonusAdd?' (with the bonus)':''}, ${you.useBest?`your best 3 years (${fmtMY(you.best.from)} to ${fmtMY(you.best.to)})`:'your last 12 months'}</small></div><div class="amt"><b>${usd(you.half/12)}/mo</b><small>${usd(you.half)}/yr</small></div></div>
         <div class="incl">${ICON.check}<span>The higher of your <b>last 12 months</b> (${usd(you.fs12)}${you.lim12!==null&&you.raw12>you.lim12+0.5?`, cut from ${usd(you.raw12)} by the 20% limit`:''}) and your <b>best 3 years in a row</b> (${you.best?usd(you.best.fas):'not enough years yet'}).</span></div>

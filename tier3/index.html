@@ -912,11 +912,11 @@ const pctNum=v=>{const n=parseFloat(String(v).replace(',','.').replace(/[^0-9.]/
 const num=v=>{let s=String(v).toLowerCase().replace(/[\s$]/g,'');const k=/\dk$/.test(s);if(/^\d{1,3}(\.\d{3})+k?$/.test(s))s=s.replace(/\./g,'');const n=parseFloat(s.replace(/[^0-9.]/g,''));return isFinite(n)?n*(k?1000:1):0};
 const usd=n=>(n<0?'-':'')+'$'+Math.round(Math.abs(n)).toLocaleString('en-US');
 const kfmt=n=>'$'+(Math.round(n/1000)).toLocaleString('en-US')+'k';
-/* Clarity custom tags (owner, Oct. 30, 2026): Clarity masks every input box in recordings, whatever the setting, so once a result shows the page sends a rounded summary as tags (filters in Clarity). Never dates, W-2 details or exact pay. */
+/* Clarity custom tags (owner, Oct. 30, 2026): Clarity masks every input box in recordings, whatever the setting, so once a result shows the page sends the numbers as tags (shown with each recording and as filters in Clarity): exact pay, each year's earnings, LODI and bonuses (owner, Oct. 30, 2026: pay is public). Never dates of birth or appointment, or anything else from a W-2. */
 var ctT={},ctLast={};
 function ctag(g,o){clearTimeout(ctT[g]);ctT[g]=setTimeout(()=>{try{if(typeof clarity!=='function')return;for(const k in o){const v=String(o[k]);if(ctLast[k]===v)continue;ctLast[k]=v;clarity('set',k,v)}if(!ctLast['ev_'+g]){ctLast['ev_'+g]=1;clarity('event',g+'_result')}}catch(e){}},1500)}
-function bandK(n){const lo=Math.floor(n/10000)*10;return '$'+lo+'-'+(lo+10)+'K'}
-function bandMo(n){const lo=Math.floor(n/500)*500;return '$'+lo.toLocaleString('en-US')+'-'+(lo+500).toLocaleString('en-US')}
+function dol(n){return '$'+Math.round(n).toLocaleString('en-US')}
+function earnTags(){const k=known(),p=ST.p,o={};for(const y in k)if(k[y]>0)o['earn_'+y]=dol(k[y]);for(const y in p.lodi||{})if(p.lodi[y]>0)o['lodi_'+y]=dol(p.lodi[y]);for(const y in p.onetime||{})if(p.onetime[y]>0)o['bonus_'+y]=dol(p.onetime[y]);return o}
 const yn=b=>b?'yes':'no',srcName=m=>m==='w2'?'W-2':m==='import'?'NYCAPS':'typed';
 try{clarity('set','tier','3')}catch(e){}
 const plural=(n,w)=>n+' '+w+(n===1?'':'s');
@@ -1155,7 +1155,7 @@ function renderQuick(){
   else if(frac<1) note={c:'var(--gold)',i:ICON.half,t:`It grows about ${(r*100).toFixed(2).replace(/0$/,'')}% a year.`,p:`At ${fmtSvcLong(m)} you get ${Math.round(frac*36)}/36 of full escalation${billName}. At 3% inflation, that’s about ${grown(10)} a month after 10 years and ${grown(20)} after 20. Full escalation starts at ${F} years.`};
   else note={c:'var(--sage)',i:ICON.up,t:'It grows with inflation every year.',p:`You get full escalation${billName}: up to 3% a year on your whole pension, for life. At 3% inflation, that’s about ${grown(10)} a month after 10 years and ${grown(20)} after 20.`};
   const bonusLine=dis||!add?'':`<p class="billnote">Includes ${usd(add/2)} a year from the longevity bonus: ${Math.round(bp*100)}% of ${rankName(q.topPay)} top pay added to your final average salary. Change the rank below.</p>`;
-  ctag('quick',{q_fas:bandK(fas),q_years:Math.floor(m/12),q_disabled:yn(dis),q_rank:dis||m<300?'n/a':q.rank,q_bills:dis?'none':[q.esc===20&&'S9203',q.b40&&'S5058A'].filter(Boolean).join(' ')||'none',q_monthly:bandMo(mon)});
+  ctag('quick',{q_fas:dol(fas),q_years:Math.floor(m/12),q_disabled:yn(dis),q_rank:dis||m<300?'n/a':q.rank,q_bills:dis?'none':[q.esc===20&&'S9203',q.b40&&'S5058A'].filter(Boolean).join(' ')||'none',q_monthly:dol(mon)});
   o.innerHTML=`<div class="k">Your pension in your first year of retirement</div>
     <div class="bignum">${usd(mon)}<span>/month</span></div>
     <div class="u">${usd(base)} a year · ${dis?'75%':'50%'} of ${usd(fas+add)}${add?' (with the bonus)':''}${extra?' plus the extra 1/40ths':''}${dis?' · generally tax-free':''}</div>
@@ -1430,7 +1430,7 @@ function renderP(){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once you enter your earnings in step 2. Start with last year's pay.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
-  ctag('personal',{p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:bandK(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:c.dis?'none':[c.esc===20&&'S9203',c.b40&&'S5058A'].filter(Boolean).join(' ')||'none',p_goal:yn(num(p.goal)>0),p_monthly:bandMo(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:c.dis?'none':[c.esc===20&&'S9203',c.b40&&'S5058A'].filter(Boolean).join(' ')||'none',p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
   const at62=you.at(62);
   if(c.dis){
