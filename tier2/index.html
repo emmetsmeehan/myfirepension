@@ -305,12 +305,6 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .vcheck svg{width:16px;height:16px;stroke-width:3.2}
 
 /* earnings table */
-.adjbox{margin-top:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:12px 14px}
-.adjbox summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
-.adjbox .hint{margin:4px 0 10px}
-.ws.adj th:nth-child(1){width:22%}.ws.adj th:nth-child(2),.ws.adj th:nth-child(3){width:39%;text-align:left}
-.ws.adj td{padding:6px 6px 6px 10px}.ws.adj td:nth-child(3){text-align:left}
-@media (max-width:360px){.ws.adj th:nth-child(1){width:20%}.ws.adj th:nth-child(2),.ws.adj th:nth-child(3){width:40%}.ws.adj td{padding:6px 4px}.ws.adj .inp>span{display:none}}
 .wsbox{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
 .ws{width:100%;border-collapse:collapse;table-layout:fixed}
 .ws th{font-size:14px;color:var(--muted);font-weight:600;text-align:left;padding:10px 12px;background:var(--soft)}
@@ -618,8 +612,8 @@ body.has-pbar .app{padding-bottom:110px}
       <p>The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was out on LODI. Does that pay count?</summary><div class="ans">
       <p><b>Yes.</b> Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year.</p>
-      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. Or, for each year you were on LODI, find <b>LODI</b> in box 14 of that year's W-2 and enter it in step 2 under <b>Out on LODI, or got a one-time bonus?</b> The page adds it for you.</p>
-      <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension, so enter it in the same place and the page takes it out.</p>
+      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. If you type in your years instead, find <b>LODI</b> in box 14 of each year's W-2 and add it to that year's amount.</p>
+      <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension. Upload your W-2s and the page takes it out for you; if you type in your years, subtract it from that year.</p>
       <p>This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was on unpaid leave (LWOP). Does that time count?</summary><div class="ans">
       <p><b>No.</b> Time on leave without pay, like the LWOP during the 2021–22 COVID vaccine mandate, doesn't count as service. If you were out 3 months, you reach 20, 23 and 25 years 3 months later than your appointment date says.</p>
@@ -693,7 +687,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p><strong>ITHP estimate:</strong> the City's 5% of pay after your 20th anniversary, credited 8.25% interest a year until you retire, then paid out evenly to age 85 assuming 7% interest. On a 3/4s it uses your whole career in the table. The Fund's real conversion uses its own tables, so this is rough.</p>
       <p><strong>Excess contributions:</strong> type the taxable and non-taxable excess from ESS. The personal numbers page grows it at the Fund's 8.25% a year until your retirement date (new contributions aren't added); the quick calculator uses it as typed. It's shown both as a lump sum and as an estimated annuity, paid out evenly to age 85 at 7% like the ITHP estimate; the Fund converts with its own tables, so the monthly figure is rough. Taxability doesn't change the amount: the non-taxable part comes back tax-free, and the taxable part is federally taxed when paid (a lump sum of it can carry a 10% penalty under age 50).</p>
       <p><strong>Longevity:</strong> with 20 to under 25 years, the pension counts longevity pay only at the 10-year level; at 25 or more years, at the 20-year level (the Fund’s Tiers 1 &amp; 2 Summary Plan Description). The calculators don’t adjust for this yet; they use full W-2 pay, so results between 20 and 25 years can be a little high.</p>
-      <p><strong>Your earnings:</strong> imported numbers come from the Medicare Wages column of your NYCAPS Tax Summary: all taxable pay, overtime included. That's close to what the Pension Fund counts, with two exceptions: it leaves out pay while on LODI (tax-free, but pensionable: payroll takes the pension contribution from it, and box 14 of the W-2 shows it as LODI), and it includes one-time bonuses the Fund doesn't count, such as the 2023 healthcare worker bonus (HWB). The personal numbers page fixes both: upload your W-2s and it reads box 5 and box 14 for you (the PDF or picture is read on your device; box 5 is found by checking it against the Medicare tax in box 6), or enter the amounts from box 14 of each year's W-2 under “Out on LODI, or got a one-time bonus?” in step 2. Uniform allowance is in neither. Future years repeat your last known year unless you choose a yearly raise.</p>
+      <p><strong>Your earnings:</strong> imported numbers come from the Medicare Wages column of your NYCAPS Tax Summary: all taxable pay, overtime included. That's close to what the Pension Fund counts, with two exceptions: it leaves out pay while on LODI (tax-free, but pensionable: payroll takes the pension contribution from it, and box 14 of the W-2 shows it as LODI), and it includes one-time bonuses the Fund doesn't count, such as the 2023 healthcare worker bonus (HWB). The personal numbers page fixes both: upload your W-2s and it reads box 5 and box 14 for you (the PDF or picture is read on your device; box 5 is found by checking it against the Medicare tax in box 6), or, if you type in your years, add LODI and subtract one-time bonuses yourself. Uniform allowance is in neither. Future years repeat your last known year unless you choose a yearly raise.</p>
       <p><strong>COLA:</strong> no escalation. Half of inflation (1% to 3%) on the first $18,000 only, starting at age 62 after 5 years retired, or age 55 after 10 years retired. The COLA reduces the VSF until 62.</p>
       <p><strong>VSF and banked variable:</strong> service retirees with 20+ years get the VSF, $12,000 a year. Each year worked past 20 banks one VSF payment, paid as a lump sum at retirement.</p>
       <p><strong>Social Security:</strong> no offset. The Fund's summary lists the offset only for Tier 3.</p>
@@ -815,7 +809,7 @@ body.has-pbar .app{padding-bottom:110px}
         </div>
 
         <div id="manualPanel" class="field">
-          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Your W-2 (box 5, Medicare wages) is a good place to look. If you were out on LODI, that pay isn’t in box 5, so it has to be added. You’ll find it as LODI in box 14 of your W-2: put it under “Out on LODI, or got a one-time bonus?” below and we’ll add it for you.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
+          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Your W-2 (box 5, Medicare wages) is a good place to look. If you were out on LODI, that pay isn’t in box 5, so add it to that year’s amount. You’ll find it as LODI in box 14 of your W-2.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
         </div>
 
         <div id="importPanel" hidden>
@@ -845,7 +839,9 @@ body.has-pbar .app{padding-bottom:110px}
             <p class="msg" id="impMsg" role="status" hidden></p>
           </div>
           <div class="panelbox" id="w2Start" hidden>
-            <b style="font-size:18px">Get your W-2s</b>
+            <b style="font-size:18px">Upload your W-2s</b>
+            <p><b>Already have your W-2s saved</b> on your phone or computer, as PDFs or pictures? Just tap <b>Choose my W‑2s</b> below and pick them.</p>
+            <p style="margin-bottom:-6px">Don’t have them? Get them from NYCAPS:</p>
             <ol>
               <li>Sign in to <b>NYCAPS Employee Self Service</b>.</li>
               <li>Tap the <b>Pay and Tax Information</b> tile, then open <b>Tax Summary (W-2, 1127 &amp; 1095C)</b>.</li>
@@ -856,7 +852,7 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
           <div class="panelbox review" id="impReview" hidden>
             <b style="font-size:18px">Check these against your screen</b>
-            <p class="hint">These are the Medicare Wages for each year. Fix anything that's off, then lock them in. Once locked, they can't be changed. LODI pay isn't in this table: you'll add it after you lock in.</p>
+            <p class="hint">These are the Medicare Wages for each year. Fix anything that's off, then lock them in. Once locked, they can't be changed. LODI pay isn't in this table. To have it counted, choose Upload your W-2s instead.</p>
             <table><tbody id="reviewRows"></tbody></table>
             <div class="btnrow"><button type="button" class="btn green" id="lockBtn">These are right, lock them in</button><button type="button" class="btn ghost" id="cancelReview">Cancel</button></div>
           </div>
@@ -872,12 +868,6 @@ body.has-pbar .app{padding-bottom:110px}
         <p class="empty" id="wsNeed" hidden>Enter your dates in step 1 and your earnings table shows up here, starting with the year you were appointed.</p>
         <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>Counts toward</th></tr></thead><tbody id="wsRows"></tbody></table>
           <button type="button" class="futbtn" id="futBtn" aria-expanded="false"></button></div>
-        <details class="adjbox" id="adjBox">
-          <summary>Out on LODI, or got a one-time bonus?</summary>
-          <p class="hint">Your W-2 leaves pay while on LODI out of box 5, though it counts toward your pension. It also includes one-time bonuses that don't count, like the 2023 healthcare worker bonus (HWB). Copy the amounts from box 14 of each year's W-2 and we'll fix that year for you.</p>
-          <p class="hint"><button type="button" class="linkbtn" id="w2Adj">Or upload your W-2s and we'll fill these in</button></p>
-          <table class="ws adj"><thead><tr><th>Year</th><th>LODI</th><th>Bonus</th></tr></thead><tbody id="adjRows"></tbody></table>
-        </details>
         <div class="growrow">
           <label class="chk"><input type="checkbox" id="growOn"> Fill in future years assuming a raise each year</label>
           <div id="growAmt" class="field" hidden><div class="inp"><input class="pl" id="grow" inputmode="decimal" value="2.5" aria-label="Raise each year"><span class="after">% a year</span></div></div>
@@ -1354,23 +1344,8 @@ function scenario(months,c){
 }
 
 /* LODI pay (tax-free, so missing from box 5, but pensionable) and one-time bonuses (in box 5, not pensionable), by year, from box 14 of the W-2. */
-const adjOf=y=>(ST.p.lodi[y]||0)-(ST.p.onetime[y]||0);
-let adjKey='';
-function renderAdj(c){
-  const k=known(),ys=Object.keys(k).map(Number),from=c.appt?c.appt.getFullYear():(ys.length?Math.min(...ys):NOW_Y-1);
-  const key=[from,NOW_Y].join('|');
-  if(key!==adjKey){
-    adjKey=key;let h='';
-    for(let y=NOW_Y-1;y>=from;y--) h+=`<tr><td><span class="yr">${y}</span></td><td><div class="inp"><span>$</span><input data-a="lodi" data-y="${y}" inputmode="numeric" aria-label="LODI pay in ${y}"></div></td><td><div class="inp"><span>$</span><input data-a="onetime" data-y="${y}" inputmode="numeric" aria-label="One-time bonus in ${y}"></div></td></tr>`;
-    $('adjRows').innerHTML=h;
-    $('adjRows').querySelectorAll('input').forEach(inp=>{
-      const st=ST.p[inp.dataset.a],y=+inp.dataset.y;if(st[y]) inp.value=commas(st[y]);
-      inp.addEventListener('input',()=>{const n=num(inp.value),s=ST.p[inp.dataset.a];if(n>0&&n<1e6)s[y]=n;else delete s[y];renderP()});
-      inp.addEventListener('blur',()=>{const n=num(inp.value);inp.value=n?commas(n):''});
-    });
-  }
-  if(Object.keys(ST.p.lodi).length||Object.keys(ST.p.onetime).length) $('adjBox').open=true;
-}
+/* LODI pay and one-time bonuses read from W-2 box 14, for the verified years they came with. Typed years are taken as typed. */
+const adjOf=y=>isVerified(y)?(ST.p.lodi[y]||0)-(ST.p.onetime[y]||0):0;
 
 /* ---------- earnings table ---------- */
 let wsKey='',showFut=false,wsOpen=false;
@@ -1433,7 +1408,6 @@ function renderP(){
   document.querySelectorAll('.mode').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===p.mode));
   $('manualPanel').hidden=p.mode!=='manual';$('importPanel').hidden=!impMode(p.mode);
   const hasImp=Object.keys(p.imported).length>0;
-  renderAdj(c);
   $('manualEmpty').hidden=Object.keys(p.manual).length>0;
   if(impMode(p.mode)){
     const reviewing=!$('impReview').hidden;
@@ -1641,7 +1615,7 @@ function openReview(vals,note){
   const odd=v=>v<5000||v>400000;
   $('reviewRows').innerHTML=ys.map(y=>`<tr><td>${y}${odd(vals[y])?'<span class="tg orange" style="display:block;font-size:13px">Check this one</span>':''}</td><td><div class="inp"><span>$</span><input data-ry="${y}" inputmode="numeric" value="${commas(vals[y])}"></div></td></tr>`).join('');
   $('impReview').hidden=false;$('impStart').hidden=true;imsg('', '');
-  const rh=$('impReview').querySelector('.w2note,.hint');rh.className='hint';rh.textContent='These are the Medicare Wages for each year. '+(note?note+' ':'')+'Fix anything that’s off, then lock them in. Once locked, they can’t be changed. LODI pay isn’t in this table: you’ll add it after you lock in.';
+  const rh=$('impReview').querySelector('.w2note,.hint');rh.className='hint';rh.textContent='These are the Medicare Wages for each year. '+(note?note+' ':'')+'Fix anything that’s off, then lock them in. Once locked, they can’t be changed. LODI pay isn’t in this table. To have it counted, choose Upload your W-2s instead.';
   renderP();$('impReview').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function closeReview(){pending=null;w2Pending=null;w2PrevMode=null;$('impReview').hidden=true}
@@ -1806,7 +1780,6 @@ function w2msg(t,cls){const s=$('w2Msg');s.textContent=t;s.className='msg '+cls;
 let w2Pending=null,w2PrevMode=null,w2Busy=false;
 $('w2Pick').addEventListener('click',()=>$('w2File').click());
 $('w2More').addEventListener('click',()=>$('w2File').click());
-$('w2Adj').addEventListener('click',()=>$('w2File').click());
 $('w2File').addEventListener('change',async e=>{
   const files=[...e.target.files].slice(0,40);e.target.value='';if(!files.length||w2Busy) return;
   w2Busy=true;w2msg('','');imsg('','');$('w2Prog').hidden=false;$('w2Bar').style.width='3%';
@@ -1858,7 +1831,7 @@ function lockW2(){
     if(r.lodi) p.lodi[y]=r.lodi; else delete p.lodi[y];
     if(r.bonus) p.onetime[y]=r.bonus; else delete p.onetime[y];
   }
-  closeReview();wsKey='';adjKey='';wsOpen=false;renderP();
+  closeReview();wsKey='';wsOpen=false;renderP();
   $('verBar').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
