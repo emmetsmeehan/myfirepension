@@ -1316,7 +1316,7 @@ function scenario(months,c){
 /* LODI pay and one-time bonuses read from W-2 box 14, for the verified years they came with. Typed years are taken as typed. */
 const adjOf=y=>isVerified(y)?(ST.p.lodi[y]||0)-(ST.p.onetime[y]||0):0;
 /* Under a verified year that has LODI or a bonus: how the number was put together. */
-const adjNote=y=>{if(!adjOf(y)&&!(isVerified(y)&&(ST.p.lodi[y]||ST.p.onetime[y]))) return '';const l=ST.p.lodi[y]||0,b=ST.p.onetime[y]||0;return `<span class="adjn">Box 5 ${usd(ST.p.imported[y])}${l?` + LODI ${usd(l)}`:''}${b?` − bonus ${usd(b)}`:''}</span>`};
+const adjNote=y=>{if(!adjOf(y)&&!(isVerified(y)&&(ST.p.lodi[y]||ST.p.onetime[y]))) return '';const l=ST.p.lodi[y]||0,b=ST.p.onetime[y]||0;return `<span class="adjn">Wages ${usd(ST.p.imported[y])}${l?` + LODI ${usd(l)}`:''}${b?` − bonus ${usd(b)}`:''}</span>`};
 
 /* ---------- earnings table ---------- */
 let wsKey='',showFut=false,wsOpen=false;
@@ -1864,7 +1864,7 @@ function openW2Review(got,notes){
   const fld=(i,k,lab,val)=>`<label>${lab}<div class="inp"><span>$</span><input data-w="${k}" data-i="${i}" inputmode="decimal" value="${v(val)}" aria-label="${lab}"></div></label>`;
   /* The year is plain text. Only when two different W-2s read as the same year does it become a picker, so the member can fix the wrong one. */
   const yrSel=(i,y)=>{let o='';for(let x=NOW_Y-1;x>=NOW_Y-45;x--)o+=`<option${x===y?' selected':''}>${x}</option>`;return `<select class="w2yr" data-i="${i}" aria-label="Tax year">${o}</select>`};
-  $('reviewRows').innerHTML=got.map((g,i)=>`<tr class="w2row" data-y="${g.year}"><td>${g.dup?yrSel(i,g.year):g.year}${g.check||odd(g.wages)?`<span class="tg orange" style="display:block;font-size:13px">${g.dup?'Check the year':'Check this one'}</span>`:''}</td><td><div class="w2f">${fld(i,'wages','Box 5 earnings',g.wages)}${fld(i,'lodi','LODI',g.lodi)}${fld(i,'bonus','One-time bonus',g.bonus)}</div></td></tr>`).join('');
+  $('reviewRows').innerHTML=got.map((g,i)=>`<tr class="w2row" data-y="${g.year}"><td>${g.dup?yrSel(i,g.year):g.year}${g.check||odd(g.wages)?`<span class="tg orange" style="display:block;font-size:13px">${g.dup?'Check the year':'Check this one'}</span>`:''}</td><td><div class="w2f">${fld(i,'wages','Wages',g.wages)}${fld(i,'lodi','LODI',g.lodi)}${fld(i,'bonus','One-time bonus',g.bonus)}</div></td></tr>`).join('');
   const h=$('impReview').querySelector('.w2note,.hint');
   h.innerHTML='';h.className='w2note';
   [['From your W-2s.','Check each year against its W-2: box 5, and LODI and any one-time bonus (like HWB) in box 14. Then lock them in.'],...notes.map(n=>['',n])].forEach(([b,t])=>{const p=document.createElement('span');if(b){const e=document.createElement('b');e.textContent=b+' ';p.append(e)}p.append(t);h.append(p)});
