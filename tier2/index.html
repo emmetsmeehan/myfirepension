@@ -45,6 +45,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17p
 a{color:var(--steel)}
 h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
 h1{font-size:clamp(32px,7.5vw,50px);font-weight:800;letter-spacing:-.01em}
+.tierb{display:inline-block;white-space:nowrap;vertical-align:.08em;font-size:.72em;line-height:1.1;padding:.08em .4em .12em;border-radius:var(--r-sm);background:var(--ink);color:var(--bg);letter-spacing:0}
 h2{font-size:clamp(23px,4.6vw,28px);font-weight:700}
 h3{font-size:19px;font-weight:700}
 p{margin:0}
@@ -512,8 +513,7 @@ body.has-pbar .app{padding-bottom:110px}
   </details>
   <a class="switch" href="../tier3/">Want to see Tier 3 instead?<span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   <header class="hero">
-    <span class="chip">For FDNY Tier 2 members</span>
-    <h1>Learn about your pension.</h1>
+    <h1>Learn about your pension. <span class="tierb">Tier 2</span></h1>
     <p class="sub">Everything you need to know, and what you'll collect in retirement.</p>
     <p class="disc">Tier 2 means you were appointed between July 1, 1973 and June 30, 2009.</p>
   </header>
@@ -626,6 +626,11 @@ body.has-pbar .app{padding-bottom:110px}
       <p>Add up everything you earn after your 20th anniversary and divide by 60. That amount is added to your yearly pension.</p>
       <p class="ex">Example: you stay 5 years past 20 and earn $150,000 each year. That's $750,000, and 1/60th of it is <b>$12,500 a year</b> more pension, about $1,040 a month.</p>
       <p>A bill in Albany, S5058A, would make it <b>1/40th</b> instead. It hasn’t passed. See <a href="#bills">Bills in Albany</a>.</p></div></details>
+    <details><summary>Does my other City service count? (1/80th)</summary><div class="ans">
+      <p>Yes, if you had a non-uniformed City job before the FDNY (NYCERS or Board of Ed time) and it's credited with the Fire Pension Fund, by transfer or buyback. Uniformed service that didn't come right before the FDNY counts the same way.</p>
+      <p>For each year of that service, your pension adds <b>1/80th of your average pay over your last 5 years</b>. It doesn't count toward your 20 years, and it isn't paid on a 3/4s.</p>
+      <p class="ex">Example: 3 years of other City service and $150,000 average pay over your last 5 years. 3 × $150,000 ÷ 80 is <b>$5,625 a year</b> more pension, about $470 a month.</p>
+      <p>Add it in step 1 of <a href="#personal">Your personal numbers</a>. Ask the Fund what a buyback would cost.</p></div></details>
     <details><summary>What is ITHP, and the annuity?</summary><div class="ans">
       <p><b>ITHP</b> (Increased-Take-Home-Pay) is money the City pays into your pension account for you, currently 5% of your pay, so less comes out of your check. What the City pays in <b>after 20 years</b>, with interest, becomes an extra pension when you retire.</p>
       <p>If you've paid in more than the required amount, for example by keeping your contributions going after 20 years, the extra can be paid as an <b>annuity</b> or taken as a lump sum. Withdrawals can be taxed, and there can be a 10% penalty if you're under 50.</p>
@@ -705,7 +710,8 @@ body.has-pbar .app{padding-bottom:110px}
       <p><strong>Longevity bonus:</strong> at 25+ years of service, part of the top base pay for your rank is added to final average salary: 5% at 25 years plus 1% for each year after, up to 15% at 35 (FY2027 state budget, signed May 27, 2026: S9008-C/A10008-C, Part AAA, adding Administrative Code § 15-110.1; originally S9202/A10392). The law covers members of any plan in the Fire Pension Fund, and its fiscal note gives a Tier 2 example. Rank pay is the top-step annual base salary from the UFA schedule effective Aug. 1, 2024 (firefighter) and the UFOA schedule effective July 31, 2025 (lieutenant, captain, battalion chief), with no longevity, night differential or overtime; the law says "highest grade of pay" without defining it, so the figure used could be higher. Not applied to 3/4s.</p>
       <p><strong>Proposed bills:</strong> S5058A would change the 1/60th to 1/40th for service and 3/4s pensions. You can switch it on in either calculator to see what it would mean "if it passes".</p>
       <p><strong>Taxes:</strong> the “Don’t forget about taxes” box is a rough 2026 federal figure on the first-year pension plus VSF, for a married couple filing jointly with no other income (single shown as a percent). It leaves out the banked variable lump sum and isn’t tax advice.</p>
-      <p><strong>Not included:</strong> retirement options that reduce the pension for a survivor, loans and account shortages, other credited service (1/80th), ordinary (non-line-of-duty) disability, vested retirement, and Tier 1 rules.</p>
+      <p><strong>Other City service (1/80th):</strong> a service pension adds 1/80th of your average annual earnings over the last 5 years for each year and month of other credited service: prior non-uniformed City service (such as NYCERS or Board of Education), or uniformed service that didn't come right before the FDNY. It doesn't count toward your 20 years and isn't paid on a 3/4s. Source: the Fund's Tiers 1 & 2 Summary Plan Description (Sept. 2014). The personal numbers page splits calendar years evenly by month for the 5-year average. It doesn't estimate what a buyback costs; ask the Fund.</p>
+      <p><strong>Not included:</strong> retirement options that reduce the pension for a survivor, loans and account shortages, ordinary (non-line-of-duty) disability, vested retirement, and Tier 1 rules.</p>
     </div>
   </details>
 
@@ -795,6 +801,14 @@ body.has-pbar .app{padding-bottom:110px}
             <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
             <span class="hint" id="eqBad" style="color:var(--accent)" hidden>Your equated date should be before your appointment date.</span>
             <span class="hint">The date the Pension Fund counts your service from. It’s earlier than your appointment if you bought back up to 3 years of military, have prior EMS, police or other uniformed service (which can be longer), or were given an earlier date because you were entitled to be hired sooner. Your 20 and 25-year marks and the 1/60th count from it. Your pay still counts from your appointment.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="chk"><input type="checkbox" id="ocsOn"> <span>Do you have other City service that isn’t uniformed?<span class="hint" style="display:block;font-weight:400">Like a civilian City job before the FDNY</span></span></label>
+          <div id="ocsBox" class="field" hidden>
+            <span class="flabel" id="ocsLbl">Other City service</span>
+            <div class="dsel" style="grid-template-columns:1fr 1fr" role="group" aria-labelledby="ocsLbl"><span><select id="ocsY" aria-label="Years of other City service"></select></span><span><select id="ocsMo" aria-label="Months of other City service"></select></span></div>
+            <span class="hint">Each year adds 1/80th of your average pay over your last 5 years to a service pension (not a 3/4s). It counts only once it’s credited with the Fire Pension Fund, by transfer or buyback. Uniformed service that didn’t come right before the FDNY counts here too.</span>
           </div>
         </div>
         <div class="field" id="rankStep">
@@ -1068,7 +1082,7 @@ const billNote=st=>st.b40?'<p class="billnote">Includes a bill that hasn’t pas
 const KEY='fdny-tier2-v1';
 const DEF={
   q:{fas:'',svc:300,dis:false,exT:'',exN:'',b40:false,rank:'FF',topPay:109352},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',lodi:{},onetime:{},earnV:2}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,ocsM:0,lodi:{},onetime:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1080,6 +1094,7 @@ function cleanState(){
   for(const k of ['dob','appt','eq']) if(!realDate(p[k])) p[k]='';
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
   if(!impMode(p.mode)) p.mode='manual';
+  p.ocsY=Math.min(30,Math.max(0,Math.floor(+p.ocsY||0)));p.ocsM=Math.min(11,Math.max(0,Math.floor(+p.ocsM||0)));
   for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=480))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
   /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
@@ -1244,6 +1259,13 @@ const apPick=setupDate('ap',1973,NOW_Y,ST.p.appt,v=>{ST.p.appt=v;wsKey='';render
 setupDate('eq',1960,NOW_Y,ST.p.eq,v=>{ST.p.eq=v;wsKey='';renderP()});
 $('eqOn').checked=ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn;
 $('eqOn').addEventListener('change',e=>{ST.p.eqOn=e.target.checked;$('eqBox').hidden=!ST.p.eqOn;wsKey='';renderP()});
+/* Other credited service (1/80th): prior non-uniformed City service, or uniformed service that didn't come right before the FDNY. */
+$('ocsY').innerHTML=Array.from({length:31},(_,i)=>`<option value="${i}">${i} year${i===1?'':'s'}</option>`).join('');
+$('ocsMo').innerHTML=Array.from({length:12},(_,i)=>`<option value="${i}">${i} month${i===1?'':'s'}</option>`).join('');
+$('ocsOn').checked=ST.p.ocsOn;$('ocsBox').hidden=!ST.p.ocsOn;$('ocsY').value=ST.p.ocsY;$('ocsMo').value=ST.p.ocsM;
+$('ocsOn').addEventListener('change',e=>{ST.p.ocsOn=e.target.checked;$('ocsBox').hidden=!ST.p.ocsOn;renderP()});
+$('ocsY').addEventListener('change',e=>{ST.p.ocsY=+e.target.value;renderP()});
+$('ocsMo').addEventListener('change',e=>{ST.p.ocsM=+e.target.value;renderP()});
 
 const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;renderP()}});
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP());
@@ -1344,9 +1366,12 @@ function earnings(months,c){
     if(in20){a20+=v;a20By[y]=(a20By[y]||0)+v}
     if(k>=ithpFrom) ithp+=ITHP_RATE*v*Math.pow(1+ACCT_INT,(W-k-0.5)/12);
   }
-  return {retDate,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,a20By,missing:[...missing].sort((a,b)=>a-b)};
+  /* 1/80th: average annual earnings of the last 5 years (Tiers 1 & 2 Summary Plan Description, Sept. 2014). */
+  let avg5=0;
+  if(c.ocs>0&&!c.dis){for(let k=Math.max(0,W-60);k<W;k++){const y=yOf(k);if(!(vals[y]>0)) missing.add(y)}const s5=sumM(Math.max(0,W-60),W);avg5=s5?s5/(Math.min(60,W)/12):0}
+  return {retDate,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,a20By,avg5,missing:[...missing].sort((a,b)=>a-b)};
 }
-function pParams(){const d=pDates(),p=ST.p;return {...d,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,topPay:num(p.topPay)}}
+function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0)+(+p.ocsM||0)/12:0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,topPay:num(p.topPay)}}
 
 function scenario(months,c){
   const S=months/12,e=earnings(months,c),first=c.appt.getFullYear(),retAge=c.age+S;
@@ -1354,7 +1379,7 @@ function scenario(months,c){
   const bp=c.dis?0:bonusPct(S),bonusAdd=e.fs?bp*c.topPay:0,dv=sixtyDiv(c),half=(c.dis?0.75:0.5)*(e.fs+bonusAdd),sixty=e.a20/dv,ithpEst=e.ithp/annuityFactor(retAge);
   /* Excess balance from ESS, grown at the Fund's 8.25% from today to the retirement date. */
   const grow=Math.pow(1+ACCT_INT,Math.max(0,yrsBetween(new Date(),e.retDate))),exT=c.exT*grow,exN=c.exN*grow,exBal=exT+exN;
-  const exAnn=excessAnnuity(exBal,retAge),ann=ithpEst+exAnn,base=ok?half+sixty+ann:0;
+  const exAnn=excessAnnuity(exBal,retAge),ann=ithpEst+exAnn,ocsAmt=!c.dis&&c.ocs>0?e.avg5*c.ocs/80:0,base=ok?half+sixty+ann+ocsAmt:0;
   const colaRate=colaRateOf(c.cpi),vsf=c.dis?0:VSF,drop=c.dis?0:vsf*Math.max(0,Math.floor((months-240)/12));
   const rows=[];let pen=base,colaTot=0,life=drop,colaAge=null;
   for(let t=0;t<120;t++){
@@ -1368,7 +1393,7 @@ function scenario(months,c){
     rows.push({age,pay:pen,v});
   }
   const at=a=>rows.find(x=>x.age>=a-1e-9)||null;
-  return {months,S,ok,first,...e,bonusPct:bp,bonusAdd,dv,half,sixty,ithpEst,exT,exN,exBal,exAnn,ann,base,retAge,colaRate,colaAge,drop,rows,at,life};
+  return {months,S,ok,first,...e,bonusPct:bp,bonusAdd,dv,half,sixty,ocsAmt,ithpEst,exT,exN,exBal,exAnn,ann,base,retAge,colaRate,colaAge,drop,rows,at,life};
 }
 
 /* LODI pay (tax-free, so missing from box 5, but pensionable) and one-time bonuses (in box 5, not pensionable), by year, from box 14 of the W-2. */
@@ -1431,6 +1456,7 @@ function renderWorksheet(c,m,you){
 }
 
 /* ---------- results ---------- */
+function fmtOcs(y){const yy=Math.floor(y+1e-9),mm=Math.round((y-yy)*12);return [yy?`${yy} year${yy===1?'':'s'}`:'',mm?`${mm} month${mm===1?'':'s'}`:''].filter(Boolean).join(' ')||'0 years'}
 function annRow(s,dis){
   return `<div class="brow"><div class="bl"><b>ITHP pension (estimate)</b><small>${dis?'Rough estimate from the City’s 5% over your career':'Rough estimate from the City’s 5% after 20 years'}</small></div><div class="amt"><b>${usd(s.ithpEst/12)}/mo</b><small>${usd(s.ithpEst)}/yr</small></div></div>`
    +(s.exAnn?`<div class="brow"><div class="bl"><b>Excess annuity (estimate)</b><small>Your excess grows to about ${usd(s.exBal)} by ${fmtMY(s.retDate)}. Or take that as a lump sum.</small></div><div class="amt"><b>${usd(s.exAnn/12)}/mo</b><small>${usd(s.exAnn)}/yr</small></div></div>`:'');
@@ -1486,7 +1512,7 @@ function renderP(){
   $('cmpSec').hidden=c.dis||!you.ok;
   if(!you.ok){
     const miss=you.missing.length?`Type your earnings for ${you.missing.join(', ')} in step 2.`:'Enter your earnings in step 2.';
-    head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once we have your earnings for your last 12 months${c.dis?'':' and every year after your 20th anniversary'}. ${miss}</span></div>`;
+    head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once we have your earnings for your last 12 months${c.dis?'':' and every year after your 20th anniversary'}${!c.dis&&c.ocs>0?', plus your last 5 years for the 1/80th':''}. ${miss}</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
   ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:!c.dis&&c.b40?'S5058A':'none',p_excess:dol(c.exT+c.exN),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
@@ -1495,6 +1521,7 @@ function renderP(){
         <div class="incl">${ICON.check}<span>The higher of your <b>last 12 months</b> (${usd(you.fs12)}${you.lim12!==null&&you.raw12>you.lim12+0.5?`, cut from ${usd(you.raw12)} by the 20% limit`:''}) and your <b>best 3 years in a row</b> (${you.best?usd(you.best.fas):'not enough years yet'}).</span></div>
         ${you.bonusAdd>0?`<div class="incl">${ICON.check}<span>Includes the <b>longevity bonus</b>: +${usd(you.bonusAdd*(c.dis?0.75:0.5))} a year (${Math.round(you.bonusPct*100)}% of your rank’s top pay added to your final average salary)</span></div>`:''}
         <div class="brow"><div class="bl"><b>1/${you.dv}th after 20 years</b><small>${you.a20?`${usd(you.a20)} earned since ${fmtMY(addM(c.eq,240))}, ÷ ${you.dv}`:'Starts once you pass 20 years'}</small></div><div class="amt"><b>${usd(you.sixty/12)}/mo</b><small>${usd(you.sixty)}/yr</small></div></div>
+        ${you.ocsAmt>0?`<div class="brow"><div class="bl"><b>1/80th for other City service</b><small>${fmtOcs(c.ocs)} × 1/80th of ${usd(you.avg5)}, your average over your last 5 years</small></div><div class="amt"><b>${usd(you.ocsAmt/12)}/mo</b><small>${usd(you.ocsAmt)}/yr</small></div></div>`:''}
         ${annRow(you,c.dis)}`;
   const colaS=you.colaAge?`From about age ${Math.ceil(you.colaAge)}, a COLA on the first $18,000 adds about ${usd(18000*you.colaRate)} a year.`:'';
   if(c.dis){
@@ -1544,7 +1571,7 @@ function maxMonths(c){return Math.min(MAXM,Math.floor((65-c.age)*12))}
 function renderGoal(c,m,you){
   const g=num(ST.p.goal),o=$('goalOut');
   if(!g){o.innerHTML='<span class="hint">Enter an amount to see the final average salary it takes, and when your earnings get you there.</span>';return}
-  const pct=c.dis?0.75:0.5,need=Math.max(0,(g*12-you.sixty-you.ann)/pct-you.bonusAdd);
+  const pct=c.dis?0.75:0.5,need=Math.max(0,(g*12-you.sixty-you.ann-(you.ocsAmt||0))/pct-you.bonusAdd);
   if(c.dis){
     const ok=you.base/12>=g-0.5;
     o.innerHTML=`<p>For ${usd(g)} a month on a 3/4s, your final average salary needs to be about <b>${usd(need)}</b>, with the rest of your pension as it is now.</p><p>${ok?`<b style="color:var(--sage)">Your numbers get you there:</b> ${usd(you.base/12)} a month.`:`Yours is ${usd(you.fs)}, which pays ${usd(you.base/12)} a month in all.`}</p>`;return;
@@ -1590,6 +1617,7 @@ function renderCompare(c,m,you){
     ${line('Longevity bonus, a year',s=>s.bonusAdd>0?`<span class="bonus-on">+${usd(s.bonusAdd/2)}</span>`:'Starts at 25 yrs',1)}
     ${line('50% of final average salary',s=>usd(s.half),1)}
     ${line(`1/${you.dv}th after 20`,s=>usd(s.sixty),1)}
+    ${you.ocsAmt>0?line('1/80th, other City service',s=>usd(s.ocsAmt),1):''}
     ${line('ITHP (estimate)',s=>usd(s.ithpEst),1)}
     ${you.exAnn?line('Excess annuity (estimate)',s=>usd(s.exAnn),1):''}
     ${line('Pension a month',s=>usd(s.base/12))}
