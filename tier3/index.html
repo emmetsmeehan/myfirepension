@@ -165,6 +165,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .stop.nr::before{margin-right:2px}
 .stop button{min-width:50px;height:44px;padding:0 9px;border-radius:var(--r-sm);border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:17px;cursor:pointer;line-height:1}
 .stop button small{display:block;font-weight:600;font-size:11px;color:var(--muted)}
+.stop button:disabled{opacity:.35;cursor:not-allowed}
 .stop button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 .stop button[aria-pressed="true"] small{color:#fff;opacity:.85}
 .stop.on::before{background:var(--accent)}
@@ -1138,18 +1139,20 @@ function Slider(root,{id,label,value,onInput}){
   root.innerHTML=`<div class="svc"><label for="${id}">${label}</label><div class="svcval"><b></b><span></span></div></div><div class="hint sub"></div>
     <div class="slider"><input type="range" id="${id}" min="240" max="420" step="1"><div class="fill"></div></div>`;
   const inp=root.querySelector('input'),sl=root.querySelector('.slider'),fill=root.querySelector('.fill'),out=root.querySelector('.svcval b'),mo=root.querySelector('.svcval span');
-  let min=240,span=180;
+  let min=240,cap=Infinity,span=180;
   inp.value=value;
   function paint(){const m=+inp.value;out.textContent=Math.floor(m/12)===1?'1 year':plural(Math.floor(m/12),'year');mo.textContent=plural(m%12,'month');
     fill.style.width=`calc((100% - var(--thumb)) * ${(m-min)/span})`;
-    sl.querySelectorAll('.stop').forEach(el=>{const b=el.querySelector('button'),on=+b.dataset.m===m;b.setAttribute('aria-pressed',on);el.classList.toggle('on',on)})}
+    sl.querySelectorAll('.stop').forEach(el=>{const b=el.querySelector('button'),on=+b.dataset.m===m;b.setAttribute('aria-pressed',on);el.classList.toggle('on',on);b.disabled=+b.dataset.m>cap})}
   function stops(list){sl.querySelectorAll('.stop').forEach(e=>e.remove());list.forEach(s=>{const pct=(s.m-min)/span,el=document.createElement('div');
     el.className='stop'+(s.low?' low':'')+(pct===0?' l':pct===1?' r':s.side?' '+s.side:'');
     el.style.left=`calc(var(--thumb)/2 + (100% - var(--thumb)) * ${pct})`;
     el.innerHTML=`<button type="button" data-m="${s.m}" aria-pressed="false" aria-label="${fmtSvcLong(s.m)}">${fmtSvc(s.m)}<small>yrs</small></button>`;sl.appendChild(el)})}
-  inp.addEventListener('input',()=>{paint();onInput(+inp.value)});
-  sl.addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(!b)return;inp.value=b.dataset.m;paint();onInput(+inp.value)});
-  const api={get value(){return +inp.value},set(v){inp.value=v;paint()},
+  inp.addEventListener('input',()=>{if(+inp.value>cap)inp.value=cap;paint();onInput(+inp.value)});
+  sl.addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(!b||b.disabled)return;inp.value=b.dataset.m;paint();onInput(+inp.value)});
+  const api={get value(){return +inp.value},set(v){inp.value=Math.min(v,cap);paint()},
+    /* Mandatory retirement: the slider stops there, and stops past it are greyed out. Ignored if it falls before the slider's start. */
+    cap(mm){cap=mm>=min?mm:Infinity;if(+inp.value>cap)inp.value=cap;paint()},
     range(dis){min=dis?12:240;span=420-min;inp.min=min;if(+inp.value<min)inp.value=min;stops(dis?DIS_STOPS:STOPS);paint();root.querySelector('label').textContent=dis?'Years on the job when you go out':label},
     sub(t){root.querySelector('.sub').textContent=t}};
   api.range(false);
@@ -1501,8 +1504,12 @@ function billsOnNote(c){
 /* Past years left blank in step 2: the estimate uses only the years filled in. */
 function gapNote(c){const k=known(),n=[];for(let y=c.appt.getFullYear()+1;y<NOW_Y;y++) if(!(k[y]>0)) n.push(y);
   return n.length?`<p class="hint">${plural(n.length,'past year')} ${n.length>1?'are':'is'} blank in step 2. The estimate uses only the years you filled in.</p>`:''}
+/* Mandatory retirement age: 62 (RSSL § 501, per the Tier 3 Enhanced SPD). c.age is the age at the equated date. */
+const AGE_OUT=62;
+const ageOutM=c=>Math.floor((AGE_OUT-c.age)*12+1e-9);
 function renderP(){
-  const p=ST.p,c=pParams(),m=pSlider.value;
+  const p=ST.p,c=pParams();pSlider.cap(c.ok?ageOutM(c):Infinity);ST.p.svc=pSlider.value;
+  const m=pSlider.value;
   $('earnReset').hidden=!earnWiped||['manual','imported','extra'].some(k=>Object.keys(p[k]).length>0);
   document.querySelectorAll('.mode').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===p.mode));
   $('manualPanel').hidden=p.mode!=='manual';$('importPanel').hidden=!impMode(p.mode);
@@ -1539,7 +1546,8 @@ function renderP(){
 
   const you=scenario(m,c);
   $('preview').hidden=you.fas>0;
-  pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge));
+  const om=ageOutM(c);
+  pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge)+(om<=(c.dis?420:420)&&om>=(c.dis?12:240)?`. You turn ${AGE_OUT} in ${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}, the mandatory retirement age, so the most you can work is ${fmtSvcLong(om)}.`:''));
   renderWorksheet(c,m);renderPays(c,m);
   save();
 
@@ -1610,7 +1618,7 @@ function renderGoal(c,m,you){
     const ok=you.base/12>=g;
     o.innerHTML=`<p>For ${usd(g)} a month on a 3/4s, you need a final average salary of <b>${usd(need)}</b>.</p><p>${ok?`<b style="color:var(--sage)">Your numbers get you there:</b> ${usd(you.base/12)} a month.`:`Yours is ${usd(you.fas)}, which pays ${usd(you.base/12)} a month.`}</p>`;return;
   }
-  const maxM=Math.min(420,Math.floor((62-c.age)*12));
+  const maxM=Math.min(420,ageOutM(c));
   if(maxM<240){o.innerHTML=`<p>For ${usd(g)} a month you'd need a final average salary of about <b>${usd(need)}</b>. Based on your dates, you'd reach the mandatory retirement age of 62 before 20 years.</p>`;return}
   let hit=null,bestM=240,bestB=0;
   for(let mm=240;mm<=maxM;mm++){const s=scenario(mm,c);if(s.base>bestB){bestB=s.base;bestM=mm}if(s.base/12>=g-0.5){hit=s;break}}
@@ -1632,8 +1640,9 @@ function renderGoal(c,m,you){
 
 /* ---------- comparison table and the power of escalation ---------- */
 function renderCompare(c,m,you){
-  const sc=[scenario(240,c),scenario(276,c),scenario(300,c)];
-  const isBench=[240,276,300].includes(m);
+  const om=ageOutM(c),bench=[240,276,300].filter((mm,i)=>i===0||mm<=om);
+  const sc=bench.map(mm=>scenario(mm,c));
+  const isBench=bench.includes(m);
   const cols=sc.map((s,i)=>({s,name:['20 yrs','23 yrs','25 yrs'][i],c:COLORS[i]}));
   if(!isBench) cols.push({s:you,name:'Your plan',c:COLORS[3],you:true});
   const val=(s,a)=>{const r=s.at(a);return r&&r.pay>0?usd(r.pay):'–'};
