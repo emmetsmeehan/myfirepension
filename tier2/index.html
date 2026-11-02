@@ -301,6 +301,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .w2note b{color:var(--ink)}
 .verbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-radius:var(--r-sm);padding:12px 14px;background:color-mix(in srgb,var(--sage) 11%,var(--surface));border:1px solid color-mix(in srgb,var(--sage) 35%,transparent)}
 .growbtn.wstog{border:1px solid var(--line);border-radius:var(--r-sm)}
+#payWrap{display:grid;gap:10px;margin-top:14px}
+.payrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.payrow small{display:block;color:var(--muted)}
 .wstog small{display:block}
 .verbar .vt{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--sage)}
 .vcheck{width:26px;height:26px;border-radius:50%;background:var(--sage);color:#fff;display:inline-grid;place-items:center;flex:none}
@@ -597,7 +600,8 @@ body.has-pbar .app{padding-bottom:110px}
         <li>the average of your <b>best 3 years in a row</b>.</li>
       </ul>
       <p>There's a <b>20% limit</b>. Your last 12 months count only up to 20% more than the 12 months before them. For the best 3 years, each year counts only up to 20% more than the average of the 2 years before it. Anything above that is cut. (Tier 3's limit is 10%.)</p>
-      <p>The 3-year periods line up with your retirement date. Retiring Oct. 1, for example, the years run Oct. 1 to Sept. 30.</p>
+      <p>Both line up with your retirement date, not January to December. Retiring Oct. 1, for example, the years run Oct. 1 to Sept. 30. Your best 3 can be any 3 years in your career, not just your last ones.</p>
+      <p>The personal numbers page knows only each year's total, so it splits each year evenly by month. For exact numbers, add your paychecks from ESS under <b>Find your exact final average salary</b>.</p>
       <p class="ex">Example: you made $130,000 in your second-to-last year. Your last 12 months count only up to $156,000, so if you made $170,000, $14,000 of it doesn't count.</p>
       <p>We're still confirming the exact rule with the Pension Fund, so treat these numbers as estimates and check your official estimate before you decide.</p></div></details>
     <details><summary>What is the longevity bonus?</summary><div class="ans">
@@ -696,7 +700,7 @@ body.has-pbar .app{padding-bottom:110px}
     <div class="fineprint" style="margin-top:14px">
       <p><strong>Pension:</strong> 50% of final average salary at 20+ years of uniformed service, plus 1/60th of total earnings after the 20th anniversary, plus a pension from ITHP contributions made after 20 years with interest, plus an annuity from any contributions above the required amount. Source: the Fire Pension Fund's Annual Comprehensive Financial Report for fiscal 2025 (summary of Tier I and II benefits).</p>
       <p><strong>Equated date:</strong> if you bought back military time, have prior uniformed service that counts, or were given an earlier date because you were entitled to be hired sooner, the personal numbers page counts years of service from the equated date you enter, which moves the 20-year date, the 1/60th, ITHP, the banked variable and the longevity bonus. Earnings still count from your appointment date. The quick calculator's years are years of service, so count bought-back time there. Source: the Fund’s Tiers 1 & 2 Summary Plan Description (Sept. 2014).</p>
-      <p><strong>Final average salary:</strong> the higher of earnings in the 12 months before retirement or the average of the best 3 consecutive calendar years, overtime included. A 20% limit applies: the last 12 months count only up to 120% of the 12 months before them, and each year of a 3-year period counts only up to 120% of the average of the 2 years before it. The 3-year periods end on the retirement month and day. Source: the Fund's Tiers 1 & 2 Summary Plan Description (Sept. 2014) and Chapter 372 of the Laws of 2000. The plan description gives the best-3 option only to members appointed before July 1, 2000; Chapter 540 of the Laws of 2021 (S6405/A7640, effective Oct. 29, 2021) gave all Tier 2 members the same calculation. The personal numbers page splits calendar-year earnings evenly by month to estimate each 12-month period. The quick calculator uses the final average salary exactly as you type it.</p>
+      <p><strong>Final average salary:</strong> the higher of earnings in the 12 months before retirement or the average of the best 3 consecutive calendar years, overtime included. A 20% limit applies: the last 12 months count only up to 120% of the 12 months before them, and each year of a 3-year period counts only up to 120% of the average of the 2 years before it. The 3-year periods end on the retirement month and day. Source: the Fund's Tiers 1 & 2 Summary Plan Description (Sept. 2014) and Chapter 372 of the Laws of 2000. The plan description gives the best-3 option only to members appointed before July 1, 2000; Chapter 540 of the Laws of 2021 (S6405/A7640, effective Oct. 29, 2021) gave all Tier 2 members the same calculation. The personal numbers page splits calendar-year earnings evenly by month to estimate each 12-month period. With paychecks from the ESS Payment Summary, it places each check in the 2 weeks before its pay date, scales each past year's checks to that year's earnings in step 2, and spreads years without checks evenly; the current year uses its checks so far, then its step 2 rate. Pay dates may differ by a few days from the dates the Fund uses for earned pay. The quick calculator uses the final average salary exactly as you type it.</p>
       <p><strong>1/60th:</strong> the personal numbers page adds up your earnings from your 20th anniversary to retirement, splitting calendar years evenly by month. The quick calculator assumes you earn about your final average salary in each year past 20.</p>
       <p><strong>ITHP in the quick calculator:</strong> the same rough estimate, figured on your final average salary and assuming you were appointed at 25.</p>
       <p><strong>ITHP estimate:</strong> the City's 5% of pay after your 20th anniversary, credited 8.25% interest a year until you retire, then paid out evenly to age 85 assuming 7% interest. On a 3/4s it uses your whole career in the table. The Fund's real conversion uses its own tables, so this is rough.</p>
@@ -898,6 +902,27 @@ body.has-pbar .app{padding-bottom:110px}
           <div id="growAmt" class="field" hidden><div class="inp"><input class="pl" id="grow" inputmode="decimal" value="2.5" aria-label="Raise each year"><span class="after">% a year</span></div></div>
           <span class="hint" id="growHint"></span>
         </div>
+        <div id="payWrap" hidden>
+          <button type="button" class="growbtn wstog" id="payTog" aria-expanded="false" aria-controls="payBox"><span><b>Find your exact final average salary</b><small id="payTogS">These numbers split each year evenly by month. Your paychecks show exactly when the money came in.</small></span><span class="chev"></span></button>
+          <div class="panelbox" id="payBox" hidden>
+            <p id="payWhy" style="margin:0"></p>
+            <ol>
+              <li>In <b>NYCAPS Employee Self Service</b>, tap <b>Pay and Tax Information</b>, then <b>Pay Summary</b>.</li>
+              <li>Pick a year under <b>View another year</b>. ESS keeps about the last 3 years.</li>
+              <li>Screenshot the table (on a phone, turn it sideways so the <b>Gross YTD</b> column shows), or copy it from <b>Printer friendly page</b> and paste it below. Add as many years as you have.</li>
+              <li>Have your own record of older paychecks? Paste them too, one per line: the pay date, then the gross pay (like 03/17/2021 6,250.00).</li>
+            </ol>
+            <input type="file" id="payFile" accept="image/*" multiple hidden>
+            <div><button type="button" class="btn green" id="payPick">Choose my screenshots</button></div>
+            <div id="payProg" class="field" hidden><span class="hint" id="payProgTxt">Reading your paychecks…</span><div class="progress"><i id="payBar"></i></div></div>
+            <label for="payTxt" class="flabel" style="font-size:16px">Or paste the table here:</label>
+            <textarea id="payTxt" spellcheck="false"></textarea>
+            <div><button type="button" class="btn ghost" id="payGo">Read what I pasted</button></div>
+            <p class="msg" id="payMsg" role="status" hidden></p>
+            <div id="payList"></div>
+            <p class="hint" style="margin:0">Your paychecks only show <b>when</b> the money came in. Each year's total still comes from your earnings above. Read on your device, never uploaded.</p>
+          </div>
+        </div>
         <div class="field" id="exBox">
           <span class="flabel">Your excess contributions (optional)</span>
           <span class="hint" style="margin-top:-4px">ESS shows your pension excess split into taxable and non-taxable. Leave blank if you have none.</span>
@@ -975,6 +1000,8 @@ const fmtAgeShort=a=>{const [y,mo]=ageYM(a);return mo?y+'&nbsp;yrs '+mo+'&nbsp;m
 const addM=(d,m)=>new Date(d.getFullYear(),d.getMonth()+m,d.getDate());
 const yrsBetween=(a,b)=>(b-a)/(365.2425*864e5);
 const fmtMY=d=>d.toLocaleDateString('en-US',{month:'short',year:'numeric'});
+const fmtDay=d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+const dayBefore=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate()-1);
 const pad=n=>String(n).padStart(2,'0');
 const toISO=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 const fromISO=s=>{const [y,m,d]=String(s).split('-').map(Number);return new Date(y,(m||1)-1,d||1)};
@@ -992,7 +1019,7 @@ const ICON={
   cal:'<svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
   ext:'<svg class="i" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
 };
-/* A sample pay curve for the "example numbers" button: the last 12 years before this one. */
+/* A sample pay curve for the "example numbers" button: the last 12 years before this one, extended back to the appointment year. */
 const EX_DOB='1975-03-14',EX_APPT='2001-09-24';
 const SAMPLE=[118000,124000,129000,133000,138000,142000,147000,151000,156000,160000,165000,170000];
 /* Longevity bonus (FY2027 budget, signed May 27, 2026; S9202/A10392 as written cover any member "under the plan in which they are enrolled", Tier 2 included):
@@ -1082,7 +1109,7 @@ const billNote=st=>st.b40?'<p class="billnote">Includes a bill that hasn’t pas
 const KEY='fdny-tier2-v1';
 const DEF={
   q:{fas:'',svc:300,dis:false,exT:'',exN:'',b40:false,rank:'FF',topPay:109352},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,lodi:{},onetime:{},earnV:2}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,lodi:{},onetime:{},pays:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1092,6 +1119,7 @@ const impMode=m=>m==='import'||m==='w2';
 function cleanState(){
   const p=ST.p;
   for(const k of ['dob','appt','eq']) if(!realDate(p[k])) p[k]='';
+  {const o=p.pays,c={};if(o&&typeof o==='object')for(const y in o){if(!/^\d{4}$/.test(y)||!Array.isArray(o[y]))continue;const a=o[y].filter(r=>Array.isArray(r)&&realDate(r[0])&&r[0].slice(0,4)===y&&Math.abs(+r[1])<1e6).map(r=>[r[0],+r[1]]);if(a.length)c[y]=a}p.pays=c}
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
   if(!impMode(p.mode)) p.mode='manual';
   p.ocsY=Math.min(30,Math.max(0,Math.floor(+p.ocsY||0)));delete p.ocsM;
@@ -1335,13 +1363,47 @@ function yearValues(firstY,lastY){
    1/60th = months from the 20th anniversary to retirement.
    ITHP = 5% of pay in those months (whole career on a 3/4s), credited 8.25% a year to retirement. */
 const LOOKBACK=1.2;
+/* Paychecks from the ESS Payment Summary (Nov. 2, 2026, owner's request; same model as the Tier 3 page): each check covers
+   the 14 days up to its pay date; each past year's checks are scaled to that year's step 2 amount (checks only set
+   timing); years without checks fill the gaps evenly; this year's checks so far are used as is, then the step 2 rate. */
+let noPays=false;
+function hasPays(){return !noPays&&Object.keys(ST.p.pays||{}).length>0}
+function payTimeline(appt,retY,vals){
+  const D=864e5,apptY=appt.getFullYear(),P=ST.p.pays||{},A=appt.getTime(),ys=[];
+  for(let y=apptY;y<=retY;y++){
+    const tot=vals[y]>0?vals[y]:0,ps=(P[y]||[]).map(([d,a])=>[fromISO(d).getTime(),a]).sort((a,b)=>a[0]-b[0]),g=ps.reduce((t,p)=>t+p[1],0);
+    let seg=null;
+    if(tot>0&&ps.length>=4&&g>0){
+      const last=ps[ps.length-1][0],partial=y>=NOW_Y&&new Date(last).getMonth()<11,r=partial?1:tot/g;
+      seg=ps.map(p=>[p[0]-14*D,p[0],p[1]*r]);
+      if(partial){const e=new Date(y+1,0,1).getTime();seg.push([last,e,tot*(e-last)/(365*D)])}
+    }
+    ys.push({y,tot,seg});
+  }
+  const segs=[];
+  ys.forEach((o,i)=>{
+    if(o.seg){segs.push(...o.seg);return}
+    if(!(o.tot>0)) return;
+    const prev=ys[i-1],next=ys[i+1];
+    let a=prev&&prev.seg?prev.seg[prev.seg.length-1][1]:new Date(o.y,0,1).getTime(),b=next&&next.seg?next.seg[0][0]:new Date(o.y+1,0,1).getTime();
+    if(o.y===apptY) a=Math.max(a,A);
+    if(b>a) segs.push([a,b,o.tot]);
+  });
+  segs.sort((x,y)=>x[0]-y[0]);
+  const S0=segs.map(z=>z[0]),C=[0];for(const z of segs) C.push(C[C.length-1]+z[2]);
+  const F=t=>{let lo=0,hi=segs.length;while(lo<hi){const m=(lo+hi)>>1;if(S0[m]<=t)lo=m+1;else hi=m}
+    const i=lo-1;if(i<0) return 0;const [a,b,v]=segs[i];return C[i]+v*Math.min(1,Math.max(0,(t-a)/(b-a)))};
+  return (a,b)=>F(b)-F(a);
+}
 function earnings(months,c){
   /* months is credited service, counted from the equated date; k below counts months worked from appointment. */
   const W=months-c.off,A20=240-c.off;
   const apptY=c.appt.getFullYear(),retDate=addM(c.eq,months),retY=retDate.getFullYear(),{vals,kind}=yearValues(apptY,retY);
   const yOf=k=>addM(c.appt,k).getFullYear(),mv=k=>k<0?0:(vals[yOf(k)]||0)/12;
   const sumM=(a,b)=>{if(a<0) return null;let t=0;for(let k=a;k<b;k++){const v=mv(k);if(!(v>0)) return null;t+=v}return t};
-  const blk=e=>sumM(e-12,e);
+  /* With paychecks, 12-month blocks come from the paycheck timeline; without, each year is split evenly by month. */
+  const usePay=hasPays(),tl=usePay?payTimeline(c.appt,retY,vals):null,tAt=k=>addM(c.appt,k).getTime();
+  const blk=e=>{const v=sumM(e-12,e);return v===null||!tl?v:tl(tAt(e-12),tAt(e))};
   const raw12=blk(W)||0,prev12=blk(W-12),lim12=prev12?LOOKBACK*prev12:null,fs12=lim12!==null?Math.min(raw12,lim12):raw12;
   const cntB=e=>{const v=blk(e);if(v===null) return null;const a=blk(e-12),b=blk(e-24);return a&&b?Math.min(v,LOOKBACK*(a+b)/2):v};
   let best=null;
@@ -1367,7 +1429,7 @@ function earnings(months,c){
   /* 1/80th: average annual earnings of the last 5 years (Tiers 1 & 2 Summary Plan Description, Sept. 2014). */
   let avg5=0;
   if(c.ocs>0&&!c.dis){for(let k=Math.max(0,W-60);k<W;k++){const y=yOf(k);if(!(vals[y]>0)) missing.add(y)}const s5=sumM(Math.max(0,W-60),W);avg5=s5?s5/(Math.min(60,W)/12):0}
-  return {retDate,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,a20By,avg5,missing:[...missing].sort((a,b)=>a-b)};
+  return {retDate,usePay,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,a20By,avg5,missing:[...missing].sort((a,b)=>a-b)};
 }
 function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0):0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,topPay:num(p.topPay)}}
 
@@ -1500,7 +1562,7 @@ function renderP(){
   $('preview').hidden=you.ok;
   pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge));
   $('exHint').textContent=exHintText(c.exT,c.exN,you.exBal,you.exAnn/12,c.dis)+(c.exT+c.exN>0?' Includes 8.25% interest a year until you retire.':'');
-  renderWorksheet(c,m,you);
+  renderWorksheet(c,m,you);renderPays(c,m);
   save();
 
   const head=$('head');
@@ -1513,9 +1575,9 @@ function renderP(){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once we have your earnings for your last 12 months${c.dis?'':' and every year after your 20th anniversary'}${!c.dis&&c.ocs>0?', plus your last 5 years for the 1/80th':''}. ${miss}</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
-  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:!c.dis&&c.b40?'S5058A':'none',p_excess:dol(c.exT+c.exN),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:!c.dis&&c.b40?'S5058A':'none',p_excess:dol(c.exT+c.exN),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
-  const brk=`<div class="brow"><div class="bl"><b>${c.dis?'75%':'50%'} of final average salary</b><small>${c.dis?'75%':'50%'} of ${usd(you.fs+you.bonusAdd)}${you.bonusAdd?' (with the bonus)':''}, ${you.useBest?`your best 3 years (${fmtMY(you.best.from)} to ${fmtMY(you.best.to)})`:'your last 12 months'}</small></div><div class="amt"><b>${usd(you.half/12)}/mo</b><small>${usd(you.half)}/yr</small></div></div>
+  const brk=`<div class="brow"><div class="bl"><b>${c.dis?'75%':'50%'} of final average salary</b><small>${c.dis?'75%':'50%'} of ${usd(you.fs+you.bonusAdd)}${you.bonusAdd?' (with the bonus)':''}, ${you.useBest?`your best 3 years (${you.usePay?`${fmtDay(you.best.from)} to ${fmtDay(dayBefore(you.best.to))}`:`${fmtMY(you.best.from)} to ${fmtMY(you.best.to)}`})`:'your last 12 months'}${you.usePay?', from your paychecks':'. Each year split evenly by month'}</small></div><div class="amt"><b>${usd(you.half/12)}/mo</b><small>${usd(you.half)}/yr</small></div></div>
         <div class="incl">${ICON.check}<span>The higher of your <b>last 12 months</b> (${usd(you.fs12)}${you.lim12!==null&&you.raw12>you.lim12+0.5?`, cut from ${usd(you.raw12)} by the 20% limit`:''}) and your <b>best 3 years in a row</b> (${you.best?usd(you.best.fas):'not enough years yet'}).</span></div>
         ${you.bonusAdd>0?`<div class="incl">${ICON.check}<span>Includes the <b>longevity bonus</b>: +${usd(you.bonusAdd*(c.dis?0.75:0.5))} a year (${Math.round(you.bonusPct*100)}% of your rank’s top pay added to your final average salary)</span></div>`:''}
         <div class="brow"><div class="bl"><b>1/${you.dv}th after 20 years</b><small>${you.a20?`${usd(you.a20)} earned since ${fmtMY(addM(c.eq,240))}, ÷ ${you.dv}`:'Starts once you pass 20 years'}</small></div><div class="amt"><b>${usd(you.sixty/12)}/mo</b><small>${usd(you.sixty)}/yr</small></div></div>
@@ -1634,7 +1696,10 @@ $('exampleBtn').addEventListener('click',()=>{
   if(!ST.p.dob){ST.p.dob=EX_DOB;dobPick.set(EX_DOB)}
   if(!ST.p.appt){ST.p.appt=EX_APPT;apPick.set(EX_APPT)}
   ST.p.manual={};const y0=NOW_Y-SAMPLE.length,ap=pDates().appt.getFullYear();
-  SAMPLE.forEach((v,i)=>{if(y0+i>=ap) ST.p.manual[y0+i]=v});
+  /* Every year from appointment through last year: the sample covers the last 12; earlier years step back 3% a year,
+     with lower pay in the first 5 years on the job. */
+  const RAMP=[0.35,0.6,0.75,0.85,0.95];
+  for(let y=ap;y<NOW_Y;y++){const i=y-y0;ST.p.manual[y]=i>=0?SAMPLE[i]:Math.round(SAMPLE[0]*Math.pow(0.97,-i)*(y-ap<5?RAMP[y-ap]:1)/1000)*1000}
   wsKey='';renderP();
 });
 let noSave=false;
@@ -1735,6 +1800,87 @@ $('shotFile').addEventListener('change',async e=>{
     imsg(err&&err.message==='load'?'Couldn’t load the screenshot reader. Check your internet connection and try again, or use copy and paste.':'Sorry, we couldn’t read that picture. Try another screenshot, or use copy and paste.','err');
   }finally{$('shotProg').hidden=true;$('shotPick').disabled=false}
 });
+
+/* ---------- Paychecks from the ESS Payment Summary (exact final average salary) ---------- */
+/* Each row: pay date, gross pay, taxes, other deductions, net pay, gross YTD, EFT. Rows with two dates are the
+   Adjustments table (pay date and earn date) and are skipped. Gross YTD is used to check and fix each gross amount. */
+function paysParse(text,ocr){
+  const raw={};
+  for(const line of String(text).split(/\r?\n/)){
+    const ds=line.match(/\d{1,2}\/\d{1,2}\/\d{4}/g);if(!ds||ds.length!==1) continue;
+    const [mo,d,y]=ds[0].split('/').map(Number);if(mo<1||mo>12||d<1||d>31||y<1990||y>NOW_Y) continue;
+    const rest=line.slice(line.indexOf(ds[0])+ds[0].length);
+    const nums=ocr?ocrTokens(rest):(rest.match(/-?\d[\d,]*\.\d{2}/g)||[]).map(t=>+t.replace(/,/g,''));
+    if(!nums.length||!(nums[0]>0)) continue;
+    const iso=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    (raw[y]=raw[y]||{})[iso]={g:nums[0],ytd:nums.length>=5?nums[4]:null};
+  }
+  const out={};let fixed=0;
+  for(const y in raw){
+    const rows=Object.entries(raw[y]).sort((a,b)=>a[0]<b[0]?-1:1);let prev=0;
+    out[y]=rows.map(([iso,r])=>{let g=r.g;
+      if(r.ytd!==null&&r.ytd>prev){const diff=r.ytd-prev;if(Math.abs(diff-g)>0.02&&diff<1e5){g=diff;fixed++}prev=r.ytd}else prev+=g;
+      return [iso,Math.round(g*100)/100]});
+  }
+  return {years:out,fixed};
+}
+/* OCR reads tables column by column, so rows are rebuilt from where each word sits on the picture. */
+function ocrRows(d){
+  const ws=(d.words&&d.words.length?d.words:(d.blocks||[]).flatMap(b=>(b.paragraphs||[]).flatMap(p=>(p.lines||[]).flatMap(l=>l.words||[]))))
+    .map(w=>({t:w.text,x:w.bbox.x0,y:(w.bbox.y0+w.bbox.y1)/2,h:w.bbox.y1-w.bbox.y0})).filter(w=>w.t&&w.h>0).sort((a,b)=>a.y-b.y);
+  if(!ws.length) return d.text||'';
+  const hs=ws.map(w=>w.h).sort((a,b)=>a-b),tol=hs[hs.length>>1]*0.6,rows=[];
+  for(const w of ws){const r=rows[rows.length-1];if(r&&Math.abs(w.y-r.y)<=tol){r.w.push(w);r.y=(r.y*(r.w.length-1)+w.y)/r.w.length}else rows.push({y:w.y,w:[w]})}
+  return rows.map(r=>r.w.sort((a,b)=>a.x-b.x).map(w=>w.t).join(' ')).join('\n');
+}
+function pmsg(t,cls){const e=$('payMsg');e.textContent=t;e.className='msg '+cls;e.hidden=!t}
+function addPays(r){
+  const ys=Object.keys(r.years);
+  if(!ys.length){pmsg('Couldn’t find any paychecks there. Make sure the Pay Date and Gross Pay columns are in it.','err');return}
+  for(const y of ys) ST.p.pays[y]=r.years[y];
+  const short=ys.filter(y=>+y<NOW_Y&&r.years[y].length<24);
+  pmsg(`Added ${ys.sort().map(y=>`${y} (${plural(r.years[y].length,'paycheck')})`).join(', ')}.`+(short.length?` ${short.join(', ')} looks short: a full year has 26. Check you got the whole table.`:''),short.length?'err':'ok');
+  wsKey='';renderP();
+}
+let payOpen=false;
+$('payTog').addEventListener('click',()=>{payOpen=!payOpen;renderP()});
+$('payGo').addEventListener('click',()=>{addPays(paysParse($('payTxt').value,false));$('payTxt').value=''});
+$('payPick').addEventListener('click',()=>$('payFile').click());
+$('payFile').addEventListener('change',async e=>{
+  const fs=[...e.target.files];e.target.value='';if(!fs.length) return;
+  pmsg('','');$('payProg').hidden=false;$('payBar').style.width='5%';$('payPick').disabled=true;
+  const all={years:{},fixed:0};
+  try{
+    await loadTess();
+    for(let i=0;i<fs.length;i++){
+      $('payProgTxt').textContent=fs.length>1?`Reading screenshot ${i+1} of ${fs.length}…`:'Reading your screenshot…';
+      const cv=await prepImage(fs[i]);
+      const r=await Promise.race([Tesseract.recognize(cv,'eng',{logger:m=>{if(m.status==='recognizing text') $('payBar').style.width=Math.round(((i+m.progress)/fs.length)*100)+'%'}}),new Promise((_,rej)=>setTimeout(()=>rej(new Error('load')),120000))]);
+      const p=paysParse(ocrRows(r.data),true);all.fixed+=p.fixed;
+      for(const y in p.years){const m=Object.fromEntries((all.years[y]||[]).concat(p.years[y]));all.years[y]=Object.entries(m).sort((a,b)=>a[0]<b[0]?-1:1)}
+    }
+    addPays(all);
+  }catch(err){
+    pmsg(err&&err.message==='load'?'Couldn’t load the screenshot reader. Check your internet connection and try again, or use copy and paste.':'Sorry, we couldn’t read that picture. Try another screenshot, or use copy and paste.','err');
+  }finally{$('payProg').hidden=true;$('payPick').disabled=false}
+});
+function renderPays(c,m){
+  const P=ST.p.pays,ys=Object.keys(P).sort();
+  $('payWrap').hidden=!c.ok;
+  if(!c.ok) return;
+  $('payTog').setAttribute('aria-expanded',payOpen);$('payBox').hidden=!payOpen;
+  $('payTogS').textContent=ys.length?`Using your paychecks for ${ys.join(', ')}`:'These numbers split each year evenly by month. Your paychecks show exactly when the money came in.';
+  const w=earnings(m,c);noPays=true;const o=earnings(m,c);noPays=false;
+  const retY=w.retDate.getFullYear(),span=x=>x.useBest?`your best 3 years, ${fmtDay(x.best.from)} to ${fmtDay(dayBefore(x.best.to))}`:`your last 12 months, ${fmtDay(addM(x.retDate,-12))} to ${fmtDay(dayBefore(x.retDate))}`;
+  let why='';
+  if(w.usePay&&ys.length) why=`<b>From your paychecks: ${usd(w.fs)}</b>, ${span(w)}. Split evenly by month, it would be ${usd(o.fs)}.`;
+  else{const lo=o.useBest?o.best.from.getFullYear():retY-2,hi=Math.min(o.useBest?o.best.to.getFullYear():retY,NOW_Y);
+    why=`Your final average salary counts years from your retirement month and day, not January to December. The page only knows each year's total, so it splits each year evenly by month, and your real numbers depend on when your overtime came in. `
+      +(lo>NOW_Y?'Those years are still ahead, so paychecks won’t change much yet. If you made more in the last few years, add those paychecks.':`Add your paychecks for ${lo}${hi>lo?` through ${hi}`:''}, whichever ESS still has.`)}
+  $('payWhy').innerHTML=why;
+  $('payList').innerHTML=ys.map(y=>`<div class="payrow"><span><b>${y}</b><small>${plural(P[y].length,'paycheck')}, ${usd(P[y].reduce((t,r)=>t+r[1],0))} gross</small></span><button type="button" class="btn ghost small" data-rm="${y}">Remove</button></div>`).join('');
+  $('payList').querySelectorAll('[data-rm]').forEach(bt=>bt.addEventListener('click',()=>{delete ST.p.pays[bt.dataset.rm];pmsg('','');wsKey='';renderP()}));
+}
 
 /* ---------- W-2 upload: box 5 and box 14 (LODI, one-time bonus) from each year's W-2 ---------- */
 /* Read on the device. PDFs: the text layer, through pdf.js (loaded only when someone picks a W-2). Photos and scanned PDFs: Tesseract.

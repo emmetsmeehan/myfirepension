@@ -1011,7 +1011,7 @@ function RankBox(rb,state,onChange,show){
   tp.addEventListener('blur',()=>{tp.value=commas(state().topPay)});
   sync();return {sync};
 }
-/* A sample pay curve for the "example numbers" button, starting in the appointment year. */
+/* A sample pay curve for the "example numbers" button, starting in the appointment year (3% a year after it runs out). */
 const EX_DOB='1988-03-14',EX_APPT='2014-09-22';
 const SAMPLE=[38000,58000,74000,89000,99000,112000,119000,126000,133000,139000,146000,153000,160000];
 
@@ -1740,7 +1740,8 @@ $('exampleBtn').addEventListener('click',()=>{
   if(!ST.p.dob){ST.p.dob=EX_DOB;dobPick.set(EX_DOB)}
   if(!ST.p.appt){ST.p.appt=EX_APPT;apPick.set(EX_APPT)}
   const y0=pDates().appt.getFullYear();ST.p.manual={};
-  SAMPLE.forEach((v,i)=>{if(y0+i<NOW_Y) ST.p.manual[y0+i]=v});
+  /* Every year from appointment through last year; past the end of the sample, pay rises 3% a year. */
+  const L=SAMPLE.length-1;for(let y=y0;y<NOW_Y;y++){const i=y-y0;ST.p.manual[y]=i<=L?SAMPLE[i]:Math.round(SAMPLE[L]*Math.pow(1.03,i-L)/1000)*1000}
   wsKey='';renderP();
 });
 let noSave=false;
