@@ -109,6 +109,7 @@ The bonus uses top-step annual **base** salary for the rank, with no longevity p
 | LT | $140,212 | UFOA rate schedule effective July 31, 2025 |
 | CAPT | $160,941 | UFOA rate schedule effective July 31, 2025 |
 | BC | $209,563 | UFOA rate schedule effective July 31, 2025 |
+| DC | $232,278 | UFOA rate schedule effective July 31, 2025 |
 
 The bill's fiscal note uses higher figures (FF $140,392, LT $157,751, CAPT $179,842, Chiefs $255,863), which are 2024 salaries increased for assumed inflation. The owner chose to keep base-only figures because he does not want to assume inflation. The page says the bill's wording could come out higher than base salary, and members can type over the figure.
 
