@@ -710,7 +710,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p><strong>Longevity bonus:</strong> at 25+ years of service, part of the top base pay for your rank is added to final average salary: 5% at 25 years plus 1% for each year after, up to 15% at 35 (FY2027 state budget, signed May 27, 2026: S9008-C/A10008-C, Part AAA, adding Administrative Code § 15-110.1; originally S9202/A10392). The law covers members of any plan in the Fire Pension Fund, and its fiscal note gives a Tier 2 example. Rank pay is the top-step annual base salary from the UFA schedule effective Aug. 1, 2024 (firefighter) and the UFOA schedule effective July 31, 2025 (lieutenant, captain, battalion chief), with no longevity, night differential or overtime; the law says "highest grade of pay" without defining it, so the figure used could be higher. Not applied to 3/4s.</p>
       <p><strong>Proposed bills:</strong> S5058A would change the 1/60th to 1/40th for service and 3/4s pensions. You can switch it on in either calculator to see what it would mean "if it passes".</p>
       <p><strong>Taxes:</strong> the “Don’t forget about taxes” box is a rough 2026 federal figure on the first-year pension plus VSF, for a married couple filing jointly with no other income (single shown as a percent). It leaves out the banked variable lump sum and isn’t tax advice.</p>
-      <p><strong>Other City service (1/80th):</strong> a service pension adds 1/80th of your average annual earnings over the last 5 years for each year and month of other credited service: prior non-uniformed City service (such as NYCERS or Board of Education), or uniformed service that didn't come right before the FDNY. It doesn't count toward your 20 years and isn't paid on a 3/4s. Source: the Fund's Tiers 1 & 2 Summary Plan Description (Sept. 2014). The personal numbers page splits calendar years evenly by month for the 5-year average. It doesn't estimate what a buyback costs; ask the Fund.</p>
+      <p><strong>Other City service (1/80th):</strong> a service pension adds 1/80th of your average annual earnings over the last 5 years for each year of other credited service: prior non-uniformed City service (such as NYCERS or Board of Education), or uniformed service that didn't come right before the FDNY. It doesn't count toward your 20 years and isn't paid on a 3/4s. Source: the Fund's Tiers 1 & 2 Summary Plan Description (Sept. 2014). The personal numbers page splits calendar years evenly by month for the 5-year average. It doesn't estimate what a buyback costs; ask the Fund.</p>
       <p><strong>Not included:</strong> retirement options that reduce the pension for a survivor, loans and account shortages, ordinary (non-line-of-duty) disability, vested retirement, and Tier 1 rules.</p>
     </div>
   </details>
@@ -806,9 +806,9 @@ body.has-pbar .app{padding-bottom:110px}
         <div class="field">
           <label class="chk"><input type="checkbox" id="ocsOn"> <span>Do you have other City service that isn’t uniformed?<span class="hint" style="display:block;font-weight:400">Like a civilian City job before the FDNY</span></span></label>
           <div id="ocsBox" class="field" hidden>
-            <span class="flabel" id="ocsLbl">Other City service</span>
-            <div class="dsel" style="grid-template-columns:1fr 1fr" role="group" aria-labelledby="ocsLbl"><span><select id="ocsY" aria-label="Years of other City service"></select></span><span><select id="ocsMo" aria-label="Months of other City service"></select></span></div>
-            <span class="hint">Each year adds 1/80th of your average pay over your last 5 years to a service pension (not a 3/4s). It counts only once it’s credited with the Fire Pension Fund, by transfer or buyback. Uniformed service that didn’t come right before the FDNY counts here too.</span>
+            <span class="flabel" id="ocsLbl">Years of other City service</span>
+            <div class="dsel" style="grid-template-columns:1fr" role="group" aria-labelledby="ocsLbl"><span><select id="ocsY" aria-label="Years of other City service"></select></span></div>
+            <span class="hint">Each year adds 1/80th of your average pay over your last 5 years to a service pension (not a 3/4s). We figure that average from your earnings in step 2. It counts only once it’s credited with the Fire Pension Fund, by transfer or buyback. Uniformed service that didn’t come right before the FDNY counts here too.</span>
           </div>
         </div>
         <div class="field" id="rankStep">
@@ -1082,7 +1082,7 @@ const billNote=st=>st.b40?'<p class="billnote">Includes a bill that hasn’t pas
 const KEY='fdny-tier2-v1';
 const DEF={
   q:{fas:'',svc:300,dis:false,exT:'',exN:'',b40:false,rank:'FF',topPay:109352},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,ocsM:0,lodi:{},onetime:{},earnV:2}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,lodi:{},onetime:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1094,7 +1094,7 @@ function cleanState(){
   for(const k of ['dob','appt','eq']) if(!realDate(p[k])) p[k]='';
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
   if(!impMode(p.mode)) p.mode='manual';
-  p.ocsY=Math.min(30,Math.max(0,Math.floor(+p.ocsY||0)));p.ocsM=Math.min(11,Math.max(0,Math.floor(+p.ocsM||0)));
+  p.ocsY=Math.min(30,Math.max(0,Math.floor(+p.ocsY||0)));delete p.ocsM;
   for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=480))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
   /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
@@ -1261,11 +1261,9 @@ $('eqOn').checked=ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn;
 $('eqOn').addEventListener('change',e=>{ST.p.eqOn=e.target.checked;$('eqBox').hidden=!ST.p.eqOn;wsKey='';renderP()});
 /* Other credited service (1/80th): prior non-uniformed City service, or uniformed service that didn't come right before the FDNY. */
 $('ocsY').innerHTML=Array.from({length:31},(_,i)=>`<option value="${i}">${i} year${i===1?'':'s'}</option>`).join('');
-$('ocsMo').innerHTML=Array.from({length:12},(_,i)=>`<option value="${i}">${i} month${i===1?'':'s'}</option>`).join('');
-$('ocsOn').checked=ST.p.ocsOn;$('ocsBox').hidden=!ST.p.ocsOn;$('ocsY').value=ST.p.ocsY;$('ocsMo').value=ST.p.ocsM;
+$('ocsOn').checked=ST.p.ocsOn;$('ocsBox').hidden=!ST.p.ocsOn;$('ocsY').value=ST.p.ocsY;
 $('ocsOn').addEventListener('change',e=>{ST.p.ocsOn=e.target.checked;$('ocsBox').hidden=!ST.p.ocsOn;renderP()});
 $('ocsY').addEventListener('change',e=>{ST.p.ocsY=+e.target.value;renderP()});
-$('ocsMo').addEventListener('change',e=>{ST.p.ocsM=+e.target.value;renderP()});
 
 const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;renderP()}});
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP());
@@ -1371,7 +1369,7 @@ function earnings(months,c){
   if(c.ocs>0&&!c.dis){for(let k=Math.max(0,W-60);k<W;k++){const y=yOf(k);if(!(vals[y]>0)) missing.add(y)}const s5=sumM(Math.max(0,W-60),W);avg5=s5?s5/(Math.min(60,W)/12):0}
   return {retDate,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,a20By,avg5,missing:[...missing].sort((a,b)=>a-b)};
 }
-function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0)+(+p.ocsM||0)/12:0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,topPay:num(p.topPay)}}
+function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0):0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,topPay:num(p.topPay)}}
 
 function scenario(months,c){
   const S=months/12,e=earnings(months,c),first=c.appt.getFullYear(),retAge=c.age+S;
