@@ -305,6 +305,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 #payWrap{display:grid;gap:10px;margin-top:14px}
 .payrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
 .payrow small{display:block;color:var(--muted)}
+.payres{border:2px solid var(--sage);border-radius:var(--r-sm);background:var(--surface);padding:14px;display:grid;gap:8px}
+.payres b{font-size:18px}
 .wstog small{display:block}
 .verbar .vt{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--sage)}
 .vcheck{width:26px;height:26px;border-radius:50%;background:var(--sage);color:#fff;display:inline-grid;place-items:center;flex:none}
@@ -885,6 +887,7 @@ body.has-pbar .app{padding-bottom:110px}
             <div><button type="button" class="btn ghost" id="payGo">Read what I pasted</button></div>
             <p class="msg" id="payMsg" role="status" hidden></p>
             <div id="payList"></div>
+            <div class="payres" id="payRes" hidden></div>
             <p class="hint" style="margin:0">Your paychecks only show <b>when</b> the money came in. Each year's total still comes from your earnings above. Read on your device, never uploaded.</p>
           </div>
         </div>
@@ -1866,14 +1869,14 @@ function paysParse(text,ocr){
     const iso=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     (raw[y]=raw[y]||{})[iso]={g:nums[0],ytd:nums.length>=5?nums[4]:null};
   }
-  const out={};let fixed=0;
+  const out={},last={};let fixed=0;
   for(const y in raw){
     const rows=Object.entries(raw[y]).sort((a,b)=>a[0]<b[0]?-1:1);let prev=0;
     out[y]=rows.map(([iso,r])=>{let g=r.g;
-      if(r.ytd!==null&&r.ytd>prev){const diff=r.ytd-prev;if(Math.abs(diff-g)>0.02&&diff<1e5){g=diff;fixed++}prev=r.ytd}else prev+=g;
+      if(r.ytd!==null&&r.ytd>prev){const diff=r.ytd-prev;if(Math.abs(diff-g)>0.02&&diff<1e5){g=diff;fixed++}prev=r.ytd;last[y]=r.ytd}else prev+=g;
       return [iso,Math.round(g*100)/100]});
   }
-  return {years:out,fixed};
+  return {years:out,fixed,ytd:last};
 }
 /* OCR reads tables column by column, so rows are rebuilt from where each word sits on the picture. */
 function ocrRows(d){
@@ -1889,9 +1892,16 @@ function addPays(r){
   const ys=Object.keys(r.years);
   if(!ys.length){pmsg('Couldn’t find any paychecks there. Make sure the Pay Date and Gross Pay columns are in it.','err');return}
   for(const y of ys) ST.p.pays[y]=r.years[y];
-  const short=ys.filter(y=>+y<NOW_Y&&r.years[y].length<24);
-  pmsg(`Added ${ys.sort().map(y=>`${y} (${plural(r.years[y].length,'paycheck')})`).join(', ')}.`+(short.length?` ${short.join(', ')} looks short: a full year has 26. Check you got the whole table.`:''),short.length?'err':'ok');
+  const short=ys.filter(y=>+y<NOW_Y&&r.years[y].length<24),n=ys.reduce((t,y)=>t+r.years[y].length,0);
+  const sumY=y=>r.years[y].reduce((t,p)=>t+p[1],0),Y=r.ytd||{},bad=ys.filter(y=>Y[y]&&Math.abs(sumY(y)-Y[y])>1),ok=ys.every(y=>Y[y])&&!bad.length&&!r.fixed;
+  let t=`Read ${plural(n,'paycheck')}: ${ys.sort().map(y=>`${y} (${r.years[y].length})`).join(', ')}.`;
+  if(ok) t+=` Each year adds up to the Gross YTD on your Payment Summary, so none were missed.`;
+  if(r.fixed) t+=` ${r.fixed===1?'One paycheck didn’t':`${r.fixed} paychecks didn’t`} match the Gross YTD column, so we went by the Gross YTD. Check that no rows were cut off.`;
+  for(const y of bad) t+=` Check ${y}: these add up to ${usd(sumY(y))}, but its Gross YTD is ${usd(Y[y])}. A row may be cut off.`;
+  if(short.length) t+=` ${short.join(', ')} looks short: a full year has 26. Check you got the whole table.`;
+  pmsg(t,bad.length||short.length?'err':'ok');
   wsKey='';renderP();
+  $('payRes').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 let payOpen=false;
 $('payTog').addEventListener('click',()=>{payOpen=!payOpen;renderP()});
@@ -1900,14 +1910,14 @@ $('payPick').addEventListener('click',()=>$('payFile').click());
 $('payFile').addEventListener('change',async e=>{
   const fs=[...e.target.files];e.target.value='';if(!fs.length) return;
   pmsg('','');$('payProg').hidden=false;$('payBar').style.width='5%';$('payPick').disabled=true;
-  const all={years:{},fixed:0};
+  const all={years:{},fixed:0,ytd:{}};
   try{
     await loadTess();
     for(let i=0;i<fs.length;i++){
       $('payProgTxt').textContent=fs.length>1?`Reading screenshot ${i+1} of ${fs.length}…`:'Reading your screenshot…';
       const cv=await prepImage(fs[i]);
       const r=await Promise.race([Tesseract.recognize(cv,'eng',{logger:m=>{if(m.status==='recognizing text') $('payBar').style.width=Math.round(((i+m.progress)/fs.length)*100)+'%'}}),new Promise((_,rej)=>setTimeout(()=>rej(new Error('load')),120000))]);
-      const p=paysParse(ocrRows(r.data),true);all.fixed+=p.fixed;
+      const p=paysParse(ocrRows(r.data),true);all.fixed+=p.fixed;for(const y in p.ytd) all.ytd[y]=Math.max(all.ytd[y]||0,p.ytd[y]);
       for(const y in p.years){const m=Object.fromEntries((all.years[y]||[]).concat(p.years[y]));all.years[y]=Object.entries(m).sort((a,b)=>a[0]<b[0]?-1:1)}
     }
     addPays(all);
@@ -1928,7 +1938,14 @@ function renderPays(c,m){
     why=`Your best 3 whole years are <b>${cal.start}–${cal.end}</b>. The Fund counts each year from your retirement month and day, not January to December, so your real best 3 depend on when your overtime came in. `
       +(lo>NOW_Y?'Those years are still ahead, so paychecks won’t change much yet. If you made more in the last few years, add those paychecks.':`Add your paychecks for ${lo}${hi>lo?` through ${hi}`:''}, whichever ESS still has.`)
       +(ys.length?' The paychecks you added don’t beat your best 3 whole years.':'')}
-  $('payWhy').innerHTML=why;
+  let res='';
+  if(ys.length&&cal) res=b&&b.rolling
+    ?`<b>Your exact best 3 years: ${bestTxt(b)}</b><span>Final average salary: <b>${usd(b.fas)}</b> a year. Using calendar years (${cal.start}–${cal.end}) it was ${usd(cal.fas)}.</span>`
+    :`<b>Your best 3 stay ${cal.start}–${cal.end}</b><span>Your paychecks don’t find a better 3 years than those calendar years, so your final average salary stays ${usd(cal.fas)}.</span>`;
+  $('payWhy').innerHTML=why;$('payWhy').hidden=!!res;
+  $('payRes').hidden=!res;
+  if(res){$('payRes').innerHTML=res+'<div><button type="button" class="btn green" id="paySee">See my pension</button></div>';
+    $('paySee').addEventListener('click',()=>$('head').scrollIntoView({behavior:'smooth',block:'start'}))}
   $('payList').innerHTML=ys.map(y=>`<div class="payrow"><span><b>${y}</b><small>${plural(P[y].length,'paycheck')}, ${usd(P[y].reduce((t,r)=>t+r[1],0))} gross</small></span><button type="button" class="btn ghost small" data-rm="${y}">Remove</button></div>`).join('');
   $('payList').querySelectorAll('[data-rm]').forEach(bt=>bt.addEventListener('click',()=>{delete ST.p.pays[bt.dataset.rm];pmsg('','');wsKey='';renderP()}));
 }
