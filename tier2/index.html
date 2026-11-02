@@ -45,7 +45,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17p
 a{color:var(--steel)}
 h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
 h1{font-size:clamp(32px,7.5vw,50px);font-weight:800;letter-spacing:-.01em}
-.tierb{display:inline-block;white-space:nowrap;vertical-align:.08em;font-size:.72em;line-height:1.1;padding:.08em .4em .12em;border-radius:var(--r-sm);background:var(--ink);color:var(--bg);letter-spacing:0}
+.tierb{white-space:nowrap;color:var(--c)}
 h2{font-size:clamp(23px,4.6vw,28px);font-weight:700}
 h3{font-size:19px;font-weight:700}
 p{margin:0}
@@ -513,9 +513,9 @@ body.has-pbar .app{padding-bottom:110px}
   </details>
   <a class="switch" href="../tier3/">Want to see Tier 3 instead?<span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   <header class="hero">
-    <h1>Learn about your pension. <span class="tierb">Tier 2</span></h1>
+    <h1>Learn about your pension. <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1>
     <p class="sub">Everything you need to know, and what you'll collect in retirement.</p>
-    <p class="disc">Tier 2 means you were appointed between July 1, 1973 and June 30, 2009.</p>
+    <p class="disc">Tier 2 means you were appointed between July 1, 1973 and June 30, 2009. Appointed on or after July 1, 2009? <a href="../tier3/">Use the Tier 3 calculator</a>.</p>
   </header>
 
   <nav class="navgrid" aria-label="Sections">
