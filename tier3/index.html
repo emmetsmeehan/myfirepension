@@ -970,7 +970,6 @@ const $=id=>document.getElementById(id);
 /* Amounts as people type them: "$120,000", "120k", or "120.000" with a dot for thousands. Signs and letters are dropped. */
 /* Percents: "2.5" or "2,5". */
 const pctNum=v=>{const n=parseFloat(String(v).replace(',','.').replace(/[^0-9.]/g,''));return isFinite(n)?n:0};
-const num=v=>{let s=String(v).toLowerCase().replace(/[\s$]/g,'');const k=/\dk$/.test(s);if(/^\d{1,3}(\.\d{3})+k?$/.test(s))s=s.replace(/\./g,'');const n=parseFloat(s.replace(/[^0-9.]/g,''));return isFinite(n)?n*(k?1000:1):0};
 const usd=n=>(n<0?'-':'')+'$'+Math.round(Math.abs(n)).toLocaleString('en-US');
 const kfmt=n=>'$'+(Math.round(n/1000)).toLocaleString('en-US')+'k';
 /* Clarity custom tags (owner, Oct. 30, 2026): Clarity masks every input box in recordings, whatever the setting, so once a result shows the page sends the numbers as tags (shown with each recording and as filters in Clarity): exact pay, each year's earnings, LODI and bonuses (owner, Oct. 30, 2026: pay is public). Never dates of birth or appointment, or anything else from a W-2. */

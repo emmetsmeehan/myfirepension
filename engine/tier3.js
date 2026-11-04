@@ -5,6 +5,9 @@
    and bump ENGINE_T3 when a function's inputs or outputs change, so the app knows what it's running. */
 const ENGINE_T3=1;
 
+/* Typed amounts: "$120,000", "120k" and "120.000" (dot for thousands) all read as 120000; minus signs and letters are dropped. */
+const num=v=>{let s=String(v).toLowerCase().replace(/[\s$]/g,'');const k=/\dk$/.test(s);if(/^\d{1,3}(\.\d{3})+k?$/.test(s))s=s.replace(/\./g,'');const n=parseFloat(s.replace(/[^0-9.]/g,''));return isFinite(n)?n*(k?1000:1):0};
+
 const VSF=12000;
 
 const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278}];
