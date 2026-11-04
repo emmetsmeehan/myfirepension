@@ -321,6 +321,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .ws td:nth-child(3){text-align:right;font-size:15.5px}
 .ws .yr{font-weight:800;font-size:18px}
 .ws .tg{display:block;font-size:13px;color:var(--muted);line-height:1.25}
+.ws .rstar{font-size:13px;font-weight:700;color:var(--muted);margin-left:1px}
+.rnote{font-size:13px;color:var(--muted);line-height:1.4;margin:8px 2px 4px}
 .ws .tg.orange{color:var(--orange)}
 .ws .bdg{display:inline-flex;align-items:center;gap:3px;font-size:12.5px;font-weight:700;border-radius:999px;padding:1px 8px;margin-top:3px;white-space:nowrap}
 .bdg.ver{background:color-mix(in srgb,var(--sage) 15%,var(--surface));color:var(--sage)}
@@ -868,6 +870,7 @@ body.has-pbar .app{padding-bottom:110px}
         <p class="msg" id="w2Msg" role="status" hidden></p>
         <p class="empty" id="wsNeed" hidden>Enter your dates in step 1 and your earnings table shows up here, starting with the year you were appointed.</p>
         <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>Counts</th></tr></thead><tbody id="wsRows"></tbody></table>
+          <p class="rnote" id="retroNote" hidden><b>*</b> Retro checks were paid in 2022 and 2024. Retro is taxed in the year it's paid, but for your pension it's spread back over the years it was earned, so these years may not count in full. Confirm with the Pension Fund.</p>
           <button type="button" class="futbtn" id="futBtn" aria-expanded="false"></button></div>
         <div class="growrow">
           <label class="chk"><input type="checkbox" id="growOn"> Fill in future years assuming a raise each year</label>
@@ -1450,6 +1453,8 @@ const adjNote=y=>{const l=ST.p.lodi[y]||0,b=ST.p.onetime[y]||0;if(!isVerified(y)
 const adjRow=(y,cols)=>{const t=adjNote(y);return t?`<tr class="adjr" id="a-${y}"><td colspan="${cols}">${t}</td></tr>`:''};
 
 /* ---------- earnings table ---------- */
+/* Retro checks from the contract settlements were paid in these years (owner, Nov. 3, 2026: same years for everyone). */
+const RETRO_Y=[2022,2024];
 let wsKey='',showFut=false,wsOpen=false;
 document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}});
 function renderWorksheet(c,m){
@@ -1460,8 +1465,8 @@ function renderWorksheet(c,m){
     wsKey=key;let h='';
     for(let y=apptY;y<=showTo;y++){
       h+=isVerified(y)
-        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
-        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
+        ?`<tr id="r-${y}"><td><span class="yr">${y}${RETRO_Y.includes(y)?'<sup class="rstar">*</sup>':''}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
+        :`<tr id="r-${y}"><td><span class="yr">${y}${RETRO_Y.includes(y)?'<sup class="rstar">*</sup>':''}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
     }
     $('wsRows').innerHTML=h;
     const store=impMode(p.mode)?p.extra:p.manual;
@@ -1492,6 +1497,7 @@ function renderWorksheet(c,m){
     const cut=r&&r.v>r.counted+0.5&&(used||y-apptY>=5);
     $('c-'+y).innerHTML=r&&r.v>0?usd(cut?r.counted:r.v)+(cut?`<span class="cut">${usd(r.v-r.counted)} over the 10% limit</span>`:''):'–';
   }
+  $('retroNote').hidden=!RETRO_Y.some(y=>y>=apptY&&y<=showTo);
   const futN=showTo-NOW_Y,fb=$('futBtn');
   fb.hidden=futN<1;document.querySelector('.ws').classList.toggle('hidefut',!showFut);fb.setAttribute('aria-expanded',showFut);
   const bestFut=res.best&&res.best.end>NOW_Y;
