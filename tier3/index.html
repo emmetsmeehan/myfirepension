@@ -870,7 +870,7 @@ body.has-pbar .app{padding-bottom:110px}
         <p class="msg" id="w2Msg" role="status" hidden></p>
         <p class="empty" id="wsNeed" hidden>Enter your dates in step 1 and your earnings table shows up here, starting with the year you were appointed.</p>
         <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>Counts</th></tr></thead><tbody id="wsRows"></tbody></table>
-          <p class="rnote" id="retroNote" hidden><b>*</b> Retro checks were paid in 2022 and 2024. Retro is taxed in the year it's paid, but for your pension it's spread back over the years it was earned, so these years may not count in full. Confirm with the Pension Fund.</p>
+          <p class="rnote" id="retroNote" hidden><b>*</b> Includes a retro check. The Pension Fund spreads retro back to the years it was earned, and these years count toward your pension (or toward the 2-year look-back for the 10% limit), so your real number may come out a little different from what's shown here.</p>
           <button type="button" class="futbtn" id="futBtn" aria-expanded="false"></button></div>
         <div class="growrow">
           <label class="chk"><input type="checkbox" id="growOn"> Fill in future years assuming a raise each year</label>
@@ -1465,8 +1465,8 @@ function renderWorksheet(c,m){
     wsKey=key;let h='';
     for(let y=apptY;y<=showTo;y++){
       h+=isVerified(y)
-        ?`<tr id="r-${y}"><td><span class="yr">${y}${RETRO_Y.includes(y)?'<sup class="rstar">*</sup>':''}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
-        :`<tr id="r-${y}"><td><span class="yr">${y}${RETRO_Y.includes(y)?'<sup class="rstar">*</sup>':''}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
+        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
+        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
     }
     $('wsRows').innerHTML=h;
     const store=impMode(p.mode)?p.extra:p.manual;
@@ -1477,9 +1477,11 @@ function renderWorksheet(c,m){
     });
   }
   const res=fasFromEarnings(retDate,c.appt),full=fasFromEarnings(new Date(showTo+2,0,1),c.appt);
+  const rW=res.best?[res.best.start-2,res.best.end]:null;
   for(let y=apptY;y<=showTo;y++){
     const r=full.rows.find(x=>x.y===y),row=$('r-'+y),inp=$('e-'+y);
     const used=res.best&&y>=res.best.start&&y<=res.best.end,after=y>res.lastY;
+    row.querySelector('.yr').innerHTML=y+(rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?'<sup class="rstar">*</sup>':'');
     const ar=$('a-'+y);if(ar) ar.className='adjr '+(used?'win':'');
     row.className=(used?'win ':'')+(r&&r.kind==='est'?'est ':'')+(after?'after ':'')+(y>NOW_Y?'fut':'');
     const part=used&&res.best.rolling&&((y===res.best.start&&(res.best.from.getMonth()||res.best.from.getDate()>1))||(y===res.best.end&&(res.best.to.getMonth()||res.best.to.getDate()>1)));
@@ -1497,7 +1499,7 @@ function renderWorksheet(c,m){
     const cut=r&&r.v>r.counted+0.5&&(used||y-apptY>=5);
     $('c-'+y).innerHTML=r&&r.v>0?usd(cut?r.counted:r.v)+(cut?`<span class="cut">${usd(r.v-r.counted)} over the 10% limit</span>`:''):'–';
   }
-  $('retroNote').hidden=!RETRO_Y.some(y=>y>=apptY&&y<=showTo);
+  $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));
   const futN=showTo-NOW_Y,fb=$('futBtn');
   fb.hidden=futN<1;document.querySelector('.ws').classList.toggle('hidefut',!showFut);fb.setAttribute('aria-expanded',showFut);
   const bestFut=res.best&&res.best.end>NOW_Y;
