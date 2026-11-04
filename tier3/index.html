@@ -2195,5 +2195,27 @@ $('askForm').addEventListener('submit',async e=>{
   }finally{btn.disabled=false;btn.textContent='Submit'}
 });
 </script>
+<div id="upd" role="status" hidden style="position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:999;max-width:calc(100% - 32px);background:var(--accent);color:#fff;border-radius:999px;padding:10px 18px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.25);cursor:pointer;white-space:nowrap">This site was updated. Tap to refresh.</div>
+<script>
+/* Old tabs (phones keep them for days) never load new versions on their own. Compare the live page with the one
+   loaded; when it changed, reload if the tab sat unused a long time, otherwise offer a refresh bar. Owner, Nov. 3, 2026. */
+(()=>{
+  const url=location.pathname,get=()=>fetch(url,{cache:'no-store'}).then(r=>r.ok?r.text():null).catch(()=>null);
+  let base=null,hiddenAt=0,busy=false;
+  const keep=()=>{try{if(typeof ST!=='undefined'&&typeof KEY!=='undefined'&&!(typeof noSave!=='undefined'&&noSave))localStorage.setItem(KEY,JSON.stringify(ST))}catch{}};
+  const go=()=>{keep();location.reload()};
+  document.getElementById('upd').addEventListener('click',go);
+  setTimeout(()=>get().then(t=>{base=t}),3000);
+  const check=async long=>{
+    if(busy||base===null)return;busy=true;const t=await get();busy=false;
+    if(t&&t!==base){if(long)go();else document.getElementById('upd').hidden=false}
+  };
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){hiddenAt=Date.now();return}
+    if(hiddenAt) check(Date.now()-hiddenAt>30*60e3);
+  });
+  addEventListener('pageshow',e=>{if(e.persisted)check(true)});
+})();
+</script>
 </body>
 </html>
