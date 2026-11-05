@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <!-- Draft: noindex until the owner makes it live. -->
 <meta name="robots" content="noindex">
-<meta name="description" content="Unofficial guide for FDNY members to the other retirement accounts besides the pension: the NYC Deferred Compensation 457 and 401(k), Roth, the NYCE IRA and the union annuity.">
+<meta name="description" content="Unofficial guide for FDNY members to the other retirement accounts besides the pension: the 457, 401(k) and NYCE IRA through Voya, and the union annuity through Empower.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
 <style>
@@ -18,24 +18,27 @@ body{margin:0}
 :root{
   --bg:#f3f5f8; --surface:#ffffff; --ink:#16202b; --muted:#5a6776; --line:#dce2e8;
   --accent:#b3261e; --steel:#2f5d8a; --gold:#a8730f; --sage:#2f7d55; --soft:#eef2f6;
+  --voya:#c2560c; --empower:#1f6f78;
   --body:"Source Sans 3","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --r:14px; --r-sm:10px;
   --shadow:0 1px 2px color-mix(in srgb,var(--ink) 7%,transparent),0 6px 20px color-mix(in srgb,var(--ink) 6%,transparent);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
-  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}}
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934;
+  --voya:#f0904a; --empower:#5cbdc7; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
-  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934;
+  --voya:#f0904a; --empower:#5cbdc7; color-scheme:dark}
 *,*::before,*::after{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
 a{color:var(--steel)}
 a:focus-visible{outline:3px solid color-mix(in srgb,var(--steel) 70%,transparent);outline-offset:2px}
 h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
 h1{font-size:clamp(32px,7.5vw,50px);font-weight:800;letter-spacing:-.01em}
-h2{font-size:clamp(23px,4.6vw,28px);font-weight:700}
-h3{font-size:19px;font-weight:700}
+h2{font-size:clamp(24px,4.8vw,30px);font-weight:800}
+h3{font-size:22px;font-weight:800}
 p{margin:0}
 svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .app{max-width:820px;margin:0 auto;padding:0 16px calc(28px + env(safe-area-inset-bottom));display:grid;gap:22px}
@@ -44,37 +47,70 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .backbtn svg{width:22px;height:22px}
 .hero{display:grid;gap:12px;padding:10px 0 0}
 .hero .sub{font-size:clamp(19px,3.6vw,22px);color:var(--muted);max-width:40ch}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);display:grid;gap:14px}
-@media (max-width:560px){.card{padding:16px}}
 .hint{font-size:15.5px;color:var(--muted)}
-/* Account overview */
-.accts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.accts li{display:grid;gap:4px;padding:14px;border-radius:var(--r-sm);background:var(--soft)}
-.accts li b{font-size:18px}
-.accts .who{font-size:15.5px;color:var(--muted)}
-.accts .facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.tag{font-size:14.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
-.tag.you{color:var(--steel)}
-.tag.city{color:var(--sage)}
-/* Questions */
-.qs{display:grid;gap:10px}
-.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
-.q summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:12px 16px;font-size:18px;font-weight:700}
-.q summary::-webkit-details-marker{display:none}
-.q summary::after{content:"";width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;flex:none}
-.q[open] summary::after{transform:rotate(-135deg);margin-top:4px}
-.q summary:focus-visible{outline:3px solid color-mix(in srgb,var(--steel) 70%,transparent);outline-offset:2px;border-radius:var(--r)}
-.q .a{padding:0 16px 16px;display:grid;gap:12px}
-.q .a ul{margin:0;padding-left:20px;display:grid;gap:6px}
+
+/* A group of accounts held at one company (Voya, Empower) */
+.group{border-radius:var(--r);background:color-mix(in srgb,var(--c) 7%,var(--bg));border:1.5px solid color-mix(in srgb,var(--c) 35%,var(--line));padding:18px 14px 14px;display:grid;gap:14px}
+.ghead{display:grid;gap:6px;padding:0 4px}
+.ghead h2{color:var(--c);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ghead h2 small{font-size:16px;font-weight:600;color:var(--muted)}
+.ghead p{font-size:16px}
+.ghead .links{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:15.5px;font-weight:600}
+.ghead .links a{display:inline-flex;align-items:center;min-height:36px}
+
+/* One account */
+.acct{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;display:grid;gap:12px}
+@media (max-width:560px){.acct{padding:16px}}
+.acct .what{font-size:17px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;padding:4px 11px;border-radius:999px;background:var(--soft)}
+.pill svg{width:16px;height:16px}
+.pill.you{color:var(--steel);background:color-mix(in srgb,var(--steel) 11%,var(--surface))}
+.pill.city{color:var(--sage);background:color-mix(in srgb,var(--sage) 12%,var(--surface))}
+.key{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border-radius:var(--r-sm);background:color-mix(in srgb,var(--sage) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--sage) 30%,transparent)}
+.key svg{color:var(--sage);margin-top:1px}
+.key b{display:block;font-size:17px}
+.key span{font-size:15.5px;color:var(--muted)}
+.key.warn{background:color-mix(in srgb,var(--gold) 10%,var(--surface));border-color:color-mix(in srgb,var(--gold) 35%,transparent)}
+.key.warn svg{color:var(--gold)}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:16px}
+.facts li{display:flex;gap:8px}
+.facts li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--muted);margin-top:10px;flex:none}
+
+/* Pre-tax vs Roth, side by side */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vs div{padding:11px 12px;border-radius:var(--r-sm);background:var(--surface);border:1px solid var(--line);display:grid;gap:3px;align-content:start}
+.vs b{font-size:17px}
+.vs span{font-size:15px;line-height:1.4}
+@media (max-width:360px){.vs{grid-template-columns:1fr}}
+
+/* "How much can I put in?" */
+.more{border-top:1px solid var(--line);margin:2px -18px -18px;padding:0 18px}
+@media (max-width:560px){.more{margin:2px -16px -16px;padding:0 16px}}
+.more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;font-weight:700;color:var(--steel)}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"";width:8px;height:8px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;flex:none}
+.more[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.more .body{padding:0 0 16px;display:grid;gap:10px;font-size:16px}
 .lim{width:100%;border-collapse:collapse;font-size:16px}
-.lim th,.lim td{text-align:left;padding:9px 8px;border-top:1px solid var(--line);vertical-align:top}
-.lim th{font-weight:700;color:var(--muted);font-size:15px}
-.lim td:last-child,.lim th:last-child{text-align:right;white-space:nowrap}
-.cmp{display:grid;gap:10px}
-@media (min-width:640px){.cmp{grid-template-columns:1fr 1fr}}
-.cmp div{padding:12px 14px;border-radius:var(--r-sm);background:var(--soft);display:grid;gap:4px}
-.cmp b{font-size:17px}
-.cmp span{font-size:16px}
+.lim td{padding:8px 0;border-top:1px solid var(--line)}
+.lim tr:first-child td{border-top:0}
+.lim td:last-child{text-align:right;font-weight:700;white-space:nowrap;padding-left:12px}
+.amt{font-size:17px}
+.amt b{font-size:19px}
+
+/* The quiet part: already in your pension */
+.quiet{display:grid;gap:6px;padding:14px 16px;border-radius:var(--r);border:1px dashed var(--line);color:var(--muted);font-size:16px}
+.quiet b{color:var(--ink)}
+
+/* A few leftover questions */
+.qs{display:grid;gap:8px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.q summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:52px;padding:10px 16px;font-size:17px;font-weight:700}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{content:"";width:8px;height:8px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;flex:none}
+.q[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.q .a{padding:0 16px 14px;display:grid;gap:10px;font-size:16px}
 .draft{border:2px dashed var(--gold);border-radius:var(--r-sm);padding:10px 12px;font-size:15px;color:var(--gold);font-weight:600}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
 </style>
@@ -92,128 +128,125 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 
   <header class="hero">
     <h1>Your other accounts.</h1>
-    <p class="sub">Your pension isn’t the only money you retire with. Here’s what else you have, in plain English.</p>
+    <p class="sub">Your pension isn’t the only money you retire with. Here’s what else you may have.</p>
   </header>
 
-  <section class="card" aria-labelledby="listTitle">
-    <h2 id="listTitle">What you have</h2>
-    <ul class="accts">
-      <li>
-        <b>Deferred comp: the 457</b>
-        <span class="who">Money you choose to put in from each paycheck.</span>
-        <span class="facts"><span class="tag you">You put money in</span><span class="tag">Pre-tax or Roth</span><span class="tag">No penalty once you leave the job</span></span>
-      </li>
-      <li>
-        <b>Deferred comp: the 401(k)</b>
-        <span class="who">A second account, with its own separate limit.</span>
-        <span class="facts"><span class="tag you">You put money in</span><span class="tag">Pre-tax or Roth</span><span class="tag">Penalty-free at 50, or after 25 years</span></span>
-      </li>
-      <li>
-        <b>NYCE IRA</b>
-        <span class="who">The City’s own low-cost IRA, for you and your spouse.</span>
-        <span class="facts"><span class="tag you">You put money in</span><span class="tag">Traditional or Roth</span><span class="tag">Takes rollovers</span></span>
-      </li>
-      <li>
-        <b>Union annuity</b>
-        <span class="who">An account the City pays into for you through the UFA or UFOA.</span>
-        <span class="facts"><span class="tag city">The City puts money in</span><span class="tag">Paid out when you retire</span></span>
-      </li>
-      <li>
-        <b>VSF and the banked variable</b>
-        <span class="who">$12,000 a year after 20 years, plus a lump sum for each year past 20. Part of your pension; the calculators already include it.</span>
-        <span class="facts"><span class="tag city">The City pays it</span></span>
-      </li>
-    </ul>
-    <p class="hint">The 457 and the 401(k) are both part of the NYC Deferred Compensation Plan, run by the City’s Office of Labor Relations. Voya keeps the records and runs the website and app, which is why a lot of guys call the whole thing “Voya.”</p>
-  </section>
+  <!-- ===== Voya ===== -->
+  <section class="group" style="--c:var(--voya)" aria-labelledby="voyaTitle">
+    <div class="ghead">
+      <h2 id="voyaTitle">Voya <small>NYC Deferred Compensation Plan</small></h2>
+      <p>The City’s savings plan. Voya runs the website and app. In every account here, you choose your own investments from the plan’s menu of funds.</p>
+    </div>
 
-  <section aria-labelledby="qTitle" class="qs">
-    <h2 id="qTitle">Common questions</h2>
+    <div class="vs" aria-label="Pre-tax or Roth">
+      <div><b>Pre-tax</b><span>Lowers your taxes now. You pay tax when you take it out.</span></div>
+      <div><b>Roth</b><span>No tax break now. Comes out tax-free later, if the account is 5+ years old and you’re 59½.</span></div>
+    </div>
+    <p class="hint" style="padding:0 4px;margin-top:-6px">Each account below comes in both. You can split your money between them and change it anytime.</p>
 
-    <details class="q">
-      <summary>What’s the difference between the 457 and the 401(k)?</summary>
-      <div class="a">
-        <p>They work almost the same way. You pick a percentage of each paycheck, it comes out automatically, and you choose how it’s invested. The big differences:</p>
-        <div class="cmp">
-          <div><b>457</b><span>Once you leave the job, you can take money out at any age with <b>no 10% penalty</b>. You still pay income tax on pre-tax money.</span></div>
-          <div><b>401(k)</b><span>Take money out before 59½ and there can be a 10% penalty. But retired public safety members can withdraw penalty-free at <b>age 50 or after 25 years</b>, whichever comes first.</span></div>
-        </div>
-        <p>The 457 also has a special catch-up in the last few years before retirement (see below). The 401(k) doesn’t.</p>
-      </div>
-    </details>
-
-    <details class="q">
-      <summary>Can I put money in both?</summary>
-      <div class="a">
-        <p>Yes. Each has its own limit, so you can put the full amount in the 457 <b>and</b> the full amount in the 401(k) in the same year. Most members don’t know this.</p>
-      </div>
-    </details>
-
-    <details class="q">
-      <summary>How much can I put in?</summary>
-      <div class="a">
-        <p>2026 limits, set by the IRS:</p>
-        <table class="lim">
-          <thead><tr><th>Your age in 2026</th><th>Each plan</th></tr></thead>
-          <tbody>
+    <article class="acct" aria-labelledby="a457">
+      <h3 id="a457">457</h3>
+      <div class="pills"><span class="pill you">You put money in</span><span class="pill">Pre-tax or Roth</span></div>
+      <p class="what">An investment account you add to from every paycheck. You pick a percentage of your pay, and you choose the funds it goes into.</p>
+      <div class="key"><svg class="i" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><p><b>No penalty once you leave the job.</b><span>Take money out at any age after you retire, with no 10% early-withdrawal penalty. You still pay income tax on pre-tax money.</span></p></div>
+      <p class="amt">Up to <b>$24,500</b> a year (2026)</p>
+      <details class="more">
+        <summary>How much can I put in?</summary>
+        <div class="body">
+          <table class="lim">
             <tr><td>Under 50</td><td>$24,500</td></tr>
             <tr><td>50 to 59, or 64 and up</td><td>$32,500</td></tr>
             <tr><td>60 to 63</td><td>$35,750</td></tr>
-          </tbody>
-        </table>
-        <p>Those are <b>per plan</b>. Double them if you use both the 457 and the 401(k).</p>
-        <p class="hint">The IRS raises these most years. The 2027 limits come out in November.</p>
-        <p>Through payroll, you can put in anywhere from 1% to 75% of your pay.</p>
-      </div>
-    </details>
-
-    <details class="q">
-      <summary>Pre-tax or Roth: what’s the difference?</summary>
-      <div class="a">
-        <div class="cmp">
-          <div><b>Pre-tax</b><span>Lowers your taxes now. You pay income tax when you take it out in retirement, on what you put in and what it earned.</span></div>
-          <div><b>Roth</b><span>No tax break now. In retirement, what you put in and what it earned come out tax-free, if the account is at least 5 years old and you’re 59½ or older.</span></div>
+          </table>
+          <p>That’s separate from the 401(k). You can max out both.</p>
+          <p><b>Close to retirement?</b> In the 3 years before your “normal retirement age,” the 457 may let you put in up to double the limit to make up for past years. The plan calls it Deferral Acceleration for Retirement. Call the plan before using it.</p>
+          <div class="draft">Draft note: confirm how the plan sets “normal retirement age” for firefighters.</div>
+          <p><b>Made over $150,000 last year?</b> Any extra catch-up money at 50 and up has to go in as Roth.</p>
+          <p class="hint">2026 limits. The IRS raises them most years.</p>
         </div>
-        <p>Which one makes more sense depends on whether you expect your tax rate to be higher now or in retirement. Keep in mind your pension is taxable federal income, so it fills up the lower tax brackets once you retire. You can split your money between both, and you can change it anytime.</p>
-        <p class="hint">This site doesn’t tell anyone which to pick. A tax advisor can look at your whole picture.</p>
-      </div>
-    </details>
+      </details>
+    </article>
 
-    <details class="q">
-      <summary>I made over $150,000 last year. Does anything change?</summary>
-      <div class="a">
-        <p>Only for the extra “catch-up” money at 50 and up. Starting in 2026, if your City wages the year before were over $150,000, any catch-up contributions have to go in as <b>Roth</b>, not pre-tax. Your regular contributions up to the base limit can still be pre-tax.</p>
-        <p>With overtime, a lot of members and most officers will cross this line. The threshold goes up with inflation.</p>
-      </div>
-    </details>
+    <article class="acct" aria-labelledby="a401">
+      <h3 id="a401">401(k)</h3>
+      <div class="pills"><span class="pill you">You put money in</span><span class="pill">Pre-tax or Roth</span></div>
+      <p class="what">A second investment account that works the same way as the 457, with its own separate limit. Use one, or both.</p>
+      <div class="key"><svg class="i" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><p><b>Penalty-free at 50, or after 25 years on the job.</b><span>Retired firefighters can take money out without the 10% penalty at whichever comes first. Before that, the penalty can apply.</span></p></div>
+      <p class="amt">Up to <b>$24,500</b> a year (2026)</p>
+      <details class="more">
+        <summary>How much can I put in?</summary>
+        <div class="body">
+          <table class="lim">
+            <tr><td>Under 50</td><td>$24,500</td></tr>
+            <tr><td>50 to 59, or 64 and up</td><td>$32,500</td></tr>
+            <tr><td>60 to 63</td><td>$35,750</td></tr>
+          </table>
+          <p>That’s on top of the 457. With both, someone under 50 can put in $49,000 a year.</p>
+          <p><b>Made over $150,000 last year?</b> Any extra catch-up money at 50 and up has to go in as Roth.</p>
+          <p class="hint">2026 limits. The IRS raises them most years.</p>
+        </div>
+      </details>
+    </article>
 
-    <details class="q">
-      <summary>What is the special 457 catch-up?</summary>
-      <div class="a">
-        <p>In the 457 only, the three years before your “normal retirement age” under the plan, you may be able to put in up to <b>double</b> the regular limit, to make up for years you didn’t put in the max. The Plan calls it Deferral Acceleration for Retirement (DAR).</p>
-        <p>You can’t use it in the same year as the age-50 catch-up, and you only get one 3-year window. Call the Plan before you use it, so you pick the right years.</p>
-        <div class="draft">Draft note: confirm with the Deferred Comp Plan how it sets “normal retirement age” for firefighters (20 years of service, or an age).</div>
-      </div>
-    </details>
+    <article class="acct" aria-labelledby="aira">
+      <h3 id="aira">NYCE IRA</h3>
+      <div class="pills"><span class="pill you">You put money in</span><span class="pill">Traditional or Roth</span></div>
+      <p class="what">The City’s own IRA, for current and former City employees and their spouses. Traditional is pre-tax, Roth is after-tax. Same low-cost funds as the 457 and 401(k), and it costs nothing to open.</p>
+      <div class="key"><svg class="i" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><p><b>A place to move your money when you retire.</b><span>Roll your 457, 401(k) or union annuity into it and keep the same cheap funds.</span></p></div>
+      <p class="amt">Up to <b>$7,500</b> a year (2026)</p>
+      <details class="more">
+        <summary>How much can I put in?</summary>
+        <div class="body">
+          <table class="lim">
+            <tr><td>Under 50</td><td>$7,500</td></tr>
+            <tr><td>50 and up</td><td>$8,600</td></tr>
+          </table>
+          <p>That limit is for <b>all</b> your IRAs together, so it’s shared with any IRA you have somewhere else. It doesn’t count against the 457 or 401(k).</p>
+          <p>You can put money in through payroll (since July 2025) or by check. A Roth IRA has income limits; a high household income can rule it out.</p>
+          <p class="hint">2026 limits.</p>
+        </div>
+      </details>
+    </article>
 
-    <details class="q">
-      <summary>When can I take money out?</summary>
-      <div class="a">
-        <p><b>While you’re still working:</b> generally not before 59½. There are narrow exceptions: a 457 unforeseeable emergency, a 401(k) hardship withdrawal, up to $5,000 after a birth or adoption, and a one-time withdrawal of a small 457 balance. Or take a loan (below).</p>
-        <p><b>After you leave the job:</b> whenever you want, starting about 45 days after you separate. Take it all, take part, set up monthly payments, or leave it invested.</p>
-        <ul>
-          <li><b>457:</b> no 10% penalty at any age.</li>
-          <li><b>401(k):</b> no 10% penalty once you’re 50 or have 25 years, as a retired public safety member. Before that, there can be one.</li>
-          <li><b>Roth money:</b> tax-free once the account is 5 years old and you’re 59½.</li>
-        </ul>
-        <p>You don’t have to touch pre-tax money until 73. That’s when the IRS makes you start taking a minimum amount each year. Roth money in the plan has no required minimum.</p>
-      </div>
-    </details>
+    <div class="ghead">
+      <p class="links"><a href="https://www.nyc.gov/deferredcomp">nyc.gov/deferredcomp</a><a href="tel:2123067760">212-306-7760</a></p>
+    </div>
+  </section>
+
+  <!-- ===== Empower ===== -->
+  <section class="group" style="--c:var(--empower)" aria-labelledby="empTitle">
+    <div class="ghead">
+      <h2 id="empTitle">Empower <small>Union annuity</small></h2>
+      <p>Separate from Voya, the pension and deferred comp. Your union’s annuity fund holds it, and Empower runs the website.</p>
+    </div>
+
+    <article class="acct" aria-labelledby="aann">
+      <h3 id="aann">Union annuity</h3>
+      <div class="pills"><span class="pill city">The City puts money in</span></div>
+      <p class="what">An investment account the City pays into for you, through the UFA or UFOA. You don’t put in anything.</p>
+      <div class="key warn"><svg class="i" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><p><b>Check what it’s invested in.</b><span>The UFA annuity starts out in a very conservative fund, and many members never change it. You can log in to Empower and pick more aggressive funds.</span></p></div>
+      <ul class="facts">
+        <li>The City deposits money on a regular schedule.</li>
+        <li>When you’re promoted, it moves from the UFA’s fund to the UFOA’s.</li>
+        <li>You get it when you retire. Take it as cash, or roll it into the Voya 401(k) or the NYCE IRA.</li>
+      </ul>
+      <div class="draft">Draft note: add how much the City puts in a year (UFA and UFOA), whether the UFOA fund also starts conservative, and what happens if you leave before 20 years.</div>
+    </article>
+  </section>
+
+  <!-- ===== Already in your pension ===== -->
+  <section class="quiet" aria-labelledby="vsfTitle">
+    <p id="vsfTitle"><b>Already part of your pension: the VSF and banked variable.</b></p>
+    <p>$12,000 a year after 20 years, plus a lump sum for each year you work past 20. These aren’t separate accounts, and the pension calculators already include them.</p>
+  </section>
+
+  <section class="qs" aria-labelledby="qTitle">
+    <h2 id="qTitle" style="font-size:22px;font-weight:700">A few more things</h2>
 
     <details class="q">
       <summary>Can I borrow from it?</summary>
       <div class="a">
-        <p>Yes, from the pre-tax money in either plan, not the Roth. You pay it back through payroll, with interest that goes back into your own account.</p>
+        <p>Yes, from the pre-tax money in the 457 or 401(k), not the Roth. You pay it back through payroll, with interest that goes back into your own account.</p>
         <p class="hint">Money you borrow isn’t invested while it’s out, and leaving the job with a loan unpaid can make it taxable.</p>
       </div>
     </details>
@@ -221,66 +254,28 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
     <details class="q">
       <summary>Can I use it to buy back time for my pension?</summary>
       <div class="a">
-        <p>Yes. Pre-tax 457 or 401(k) money can pay for a pension buyback, such as military time, moved straight to the Fire Pension Fund with no tax. Roth money can’t be used.</p>
+        <p>Yes. Pre-tax 457 or 401(k) money can pay for a pension buyback, such as military time, moved straight to the Fire Pension Fund with no tax. Roth money can’t.</p>
       </div>
     </details>
 
     <details class="q">
-      <summary>What is the union annuity?</summary>
+      <summary>When do I have to start taking money out?</summary>
       <div class="a">
-        <p>An account the City pays into for you, through your union. You don’t put anything in. It’s separate from the pension and from deferred comp.</p>
-        <ul>
-          <li>The City deposits money on a regular schedule (every 28 days, for the UFA’s fund).</li>
-          <li>You choose how it’s invested, and you get statements.</li>
-          <li>When you’re promoted to officer, it moves from the UFA’s fund to the UFOA’s.</li>
-          <li>You can take it when you retire, as cash or rolled into the Deferred Comp 401(k) (it has a special account for union annuities) or an IRA.</li>
-          <li>Name a beneficiary. If you die, the balance goes to them.</li>
-        </ul>
-        <div class="draft">Draft note: add how much the City puts in a year (UFA and UFOA), where members check their balance, and whether you can take it if you leave before 20 years. The public sources don’t say.</div>
+        <p>At 73 for pre-tax money. That’s when the IRS makes you take a minimum amount each year. Roth money in the plan never has to come out.</p>
       </div>
     </details>
 
     <details class="q">
-      <summary>What about the NYCE IRA?</summary>
-      <div class="a">
-        <p>The City’s own IRA, for current and former City employees and their spouses. Traditional or Roth. It uses the same low-cost funds as deferred comp, with no cost to open it.</p>
-        <p>Since July 2025 you can put money in through payroll. The limit is much lower than the 457 or 401(k): $7,500 in 2026, or $8,600 at 50 and up.</p>
-        <p>Its biggest use: when you retire, you can roll your deferred comp or union annuity into it and keep the same cheap funds.</p>
-      </div>
-    </details>
-
-    <details class="q">
-      <summary>What does it cost?</summary>
+      <summary>What does Voya cost?</summary>
       <div class="a">
         <p>$20 a quarter (waived your first year), charged once even if you have both plans, plus 0.04% a year on your balance. The funds’ own fees are low too: the S&amp;P 500 index fund costs about 0.04% a year.</p>
       </div>
     </details>
 
     <details class="q">
-      <summary>What can I invest in?</summary>
-      <div class="a">
-        <ul>
-          <li><b>Pre-arranged portfolios:</b> pick the one closest to the year you plan to retire, and it gets more conservative as that year gets closer.</li>
-          <li><b>Index funds:</b> the S&amp;P 500, mid-size and small companies, international stocks, bonds, and a socially responsible fund.</li>
-          <li><b>Stable Income Fund:</b> steady interest, low risk. Not FDIC insured.</li>
-          <li><b>Self-directed brokerage:</b> up to 20% of your balance in outside funds, once you have $5,000.</li>
-        </ul>
-        <p class="hint">Moving money out of a fund within 32 days of putting it in costs a 2% fee.</p>
-      </div>
-    </details>
-
-    <details class="q">
       <summary>Who gets my money if I die?</summary>
       <div class="a">
-        <p>Whoever you named as beneficiary, and you name them separately for each plan. Check yours after a marriage, divorce or new baby. Your union annuity has its own beneficiary too.</p>
-      </div>
-    </details>
-
-    <details class="q">
-      <summary>How do I sign up or check my balance?</summary>
-      <div class="a">
-        <p>Online at <a href="https://www.nyc.gov/deferredcomp">nyc.gov/deferredcomp</a>, or in the Voya app. Or call the Deferred Compensation Plan at <a href="tel:2123067760">212-306-7760</a> (<a href="tel:18883273113">888-DCP-3113</a> outside NYC).</p>
-        <p>Contributions start about two weeks after you sign up.</p>
+        <p>Whoever you named as beneficiary. You name them separately for each Voya account and for the union annuity. Check yours after a marriage, divorce or new baby.</p>
       </div>
     </details>
   </section>
@@ -288,7 +283,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
   <p class="hint">Facts from the NYC Deferred Compensation Plan’s summary guide (Feb. 2025) and the IRS 2026 limits. This page explains how the accounts work. It isn’t advice on what to do with your money.</p>
 
   <footer class="foot">
-    <p><b>Unofficial planning tool.</b> Not affiliated with or endorsed by the FDNY, the NYC Fire Pension Fund or the NYC Deferred Compensation Plan. Your actual numbers may vary.</p>
+    <p><b>Unofficial planning tool.</b> Not affiliated with or endorsed by the FDNY, the NYC Fire Pension Fund, the NYC Deferred Compensation Plan, Voya or Empower. Your actual numbers may vary.</p>
     <p>Built and maintained by LT Emmet Meehan, Division 14. Contact me directly: <a href="mailto:emmetsmeehan@gmail.com">emmetsmeehan@gmail.com</a></p>
   </footer>
 </main>
