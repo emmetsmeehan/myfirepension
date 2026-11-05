@@ -137,9 +137,8 @@ button,input,select,textarea{font:inherit;color:inherit}
         <textarea id="askMsg" name="message" maxlength="4000" required></textarea>
       </div>
       <div class="field">
-        <label for="askEmail">Your email (optional)</label>
-        <div class="inp"><input id="askEmail" name="email" type="email" inputmode="email" autocomplete="email"></div>
-        <div class="hint">Only if you'd like a reply.</div>
+        <label for="askEmail">Your email (so I can answer you)</label>
+        <div class="inp"><input id="askEmail" name="email" type="email" inputmode="email" autocomplete="email" required></div>
       </div>
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" aria-hidden="true">
       <div><button type="submit" class="btn" id="askBtn">Submit</button></div>
@@ -161,11 +160,12 @@ $('askForm').addEventListener('submit',async e=>{
   const st=$('askStatus'),btn=$('askBtn'),msg=$('askMsg').value.trim(),email=$('askEmail').value.trim();
   const show=(t,cls)=>{st.textContent=t;st.className='msg '+cls;st.hidden=false};
   if(!msg){show('Please write your question or suggestion first.','err');$('askMsg').focus();return}
-  if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){show('That email address doesn\'t look right. Fix it or leave it blank.','err');$('askEmail').focus();return}
+  if(!email){show('Please add your email so I can answer you.','err');$('askEmail').focus();return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){show('That email address doesn\'t look right.','err');$('askEmail').focus();return}
   btn.disabled=true;btn.textContent='Sending…';st.hidden=true;
   try{
     const r=await fetch(ASK_URL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-      body:JSON.stringify({access_key:ASK_KEY,subject:'My Fire Pension: suggestion or fix request (updates page)',from_name:'My Fire Pension',message:msg,email:email||undefined,replyto:email||undefined,botcheck:e.target.botcheck.checked})});
+      body:JSON.stringify({access_key:ASK_KEY,subject:'My Fire Pension: suggestion or fix request (updates page)',from_name:'My Fire Pension',message:msg,email:email,replyto:email,botcheck:e.target.botcheck.checked})});
     const j=await r.json().catch(()=>({}));
     if(!r.ok||j.success===false) throw new Error();
     e.target.reset();
