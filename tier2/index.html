@@ -57,6 +57,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .pmain,.calc,.step,.escsec,.headline,.goal,.qres{grid-template-columns:minmax(0,1fr)}
 .tb-title{min-width:0}
 .hint{font-size:15px;color:var(--muted)}
+.hint.checked{color:var(--sage);font-weight:600}
+.hint.checked::before{content:"\2713\00a0";font-weight:700}
 .fine{font-size:14.5px;color:var(--muted)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);min-width:0}
 
@@ -741,7 +743,7 @@ body.has-pbar .app{padding-bottom:110px}
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 2" hidden>
   <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span></div>
-  <div class="vhead"><h1>Bills in Albany</h1><p>Changes to Tier 2 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint">Status last checked Nov. 5, 2026.</p></div>
+  <div class="vhead"><h1>Bills in Albany</h1><p>Changes to Tier 2 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
   <p class="fine">Unofficial summaries. Read the full bills on nysenate.gov, and confirm anything that affects your retirement with the Pension Fund.</p>
