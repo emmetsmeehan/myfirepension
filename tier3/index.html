@@ -510,7 +510,7 @@ body.has-pbar .app{padding-bottom:110px}
   <details class="news">
     <summary>This website gets better every day. Click to see the latest updates.</summary>
     <ul>
-      <li><time datetime="2026-11-05">11/5/26:</time> Tier 2’s years on the job slider now goes past 40. On both tiers, once you enter your date of birth, it stops at the most you can work before the mandatory retirement age: 62 for Tier 3, 65 for Tier 2.</li>
+      <li><time datetime="2026-11-05">11/5/26:</time> Years on the job slider now goes past 40. On both tiers, once you enter your date of birth, it stops at the most you can work before the mandatory retirement age: 62 for Tier 3, 65 for Tier 2.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Added the rank of Deputy Chief to choices.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> New (early version): add a specific year’s check by check details from ESS (payment summary) and the calculator finds your exact best 12 (or 36) months. Your best 12 (or 36) months are on a rolling basis, not just by calendar years.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Tier 2 members can now add the 1/80th for prior City service in Your personal numbers.</li>
@@ -1095,7 +1095,7 @@ function cleanState(){
   {const o=p.pays,c={};if(o&&typeof o==='object')for(const y in o){if(!/^\d{4}$/.test(y)||!Array.isArray(o[y]))continue;const a=o[y].filter(r=>Array.isArray(r)&&realDate(r[0])&&r[0].slice(0,4)===y&&Math.abs(+r[1])<1e6).map(r=>[r[0],+r[1]]);if(a.length)c[y]=a}p.pays=c}
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
   if(!impMode(p.mode)) p.mode='manual';
-  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=420))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
+  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=540))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
   /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
   if(!p.rankSet&&!p.cur&&p.rank==='LT'&&+p.topPay===140212){p.rank='FF';p.topPay=109352}
@@ -1144,16 +1144,18 @@ function escFrac(S,F){const before=Math.max(0,Math.round((F-S)*12));return befor
 function colaRateOf(cpi){let r=Math.ceil(cpi*100/2*10-1e-9)/10/100;return Math.min(0.03,Math.max(0.01,r))}
 
 /* ---------- reusable service slider ---------- */
-const STOPS=[{m:240},{m:276,low:true},{m:300},{m:360},{m:420}];
-const DIS_STOPS=[{m:60},{m:120,low:true},{m:180},{m:240,low:true},{m:300},{m:360,low:true},{m:420}];
+/* 45 years: someone credited from age 17 (e.g. EMS) can work to 62 (owner, Nov. 5, 2026). */
+const MAXM=540;
+const STOPS=[{m:240},{m:276,low:true},{m:300},{m:360},{m:420,low:true},{m:480},{m:540,low:true}];
+const DIS_STOPS=[{m:60},{m:120,low:true},{m:180},{m:240,low:true},{m:300},{m:360,low:true},{m:420},{m:480,low:true},{m:540}];
 function Slider(root,{id,label,value,onInput}){
   root.innerHTML=`<div class="svc"><label for="${id}">${label}</label><div class="svcval"><b></b><span></span></div></div><div class="hint sub"></div>
-    <div class="slider"><input type="range" id="${id}" min="240" max="420" step="1"><div class="fill"></div></div>`;
+    <div class="slider"><input type="range" id="${id}" min="240" max="${MAXM}" step="1"><div class="fill"></div></div>`;
   const inp=root.querySelector('input'),sl=root.querySelector('.slider'),fill=root.querySelector('.fill'),out=root.querySelector('.svcval b'),mo=root.querySelector('.svcval span');
-  let min=240,cap=Infinity,top=420,span=180,list=STOPS;
+  let min=240,cap=Infinity,top=MAXM,span=MAXM-240,list=STOPS;
   inp.value=value;
-  /* The slider's right end is the age-62 point once dates are in, else 35 years; stops past it are dropped (owner, Nov. 5, 2026). */
-  function layout(){top=Math.min(420,cap);span=top-min;inp.min=min;inp.max=top;
+  /* The slider's right end is the age-62 point once dates are in, else 45 years; stops past it are dropped (owner, Nov. 5, 2026). */
+  function layout(){top=Math.min(MAXM,cap);span=top-min;inp.min=min;inp.max=top;
     if(+inp.value<min)inp.value=min;if(+inp.value>top)inp.value=top;stops(list.filter(s=>s.m<=top));paint()}
   function paint(){const m=+inp.value;out.textContent=Math.floor(m/12)===1?'1 year':plural(Math.floor(m/12),'year');mo.textContent=plural(m%12,'month');
     fill.style.width=`calc((100% - var(--thumb)) * ${(m-min)/span})`;
@@ -1566,7 +1568,7 @@ function renderP(){
   const you=scenario(m,c);
   $('preview').hidden=you.fas>0;
   const om=ageOutM(c);
-  pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge)+(om<=(c.dis?420:420)&&om>=(c.dis?12:240)?`. You turn ${AGE_OUT} in ${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}, the mandatory retirement age, so the most you can work is ${fmtSvcLong(om)}.`:''));
+  pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge)+(om<=MAXM&&om>=(c.dis?12:240)?`. You turn ${AGE_OUT} in ${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}, the mandatory retirement age, so the most you can work is ${fmtSvcLong(om)}.`:''));
   renderWorksheet(c,m);renderPays(c,m);
   save();
 
@@ -1637,7 +1639,7 @@ function renderGoal(c,m,you){
     const ok=you.base/12>=g;
     o.innerHTML=`<p>For ${usd(g)} a month on a 3/4s, you need a final average salary of <b>${usd(need)}</b>.</p><p>${ok?`<b style="color:var(--sage)">Your numbers get you there:</b> ${usd(you.base/12)} a month.`:`Yours is ${usd(you.fas)}, which pays ${usd(you.base/12)} a month.`}</p>`;return;
   }
-  const maxM=Math.min(420,ageOutM(c));
+  const maxM=Math.min(MAXM,ageOutM(c));
   if(maxM<240){o.innerHTML=`<p>For ${usd(g)} a month you'd need a final average salary of about <b>${usd(need)}</b>. Based on your dates, you'd reach the mandatory retirement age of 62 before 20 years.</p>`;return}
   let hit=null,bestM=240,bestB=0;
   for(let mm=240;mm<=maxM;mm++){const s=scenario(mm,c);if(s.base>bestB){bestB=s.base;bestM=mm}if(s.base/12>=g-0.5){hit=s;break}}
@@ -1648,7 +1650,7 @@ function renderGoal(c,m,you){
       :`<p><b>On your earnings, you'd reach it by retiring at ${fmtSvcLong(hit.months)}</b>: ${fmtMY(hit.retDate)}, at age ${fmtAge(hit.retAge)}. Your best 3 years would be ${bestTxt(hit.best)}.</p><div><button type="button" class="btn small green" id="goalUse">Show me that plan</button></div>`;
   } else {
     const ys=you.best?[you.retDate.getFullYear()-3,you.retDate.getFullYear()-2,you.retDate.getFullYear()-1]:[];
-    h+=`<p><b style="color:var(--accent)">Your current earnings don't get there</b> before ${maxM<420?'mandatory retirement at 62':'35 years'}. The most you'd get is ${usd(bestB/12)} a month, at ${fmtSvcLong(bestM)}.</p>
+    h+=`<p><b style="color:var(--accent)">Your current earnings don't get there</b> before ${maxM<MAXM?'mandatory retirement at 62':'45 years'}. The most you'd get is ${usd(bestB/12)} a month, at ${fmtSvcLong(bestM)}.</p>
       <p>To retire at ${fmtSvcLong(m)} with ${usd(g)} a month, you'd need to earn about <b>${usd(need)}</b> a year in ${ys.join(', ')}. That's ${usd(Math.max(0,need-you.baseFas))} a year more than your numbers show.</p>
       ${ST.p.growOn?'':'<p class="hint">Right now your future years just repeat your last year of pay. To see when raises would get you there, check "Fill in future years assuming a raise each year" in step 2.</p>'}`;
   }
