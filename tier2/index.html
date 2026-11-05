@@ -510,7 +510,7 @@ body.has-pbar .app{padding-bottom:110px}
   <details class="news">
     <summary>This website gets better every day. Click to see the latest updates.</summary>
     <ul>
-      <li><time datetime="2026-11-05">11/5/26:</time> Tier 2: the years slider now goes up to 48 years. Put in your date of birth and it stops at the most you can work before 65, the age you have to retire by.</li>
+      <li><time datetime="2026-11-05">11/5/26:</time> Tier 2: the years slider now goes up to 48 years. Put in your date of birth and it stops at the most you can work before 65, the age you have to retire by. Bills in Albany adds A9291 / S9300, which would raise that age to 67.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Added the rank of Deputy Chief to choices.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> New (early version): add a specific year’s check by check details from ESS (payment summary) and the calculator finds your exact best 12 (or 36) months. Your best 12 (or 36) months are on a rolling basis, not just by calendar years.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Tier 2 members can now add the 1/80th for prior City service in Your personal numbers.</li>
@@ -595,7 +595,8 @@ body.has-pbar .app{padding-bottom:110px}
       <p>Unlike Tier 3, there's no 50% cap: every year past 20 adds to your pension.</p></div></details>
     <details><summary>Is there an age I have to retire by?</summary><div class="ans">
       <p>Yes, <b>65</b>. City law says uniformed members have to retire when they turn 65 (NYC Administrative Code § 15-121). It goes by your age, not your years on the job, so an earlier equated date doesn't change it.</p>
-      <p>On the personal numbers page, once you put in your date of birth, the slider stops at the most you can work before 65. Without dates it goes up to 48 years, for members whose service counts from age 17.</p></div></details>
+      <p>On the personal numbers page, once you put in your date of birth, the slider stops at the most you can work before 65. Without dates it goes up to 48 years, for members whose service counts from age 17.</p>
+      <p>A bill in Albany, A9291 / S9300, would raise the age to 67. It hasn’t passed. You can see what it would mean for you on the personal numbers page, under More options.</p></div></details>
     <details><summary>What is an equated date?</summary><div class="ans">
       <p>It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to <b>3 years</b> of military service once you have 5 years in (Chapter 548 of the Laws of 2000). Uniformed service right before the FDNY, like EMS, police or Correction, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier <b>equated date</b>, which moves your 20-year date, when the 1/60th and ITHP start, the banked variable and the 25-year longevity bonus.</p>
       <p>Appointed in May 2004 with 3 years of military bought back? Your equated date is May 2001, so you hit 20 years in May 2021, and the 1/60th starts counting your pay from then, at 17 years on the job instead of 20.</p>
@@ -740,7 +741,7 @@ body.has-pbar .app{padding-bottom:110px}
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 2" hidden>
   <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span></div>
-  <div class="vhead"><h1>Bills in Albany</h1><p>Changes to Tier 2 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint">Status from the bill texts; the pending bill was last amended in spring 2026.</p></div>
+  <div class="vhead"><h1>Bills in Albany</h1><p>Changes to Tier 2 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
   <p class="fine">Unofficial summaries. Read the full bills on nysenate.gov, and confirm anything that affects your retirement with the Pension Fund.</p>
@@ -1070,6 +1071,9 @@ const BILLS=[
   {id:'b40',title:'1/40th instead of 1/60th after 20 years',check:'1/40th after 20 years',nums:['S5058A'],yr:2025,intro:'Feb. 18, 2025',
    what:'For each year you work past 20, your pension would add 1/40th of your earnings instead of 1/60th, for service and 3/4s pensions. It would also give Tier 3 members an extra 1/40th of final average salary for each year past 20.',
    note:'Amended in 2026 (S5058A). An earlier version, S9593, died in committee in 2024.',committee:'Senate Civil Service and Pensions',step:1},
+  {id:'b67',personal:true,title:'Retire by 67 instead of 65',check:'Retire by 67 instead of 65',nums:['A9291','S9300'],yr:2025,intro:'Dec. 10, 2025',
+   what:'Right now uniformed members have to retire at 65. This bill would raise that to 67, giving you up to two more years on the job. It changes City law (Administrative Code § 15-121), the age limit for Tier 2.',
+   note:'Tier 3’s age limit of 62 is in state law, which this bill doesn’t change. The Senate version, S9300, was introduced Feb. 26, 2026.',committee:'Assembly Governmental Employees and Senate Civil Service and Pensions',step:1},
   {id:'yearly',law:true,title:'Longevity bonus at 25 years',nums:['S9202','S9008'],yr:2025,intro:'Feb. 13, 2026',signed:'May 27, 2026',chapter:'in the FY2027 state budget',
    what:'If you retire with 25 years or more, part of your rank’s top pay is added to the salary your pension is based on: 5% at 25 years, plus 1% more for each year after, up to 15% at 35. The bill covers members of any plan, Tier 2 included.',
    note:'This passed in the state budget (S9008-C / A10008-C, Part AAA), so the bill’s own page on nysenate.gov still says “in committee.” Its Assembly version is A10392.',step:5},
@@ -1109,22 +1113,22 @@ $('billsLaw').innerHTML=BILLS.filter(b=>b.law).map(billCard).join('');
 $('billsTag').textContent=`${PENDING.length} being considered · ${BILLS.filter(b=>b.law).length} signed into law`;
 
 /* "If this bill passes" checkboxes, used by both calculators. */
-function BillChecks(root,state,onChange){
+function BillChecks(root,state,onChange,show=()=>true){
   root.innerHTML=`<div class="lead"><span class="flabel">If this bill passes</span><a href="#bills" class="hint" style="font-weight:600;display:inline-flex;align-items:center;min-height:44px">What are these bills?</a></div>
     <p class="hint" style="margin-top:-4px">Not law yet. Check it to see what it would mean for you.</p>
-    ${PENDING.map(b=>`<label class="bc"><input type="checkbox" data-b="${b.id}"><b>${b.check}</b><small>${b.nums.join(' / ')} · in committee</small></label>`).join('')}`;
+    ${PENDING.filter(show).map(b=>`<label class="bc"><input type="checkbox" data-b="${b.id}"><b>${b.check}</b><small>${b.nums.join(' / ')} · in committee</small></label>`).join('')}`;
   const sync=()=>root.querySelectorAll('input[data-b]').forEach(c=>{c.checked=!!state()[c.dataset.b]});
   root.addEventListener('change',e=>{const c=e.target.closest('input[data-b]');if(!c) return;state()[c.dataset.b]=c.checked;onChange()});
   sync();
   return {sync};
 }
-const billNote=st=>st.b40?'<p class="billnote">Includes a bill that hasn’t passed: 1/40th after 20 years (S5058A).</p>':'';
+const billNote=st=>{const l=[st.b40&&'1/40th after 20 years (S5058A)',st.b67&&'retire by 67 (A9291)'].filter(Boolean);return l.length?`<p class="billnote">Includes ${l.length>1?'bills that haven’t':'a bill that hasn’t'} passed: ${l.join(' and ')}.</p>`:''};
 
 /* ---------- saved state (this device only; separate from the Tier 3 page's numbers) ---------- */
 const KEY='fdny-tier2-v1';
 const DEF={
   q:{fas:'',svc:300,dis:false,exT:'',exN:'',b40:false,rank:'FF',topPay:109352},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,lodi:{},onetime:{},pays:{},earnV:2}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,b67:false,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,lodi:{},onetime:{},pays:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1224,7 +1228,8 @@ $('qFas').addEventListener('blur',e=>{const n=num(e.target.value);e.target.value
 $('qDis').addEventListener('change',e=>{ST.q.dis=e.target.checked;qSlider.range(ST.q.dis);ST.q.svc=qSlider.value;renderQuick()});
 if(ST.q.dis) qSlider.range(true);
 qSlider.set(ST.q.svc);
-const qChecks=BillChecks($('qBills'),()=>ST.q,()=>renderQuick());
+/* The age-67 bill needs a date of birth, so only the personal numbers page offers it. */
+const qChecks=BillChecks($('qBills'),()=>ST.q,()=>renderQuick(),b=>!b.personal);
 const qRank=RankBox($('qRank'),()=>ST.q,()=>renderQuick(),()=>!ST.q.dis&&qSlider.value>=300);
 bindMoney('qExT',ST.q,'exT',()=>renderQuick());bindMoney('qExN',ST.q,'exN',()=>renderQuick());
 
@@ -1317,7 +1322,7 @@ $('ocsY').addEventListener('change',e=>{ST.p.ocsY=+e.target.value;renderP()});
 const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;renderP()}});
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP());
 /* Pending bills sit under More options; keep it open when one is checked so the box isn't hidden. */
-if(ST.p.b40) $('moreOpts').open=true;
+if(ST.p.b40||ST.p.b67) $('moreOpts').open=true;
 const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
 /* Current rank: the rank at retirement follows it until the member picks a different one there. */
 (()=>{const box=$('curRanks');
@@ -1452,7 +1457,7 @@ function earnings(months,c){
   if(c.ocs>0&&!c.dis){for(let k=Math.max(0,W-60);k<W;k++){const y=yOf(k);if(!(vals[y]>0)) missing.add(y)}const s5=sumM(Math.max(0,W-60),W);avg5=s5?s5/(Math.min(60,W)/12):0}
   return {retDate,usePay,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,a20By,avg5,missing:[...missing].sort((a,b)=>a-b)};
 }
-function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0):0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,topPay:num(p.topPay)}}
+function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0):0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,b67:!!p.b67,topPay:num(p.topPay)}}
 
 function scenario(months,c){
   const S=months/12,e=earnings(months,c),first=c.appt.getFullYear(),retAge=c.age+S;
@@ -1549,8 +1554,9 @@ function annRow(s,dis){
 }
 
 /* Mandatory retirement age: 65 (NYC Administrative Code § 15-121). c.age is the age at the equated date. */
-const AGE_OUT=65;
-const ageOutM=c=>Math.floor((AGE_OUT-c.age)*12+1e-9);
+/* 67 if the member checks A9291 / S9300 (owner, Nov. 5, 2026). */
+const ageOut=()=>ST.p.b67?67:65;
+const ageOutM=c=>Math.floor((ageOut()-c.age)*12+1e-9);
 function renderP(){
   const p=ST.p,c=pParams();pSlider.cap(c.ok?ageOutM(c):Infinity);ST.p.svc=pSlider.value;
   const m=pSlider.value;
@@ -1591,13 +1597,13 @@ function renderP(){
   const you=scenario(m,c);
   $('preview').hidden=you.ok;
   const om=ageOutM(c);
-  pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge)+(om<=MAXM&&om>=(c.dis?12:240)?`. You have to retire by ${AGE_OUT} (${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}), so the most you can work is ${fmtSvcLong(om)}.`:''));
+  pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge)+(om<=MAXM&&om>=(c.dis?12:240)?`. You have to retire by ${ageOut()} (${fmtMY(new Date(c.dob.getFullYear()+ageOut(),c.dob.getMonth(),c.dob.getDate()))}), so the most you can work is ${fmtSvcLong(om)}.`:''));
   $('exHint').textContent=exHintText(c.exT,c.exN,you.exBal,you.exAnn/12,c.dis)+(c.exT+c.exN>0?' Includes 8.25% interest a year until you retire.':'');
   renderWorksheet(c,m,you);renderPays(c,m);
   save();
 
   const head=$('head');
-  const warn=you.retAge>65?'<p class="warn">That’s past 65, the age you have to retire by. Check your dates.</p>':'';
+  const warn=you.retAge>ageOut()?`<p class="warn">That’s past ${ageOut()}, the age you have to retire by. Check your dates.</p>`:'';
   const tier3=c.appt>=new Date(2009,6,1)?'<p class="warn">Tier 3 appointment date: these Tier 2 numbers won’t match your pension.</p>':'';
   const past=you.retDate<new Date()?'<p class="hint">That date has already passed. Move the slider to a date ahead of you.</p>':'';
   $('cmpSec').hidden=c.dis||!you.ok;
@@ -1606,7 +1612,7 @@ function renderP(){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once we have your earnings for your last 12 months${c.dis?'':' and every year after your 20th anniversary'}${!c.dis&&c.ocs>0?', plus your last 5 years for the 1/80th':''}. ${miss}</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
-  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:!c.dis&&c.b40?'S5058A':'none',p_excess:dol(c.exT+c.exN),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:[!c.dis&&c.b40&&'S5058A',p.b67&&'A9291'].filter(Boolean).join(',')||'none',p_excess:dol(c.exT+c.exN),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
   const brk=`<div class="brow"><div class="bl"><b>${c.dis?'75%':'50%'} of final average salary</b><small>${c.dis?'75%':'50%'} of ${usd(you.fs+you.bonusAdd)}${you.bonusAdd?' (with the bonus)':''}, ${you.useBest?`your best 3 years (${you.usePay?`${fmtDay(you.best.from)} to ${fmtDay(dayBefore(you.best.to))}`:`${fmtMY(you.best.from)} to ${fmtMY(you.best.to)}`})`:'your last 12 months'}${you.usePay?', from your paychecks':'. Each year split evenly by month'}</small></div><div class="amt"><b>${usd(you.half/12)}/mo</b><small>${usd(you.half)}/yr</small></div></div>
         <div class="incl">${ICON.check}<span>The higher of your <b>last 12 months</b> (${usd(you.fs12)}${you.lim12!==null&&you.raw12>you.lim12+0.5?`, cut from ${usd(you.raw12)} by the 20% limit`:''}) and your <b>best 3 years in a row</b> (${you.best?usd(you.best.fas):'not enough years yet'}).</span></div>
@@ -1676,7 +1682,7 @@ function renderGoal(c,m,you){
       ?`<p><b style="color:var(--sage)">Your plan already gets you there.</b> You'd reach it at ${fmtSvcLong(hit.months)} (${fmtMY(hit.retDate)}, age ${fmtAge(hit.retAge)}), and your plan pays ${usd(you.base/12)} a month.</p>`
       :`<p><b>On your earnings, you'd reach it by retiring at ${fmtSvcLong(hit.months)}</b>: ${fmtMY(hit.retDate)}, at age ${fmtAge(hit.retAge)}.</p><div><button type="button" class="btn small green" id="goalUse">Show me that plan</button></div>`;
   } else if(bestB>0){
-    h+=`<p><b style="color:var(--accent)">Your current earnings don't get there</b> by ${hi<MAXM?'age 65':'48 years'}. The most you'd get is ${usd(bestB/12)} a month, at ${fmtSvcLong(bestM)}.</p>
+    h+=`<p><b style="color:var(--accent)">Your current earnings don't get there</b> by ${hi<MAXM?'age '+ageOut():'48 years'}. The most you'd get is ${usd(bestB/12)} a month, at ${fmtSvcLong(bestM)}.</p>
       <p>To retire at ${fmtSvcLong(m)} with ${usd(g)} a month, that's ${usd(Math.max(0,need-you.fs))} more final average salary than your numbers show.</p>
       ${ST.p.growOn?'':'<p class="hint">Right now your future years just repeat your last year of pay. To see when raises would get you there, check "Fill in future years assuming a raise each year" in step 2.</p>'}`;
   }
