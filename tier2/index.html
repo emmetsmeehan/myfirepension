@@ -510,7 +510,7 @@ body.has-pbar .app{padding-bottom:110px}
   <details class="news">
     <summary>This website gets better every day. Click to see the latest updates.</summary>
     <ul>
-      <li><time datetime="2026-11-05">11/5/26:</time> Tier 2: the years slider now goes up to 48 years. Put in your date of birth and it stops at the most you can work before 65, the age you have to retire by. Bills in Albany adds A9291 / S9300, which would raise that age to 67.</li>
+      <li><time datetime="2026-11-05">11/5/26:</time> Tier 2: the years slider now goes up to 50 years. Put in your date of birth and it stops at the most you can work before 65, the age you have to retire by. Bills in Albany adds A9291 / S9300, which would raise that age to 67.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Added the rank of Deputy Chief to choices.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> New (early version): add a specific year’s check by check details from ESS (payment summary) and the calculator finds your exact best 12 (or 36) months. Your best 12 (or 36) months are on a rolling basis, not just by calendar years.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Tier 2 members can now add the 1/80th for prior City service in Your personal numbers.</li>
@@ -595,7 +595,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p>Unlike Tier 3, there's no 50% cap: every year past 20 adds to your pension.</p></div></details>
     <details><summary>Is there an age I have to retire by?</summary><div class="ans">
       <p>Yes, <b>65</b>. City law says uniformed members have to retire when they turn 65 (NYC Administrative Code § 15-121). It goes by your age, not your years on the job, so an earlier equated date doesn't change it.</p>
-      <p>On the personal numbers page, once you put in your date of birth, the slider stops at the most you can work before 65. Without dates it goes up to 48 years, for members whose service counts from age 17.</p>
+      <p>On the personal numbers page, once you put in your date of birth, the slider stops at the most you can work before 65. Without dates it goes up to 50 years.</p>
       <p>A bill in Albany, A9291 / S9300, would raise the age to 67. It hasn’t passed. You can see what it would mean for you on the personal numbers page, under More options.</p></div></details>
     <details><summary>What is an equated date?</summary><div class="ans">
       <p>It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to <b>3 years</b> of military service once you have 5 years in (Chapter 548 of the Laws of 2000). Uniformed service right before the FDNY, like EMS, police or Correction, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier <b>equated date</b>, which moves your 20-year date, when the 1/60th and ITHP start, the banked variable and the 25-year longevity bonus.</p>
@@ -1142,7 +1142,7 @@ function cleanState(){
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
   if(!impMode(p.mode)) p.mode='manual';
   p.ocsY=Math.min(30,Math.max(0,Math.floor(+p.ocsY||0)));delete p.ocsM;
-  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=576))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
+  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=600))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
   /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
   if(!p.rankSet&&!p.cur&&p.rank==='LT'&&+p.topPay===140212){p.rank='FF';p.topPay=109352}
@@ -1188,10 +1188,10 @@ const exHintText=(t,n,lump,mo,dis)=>(t+n>0?`Taken as a lump sum: ${usd(lump)}${d
 function colaRateOf(cpi){let r=Math.ceil(cpi*100/2*10-1e-9)/10/100;return Math.min(0.03,Math.max(0.01,r))}
 
 /* ---------- reusable service slider ---------- */
-/* 48 years: someone credited from age 17 (e.g. EMS) can work to 65 (owner, Nov. 5, 2026). Once dates are in, cap() shortens the slider to their age 65. */
-const MAXM=576;
-const STOPS=[{m:240},{m:300,low:true},{m:360},{m:420,low:true},{m:480},{m:540,low:true}];
-const DIS_STOPS=[{m:60},{m:120,low:true},{m:180},{m:240,low:true},{m:300},{m:360,low:true},{m:420},{m:480,low:true},{m:540}];
+/* 50 years: someone credited from age 17 (e.g. EMS) could work to 67 if A9291 passes (owner, Nov. 5, 2026). Once dates are in, cap() shortens the slider to their age limit. */
+const MAXM=600;
+const STOPS=[{m:240},{m:300,low:true},{m:360},{m:420,low:true},{m:480},{m:540,low:true},{m:600}];
+const DIS_STOPS=[{m:60},{m:120,low:true},{m:180},{m:240,low:true},{m:300},{m:360,low:true},{m:420},{m:480,low:true},{m:540},{m:600,low:true}];
 function Slider(root,{id,label,value,onInput}){
   root.innerHTML=`<div class="svc"><label for="${id}">${label}</label><div class="svcval"><b></b><span></span></div></div><div class="hint sub"></div>
     <div class="slider"><input type="range" id="${id}" min="240" max="${MAXM}" step="1"><div class="fill"></div></div>`;
@@ -1682,7 +1682,7 @@ function renderGoal(c,m,you){
       ?`<p><b style="color:var(--sage)">Your plan already gets you there.</b> You'd reach it at ${fmtSvcLong(hit.months)} (${fmtMY(hit.retDate)}, age ${fmtAge(hit.retAge)}), and your plan pays ${usd(you.base/12)} a month.</p>`
       :`<p><b>On your earnings, you'd reach it by retiring at ${fmtSvcLong(hit.months)}</b>: ${fmtMY(hit.retDate)}, at age ${fmtAge(hit.retAge)}.</p><div><button type="button" class="btn small green" id="goalUse">Show me that plan</button></div>`;
   } else if(bestB>0){
-    h+=`<p><b style="color:var(--accent)">Your current earnings don't get there</b> by ${hi<MAXM?'age '+ageOut():'48 years'}. The most you'd get is ${usd(bestB/12)} a month, at ${fmtSvcLong(bestM)}.</p>
+    h+=`<p><b style="color:var(--accent)">Your current earnings don't get there</b> by ${hi<MAXM?'age '+ageOut():'50 years'}. The most you'd get is ${usd(bestB/12)} a month, at ${fmtSvcLong(bestM)}.</p>
       <p>To retire at ${fmtSvcLong(m)} with ${usd(g)} a month, that's ${usd(Math.max(0,need-you.fs))} more final average salary than your numbers show.</p>
       ${ST.p.growOn?'':'<p class="hint">Right now your future years just repeat your last year of pay. To see when raises would get you there, check "Fill in future years assuming a raise each year" in step 2.</p>'}`;
   }
