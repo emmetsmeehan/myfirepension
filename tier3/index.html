@@ -69,12 +69,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .vhead{display:grid;gap:8px;padding-top:6px}
 .vhead p{color:var(--muted);font-size:18px;max-width:60ch}
 
-/* switch to the other tier */
-.switch{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;min-height:48px;padding:8px 10px 8px 18px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:700;font-size:16.5px;box-shadow:var(--shadow)}
-.switch .go{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--steel);flex:none}
-.switch .go svg{width:18px;height:18px}
-.switch:hover{border-color:var(--steel)}
-.switch+.hero{padding-top:20px}
+/* top-left Home button to the tier chooser (owner, Nov. 6, 2026) */
+.hometop{margin:0 0 12px}
+.hometop .backbtn{gap:6px;padding:0 16px 0 12px}
 /* home */
 .hero{display:grid;gap:14px;padding:36px 0 6px}
 .chip{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-weight:600;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:5px 12px;border-radius:999px}
@@ -509,6 +506,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== HOME ===================== -->
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
+  <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a></div>
   <details class="news">
     <summary>This website gets better every day. Click to see the latest updates.</summary>
     <ul>
@@ -521,7 +519,6 @@ body.has-pbar .app{padding-bottom:110px}
     <p class="newsmore"><a href="/updates/">See older updates</a></p>
     <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
   </details>
-  <a class="switch" href="../tier2/">Want to see Tier 2 instead?<span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1>
     <p class="sub">Everything you need to know, and what you'll collect in retirement.</p>
