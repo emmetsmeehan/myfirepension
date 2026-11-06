@@ -111,6 +111,11 @@ The bonus uses top-step annual **base** salary for the rank, with no longevity p
 | CAPT | $160,941 | UFOA rate schedule effective July 31, 2025 |
 | BC | $209,563 | UFOA rate schedule effective July 31, 2025 |
 | DC | $232,278 | UFOA rate schedule effective July 31, 2025 |
+| FM (Fire Marshal) | $122,474 | UFA rate schedule effective Aug. 1, 2024 |
+| SFM I (Supervising Fire Marshal Level I) | $153,332 | UFOA rate schedule effective July 31, 2025 |
+| SFM II (Supervising Fire Marshal Level II) | $202,252 | UFOA rate schedule effective July 31, 2025 |
+
+Fire Marshal and both Supervising Fire Marshal levels were added Nov. 6, 2026 (owner's request; schedules `46427.ufa_2024_08_01.pdf` and `57326.ufoa_2025_07_31.pdf` in his Drive). The rank buttons sit in a 4-column grid (FF LT CAPT BC / DC FM SFM I SFM II); `RANKS` entries can carry a `label` for the button text.
 
 The bill's fiscal note uses higher figures (FF $140,392, LT $157,751, CAPT $179,842, Chiefs $255,863), which are 2024 salaries increased for assumed inflation. The owner chose to keep base-only figures because he does not want to assume inflation. The page says the bill's wording could come out higher than base salary, and members can type over the figure.
 
@@ -152,5 +157,5 @@ Sources: the full Tiers 1 & 2 Summary Plan Description (Sept. 12, 2014; `pension
 ## Temporary preview (Nov. 6, 2026, owner's request)
 
 - `/accounts/` is a temporary copy of the planned new home page: "How to tell" card removed, transfer note under the tier boxes, and a green "Other accounts" box (`--green` token, `.tier.other`). Its links are root-absolute.
-- `/accounts/details/` is the "Your other accounts" draft (Voya / Empower), moved from `/accounts/`. Its Home button points to `/accounts/` for now.
+- `/accounts/details/` is the "Your other accounts" draft (Voya / Empower), moved from `/accounts/`. Its Home button points to `/accounts/` for now. Union annuity (Nov. 6, 2026, owner): a yearly amount per rank "(spread out over 13 payments)". Officer amounts are the UFOA contract's June 15, 2018 annuity rates (2018–2021 agreement, Article XI: paid pro rata per working day on full pay, remitted every 28 days); the owner's current LT stub ($127.45 × 13) matches. The firefighter figure is the owner's $80.31 stub × 13, not yet confirmed with the UFA (nor that it's paid only at top pay); Fire Marshal amount unknown.
 - Both are noindex. When the owner says go: copy the preview's home markup and CSS into the root `index.html` (relative links), move the accounts page back to `accounts/` (Home button to `/`), point the green box at it, and delete the temporary pages. The finished home page is also on branch `remove-how-to-tell`.

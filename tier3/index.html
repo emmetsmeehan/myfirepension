@@ -131,9 +131,10 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .bc b{font-size:16.5px;font-weight:700}
 .bc small{font-size:14px;color:var(--muted)}
 .bc:has(input:checked){border-color:var(--sage);background:color-mix(in srgb,var(--sage) 9%,var(--surface))}
-.ranks{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.ranks{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .ranks button{border:1.5px solid var(--line);background:var(--surface);border-radius:var(--r-sm);min-height:52px;padding:6px 4px;font-weight:700;font-size:16px;cursor:pointer;display:grid;gap:0;line-height:1.2}
 .ranks button small{font-weight:400;font-size:13px;color:var(--muted)}
+@media (max-width:360px){.ranks button{font-size:14.5px;padding:6px 2px}}
 .ranks button[aria-pressed="true"]{background:var(--sage);border-color:var(--sage);color:#fff}
 .ranks button[aria-pressed="true"] small{color:#fff}
 .rankbox{display:grid;gap:8px;padding:12px 14px;border-radius:var(--r-sm);background:var(--soft)}
@@ -706,7 +707,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p><strong>VSF and banked variable:</strong> service retirees with 20+ years get the VSF, $12,000 a year. Each year worked past 20 banks one VSF payment, paid as a lump sum at retirement.</p>
       <p><strong>Social Security offset:</strong> at 62 the pension drops by 50% of your primary Social Security benefit.</p>
       <p><strong>3/4s disability:</strong> 75% of final average salary with no minimum service, generally not taxable, with no escalation, VSF, banked variable, longevity bonus or Social Security offset. The COLA starts after 5 years retired, regardless of age. Source: the Fire Pension Fund's Tier 3 Enhanced Summary Plan Description.</p>
-      <p><strong>Longevity bonus:</strong> at 25+ years of service, part of the top base pay for your rank is added to final average salary: 5% at 25 years plus 1% for each year after, up to 15% at 35 (FY2027 state budget, signed May 27, 2026; S9008-C/A10008-C, Part AAA, adding Administrative Code § 15-110.1; originally S9202/A10392). It is added straight to final average salary, as the bill's fiscal note does for Tier 3. Rank pay is the top-step annual base salary from the UFA schedule effective Aug. 1, 2024 (firefighter) and the UFOA schedule effective July 31, 2025 (lieutenant, captain, battalion chief, deputy chief), with no longevity, night differential or overtime. The law says "highest grade of pay" without defining it, so the figure used could end up higher than base salary.</p>
+      <p><strong>Longevity bonus:</strong> at 25+ years of service, part of the top base pay for your rank is added to final average salary: 5% at 25 years plus 1% for each year after, up to 15% at 35 (FY2027 state budget, signed May 27, 2026; S9008-C/A10008-C, Part AAA, adding Administrative Code § 15-110.1; originally S9202/A10392). It is added straight to final average salary, as the bill's fiscal note does for Tier 3. Rank pay is the top-step annual base salary from the UFA schedule effective Aug. 1, 2024 (firefighter, fire marshal) and the UFOA schedule effective July 31, 2025 (lieutenant, captain, battalion chief, deputy chief, supervising fire marshal levels I and II), with no longevity, night differential or overtime. The law says "highest grade of pay" without defining it, so the figure used could end up higher than base salary.</p>
       <p><strong>Proposed bills:</strong> S9203/A10254 would move full escalation to 20 years. S5058A would add 1/40th of final average salary for each year of service past 20 (the calculators figure it on your final average salary without the longevity bonus, prorated by month; the Fund's actuary read "final salary" as the last 12 months). You can switch either on to see what it would mean "if it passes".</p>
       <p><strong>Taxes:</strong> the “Don’t forget about taxes” box is a rough 2026 federal figure on the first-year pension plus VSF, for a married couple filing jointly with no other income (single shown as a percent). It leaves out the banked variable lump sum and isn’t tax advice.</p>
       <p><strong>Not included:</strong> retirement options that reduce the pension for a survivor, ordinary (non-line-of-duty) disability, and Tier 2 rules.</p>
@@ -1009,12 +1010,12 @@ const ICON={
 };
 
 /* Top-step annual base salary by rank: UFA schedule eff. Aug 1, 2024 (FF); UFOA schedule eff. Jul 31, 2025 (LT, CAPT, BC, DC). */
-const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278}];
-const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s',DC:'a deputy chief’s'};
+const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278},{id:'FM',pay:122474},{id:'SFM1',label:'SFM\u00a0I',pay:153332},{id:'SFM2',label:'SFM\u00a0II',pay:202252}];
+const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s',DC:'a deputy chief’s',FM:'a fire marshal’s',SFM1:'a supervising fire marshal’s (level I)',SFM2:'a supervising fire marshal’s (level II)'};
 const rankName=pay=>{const r=RANKS.find(x=>x.pay===num(pay));return r?RANK_OF[r.id]:'your rank’s'};
 function RankBox(rb,state,onChange,show){
   const ranks=rb.querySelector('.ranks'),tp=rb.querySelector('input');
-  ranks.innerHTML=RANKS.map(r=>`<button type="button" data-r="${r.id}">${r.id}<small>${kfmt(r.pay)}</small></button>`).join('');
+  ranks.innerHTML=RANKS.map(r=>`<button type="button" data-r="${r.id}">${r.label||r.id}<small>${kfmt(r.pay)}</small></button>`).join('');
   function sync(){const s=state();rb.hidden=!show();if(document.activeElement!==tp) tp.value=commas(s.topPay);
     ranks.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',RANKS.find(r=>r.id===b.dataset.r).pay===num(s.topPay)))}
   ranks.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const r=RANKS.find(x=>x.id===b.dataset.r);state().rank=r.id;state().topPay=r.pay;sync();onChange()});
@@ -1185,7 +1186,7 @@ function BillChecks(root,state,onChange,showRank){
     <p class="hint" style="margin-top:-4px">Not law yet. Check it to see what it would mean for you.</p>
     ${PENDING.map(b=>`<label class="bc"><input type="checkbox" data-b="${b.id}"><b>${b.check}</b><small>${b.nums.join(' / ')} · in committee</small></label>`).join('')}`;
   const rb=root.querySelector('.rankbox'),ranks=rb.querySelector('.ranks'),tp=rb.querySelector('input');
-  ranks.innerHTML=RANKS.map(r=>`<button type="button" data-r="${r.id}">${r.id}<small>${kfmt(r.pay)}</small></button>`).join('');
+  ranks.innerHTML=RANKS.map(r=>`<button type="button" data-r="${r.id}">${r.label||r.id}<small>${kfmt(r.pay)}</small></button>`).join('');
   function sync(){
     root.querySelectorAll('input[data-b]').forEach(c=>{const b=BILLS.find(x=>x.id===c.dataset.b);c.checked=b.kind==='esc'?state().esc===b.val:!!state()[b.id]});
     const s=state();rb.hidden=!showRank();
@@ -1290,7 +1291,7 @@ if(ST.p.esc===20||ST.p.b40) $('moreOpts').open=true;
 const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
 /* Current rank: the rank at retirement follows it until the member picks a different one there. */
 (()=>{const box=$('curRanks');
-  box.innerHTML=RANKS.map(r=>`<button type="button" data-r="${r.id}">${r.id}<small>${kfmt(r.pay)}</small></button>`).join('');
+  box.innerHTML=RANKS.map(r=>`<button type="button" data-r="${r.id}">${r.label||r.id}<small>${kfmt(r.pay)}</small></button>`).join('');
   const sync=()=>box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.r===ST.p.cur));
   box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const r=RANKS.find(x=>x.id===b.dataset.r);
     ST.p.cur=r.id;if(!ST.p.rankSet){ST.p.rank=r.id;ST.p.topPay=r.pay}sync();renderP()});

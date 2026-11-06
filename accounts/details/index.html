@@ -82,6 +82,8 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .key.big .also{display:block;margin-top:6px;font-size:15px;color:var(--muted)}
 .key.warn{background:color-mix(in srgb,var(--gold) 10%,var(--surface));border-color:color-mix(in srgb,var(--gold) 35%,transparent)}
 .key.warn svg{color:var(--gold)}
+.paid{display:grid;gap:8px;padding:12px 14px;border-radius:var(--r-sm);background:var(--soft)}
+.paid .lim td{padding:6px 0}
 .facts{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:16px}
 .facts li{display:flex;gap:8px}
 .facts li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--muted);margin-top:10px;flex:none}
@@ -235,13 +237,23 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
       <div class="ahead"><h3 id="aann">Union annuity</h3><div class="pills"><span class="pill city">The City puts money in</span></div></div>
       <p class="what">An investment account the City pays into for you, through the UFA or UFOA. You don’t put in anything.</p>
       <div class="key warn"><svg class="i" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><p><b>Check what it’s invested in.</b><span>The UFA annuity starts out in a very conservative fund, and many members never change it. You can log in to Empower and pick more aggressive funds.</span></p></div>
+      <div class="paid">
+        <p><b>What the City puts in each year</b> (spread out over 13 payments)</p>
+        <table class="lim">
+          <tr><td>Firefighter, at top pay</td><td>$1,044.03</td></tr>
+          <tr><td>Lieutenant</td><td>$1,656.89</td></tr>
+          <tr><td>Supervising Fire Marshal</td><td>$1,656.89</td></tr>
+          <tr><td>Captain</td><td>$1,774.34</td></tr>
+          <tr><td>Battalion Chief</td><td>$2,215.43</td></tr>
+          <tr><td>Deputy Chief</td><td>$2,573.00</td></tr>
+        </table>
+        <p class="hint">Paid for the days you’re on full pay. Officer amounts are from the UFOA’s contract with the City.</p>
+      </div>
       <ul class="facts">
-        <li><span><b>UFOA:</b> the City pays in every 4 weeks (13 times a year) for the days you’re on full pay. A lieutenant gets $127.45 each time, about $1,657 a year. Higher ranks get more.</span></li>
-        <li><span><b>UFA:</b> $80.31 each time, about $1,044 a year, once you reach top pay.</span></li>
         <li>When you’re promoted, it moves from the UFA’s fund to the UFOA’s.</li>
         <li>You get it when you retire. Take it as cash, or roll it into the Voya 401(k) or the NYCE IRA.</li>
       </ul>
-      <div class="draft">Draft note: confirm the UFA pays in only at top pay, and that its $80.31 is also every 4 weeks. Still open: whether the UFOA fund also starts conservative, and what happens if you leave before 20 years.</div>
+      <div class="draft">Draft note: the firefighter amount is $80.31 × 13 from one pay stub; confirm with the UFA that it’s paid only at top pay and every 4 weeks, and add the Fire Marshal amount. Officer amounts are the contract’s June 2018 rates; the lieutenant one matches a current pay stub, so the others likely haven’t changed. Still open: whether the UFOA fund also starts conservative, and what happens if you leave before 20 years.</div>
     </article>
   </section>
 
