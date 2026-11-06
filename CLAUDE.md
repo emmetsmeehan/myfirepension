@@ -112,10 +112,10 @@ The bonus uses top-step annual **base** salary for the rank, with no longevity p
 | BC | $209,563 | UFOA rate schedule effective July 31, 2025 |
 | DC | $232,278 | UFOA rate schedule effective July 31, 2025 |
 | FM (Fire Marshal) | $122,474 | UFA rate schedule effective Aug. 1, 2024 |
-| SFM I (Supervising Fire Marshal Level I) | $153,332 | UFOA rate schedule effective July 31, 2025 |
-| SFM II (Supervising Fire Marshal Level II) | $202,252 | UFOA rate schedule effective July 31, 2025 |
+| SFM 1 (Supervising Fire Marshal Level I) | $153,332 | UFOA rate schedule effective July 31, 2025 |
+| SFM 2 (Supervising Fire Marshal Level II) | $202,252 | UFOA rate schedule effective July 31, 2025 |
 
-Fire Marshal and both Supervising Fire Marshal levels were added Nov. 6, 2026 (owner's request; schedules `46427.ufa_2024_08_01.pdf` and `57326.ufoa_2025_07_31.pdf` in his Drive). The rank buttons sit in a 4-column grid (FF LT CAPT BC / DC FM SFM I SFM II); `RANKS` entries can carry a `label` for the button text.
+Fire Marshal and both Supervising Fire Marshal levels were added Nov. 6, 2026 (owner's request; schedules `46427.ufa_2024_08_01.pdf` and `57326.ufoa_2025_07_31.pdf` in his Drive). The rank buttons sit in a 4-column grid (FF LT CAPT BC DC on the first row, FM SFM 1 SFM 2 on the second; 15-column grid, spans 3 and 5); `RANKS` entries can carry a `label` for the button text.
 
 The bill's fiscal note uses higher figures (FF $140,392, LT $157,751, CAPT $179,842, Chiefs $255,863), which are 2024 salaries increased for assumed inflation. The owner chose to keep base-only figures because he does not want to assume inflation. The page says the bill's wording could come out higher than base salary, and members can type over the figure.
 

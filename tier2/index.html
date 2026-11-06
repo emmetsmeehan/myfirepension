@@ -131,7 +131,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .bc b{font-size:16.5px;font-weight:700}
 .bc small{font-size:14px;color:var(--muted)}
 .bc:has(input:checked){border-color:var(--sage);background:color-mix(in srgb,var(--sage) 9%,var(--surface))}
-.ranks{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ranks{display:grid;grid-template-columns:repeat(15,1fr);gap:6px}
+.ranks button{grid-column:span 3}
+.ranks button[data-r=FM],.ranks button[data-r^=SFM]{grid-column:span 5}
 .ranks button{border:1.5px solid var(--line);background:var(--surface);border-radius:var(--r-sm);min-height:52px;padding:6px 4px;font-weight:700;font-size:16px;cursor:pointer;display:grid;gap:0;line-height:1.2}
 .ranks button small{font-weight:400;font-size:13px;color:var(--muted)}
 @media (max-width:360px){.ranks button{font-size:14.5px;padding:6px 2px}}
@@ -511,11 +513,11 @@ body.has-pbar .app{padding-bottom:110px}
   <details class="news">
     <summary>This website gets better every day. Click to see the latest updates.</summary>
     <ul>
+      <li><time datetime="2026-11-06">11/6/26:</time> Added the ranks of Fire Marshal, Supervising Fire Marshal 1, and Supervising Fire Marshal 2.</li>
       <li><time datetime="2026-11-05">11/5/26:</time> Years on the job slider now goes past 40. On both tiers, once you enter your date of birth, it stops at the most you can work before the mandatory retirement age: 62 for Tier 3, 65 for Tier 2.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Added the rank of Deputy Chief to choices.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> New (early version): add a specific year’s check by check details from ESS (payment summary) and the calculator finds your exact best 12 (or 36) months. Your best 12 (or 36) months are on a rolling basis, not just by calendar years.</li>
       <li><time datetime="2026-11-02">11/2/26:</time> Tier 2 members can now add the 1/80th for prior City service in Your personal numbers.</li>
-      <li><time datetime="2026-11-02">11/2/26:</time> Pension basics has more on keeping your health coverage in retirement: who qualifies, before 65 and at 65.</li>
     </ul>
     <p class="newsmore"><a href="/updates/">See older updates</a></p>
     <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -724,7 +726,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p><strong>VSF and banked variable:</strong> service retirees with 20+ years get the VSF, $12,000 a year. Each year worked past 20 banks one VSF payment, paid as a lump sum at retirement.</p>
       <p><strong>Social Security:</strong> no offset. The Fund's summary lists the offset only for Tier 3.</p>
       <p><strong>3/4s disability:</strong> 75% of final average salary with no minimum service, plus 1/60th of earnings after 20 years, plus a pension from the ITHP reserve and an annuity from your accumulated contributions. No VSF or banked variable. The COLA starts after 5 years retired, regardless of age. The calculators estimate the ITHP piece only; type your Fund estimate to include your contributions.</p>
-      <p><strong>Longevity bonus:</strong> at 25+ years of service, part of the top base pay for your rank is added to final average salary: 5% at 25 years plus 1% for each year after, up to 15% at 35 (FY2027 state budget, signed May 27, 2026: S9008-C/A10008-C, Part AAA, adding Administrative Code § 15-110.1; originally S9202/A10392). The law covers members of any plan in the Fire Pension Fund, and its fiscal note gives a Tier 2 example. Rank pay is the top-step annual base salary from the UFA schedule effective Aug. 1, 2024 (firefighter, fire marshal) and the UFOA schedule effective July 31, 2025 (lieutenant, captain, battalion chief, deputy chief, supervising fire marshal levels I and II), with no longevity, night differential or overtime; the law says "highest grade of pay" without defining it, so the figure used could be higher. Not applied to 3/4s.</p>
+      <p><strong>Longevity bonus:</strong> at 25+ years of service, part of the top base pay for your rank is added to final average salary: 5% at 25 years plus 1% for each year after, up to 15% at 35 (FY2027 state budget, signed May 27, 2026: S9008-C/A10008-C, Part AAA, adding Administrative Code § 15-110.1; originally S9202/A10392). The law covers members of any plan in the Fire Pension Fund, and its fiscal note gives a Tier 2 example. Rank pay is the top-step annual base salary from the UFA schedule effective Aug. 1, 2024 (firefighter, fire marshal) and the UFOA schedule effective July 31, 2025 (lieutenant, captain, battalion chief, deputy chief, supervising fire marshal 1 and 2), with no longevity, night differential or overtime; the law says "highest grade of pay" without defining it, so the figure used could be higher. Not applied to 3/4s.</p>
       <p><strong>Proposed bills:</strong> S5058A would change the 1/60th to 1/40th for service and 3/4s pensions. You can switch it on in either calculator to see what it would mean "if it passes".</p>
       <p><strong>Taxes:</strong> the “Don’t forget about taxes” box is a rough 2026 federal figure on the first-year pension plus VSF, for a married couple filing jointly with no other income (single shown as a percent). It leaves out the banked variable lump sum and isn’t tax advice.</p>
       <p><strong>Other City service (1/80th):</strong> a service pension adds 1/80th of your average annual earnings over the last 5 years for each year of other credited service: prior non-uniformed City service (such as NYCERS or Board of Education), or uniformed service that didn't come right before the FDNY. It doesn't count toward your 20 years and isn't paid on a 3/4s. Source: the Fund's Tiers 1 & 2 Summary Plan Description (Sept. 2014). The personal numbers page splits calendar years evenly by month for the 5-year average. It doesn't estimate what a buyback costs; ask the Fund.</p>
@@ -1041,8 +1043,8 @@ const SAMPLE=[118000,124000,129000,133000,138000,142000,147000,151000,156000,160
 /* Longevity bonus (FY2027 budget, signed May 27, 2026; S9202/A10392 as written cover any member "under the plan in which they are enrolled", Tier 2 included):
    at 25+ years, 5% of the rank's top pay plus 1% per year past 25, capped at 15%, added to final average salary. Service retirements only, as on the Tier 3 page.
    Top-step annual base salary by rank: UFA schedule eff. Aug 1, 2024 (FF); UFOA schedule eff. Jul 31, 2025 (LT, CAPT, BC, DC). */
-const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278},{id:'FM',pay:122474},{id:'SFM1',label:'SFM\u00a0I',pay:153332},{id:'SFM2',label:'SFM\u00a0II',pay:202252}];
-const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s',DC:'a deputy chief’s',FM:'a fire marshal’s',SFM1:'a supervising fire marshal’s (level I)',SFM2:'a supervising fire marshal’s (level II)'};
+const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278},{id:'FM',pay:122474},{id:'SFM1',label:'SFM\u00a01',pay:153332},{id:'SFM2',label:'SFM\u00a02',pay:202252}];
+const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s',DC:'a deputy chief’s',FM:'a fire marshal’s',SFM1:'a supervising fire marshal 1’s',SFM2:'a supervising fire marshal 2’s'};
 const rankName=pay=>{const r=RANKS.find(x=>x.pay===num(pay));return r?RANK_OF[r.id]:'your rank’s'};
 const kfmt=n=>'$'+(Math.round(n/1000)).toLocaleString('en-US')+'k';
 /* Clarity custom tags (owner, Oct. 30, 2026): Clarity masks every input box in recordings, whatever the setting, so once a result shows the page sends the numbers as tags (shown with each recording and as filters in Clarity): exact pay, each year's earnings, LODI and bonuses (owner, Oct. 30, 2026: pay is public). Never dates of birth or appointment, or anything else from a W-2. */
