@@ -63,11 +63,8 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .tier small{grid-column:1;font-size:15.5px;color:var(--muted)}
 .tier .go{grid-row:1/span 3;grid-column:2;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#fff}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);display:grid;gap:14px}
-.which{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.which li{display:grid;gap:2px;padding:12px 14px;border-radius:var(--r-sm);background:var(--soft)}
-.which li b{font-size:17.5px}
-.which li span{font-size:16px;color:var(--muted)}
 .hint{font-size:15.5px;color:var(--muted)}
+.tnote{margin:14px 2px 0}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
 @media (max-width:560px){.card{padding:16px}}
 .news{margin-top:16px;border:2px solid var(--gold);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
@@ -129,17 +126,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
         <span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
-  </section>
-
-  <section class="card" aria-labelledby="howTitle">
-    <h2 id="howTitle">How to tell</h2>
-    <p>Your tier depends on when you joined the pension system. For almost everyone, that's the day you were appointed to the FDNY.</p>
-    <ul class="which">
-      <li><b>Appointed on or after July 1, 2009</b><span>You're in Tier 3.</span></li>
-      <li><b>Appointed between July 1, 1973 and June 30, 2009</b><span>You're in Tier 2.</span></li>
-      <li><b>Appointed before July 1, 1973</b><span>You're in Tier 1. Your benefits are generally the same as Tier 2, but this site doesn't cover Tier 1's differences.</span></li>
-    </ul>
-    <p class="hint">Were you in another New York public pension system before July 1, 2009, for example as an EMT in NYCERS, and transferred it to the Fire Pension Fund? Then you may be Tier 2 even if you were appointed later. Not sure? Call the Fire Pension Fund: <a href="tel:9294360099">929-436-0099</a>.</p>
+    <p class="hint tnote">Transferred in from another NY public pension system (like NYCERS as an EMT) before July 1, 2009? You may be Tier 2 even if you were appointed later. Not sure? Call the Fire Pension Fund: <a href="tel:9294360099">929-436-0099</a>.</p>
   </section>
 
   <footer class="foot">
