@@ -976,6 +976,7 @@ body.has-pbar .app{padding-bottom:110px}
 </footer>
 </div>
 
+<script src="/rules.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 /* Amounts as people type them: "$120,000", "120k", or "120.000" with a dot for thousands. Signs and letters are dropped. */
@@ -1008,7 +1009,9 @@ const toISO=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 const fromISO=s=>{const [y,m,d]=String(s).split('-').map(Number);return new Date(y,(m||1)-1,d||1)};
 const commas=n=>Math.round(n).toLocaleString('en-US');
 const NOW_Y=new Date().getFullYear();
-const VSF=12000;
+/* Rule numbers live in /rules.js (shared with the iPhone app). */
+const RS=RULES.shared,R3=RULES.tier3;
+const VSF=RS.vsfPerYear;
 const ICON={
   check:'<svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   clock:'<svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
@@ -1023,8 +1026,11 @@ const ICON={
 };
 
 /* Top-step annual base salary by rank: UFA schedules eff. Aug 1, 2024 (FF, FM, Wiper) and Jul 28, 2025 (Pilot, Chief and Assistant Marine Engineer); UFOA schedule eff. Jul 31, 2025 (LT, CAPT, BC, DC). */
-const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278},{id:'WIPER',label:'Wiper',pay:113336,g:'m'},{id:'PILOT',label:'Pilot',pay:135807,g:'m'},{id:'MEU',label:'Assistant Marine Engineer',pay:120599,g:'m'},{id:'MEL',label:'Chief Marine Engineer',pay:132307,g:'m'},{id:'FM',label:'Fire Marshal',pay:122474,g:'b'},{id:'SFM1',label:'Supervising FM\u00a01',pay:153332,g:'b'},{id:'SFM2',label:'Supervising FM\u00a02',pay:202252,g:'b'}];
+/* Top pay for each rank is in rules.js (rankTopPay). */
+const RANKS=[{id:'FF'},{id:'LT'},{id:'CAPT'},{id:'BC'},{id:'DC'},{id:'WIPER',label:'Wiper',g:'m'},{id:'PILOT',label:'Pilot',g:'m'},{id:'MEU',label:'Assistant Marine Engineer',g:'m'},{id:'MEL',label:'Chief Marine Engineer',g:'m'},{id:'FM',label:'Fire Marshal',g:'b'},{id:'SFM1',label:'Supervising FM\u00a01',g:'b'},{id:'SFM2',label:'Supervising FM\u00a02',g:'b'}];
 /* Rank picker (owner, Nov. 7, 2026): FF to DC always shown; Marine Unit and Bureau of Fire Investigation ranks fold out below. A group opens on its own when its rank is picked. */
+RANKS.forEach(r=>{r.pay=RS.rankTopPay[r.id]});
+const FF_PAY=RS.rankTopPay.FF;
 const RGRP=[{g:'m',name:'Marine Unit ranks'},{g:'b',name:'Bureau of Fire Investigation ranks'}];
 const rBtn=r=>`<button type="button" data-r="${r.id}">${r.label||r.id}${r.sub?`<small>${r.sub}</small>`:''}<small>${kfmt(r.pay)}</small></button>`;
 const rankHTML=()=>`<div class="rmain">${RANKS.filter(r=>!r.g).map(rBtn).join('')}</div>`+RGRP.map(x=>`<details class="rgrp" data-g="${x.g}"><summary>${x.name}</summary><div class="rg">${RANKS.filter(r=>r.g===x.g).map(rBtn).join('')}</div></details>`).join('');
@@ -1065,7 +1071,7 @@ const BILLS=[
    what:'Tier 3 pays 50% of your final average salary once you have 20 years.',step:5}
 ];
 /* Current law, used by both calculators: full escalation at 23 years and the +1% a year longevity bonus (FY2027 state budget, signed May 27, 2026). */
-const LAW_ESC=23,LAW_BONUS='yearly';
+const LAW_ESC=R3.fullEscalationYears,LAW_BONUS='yearly';
 const PENDING=BILLS.filter(b=>!b.law);
 /* Bills that don't pass by the end of the two-year session die and have to be introduced again with new numbers. */
 const SESSION_END='This is a 2025–26 bill. The session ends Dec. 31, 2026. If it hasn’t passed by then, it dies and would have to be introduced again in 2027 under a new number.';
@@ -1099,8 +1105,8 @@ $('billsTag').textContent=`${PENDING.length} being considered · ${BILLS.filter(
 /* ---------- saved state (this device only) ---------- */
 const KEY='fdny-tier3-v2';
 const DEF={
-  q:{fas:'',svc:276,dis:false,esc:23,rank:'FF',topPay:109352,b40:false},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:23,rank:'FF',topPay:109352,cur:'',rankSet:false,eqOn:false,eq:'',lodi:{},onetime:{},ss:2400,cpi:3,goal:'',b40:false,pays:{},earnV:2}
+  q:{fas:'',svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,b40:false},
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,cur:'',rankSet:false,eqOn:false,eq:'',lodi:{},onetime:{},ss:2400,cpi:3,goal:'',b40:false,pays:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1113,11 +1119,11 @@ function cleanState(){
   {const o=p.pays,c={};if(o&&typeof o==='object')for(const y in o){if(!/^\d{4}$/.test(y)||!Array.isArray(o[y]))continue;const a=o[y].filter(r=>Array.isArray(r)&&realDate(r[0])&&r[0].slice(0,4)===y&&Math.abs(+r[1])<1e6).map(r=>[r[0],+r[1]]);if(a.length)c[y]=a}p.pays=c}
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
   if(!impMode(p.mode)) p.mode='manual';
-  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=540))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=109352}}
+  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=540))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=FF_PAY}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
   /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
-  if(!p.rankSet&&!p.cur&&p.rank==='LT'&&+p.topPay===140212){p.rank='FF';p.topPay=109352}
-  if(ST.q.rank==='LT'&&+ST.q.topPay===140212){ST.q.rank='FF';ST.q.topPay=109352}
+  if(!p.rankSet&&!p.cur&&p.rank==='LT'&&+p.topPay===140212){p.rank='FF';p.topPay=FF_PAY}
+  if(ST.q.rank==='LT'&&+ST.q.topPay===140212){ST.q.rank='FF';ST.q.topPay=FF_PAY}
 }
 let earnWiped=false;
 function loadState(){
@@ -1154,12 +1160,12 @@ loadState();
    'steps' is the S9306/A10438 version that did not pass, kept only for reference. */
 function bonusPct(S,ver){
   if(!ver||S<25-1e-9) return 0;
-  if(ver==='yearly') return Math.min(0.15,0.05+0.01*Math.floor(S-25+1e-9));
+  if(ver==='yearly'){const L=RS.longevityBonus;return S<L.startYears-1e-9?0:Math.min(L.maxPct,L.startPct+L.perYearPct*Math.floor(S-L.startYears+1e-9))}
   return S>=35-1e-9?0.15:S>=30-1e-9?0.10:0.05;
 }
 /* Full escalation from F years of service (23 under current law); 1/36 less for each month short, none at 3+ years short. */
-function escFrac(S,F){const before=Math.max(0,Math.round((F-S)*12));return before>=36?0:(36-before)/36}
-function colaRateOf(cpi){let r=Math.ceil(cpi*100/2*10-1e-9)/10/100;return Math.min(0.03,Math.max(0.01,r))}
+function escFrac(S,F){const N=R3.escalationRampMonths,before=Math.max(0,Math.round((F-S)*12));return before>=N?0:(N-before)/N}
+function colaRateOf(cpi){let r=Math.ceil(cpi*100/2*10-1e-9)/10/100;return Math.min(RS.cola.maxRate,Math.max(RS.cola.minRate,r))}
 
 /* ---------- reusable service slider ---------- */
 /* 45 years: someone credited from age 17 (e.g. EMS) can work to 62 (owner, Nov. 5, 2026). */
@@ -1241,8 +1247,8 @@ function renderQuick(){
   const o=$('qOut');
   if(!fas){o.innerHTML=`<div class="k">Your pension in your first year of retirement</div><div class="empty">Type your final average salary to see your monthly pension.</div>`;return}
   /* S5058A, if checked: an extra 1/40th of final average salary for each year (prorated by month) past 20. */
-  const bp=dis?0:bonusPct(S,LAW_BONUS),add=bp*num(q.topPay),extra=!dis&&q.b40?fas*Math.max(0,m-240)/12/40:0,base=(dis?0.75:0.5)*(fas+add)+extra,mon=base/12;
-  const F=q.esc,frac=dis?0:escFrac(S,F),r=frac*0.03;
+  const bp=dis?0:bonusPct(S,LAW_BONUS),add=bp*num(q.topPay),extra=!dis&&q.b40?fas*Math.max(0,m-240)/12/40:0,base=(dis?R3.disabilityPct:R3.pensionPct)*(fas+add)+extra,mon=base/12;
+  const F=q.esc,frac=dis?0:escFrac(S,F),r=frac*R3.escalationMaxRate;
   const grown=y=>usd(mon*Math.pow(1+r,y));
   const billName=F===20?' (if S9203 passes)':'';
   let note;
@@ -1266,8 +1272,8 @@ function renderQuick(){
 /* "Don't forget about taxes": a folded box under the estimated payments, not on a 3/4s. */
 let taxOpen=false;
 /* 2026 federal income tax (IRS Rev. Proc. 2025-32): standard deduction, then [top of bracket, rate] on taxable income. */
-const FED={mfj:{ded:32200,b:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]]},
-  single:{ded:16100,b:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]]}};
+/* From rules.js; null there means no top. */
+const FED=(t=>{const f=x=>({ded:x.standardDeduction,b:x.brackets.map(([hi,r])=>[hi===null?Infinity:hi,r])});return {mfj:f(t.marriedJoint),single:f(t.single)}})(RULES.shared.federalTax);
 function fedTax(inc,st){let t=0,lo=0;const x=Math.max(0,inc-FED[st].ded);for(const [hi,r] of FED[st].b){if(x>lo)t+=(Math.min(x,hi)-lo)*r;lo=hi}return t}
 function taxBox(id,inc){
   const pct=st=>Math.round(fedTax(inc,st)/inc*100);
@@ -1371,7 +1377,7 @@ function fasFromEarnings(retDate,appt){
   const rows=[];
   for(let y=apptY;y<=lastY;y++){
     const v=vals[y];let limit=null,counted=v;
-    if(y-2>=apptY&&vals[y-1]>0&&vals[y-2]>0){limit=1.1*(vals[y-1]+vals[y-2])/2;counted=Math.min(v,limit)}
+    if(y-2>=apptY&&vals[y-1]>0&&vals[y-2]>0){limit=R3.fasCapPct*(vals[y-1]+vals[y-2])/2;counted=Math.min(v,limit)}
     rows.push({y,v,limit,counted,kind:kind[y]});
   }
   let best=null;
@@ -1433,7 +1439,7 @@ function rollBest(retDate,appt){
     let tot=0,cut=0;
     for(let k=0;k<3;k++){
       const a=addY(st,k),b=addY(st,k+1),v=sum(a,b),p1=sum(addY(st,k-1),a),p2=sum(addY(st,k-2),addY(st,k-1));
-      const c=addY(st,k-2)>=A&&p1>0&&p2>0?Math.min(v,1.1*(p1+p2)/2):v;tot+=c;cut+=v-c;
+      const c=addY(st,k-2)>=A&&p1>0&&p2>0?Math.min(v,R3.fasCapPct*(p1+p2)/2):v;tot+=c;cut+=v-c;
     }
     const avg=tot/3;
     if(!best||avg>best.fas+0.005) best={fas:avg,from:new Date(st),to:new Date(e),start:new Date(st).getFullYear(),end:new Date(e-1).getFullYear(),cut,rolling:true};
@@ -1446,15 +1452,15 @@ function scenario(months,c){
   const S=months/12,retDate=addM(c.eq,months);
   const fr=fasFromEarnings(retDate,c.appt),baseFas=fr.best?fr.best.fas:0;
   const bp=c.dis?0:bonusPct(S,c.bonus),bonusAdd=baseFas?bp*c.topPay:0,fas=baseFas+bonusAdd;
-  const extra=c.b40?baseFas*Math.max(0,months-240)/12/40:0,base=(c.dis?0.75:0.5)*fas+extra,retAge=c.age+S;
-  const frac=c.dis?0:escFrac(S,c.esc),escRate=frac*Math.min(c.cpi,0.03),colaRate=colaRateOf(c.cpi);
-  const vsf=c.dis?0:VSF,offset=c.dis?0:0.5*c.ss*12,drop=vsf*Math.max(0,Math.floor(months-240))/12;
+  const extra=c.b40?baseFas*Math.max(0,months-240)/12/40:0,base=(c.dis?R3.disabilityPct:R3.pensionPct)*fas+extra,retAge=c.age+S;
+  const frac=c.dis?0:escFrac(S,c.esc),escRate=frac*Math.min(c.cpi,R3.escalationMaxRate),colaRate=colaRateOf(c.cpi);
+  const vsf=c.dis?0:VSF,offset=c.dis?0:R3.socialSecurityOffsetPct*c.ss*12,drop=vsf*Math.max(0,Math.floor(months-240))/12;
   const rows=[];let pen=base,colaTot=0,offApplied=false,life=drop;
   for(let t=0;t<120;t++){
     const age=retAge+t;if(!(age<=90.0001)) break;
     if(t>=1){
       const colaOk=c.dis?t>=5:(age>=62&&t>=5)||(age>=55&&t>=10);
-      const incE=pen*escRate,incC=colaOk?Math.min(pen,18000)*colaRate:0;
+      const incE=pen*escRate,incC=colaOk?Math.min(pen,RS.cola.firstDollars)*colaRate:0;
       if(incC>incE){pen+=incC;colaTot+=incC}else pen+=incE;
     }
     if(age>=62&&!offApplied){pen=Math.max(0,pen-offset);offApplied=true}
@@ -1544,7 +1550,7 @@ function billsOnNote(c){
 function gapNote(c){const k=known(),n=[];for(let y=c.appt.getFullYear()+1;y<NOW_Y;y++) if(!(k[y]>0)) n.push(y);
   return n.length?`<p class="hint">${plural(n.length,'past year')} ${n.length>1?'are':'is'} blank in step 2. The estimate uses only the years you filled in.</p>`:''}
 /* Mandatory retirement age: 62 (RSSL § 501, per the Tier 3 Enhanced SPD). c.age is the age at the equated date. */
-const AGE_OUT=62;
+const AGE_OUT=R3.mandatoryRetirementAge;
 const ageOutM=c=>Math.floor((AGE_OUT-c.age)*12+1e-9);
 function renderP(){
   const p=ST.p,c=pParams();pSlider.cap(c.ok?ageOutM(c):Infinity);ST.p.svc=pSlider.value;
@@ -1652,7 +1658,7 @@ function renderP(){
 function renderGoal(c,m,you){
   const g=num(ST.p.goal),o=$('goalOut');
   if(!g){o.innerHTML='<span class="hint">Enter an amount to see the final average salary it takes, and when your earnings get you there.</span>';return}
-  const pctOf=c.dis?0.75:0.5,need=g*12/pctOf;
+  const pctOf=c.dis?R3.disabilityPct:R3.pensionPct,need=g*12/pctOf;
   if(c.dis){
     const ok=you.base/12>=g;
     o.innerHTML=`<p>For ${usd(g)} a month on a 3/4s, you need a final average salary of <b>${usd(need)}</b>.</p><p>${ok?`<b style="color:var(--sage)">Your numbers get you there:</b> ${usd(you.base/12)} a month.`:`Yours is ${usd(you.fas)}, which pays ${usd(you.base/12)} a month.`}</p>`;return;
@@ -2223,7 +2229,9 @@ $('askForm').addEventListener('submit',async e=>{
 /* Old tabs (phones keep them for days) never load new versions on their own. Compare the live page with the one
    loaded; when it changed, reload if the tab sat unused a long time, otherwise offer a refresh bar. Owner, Nov. 3, 2026. */
 (()=>{
-  const url=location.pathname,get=()=>fetch(url,{cache:'no-store'}).then(r=>r.ok?r.text():null).catch(()=>null);
+  /* rules.js counts too: a rule change alone should still refresh old tabs. */
+  const url=location.pathname,one=u=>fetch(u,{cache:'no-store'}).then(r=>r.ok?r.text():null).catch(()=>null),
+    get=()=>Promise.all([one(url),one('/rules.js')]).then(([a,b])=>a===null||b===null?null:a+b);
   let base=null,hiddenAt=0,busy=false;
   const keep=()=>{try{if(typeof ST!=='undefined'&&typeof KEY!=='undefined'&&!(typeof noSave!=='undefined'&&noSave))localStorage.setItem(KEY,JSON.stringify(ST))}catch{}};
   const go=()=>{keep();location.reload()};
