@@ -184,9 +184,12 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .stop.on::before{background:var(--accent)}
 
 /* basics */
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 @media (min-width:760px){.tiles{grid-template-columns:repeat(4,1fr)}}
-.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);display:grid;gap:4px;align-content:start}
+.tile{padding:14px 14px 14px 0;display:grid;gap:4px;align-content:start}
+.tile:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
+.tile:nth-child(-n+2){border-bottom:1px solid var(--line)}
+@media (min-width:760px){.tile{padding-left:14px}.tile:first-child{padding-left:0}.tile+.tile{border-left:1px solid var(--line)}.tile:nth-child(-n+2){border-bottom:0}}
 .tile b{font-size:clamp(26px,6vw,32px);font-weight:800;line-height:1.05;color:var(--c)}
 .tile span{font-size:15px;color:var(--muted)}
 .qa{display:grid;gap:10px}
@@ -286,6 +289,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .mode[aria-pressed="true"] .mi{background:var(--accent);color:#fff}
 .mode .tick{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:none;place-items:center}
 .mode .tick svg{width:15px;height:15px;stroke-width:3.2}
+.mode .mtag{font-style:normal;font-size:12.5px;font-weight:700;line-height:1.2;color:var(--sage);background:color-mix(in srgb,var(--sage) 13%,var(--surface));border-radius:999px;padding:2px 8px}
+@media (max-width:360px){.mode .mtag{font-size:11.5px;padding:2px 6px}}
 .mode[aria-pressed="true"] .tick{display:grid}
 .panelbox{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:14px;background:var(--soft)}
 .panelbox ol{margin:0;padding-left:22px;display:grid;gap:6px}
@@ -846,10 +851,9 @@ body.has-pbar .app{padding-bottom:110px}
             <span class="hint" style="margin-top:-4px">Your rank at retirement starts out the same. Change it if you expect a promotion.</span>
             <div class="ranks" id="curRanks" role="group" aria-labelledby="curLbl"></div></div>
           <div class="rankbox" id="pRank" hidden><span class="flabel" style="font-size:16px">Rank at retirement</span>
-            <span class="hint" style="margin-top:-4px">For the longevity bonus: at 25+ years, 5% to 15% of your rank's top pay is added to your final average salary.</span>
+            <span class="hint" style="margin-top:-4px">At 25+ years, 5% to 15% of your rank’s <b>base pay</b> is added to your final average salary.</span>
             <div class="ranks" role="group" aria-label="Rank at retirement"></div>
-            <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div>
-            <span class="hint">Top base pay from the UFA (Aug. 2024 and July 2025) and UFOA (July 2025) schedules. Type over it if yours is different.</span></div>
+            <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div></div>
         </div>
       </section>
 
@@ -859,8 +863,8 @@ body.has-pbar .app{padding-bottom:110px}
         <p class="tierbox" id="earnReset" role="status" hidden><b>Please add your earnings again</b><span>We changed how earnings are counted (LODI pay is now included from your W-2s), so the numbers you saved before were cleared. Your dates are still saved.</span></p>
         <div class="modes" role="group" aria-label="How to enter your earnings">
           <button type="button" class="mode" data-mode="manual" aria-pressed="true"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg></span><b>Type in each year</b><small>Enter by hand what you made each year</small></button>
-          <button type="button" class="mode" data-mode="import" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></span><b>Import from NYCAPS ESS</b><small>Your numbers automatically imported from Tax Summary</small></button>
-          <button type="button" class="mode" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Upload your W‑2s</b><small>Best option: automatically calculates with LODI pay</small></button>
+          <button type="button" class="mode" data-mode="import" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></span><b>Import from NYCAPS ESS</b><small>Your numbers automatically imported from Tax Summary</small><em class="mtag">Fastest</em></button>
+          <button type="button" class="mode" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Upload your W‑2s</b><small>Automatically calculates with LODI pay</small><em class="mtag">Most accurate</em></button>
         </div>
 
         <div id="manualPanel" class="field">
@@ -1549,7 +1553,8 @@ function renderWorksheet(c,m,you){
     let tag='',orange=false;
     if(after) tag='After you retire';
     else if(y===retY) tag='Year you retire';
-    else if(kind[y]==='est') tag=y===NOW_Y?'This year (estimate)':'Estimate';
+    else if(y===NOW_Y) tag=kind[y]==='est'?'Current year (estimate)':'Current year';
+    else if(kind[y]==='est') tag='Estimate';
     else if(y===a20Y&&!c.dis) tag='20 years in '+fmtMY(addM(c.eq,240));
     else if(y===c.appt.getFullYear()) tag='Appointed '+fmtMY(c.appt);
     if((fsP||a20P)&&!(v>0)){tag='Needed: type this year';orange=true}
@@ -1563,7 +1568,7 @@ function renderWorksheet(c,m,you){
   }
   $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));
   const futN=showTo-NOW_Y,fb=$('futBtn');
-  fb.hidden=futN<1;document.querySelector('.ws').classList.toggle('hidefut',!showFut);fb.setAttribute('aria-expanded',showFut);
+  fb.hidden=futN<1;$('wsBox').querySelector('.ws').classList.toggle('hidefut',!showFut);fb.setAttribute('aria-expanded',showFut);
   fb.textContent=showFut?'Hide future years':`Show future years (${NOW_Y+1===showTo?showTo:(NOW_Y+1)+'–'+showTo})${Object.keys(you.fsBy).some(y=>+y>NOW_Y)?' · your final average salary years are there':''}`;
   const k=known(),ks=Object.keys(k).map(Number).filter(y=>k[y]>0).sort((a,b)=>a-b),last=ks[ks.length-1];
   $('growAmt').hidden=!p.growOn;
