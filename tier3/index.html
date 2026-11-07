@@ -184,7 +184,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .stop.on::before{background:var(--accent)}
 
 /* basics */
-.keys{display:grid;gap:14px;margin:0 0 6px}
+.keys{display:grid;gap:16px;margin:0 0 6px;padding:0;list-style:none}
+.keys>li{position:relative;padding-left:28px;font-size:18px;line-height:1.45}
+.keys>li::before{content:"";position:absolute;left:2px;top:.7em;width:15px;height:15px;border-radius:50%;background:var(--sage)}
 .keys p{margin:0;font-size:18px;line-height:1.45}
 .keys .big{font-size:1.5em;font-weight:800;line-height:1.1;color:var(--sage)}
 .keys details{margin-top:8px}
@@ -591,18 +593,18 @@ body.has-pbar .app{padding-bottom:110px}
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
   <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span></div>
-  <div class="vhead"><h1>Pension basics</h1><p>How your Tier 3 pension works, in plain English.</p></div>
+  <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
-  <div class="keys">
-    <p>You get paid <span class="big">50%</span> of your final average salary once you have 20 years.</p>
-    <div><p>Your final average salary is based off the <span class="big">best 3</span> years in a row of pay, overtime included, with a 10% look-back (explained below).</p>
+  <ul class="keys">
+    <li>You get paid <span class="big">50%</span> of your final average salary once you have 20 years.</li>
+    <li><p>Your final average salary is based off the <span class="big">best 3</span> years in a row of pay, overtime included, with a 10% look-back (explained below).</p>
       <details><summary>What’s the 10% look-back?</summary><div class="lb">
         <p>Each year in your best 3 only counts up to <b>110% of the average of the two years before it</b>. Anything over that is left out.</p>
         <p class="ex">Example: you made $120,000 and $130,000, so those two average $125,000. The next year can count up to $137,500. If you made $150,000 that year, $12,500 doesn’t count.</p>
-        <p>So a big jump in one year, like a huge overtime year or a promotion, can get cut. Pay that climbs steadily over your last few years counts in full.</p></div></details></div>
-    <p>At <span class="big">23 years</span>, you get full escalation (a cost-of-living raise), so your whole pension keeps up with inflation.</p>
-    <p>On top of your pension, you get <span class="big">$12,000</span> a year from the VSF (Variable Supplements Fund).</p>
-  </div>
+        <p>So a big jump in one year, like a huge overtime year or a promotion, can get cut. Pay that climbs steadily over your last few years counts in full.</p></div></details></li>
+    <li>At <span class="big">23 years</span>, you get full escalation (a cost-of-living raise), so your whole pension keeps up with inflation.</li>
+    <li>On top of your pension, you get <span class="big">$12,000</span> a year from the VSF (Variable Supplements Fund).</li>
+  </ul>
 
   <div class="qa">
     <details><summary>When can I retire, and what if I leave before 20 years?</summary><div class="ans">
@@ -612,26 +614,25 @@ body.has-pbar .app{padding-bottom:110px}
         <li><b>5 to 10 years:</b> you’re vested, so you pick one: take back the money you paid in, or leave it in and collect a vested pension later. You can’t do both.</li>
         <li><b>10 to 20 years:</b> you can’t take your contributions back. You get a vested pension.</li>
       </ul>
-      <p>A <b>vested pension</b> is 2.1% of your final average salary for each year you worked. Leave with 15 years and it’s 31.5%. It starts when you would have hit 20 years, or at age 55 with a small cut if that comes first. There’s no VSF, and it drops at 62 by half your Social Security, like a regular pension. (Tier 3 plan description, RSSL § 516.)</p>
+      <p>A <b>vested pension</b> is 2.1% of your final average salary for each year you worked. Leave with 15 years and it’s 31.5%. It starts when you would have hit 20 years, or at age 55 with a small cut if that comes first. There’s no VSF, and it drops at 62 by half your Social Security, like a regular pension.</p>
       <p><b>Once you have 20 years on the job, you can retire and collect 50% of your final average salary for the rest of your life.</b></p>
       <p>The 50% doesn't go up if you stay longer. (A bill in Albany, S5058A, would add 1/40th of your final average salary for each year past 20. It hasn't passed. See <a href="#bills">Bills in Albany</a>.) Staying can still raise your pension in three ways: your final average salary is usually higher, your pension can grow with inflation (escalation), and you bank extra VSF payments.</p>
       <p>Tier 3 members must retire by age 62.</p></div></details>
     <details><summary>What if I'm hurt on the job? (3/4s)</summary><div class="ans">
-      <p>An accident disability retirement (a "three-quarters") pays <b>75% of your final average salary</b>, at any length of service, and it's generally not taxed.</p>
+      <p>An accident disability retirement ("3/4") pays <b>75% of your final average salary</b>, at any length of service, and it's generally not taxed.</p>
       <ul>
-        <li>No escalation, VSF or banked variable.</li>
-        <li>No Social Security offset at 62.</li>
-        <li>After 5 years retired, at any age, you get the COLA on the first $18,000.</li>
+        <li><b>No escalation.</b> After 5 years retired, at any age, you get the COLA instead: half of inflation (at least 1%, at most 3%), but only on the first $18,000 of your pension. That's a raise of $180 to $540 a year, no matter how big your pension is.</li>
+        <li><b>No VSF or banked variable.</b> Those only go with a service retirement.</li>
+        <li><b>No Social Security offset at 62.</b> Your pension doesn't drop at 62.</li>
         <li>You keep health insurance no matter how many years you have.</li>
       </ul>
-      <p>It must be approved by the Pension Fund's Medical Board and Board of Trustees. You don't need to qualify for Social Security Disability to get a 3/4s. (An ordinary, off-duty disability pension does require it.)</p></div></details>
+      <p>It must be approved by the Pension Fund's Medical Board and Board of Trustees. You don't need to qualify for Social Security Disability to get a 3/4s.</p></div></details>
     <details><summary>Do I pay taxes on my pension?</summary><div class="ans">
       <p>A service pension is subject to federal income tax but not New York State or New York City income tax.</p>
       <p>An accident disability (3/4s) pension is generally not taxed. If you move out of state, check that state's rules or ask a tax professional.</p></div></details>
     <details><summary>What is an equated date?</summary><div class="ans">
-      <p>It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to <b>3 years</b> of military service once you have 5 years in (Chapter 548 of the Laws of 2000). Uniformed service right before the FDNY, like EMS, police or Correction, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier <b>equated date</b>, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus.</p>
-      <p>Appointed in May 2012 with 3 years of military bought back? Your equated date is May 2009, so you hit 20 years in May 2029, at 17 years on the job.</p>
-      <p>On the personal numbers page, check “Do you have a different equated date?” in step 1 and enter your equated date. Your pay still counts from your appointment. Confirm your equated date with the Pension Fund.</p></div></details>
+      <p>It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to <b>3 years</b> of military service once you have 5 years in. Uniformed service right before the FDNY, like EMS or the NYPD, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier <b>equated date</b>, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus.</p>
+      <p><b>Corrections time doesn’t count toward your 20 years in Tier 3.</b> You can transfer your corrections pension membership to the Fire Pension Fund, and if it started before July 1, 2009, that makes you Tier 2. But the years themselves don’t move your dates or add to your pension. Check with the Pension Fund about your own time.</p></div></details>
     <details><summary>What is my final average salary?</summary><div class="ans">
       <p>It's the average of your <b>best 3 years in a row</b>, overtime included. They can be any 3 years in your career, not just your last ones, and each year runs from your retirement month and day, not January to December. Retire April 6, and each year runs April 6 to April 5.</p>
       <p>The personal numbers page uses whole calendar years until you add your paychecks from ESS under <b>Find your exact best 3</b>. Then it counts each year the Fund's way.</p>
