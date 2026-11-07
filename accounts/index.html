@@ -363,7 +363,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 })();
 </script>
 <script>
-/* A few more things: one question open at a time. The tapped question holds its place while the old answer closes, then glides up under the Home bar. */
+/* A few more things: one question open at a time. Opening one closes the other, and the tapped question stays exactly where it was (no scrolling). */
 document.addEventListener('click',e=>{
   const s=e.target.closest('.qs>details.q>summary');if(!s) return;
   const d=s.parentElement;e.preventDefault();
@@ -372,8 +372,9 @@ document.addEventListener('click',e=>{
   d.parentElement.querySelectorAll(':scope>details.q[open]').forEach(o=>{o.open=false});
   d.open=true;
   window.scrollBy({top:s.getBoundingClientRect().top-before,behavior:'instant'});
-  const bar=document.querySelector('.top'),off=(bar?bar.getBoundingClientRect().bottom:0)+12;
-  requestAnimationFrame(()=>window.scrollBy({top:s.getBoundingClientRect().top-off,behavior:'smooth'}));
+  /* Only if the question somehow ended up under the top bar, bring it back into view. */
+  const bar=document.querySelector('.view:not([hidden]) .topbar, .top'),off=(bar?bar.getBoundingClientRect().bottom:0)+8,t=s.getBoundingClientRect().top;
+  if(t<off) window.scrollBy({top:t-off,behavior:'smooth'});
 });
 </script>
 </body>
