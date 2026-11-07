@@ -134,7 +134,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .ranks{display:grid;gap:8px}
 .rmain,.rg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 .rgrp[data-g=m] .rg{grid-template-columns:repeat(2,minmax(0,1fr))}
-.rgrp[data-g=b] .rg{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rgrp[data-g=b] .rg{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rgrp[data-g=b] button[data-r=FM]{grid-column:1/-1}
 .rgrp summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:6px 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-weight:600;font-size:16px;color:var(--steel)}
 .rgrp summary::-webkit-details-marker{display:none}
 .rgrp summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;transition:transform .2s}
@@ -1053,7 +1054,7 @@ const SAMPLE=[118000,124000,129000,133000,138000,142000,147000,151000,156000,160
 /* Longevity bonus (FY2027 budget, signed May 27, 2026; S9202/A10392 as written cover any member "under the plan in which they are enrolled", Tier 2 included):
    at 25+ years, 5% of the rank's top pay plus 1% per year past 25, capped at 15%, added to final average salary. Service retirements only, as on the Tier 3 page.
    Top-step annual base salary by rank: UFA schedules eff. Aug 1, 2024 (FF, FM, Wiper) and Jul 28, 2025 (Pilot, Marine Engineer); UFOA schedule eff. Jul 31, 2025 (LT, CAPT, BC, DC). */
-const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278},{id:'WIPER',label:'Wiper',pay:113336,g:'m'},{id:'PILOT',label:'Pilot',pay:135807,g:'m'},{id:'MEU',label:'Marine Engineer',sub:'Without license',pay:120599,g:'m'},{id:'MEL',label:'Marine Engineer',sub:'With license',pay:132307,g:'m'},{id:'FM',pay:122474,g:'b'},{id:'SFM1',label:'SFM\u00a01',pay:153332,g:'b'},{id:'SFM2',label:'SFM\u00a02',pay:202252,g:'b'}];
+const RANKS=[{id:'FF',pay:109352},{id:'LT',pay:140212},{id:'CAPT',pay:160941},{id:'BC',pay:209563},{id:'DC',pay:232278},{id:'WIPER',label:'Wiper',pay:113336,g:'m'},{id:'PILOT',label:'Pilot',pay:135807,g:'m'},{id:'MEU',label:'Marine Engineer',sub:'Without license',pay:120599,g:'m'},{id:'MEL',label:'Marine Engineer',sub:'With license',pay:132307,g:'m'},{id:'FM',label:'Fire Marshal',pay:122474,g:'b'},{id:'SFM1',label:'Supervising FM\u00a01',pay:153332,g:'b'},{id:'SFM2',label:'Supervising FM\u00a02',pay:202252,g:'b'}];
 /* Rank picker (owner, Nov. 7, 2026): FF to DC always shown; Marine Unit and Bureau of Fire Investigation ranks fold out below. A group opens on its own when its rank is picked. */
 const RGRP=[{g:'m',name:'Marine Unit ranks'},{g:'b',name:'Bureau of Fire Investigation ranks'}];
 const rBtn=r=>`<button type="button" data-r="${r.id}">${r.label||r.id}${r.sub?`<small>${r.sub}</small>`:''}<small>${kfmt(r.pay)}</small></button>`;
