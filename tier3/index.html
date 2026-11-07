@@ -184,14 +184,16 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .stop.on::before{background:var(--accent)}
 
 /* basics */
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-@media (min-width:760px){.tiles{grid-template-columns:repeat(4,1fr)}}
-.tile{padding:14px 14px 14px 0;display:grid;gap:4px;align-content:start}
-.tile:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
-.tile:nth-child(-n+2){border-bottom:1px solid var(--line)}
-@media (min-width:760px){.tile{padding-left:14px}.tile:first-child{padding-left:0}.tile+.tile{border-left:1px solid var(--line)}.tile:nth-child(-n+2){border-bottom:0}}
-.tile b{font-size:clamp(26px,6vw,32px);font-weight:800;line-height:1.05;color:var(--c)}
-.tile span{font-size:15px;color:var(--muted)}
+.keys{display:grid;gap:14px;margin:0 0 6px}
+.keys p{margin:0;font-size:18px;line-height:1.45}
+.keys .big{font-size:1.5em;font-weight:800;line-height:1.1;color:var(--sage)}
+.keys details{margin-top:8px}
+.keys summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:700;font-size:16px;color:var(--steel);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;min-height:44px}
+.keys summary::-webkit-details-marker{display:none}
+.keys summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
+.keys details[open] summary::after{transform:rotate(225deg) translate(-2px,-2px)}
+.keys .lb{margin-top:10px;background:var(--soft);border-radius:var(--r-sm);padding:12px 14px;display:grid;gap:8px;font-size:16px}
+.keys .lb p{font-size:16px}
 .qa{display:grid;gap:10px}
 .qa details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
 .qa summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:16px 18px;font-weight:700;font-size:18px;min-height:60px}
@@ -589,28 +591,31 @@ body.has-pbar .app{padding-bottom:110px}
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
   <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span></div>
-  <div class="vhead"><h1>Pension basics</h1><p>How your Tier 3 pension works, in plain English. Tap any question to open it.</p></div>
+  <div class="vhead"><h1>Pension basics</h1><p>How your Tier 3 pension works, in plain English.</p></div>
 
-  <div class="tiles">
-    <div class="tile" style="--c:var(--accent)"><b>50%</b><span>of your final average salary once you have 20 years</span></div>
-    <div class="tile" style="--c:var(--steel)"><b>Best 3</b><span>years in a row of pay, overtime included, set your final average salary</span></div>
-    <div class="tile" style="--c:var(--sage)"><b>23 years</b><span>gets full escalation, so your whole pension keeps up with inflation</span></div>
-    <div class="tile" style="--c:var(--gold)"><b>$12,000</b><span>a year from the VSF, on top of your pension</span></div>
+  <div class="keys">
+    <p>You get paid <span class="big">50%</span> of your final average salary once you have 20 years.</p>
+    <div><p>Your final average salary is based off the <span class="big">best 3</span> years in a row of pay, overtime included, with a 10% look-back (explained below).</p>
+      <details><summary>What’s the 10% look-back?</summary><div class="lb">
+        <p>Each year in your best 3 only counts up to <b>110% of the average of the two years before it</b>. Anything over that is left out.</p>
+        <p class="ex">Example: you made $120,000 and $130,000, so those two average $125,000. The next year can count up to $137,500. If you made $150,000 that year, $12,500 doesn’t count.</p>
+        <p>So a big jump in one year, like a huge overtime year or a promotion, can get cut. Pay that climbs steadily over your last few years counts in full.</p></div></details></div>
+    <p>At <span class="big">23 years</span>, you get full escalation (a cost-of-living raise), so your whole pension keeps up with inflation.</p>
+    <p>On top of your pension, you get <span class="big">$12,000</span> a year from the VSF (Variable Supplements Fund).</p>
   </div>
 
   <div class="qa">
-    <details><summary>When can I retire, and how much do I get?</summary><div class="ans">
-      <p>Once you have <b>20 years</b> on the job, you can retire and collect <b>50% of your final average salary</b> for the rest of your life. That comes from S4727, signed into law as Chapter 692 of the Laws of 2025.</p>
-      <p>The 50% doesn't go up if you stay longer. (A bill in Albany, S5058A, would add 1/40th of your final average salary for each year past 20. It hasn't passed. See <a href="#bills">Bills in Albany</a>.) Staying can still raise your pension in three ways: your final average salary is usually higher, your pension can grow with inflation (escalation), and you bank extra VSF payments.</p>
-      <p>FDNY members must retire by age 62.</p></div></details>
-    <details><summary>What if I leave before 20 years?</summary><div class="ans">
+    <details><summary>When can I retire, and what if I leave before 20 years?</summary><div class="ans">
+      <p>You can leave the job whenever you want. What you get depends on how many years you have:</p>
       <ul>
-        <li><b>Under 5 years:</b> you're not vested. You can take your contributions back, and that ends your membership.</li>
-        <li><b>5 to 10 years:</b> you're vested. You can still take your contributions back, but you give up the vested pension.</li>
-        <li><b>10 years or more:</b> you can't withdraw your contributions. You get a vested pension instead. Call the Fund for when it starts and how much it pays.</li>
-        <li><b>Hurt off duty with under 5 years:</b> there's no ordinary disability pension. You get your contributions back when you leave.</li>
+        <li><b>Under 5 years:</b> no pension. You get back the money you paid in (your contributions).</li>
+        <li><b>5 to 10 years:</b> you’re vested, so you pick one: take back the money you paid in, or leave it in and collect a vested pension later. You can’t do both.</li>
+        <li><b>10 to 20 years:</b> you can’t take your contributions back. You get a vested pension.</li>
       </ul>
-      <p>The calculators don't estimate a vested pension.</p></div></details>
+      <p>A <b>vested pension</b> is 2.1% of your final average salary for each year you worked. Leave with 15 years and it’s 31.5%. It starts when you would have hit 20 years, or at age 55 with a small cut if that comes first. There’s no VSF, and it drops at 62 by half your Social Security, like a regular pension. (Tier 3 plan description, RSSL § 516.)</p>
+      <p><b>Once you have 20 years on the job, you can retire and collect 50% of your final average salary for the rest of your life.</b></p>
+      <p>The 50% doesn't go up if you stay longer. (A bill in Albany, S5058A, would add 1/40th of your final average salary for each year past 20. It hasn't passed. See <a href="#bills">Bills in Albany</a>.) Staying can still raise your pension in three ways: your final average salary is usually higher, your pension can grow with inflation (escalation), and you bank extra VSF payments.</p>
+      <p>Tier 3 members must retire by age 62.</p></div></details>
     <details><summary>What if I'm hurt on the job? (3/4s)</summary><div class="ans">
       <p>An accident disability retirement (a "three-quarters") pays <b>75% of your final average salary</b>, at any length of service, and it's generally not taxed.</p>
       <ul>
