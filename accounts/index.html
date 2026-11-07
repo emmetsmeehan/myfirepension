@@ -363,18 +363,16 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 })();
 </script>
 <script>
-/* A few more things: one question open at a time. Opening one closes the other, and the tapped question stays exactly where it was (no scrolling). */
+/* A few more things: one question open at a time. Opening one closes the other without moving the page. */
 document.addEventListener('click',e=>{
   const s=e.target.closest('.qs>details.q>summary');if(!s) return;
   const d=s.parentElement;e.preventDefault();
   if(d.open){d.open=false;return}
-  const before=s.getBoundingClientRect().top;
   d.parentElement.querySelectorAll(':scope>details.q[open]').forEach(o=>{o.open=false});
   d.open=true;
-  window.scrollBy({top:s.getBoundingClientRect().top-before,behavior:'instant'});
-  /* Only if the question somehow ended up under the top bar, bring it back into view. */
+  /* The page stays where it is. Only if the tapped question slid up under the top bar, line it up just below the bar. */
   const bar=document.querySelector('.view:not([hidden]) .topbar, .top'),off=(bar?bar.getBoundingClientRect().bottom:0)+8,t=s.getBoundingClientRect().top;
-  if(t<off) window.scrollBy({top:t-off,behavior:'smooth'});
+  if(t<off) window.scrollBy({top:t-off,behavior:'instant'});
 });
 </script>
 </body>
