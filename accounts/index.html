@@ -73,7 +73,6 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .key svg{color:var(--sage);margin-top:1px}
 .key b{display:block;font-size:17px}
 .key span{font-size:15.5px;color:var(--muted)}
-.acct.best{border:2px solid var(--sage)}
 .key.big{padding:14px 15px;border-width:1.5px}
 .key.big b{font-size:19px}
 .key.big span{font-size:16px;color:var(--ink)}
@@ -102,6 +101,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .more summary::after{content:"";width:8px;height:8px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;flex:none}
 .more[open] summary::after{transform:rotate(-135deg);margin-top:4px}
 .more .body{padding:0 0 16px;display:grid;gap:10px;font-size:16px}
+.more:not(:last-child){margin-bottom:-12px}
 .lim{width:100%;border-collapse:collapse;font-size:16px}
 .lim td{padding:8px 0;border-top:1px solid var(--line)}
 .lim tr:first-child td{border-top:0}
@@ -155,7 +155,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
     </div>
     <p class="hint" style="padding:0 4px;margin-top:-6px">Each account below comes in both. You can split your money between them and change it anytime.</p>
 
-    <article class="acct best" aria-labelledby="a457">
+    <article class="acct" aria-labelledby="a457">
       <div class="ahead"><h3 id="a457">457</h3><div class="pills"><span class="pill you">From your paycheck</span><span class="pill">Pre-tax or Roth</span></div></div>
       <div class="key big"><svg class="i" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><p><b>No penalty at any age once you leave the job.</b><span>Retire at 42 and you can use it the next day, with no 10% early-withdrawal penalty. It’s the only account here that can do that, which makes it the most flexible one for retiring early. You still pay income tax on pre-tax money.</span><span class="also">Money you roll in from a 401(k) or IRA keeps that account’s penalty rules.</span></p></div>
       <p class="what">You pick a percentage of each paycheck and the funds it goes into.</p>
@@ -173,6 +173,14 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
           <p><b>Close to retirement?</b> In the 3 years before your “normal retirement age,” the 457 may let you put in up to double the limit to make up for past years. The plan calls it Deferral Acceleration for Retirement. Call the plan before using it.</p>
           <p><b>Made over $150,000 last year?</b> Any extra catch-up money at 50 and up has to go in as Roth.</p>
           <p class="hint">2026 limits. The IRS raises them most years.</p>
+        </div>
+      </details>
+      <details class="more">
+        <summary>Move up to 20% into stocks or ETFs you pick</summary>
+        <div class="body">
+          <p>The Self-Directed Brokerage Option is a Charles Schwab account inside your 457. It lets you buy thousands of mutual funds and ETFs beyond the plan’s own funds, with up to 20% of your balance.</p>
+          <p>You need at least $5,000 in the plan to open it. It costs $12.50 a quarter on top of the regular Voya fee.</p>
+          <p class="hint">Meant for people comfortable picking their own investments.</p>
         </div>
       </details>
     </article>
@@ -194,6 +202,14 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
           <p>That’s on top of the 457. With both, someone under 50 can put in $49,000 a year.</p>
           <p><b>Made over $150,000 last year?</b> Any extra catch-up money at 50 and up has to go in as Roth.</p>
           <p class="hint">2026 limits. The IRS raises them most years.</p>
+        </div>
+      </details>
+      <details class="more">
+        <summary>Move up to 20% into stocks or ETFs you pick</summary>
+        <div class="body">
+          <p>The Self-Directed Brokerage Option is a Charles Schwab account inside your 401(k). It lets you buy thousands of mutual funds and ETFs beyond the plan’s own funds, with up to 20% of your balance.</p>
+          <p>You need at least $5,000 in the plan to open it. It costs $12.50 a quarter on top of the regular Voya fee.</p>
+          <p class="hint">Meant for people comfortable picking their own investments.</p>
         </div>
       </details>
     </article>
@@ -288,15 +304,6 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
       <summary>What does Voya cost?</summary>
       <div class="a">
         <p>$20 a quarter (waived your first year), charged once even if you have both plans, plus 0.04% a year on your balance. The funds’ own fees are low too: the S&amp;P 500 index fund costs about 0.04% a year.</p>
-      </div>
-    </details>
-
-    <details class="q">
-      <summary>Can I pick my own stocks or ETFs?</summary>
-      <div class="a">
-        <p>Yes, through the Self-Directed Brokerage Option, a Charles Schwab account inside your 457 or 401(k). It opens up thousands of mutual funds and ETFs beyond the plan’s own funds. It isn’t offered in the NYCE IRA.</p>
-        <p>You need at least $5,000 in the plan to open it, and you can move up to 20% of your balance into it. It costs $12.50 a quarter on top of the regular Voya fee.</p>
-        <p class="hint">It’s meant for people comfortable picking their own investments. Call the plan at (212) 306-7760 to set it up.</p>
       </div>
     </details>
 
