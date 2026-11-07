@@ -36,7 +36,11 @@ window.RULES = {
     "escalationSource": "RSSL 510(b)(2-a), FY2027 budget Part ZZ: full at 23 years, 1/36 less per month earlier",
     "socialSecurityOffsetPct": 0.5,
     "mandatoryRetirementAge": 62,
-    "mandatoryRetirementSource": "RSSL 501(15)"
+    "mandatoryRetirementSource": "RSSL 501(15)",
+    "vestingYears": 5,
+    "vestedPctPerYear": 0.021,
+    "vestedRefundUntilYears": 10,
+    "vestedSource": "RSSL 516; Tier 3 Enhanced SPD (Dec. 2019) p. 13-14: 2.1% of FAS per year, from 5 years; refund instead only under 10 years"
   },
   "tier2": {
     "pensionPct": 0.5,
