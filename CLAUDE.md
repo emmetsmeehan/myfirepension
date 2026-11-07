@@ -102,7 +102,7 @@ Other bills from the owner's union rep (not pension-math, not on the page yet, s
 
 Each pending bill card says it's a 2025–26 bill that dies if not passed by Dec. 31, 2026 (`SESSION_END` in both scripts). In January 2027, check whether each was reintroduced and update or remove its card.
 
-When any status changes, update its entry in the `BILLS` array (`step`, dates, `law`, `signed`, `chapter`, `note`), the "last checked" date in Bills in Albany, the Pension basics answers and the fine print.
+When any status changes, update its entry in the `BILLS` array (`step`, dates, `law`, `signed`, `chapter`, `note`), the "last checked" date in Bills in Albany (`<p class="hint checked">`, green with a check mark; change only the date, on both tier pages), the Pension basics answers and the fine print.
 
 ### S4727
 
