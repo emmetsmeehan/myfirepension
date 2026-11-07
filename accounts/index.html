@@ -117,6 +117,9 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .lim{width:100%;border-collapse:collapse;font-size:16px}
 .lim td{padding:8px 0;border-top:1px solid var(--line)}
 .lim tr:first-child td{border-top:0}
+.lim tr.gh th{text-align:left;font-size:14px;font-weight:600;color:var(--muted);padding:14px 0 4px}
+.lim tr.gh:first-child th{padding-top:4px}
+.lim tr.gh+tr td{border-top:0}
 .lim td:last-child{text-align:right;font-weight:700;white-space:nowrap;padding-left:12px}
 .amt{font-size:17px}
 .amt b{font-size:19px}
@@ -261,17 +264,20 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
       <div class="paid">
         <p><b>What the City puts in each year</b> (spread out over 13 payments)</p>
         <table class="lim">
+          <tr class="gh"><th colspan="2">Firefighters and fire officers</th></tr>
           <tr><td>Firefighter</td><td>$1,044.03</td></tr>
-          <tr><td>Fire Marshal</td><td class="soon">Coming soon</td></tr>
-          <tr><td>Wiper</td><td class="soon">Coming soon</td></tr>
-          <tr><td>Pilot</td><td class="soon">Coming soon</td></tr>
-          <tr><td>Marine Engineer (with license)</td><td class="soon">Coming soon</td></tr>
-          <tr><td>Marine Engineer (without license)</td><td class="soon">Coming soon</td></tr>
           <tr><td>Lieutenant</td><td>$1,656.89</td></tr>
-          <tr><td>Supervising Fire Marshal</td><td>$1,656.89</td></tr>
           <tr><td>Captain</td><td>$1,774.34</td></tr>
           <tr><td>Battalion Chief</td><td>$2,215.43</td></tr>
           <tr><td>Deputy Chief</td><td>$2,573.00</td></tr>
+          <tr class="gh"><th colspan="2">Marine Unit</th></tr>
+          <tr><td>Wiper</td><td class="soon">Coming soon</td></tr>
+          <tr><td>Pilot</td><td class="soon">Coming soon</td></tr>
+          <tr><td>Marine Engineer (without license)</td><td class="soon">Coming soon</td></tr>
+          <tr><td>Marine Engineer (with license)</td><td class="soon">Coming soon</td></tr>
+          <tr class="gh"><th colspan="2">Bureau of Fire Investigation</th></tr>
+          <tr><td>Fire Marshal</td><td class="soon">Coming soon</td></tr>
+          <tr><td>Supervising Fire Marshal</td><td>$1,656.89</td></tr>
         </table>
       </div>
       <ul class="facts">
