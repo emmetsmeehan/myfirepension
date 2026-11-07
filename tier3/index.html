@@ -2289,5 +2289,14 @@ $('askForm').addEventListener('submit',async e=>{
   addEventListener('pageshow',e=>{if(e.persisted)check(true)});
 })();
 </script>
+<script>
+/* Pension basics: one question open at a time. Opening one closes the others and keeps the new one's question on screen. */
+document.addEventListener('toggle',e=>{
+  const d=e.target;if(!d.open||!d.parentElement||!d.parentElement.classList.contains('qa')) return;
+  d.parentElement.querySelectorAll(':scope>details[open]').forEach(o=>{if(o!==d) o.open=false});
+  const t=d.querySelector('summary').getBoundingClientRect().top;
+  if(t<70) window.scrollBy({top:t-80,behavior:'smooth'});
+},true);
+</script>
 </body>
 </html>
