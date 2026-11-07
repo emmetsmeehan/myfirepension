@@ -346,6 +346,13 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .ws{width:100%;border-collapse:collapse;table-layout:fixed}
 .ws th{font-size:14px;color:var(--muted);font-weight:600;text-align:left;padding:10px 12px;background:var(--soft)}
 .ws th:nth-child(1){width:32%}.ws th:nth-child(2){width:40%}.ws th:nth-child(3){width:28%;text-align:right}
+@media (min-width:561px){.ws th:nth-child(1){width:48%}.ws th:nth-child(2){width:22%}.ws th:nth-child(3){width:30%}}
+.ws tr.nowr td{border-top:0;padding-top:0}
+.bdg{display:inline-flex;align-items:center;gap:3px;font-size:12.5px;font-weight:700;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.bdg.retro{background:color-mix(in srgb,var(--shine) 30%,var(--surface));color:var(--gold)}
+.rnote .bdg{vertical-align:1px;margin-right:4px}
+.ws .nowbtn{display:grid;width:100%;text-align:left;min-height:44px;padding:6px 10px;border-radius:var(--r-sm);border:1.5px solid var(--steel);background:var(--surface);color:var(--steel);cursor:pointer;font:inherit;line-height:1.2}
+.ws .nowbtn b{font-size:14px}.ws .nowbtn small{font-size:12.5px;color:var(--muted)}
 .ws td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:middle}
 .ws td:nth-child(3){text-align:right;font-size:15.5px}
 .ws .yr{font-weight:800;font-size:18px}
@@ -873,8 +880,8 @@ body.has-pbar .app{padding-bottom:110px}
         <div id="w2Prog" class="field" hidden><span class="hint" id="w2ProgTxt">Reading your W-2s…</span><div class="progress"><i id="w2Bar"></i></div></div>
         <p class="msg" id="w2Msg" role="status" hidden></p>
         <p class="empty" id="wsNeed" hidden>Enter your dates in step 1 and your earnings table shows up here, starting with the year you were appointed.</p>
-        <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>Counts</th></tr></thead><tbody id="wsRows"></tbody></table>
-          <p class="rnote" id="retroNote" hidden><b>*</b> Includes a retro check. The Pension Fund spreads retro back to the years it was earned, and these years count toward your pension (or toward the 2-year look-back for the 10% limit), so your real number may come out a little different from what's shown here.</p>
+        <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>What counts toward your pension</th></tr></thead><tbody id="wsRows"></tbody></table>
+          <p class="rnote" id="retroNote" hidden><span class="bdg retro">Retro check *</span> This year includes a retro check. The Pension Fund spreads retro back to the years it was earned, and these years count toward your pension (or toward the 2-year look-back for the 10% limit), so your real number may come out a little different from what's shown here.</p>
           <button type="button" class="futbtn" id="futBtn" aria-expanded="false"></button></div>
         <div class="growrow">
           <label class="chk"><input type="checkbox" id="growOn"> Fill in future years assuming a raise each year</label>
@@ -969,7 +976,7 @@ body.has-pbar .app{padding-bottom:110px}
 </footer>
 </div>
 
-<script src="/rules.js"></script>
+<script src="/rules.js?v=20261107b"></script>
 <script>
 const $=id=>document.getElementById(id);
 /* Amounts as people type them: "$120,000", "120k", or "120.000" with a dot for thousands. Signs and letters are dropped. */
@@ -1495,7 +1502,9 @@ const adjRow=(y,cols)=>{const t=adjNote(y);return t?`<tr class="adjr" id="a-${y}
 /* Retro checks from the contract settlements were paid in these years (owner, Nov. 3, 2026: same years for everyone). */
 const RETRO_Y=[2022,2024];
 let wsKey='',showFut=false,wsOpen=false;
-document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}});
+document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}
+  if(e.target.closest('[data-now]')){payOpen=true;renderP();const w=$('payWrap'),bar=w.closest('.view')?.querySelector('.topbar');
+    requestAnimationFrame(()=>scrollBy({top:w.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().bottom:0)-10,behavior:'smooth'}))}});
 function renderWorksheet(c,m){
   const p=ST.p,retDate=addM(c.eq,m),apptY=c.appt.getFullYear();
   const showTo=Math.max(retDate.getFullYear(),addM(c.eq,300).getFullYear());
@@ -1504,8 +1513,8 @@ function renderWorksheet(c,m){
     wsKey=key;let h='';
     for(let y=apptY;y<=showTo;y++){
       h+=isVerified(y)
-        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
-        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
+        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
+        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>${y===NOW_Y?`<tr class="nowr"><td colspan="3"><button type="button" class="nowbtn" data-now="1"><b>Get this year from NYCAPS ESS</b><small>Screenshot or copy and paste your paychecks so far</small></button></td></tr>`:''}`;
     }
     $('wsRows').innerHTML=h;
     const store=impMode(p.mode)?p.extra:p.manual;
@@ -1520,7 +1529,8 @@ function renderWorksheet(c,m){
   for(let y=apptY;y<=showTo;y++){
     const r=full.rows.find(x=>x.y===y),row=$('r-'+y),inp=$('e-'+y);
     const used=res.best&&y>=res.best.start&&y<=res.best.end,after=y>res.lastY;
-    row.querySelector('.yr').innerHTML=y+(rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?'<sup class="rstar">*</sup>':'');
+    row.querySelector('.yr').textContent=y;
+    row.querySelector('.rslot').innerHTML=rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?' <span class="bdg retro">Retro check *</span>':'';
     const ar=$('a-'+y);if(ar) ar.className='adjr '+(used?'win':'');
     row.className=(used?'win ':'')+(r&&r.kind==='est'?'est ':'')+(after?'after ':'')+(y>NOW_Y?'fut':'');
     const part=used&&res.best.rolling&&((y===res.best.start&&(res.best.from.getMonth()||res.best.from.getDate()>1))||(y===res.best.end&&(res.best.to.getMonth()||res.best.to.getDate()>1)));
@@ -1566,7 +1576,7 @@ const AGE_OUT=R3.mandatoryRetirementAge;
 /* Time on the job today, in whole months from the equated date (at least 1). */
 function svcToday(c){const n=new Date(),e=c.eq;return Math.max(1,(n.getFullYear()-e.getFullYear())*12+n.getMonth()-e.getMonth()-(n.getDate()<e.getDate()?1:0))}
 /* Vesting (RSSL § 516; Tier 3 Enhanced SPD, Dec. 2019, p. 13–14). */
-const VEST_M=R3.vestingYears*12,VEST_PCT=R3.vestedPctPerYear,REFUND_M=R3.vestedRefundUntilYears*12;
+const VEST_M=(R3.vestingYears??5)*12,VEST_PCT=R3.vestedPctPerYear??0.021,REFUND_M=(R3.vestedRefundUntilYears??10)*12;
 const ageOutM=c=>Math.floor((AGE_OUT-c.age)*12+1e-9);
 function renderP(){
   const p=ST.p,c=pParams(),nowM=c.ok?svcToday(c):null;
