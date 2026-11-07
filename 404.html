@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>False alarm · My Fire Pension</title>
+<title>Box 0404 · My Fire Pension</title>
 <link rel="icon" href="/favicon-48.png?v=3" type="image/png" sizes="48x48">
 <link rel="icon" href="/favicon-32.png?v=3" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
@@ -15,17 +15,17 @@ html{color-scheme:light;-webkit-text-size-adjust:100%}
 body{margin:0}
 :root{
   --bg:#f3f5f8; --surface:#ffffff; --ink:#16202b; --muted:#5a6776; --line:#dce2e8;
-  --accent:#b3261e; --steel:#2f5d8a; --gold:#a8730f; --sage:#2f7d55; --soft:#eef2f6;
+  --accent:#b3261e; --steel:#2f5d8a; --gold:#a8730f; --sage:#2f7d55; --green:#2e7d4f; --soft:#eef2f6;
   --body:"Source Sans 3","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --r:14px; --r-sm:10px;
   --shadow:0 1px 2px color-mix(in srgb,var(--ink) 7%,transparent),0 6px 20px color-mix(in srgb,var(--ink) 6%,transparent);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
-  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}}
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --green:#5fbf87; --soft:#1f2934; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
-  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --green:#5fbf87; --soft:#1f2934; color-scheme:dark}
 *,*::before,*::after{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
 a{color:var(--steel)}
@@ -51,9 +51,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .lost{display:grid;gap:18px;justify-items:start;padding:28px 0 8px;max-width:620px}
 .lost .box{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:6px 14px;border-radius:999px}
 .lost .box svg{width:20px;height:20px}
+.lost h1{font-size:clamp(30px,6.5vw,44px)}
 .lost .sub{font-size:clamp(19px,3.6vw,22px);color:var(--muted)}
 .ways{display:grid;gap:12px;width:100%}
-@media (min-width:620px){.ways{grid-template-columns:1fr 1fr}}
+@media (min-width:620px){.ways{grid-template-columns:1fr 1fr}.way.other{grid-column:1/-1}}
 .way{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:64px;padding:14px 18px;border-radius:var(--r);background:var(--surface);border:2px solid var(--line);box-shadow:var(--shadow);text-decoration:none;color:var(--ink);font-weight:700;font-size:18px}
 .way:hover{border-color:var(--c)}
 .way b{color:var(--c);font-size:26px;font-weight:800;line-height:1}
@@ -72,14 +73,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 <body>
 <main class="app">
   <section class="lost">
-    <span class="box"><svg class="i" viewBox="0 0 24 24"><path d="M12 3c3 3.5 6 6.5 6 10.5a6 6 0 0 1-12 0C6 10 8 8.5 9 6c.8 2 2 3 3 3.5C12 7 12 5 12 3z"/></svg>Box 404</span>
-    <h1>False alarm.</h1>
-    <p class="sub">We pulled up and there's nothing here. The page may have moved, or the address has a typo. Take it back in and pick a tier.</p>
+    <span class="box"><svg class="i" viewBox="0 0 24 24"><path d="M12 3c3 3.5 6 6.5 6 10.5a6 6 0 0 1-12 0C6 10 8 8.5 9 6c.8 2 2 3 3 3.5C12 7 12 5 12 3z"/></svg>Box 0404</span>
+    <h1>Do you have a 10&#8209;7? We got nothin showing. If not, you can make it a 10&#8209;92.</h1>
+    <p class="sub">This isn't a valid link. You may have made a typo. Tap below to start over.</p>
     <div class="ways">
-      <a class="way" href="/tier3/" style="--c:var(--accent)"><span><b>Tier 3</b><br>Appointed July 2009 or later</span><span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="way" href="/tier2/" style="--c:var(--steel)"><span><b>Tier 2</b><br>Appointed 1973 to June 2009</span><span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="way" href="/tier3/" style="--c:var(--accent)"><span><b>Tier 3</b><br>Appointed July 2009 or later</span><span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="way other" href="/accounts/" style="--c:var(--green)"><span><b>Other accounts</b><br>457, 401(k), IRA and union annuity</span><span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
-    <p class="small">Or go <a href="/">back to the start</a>. If a link on this site brought you here, <a href="/suggest/">let me know</a> and I'll fix it.</p>
+    <p class="small">Or <a href="/">go to home page</a>. If a link on this site brought you here, <a href="/suggest/">let me know</a> and I'll fix it.</p>
   </section>
 
   <footer class="foot">
