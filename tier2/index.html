@@ -2190,13 +2190,19 @@ $('askForm').addEventListener('submit',async e=>{
 })();
 </script>
 <script>
-/* Pension basics: one question open at a time. Opening one closes the others and keeps the new one's question on screen. */
-document.addEventListener('toggle',e=>{
-  const d=e.target;if(!d.open||!d.parentElement||!d.parentElement.classList.contains('qa')) return;
-  d.parentElement.querySelectorAll(':scope>details[open]').forEach(o=>{if(o!==d) o.open=false});
-  const t=d.querySelector('summary').getBoundingClientRect().top;
-  if(t<70) window.scrollBy({top:t-80,behavior:'smooth'});
-},true);
+/* Pension basics: one question open at a time. Opening one closes the others without the page jumping:
+   the tapped question is held in place while the old answer closes, then glides up to just under the top bar. */
+document.addEventListener('click',e=>{
+  const s=e.target.closest('.qa>details>summary');if(!s) return;
+  const d=s.parentElement;e.preventDefault();
+  if(d.open){d.open=false;return}
+  const before=s.getBoundingClientRect().top;
+  d.parentElement.querySelectorAll(':scope>details[open]').forEach(o=>{o.open=false});
+  d.open=true;
+  window.scrollBy({top:s.getBoundingClientRect().top-before,behavior:'instant'});
+  const bar=d.closest('.view').querySelector('.topbar'),off=(bar?bar.getBoundingClientRect().bottom:0)+12;
+  requestAnimationFrame(()=>window.scrollBy({top:s.getBoundingClientRect().top-off,behavior:'smooth'}));
+});
 </script>
 </body>
 </html>
