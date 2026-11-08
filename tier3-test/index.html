@@ -267,6 +267,19 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 /* personal */
 .step{display:grid;gap:18px}
 .stephead{display:flex;gap:12px;align-items:center}
+.stepmin{display:grid;justify-items:start;gap:12px}
+.stepmin p{margin:0;font-size:17px;line-height:1.4}
+.stepmin .btn{min-height:46px}
+.step.min{gap:12px}
+.minrow{margin-top:18px}.minrow .btn{width:100%}
+.yn{display:inline-grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;width:min(220px,100%);margin-top:4px}
+.yn button{min-height:46px;border:0;background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:17px;cursor:pointer}
+.yn button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.discheck{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:var(--r);padding:10px 14px;background:var(--surface);cursor:pointer}
+.discheck input{width:24px;height:24px;margin:0;accent-color:var(--accent);flex:none}
+.discheck b{display:block;font-size:17px}.discheck small{display:block;color:var(--muted);font-size:14px;line-height:1.3}
+.discheck:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.capline{display:block;color:var(--accent);font-weight:700;margin-top:4px}
 .stephead .n{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
 .stephead h2{font-size:22px}
 .pgrid{display:grid;gap:22px}
@@ -766,7 +779,7 @@ body.has-pbar .app{padding-bottom:110px}
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
   <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span></div>
-  <div class="vhead"><h1>Your personal numbers</h1><p>Use your real earnings to see what you'll collect, when, and how it grows. Your numbers stay on this device.</p></div>
+  <div class="vhead"><h1>Your personal numbers</h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <h2 id="pvh">What you'll see</h2>
     <ul>
@@ -782,6 +795,8 @@ body.has-pbar .app{padding-bottom:110px}
     <div class="pmain">
       <section class="card step" aria-labelledby="s1h">
         <div class="stephead"><span class="n">1</span><h2 id="s1h">About you</h2></div>
+        <div class="stepmin" id="s1Min" hidden><p id="s1Sum"></p><button type="button" class="btn ghost" data-open="1">Update your information</button></div>
+        <div class="stepbody" id="s1Body">
         <div class="field">
           <span class="flabel" id="dobLbl">Date of birth</span>
           <div class="dsel" role="group" aria-labelledby="dobLbl"><span><select id="dobM" aria-label="Birth month"></select></span><span><select id="dobD" aria-label="Birth day"></select></span><span><select id="dobY" aria-label="Birth year"></select></span></div>
@@ -793,7 +808,9 @@ body.has-pbar .app{padding-bottom:110px}
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 2</b><span>Members appointed before July 1, 2009 are generally Tier 2, which has different rules. These Tier 3 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier2/#personal">Switch to Tier 2 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="field">
-          <label class="chk"><input type="checkbox" id="eqOn"> <span>Do you have a different equated date?<span class="hint" style="display:block;font-weight:400">EMS, military, NYPD, or a retroactive hire date</span></span></label>
+          <span class="flabel" id="eqQ">Do you have a different equated date?</span>
+          <span class="hint" style="margin-top:-4px">EMS, military, NYPD, or a retroactive hire date</span>
+          <div class="yn" role="group" aria-labelledby="eqQ"><button type="button" data-eq="0" aria-pressed="true">No</button><button type="button" data-eq="1" aria-pressed="false">Yes</button></div>
           <div id="eqBox" class="field" hidden>
             <span class="flabel" id="eqLbl">Equated date</span>
             <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
@@ -810,10 +827,14 @@ body.has-pbar .app{padding-bottom:110px}
             <div class="ranks" role="group" aria-label="Rank at retirement"></div>
             <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div></div>
         </div>
+        <div class="minrow" id="s1Done" hidden><button type="button" class="btn" data-min="1">Save and minimize</button></div>
+        </div>
       </section>
 
       <section class="card step" aria-labelledby="s2h">
         <div class="stephead"><span class="n">2</span><h2 id="s2h">Your earnings</h2></div>
+        <div class="stepmin" id="s2Min" hidden><p id="s2Sum"></p><button type="button" class="btn ghost" data-open="2">Edit your earnings</button></div>
+        <div class="stepbody" id="s2Body">
         <p class="hint" style="margin-top:-8px">Your final average salary comes from what you earn each year. Pick one way to give us your numbers.</p>
         <p class="tierbox" id="earnReset" role="status" hidden><b>Please add your earnings again</b><span>We changed how earnings are counted (LODI pay is now included from your W-2s), so the numbers you saved before were cleared. Your dates are still saved.</span></p>
         <div class="modes" role="group" aria-label="How to enter your earnings">
@@ -911,19 +932,20 @@ body.has-pbar .app{padding-bottom:110px}
             <p class="hint" style="margin:0">Your paychecks only show <b>when</b> the money came in. Each year's total still comes from your earnings above. Read on your device, never uploaded.</p>
           </div>
         </div>
+        <div class="minrow" id="s2Done" hidden><button type="button" class="btn" data-min="2">Save and minimize</button></div>
+        </div>
       </section>
 
       <section class="card step" aria-labelledby="s3h">
         <div class="stephead"><span class="n">3</span><h2 id="s3h">Your retirement</h2></div>
-        <label class="bigcheck" for="pDis"><input type="checkbox" id="pDis"><b>3/4s (Disabled)</b><span class="hint">Hurt on the job: 75% of your final average salary at any length of service, generally tax-free.</span></label>
         <div class="field" id="pSlider"></div>
-        <div class="field" id="ssField">
-          <label for="ss">Your Social Security at 62 (estimate)</label>
-          <div class="inp"><span>$</span><input id="ss" inputmode="numeric"><span class="after">/month</span></div>
-          <div class="hint">$2,400 is only an example. Put in yours from ssa.gov/myaccount. Half of this comes off your pension at 62.</div>
-        </div>
         <details id="moreOpts">
           <summary style="cursor:pointer;font-weight:700">More options</summary>
+          <div class="field" id="ssField" style="margin-top:12px">
+            <label for="ss">Your Social Security at 62 (estimate)</label>
+            <div class="inp"><span>$</span><input id="ss" inputmode="numeric"><span class="after">/month</span></div>
+            <div class="hint">$2,400 is only an example. Put in yours from ssa.gov/myaccount. Half of this comes off your pension at 62.</div>
+          </div>
           <div class="field" style="margin-top:12px">
             <label for="cpi">Inflation each year</label>
             <div class="inp" style="max-width:170px"><input class="pl" id="cpi" inputmode="decimal"><span class="after">%</span></div>
@@ -935,6 +957,7 @@ body.has-pbar .app{padding-bottom:110px}
     </div>
 
     <aside class="pside" aria-live="polite">
+      <label class="discheck" for="pDis"><input type="checkbox" id="pDis"><span><b>3/4s (Disabled)</b><small>Hurt on the job: 75% of your final average salary</small></span></label>
       <section class="card headline" id="head"></section>
       <section class="card goal" id="goalCard" hidden>
         <button type="button" class="goaltog" id="goalTog" aria-expanded="false" aria-controls="goalBody"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>Would you rather set a goal?</b><span class="gsub">See how long you’d have to work, or how much you’d have to make, to get the pension you want.</span></span></button>
@@ -1206,7 +1229,7 @@ function Slider(root,{id,label,value,onInput}){
     /* Time on the job today, in months (null: no dates yet, so the usual 20-year start). */
     floor(mm){if(mm===fl)return;fl=mm;if(cap<(fl!=null?fl:base))cap=Infinity;layout()},
     range(dis){base=dis?12:240;list=dis?DIS_STOPS:STOPS;if(cap<(fl!=null?fl:base))cap=Infinity;layout();root.querySelector('label').textContent=dis?'Years on the job when you go out':label},
-    sub(t){root.querySelector('.sub').textContent=t}};
+    sub(t,cap){const el=root.querySelector('.sub');el.textContent=t;if(cap){const c=document.createElement('span');c.className='capline';c.textContent=cap;el.appendChild(c)}}};
   api.range(false);
   return api;
 }
@@ -1317,8 +1340,13 @@ function setupDate(pre,y0,y1,iso,onChange){
 const dobPick=setupDate('dob',1945,NOW_Y-18,ST.p.dob,v=>{ST.p.dob=v;renderP()});
 const apPick=setupDate('ap',1985,NOW_Y,ST.p.appt,v=>{ST.p.appt=v;wsKey='';renderP()});
 setupDate('eq',1960,NOW_Y,ST.p.eq,v=>{ST.p.eq=v;wsKey='';renderP()});
-$('eqOn').checked=ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn;
-$('eqOn').addEventListener('change',e=>{ST.p.eqOn=e.target.checked;$('eqBox').hidden=!ST.p.eqOn;wsKey='';renderP()});
+const eqSync=()=>{$('eqBox').hidden=!ST.p.eqOn;document.querySelectorAll('[data-eq]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.eq===(ST.p.eqOn?1:0))))};eqSync();
+document.querySelectorAll('[data-eq]').forEach(b=>b.addEventListener('click',()=>{ST.p.eqOn=b.dataset.eq==='1';eqSync();wsKey='';renderP()}));
+/* Save and minimize (TEST, owner Nov. 7, 2026): steps 1 and 2 fold to a one-line summary. */
+document.addEventListener('click',e=>{const mn=e.target.closest('[data-min]'),op=e.target.closest('[data-open]');if(!mn&&!op)return;
+  const n=(mn||op).dataset[mn?'min':'open'];ST.p['min'+n]=!!mn;renderP();
+  const sec=$('s'+n+'h').closest('section'),bar=document.querySelector('#personal .topbar')||document.querySelector('.topbar');
+  const top=sec.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().bottom:0)-10;if(top<0) scrollBy({top,behavior:'smooth'})});
 
 const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;ST.p.svcSet=true;renderP()}});
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP(),()=>false);
@@ -1611,6 +1639,9 @@ function renderP(){
   $('tierWarn').hidden=!(c.appt&&c.appt<new Date(2009,6,1));
   $('tierGo').href=`../tier2/?dob=${p.dob}&appt=${p.appt}#personal`;
   $('pBills').hidden=c.dis;$('ssField').hidden=c.dis;
+  const min1=!!(p.min1&&c.ok);$('s1Body').hidden=min1;$('s1Min').hidden=!min1;$('s1Done').hidden=!c.ok;
+  $('s1h').closest('section').classList.toggle('min',min1);
+  if(c.ok) $('s1Sum').textContent=`Born ${fmtDay(c.dob)} · appointed ${fmtDay(c.appt)}${c.off>0?' · equated '+fmtDay(c.eq):''} · ${(()=>{const r=RANKS.find(x=>x.id===(p.cur||p.rank));return r?(r.label||r.id).replace(/\u00a0/g,' '):''})()}`;
   pChecks.sync();pRank.sync();
   if(!c.ok){
     pSlider.sub('Enter your dates in step 1 to see when you’d retire.');
@@ -1621,9 +1652,13 @@ function renderP(){
 
   const you=scenario(m,c);
   $('preview').hidden=you.fas>0;
+  const hasFas=you.fas>0||you.baseFas>0,min2=!!(p.min2&&hasFas);
+  $('s2Body').hidden=min2;$('s2Min').hidden=!min2;$('s2Done').hidden=!hasFas;$('s2h').closest('section').classList.toggle('min',min2);
+  if(hasFas) $('s2Sum').innerHTML=`Final average salary from your earnings: <b>${usd(you.baseFas)}</b><br><span class="hint">Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span>`;
   const om=ageOutM(c);
   const isNow=m===nowM,todayT=isNow?`That’s today: you have ${fmtSvcLong(nowM)} on the job. `:`You have ${fmtSvcLong(nowM)} on the job today. `;
-  pSlider.sub(todayT+(c.dis?'Go out ':m<240?'Leave ':'Retire ')+(isNow?'now':fmtMY(you.retDate))+' at age '+fmtAge(you.retAge)+(om<=MAXM&&om>=(c.dis?12:240)?`. You turn ${AGE_OUT} in ${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}, the mandatory retirement age, so the most you can work is ${fmtSvcLong(om)}.`:''));
+  pSlider.sub(todayT+(c.dis?'Go out ':m<240?'Leave ':'Retire ')+(isNow?'now':fmtMY(you.retDate))+' at age '+fmtAge(you.retAge)+'.',
+    om<=MAXM&&m>=om?`You turn ${AGE_OUT} in ${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}, the mandatory retirement age, so the most you can work is ${fmtSvcLong(om)}.`:'');
   renderWorksheet(c,m);renderPays(c,m);
   save();
 
@@ -1662,8 +1697,8 @@ function renderP(){
       return `<tr${off?' class="offrow"':''}><td>${ry+t} <span class="ag">· ${a}</span></td><td>${usd(r.pay/12)}</td><td>${usd(r.pay+r.v)}</td></tr>`+(off?`<tr class="offrow"><td colspan="3" class="offn">At 62 the pension drops ${usd(you.offset/12)} a month for the Social Security offset</td></tr>`:'')}).join('');
     head.innerHTML=`<div class="eyebrow">Retire ${fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
       <div class="k2">Your first year of retirement</div>
-      <div class="bignum">${usd(totY)}<span>/year</span></div>
-      <div class="sub2">About <b>${usd(totY/12)} a month</b>, pension plus VSF</div>
+      <div class="bignum">${usd(totY/12)}<span>/month</span></div>
+      <div class="sub2"><b>${usd(totY)} a year</b>, pension plus VSF</div>
       ${billsOnNote(c)}${tier2}${warn}${gapNote(c)}
       <div class="brk">
         <div class="brow"><div class="bl"><b>Pension</b><small>50% of your ${usd(you.fas)} final average salary${you.extra?', plus the extra 1/40ths':''}. Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':' (calendar years)'}</small></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
@@ -1690,14 +1725,12 @@ function renderP(){
 function renderVested(c,m,you){
   const head=$('head'),p=ST.p;
   const ctx=`<div class="eyebrow">Leave ${m===svcToday(c)?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>`;
-  const e20=c.age+20<=AGE_OUT?scenario(240,c):null;
-  const stay=e20&&e20.fas>0?`<p class="hint">Stay to 20 years (${fmtMY(e20.retDate)}) and you’d get a regular pension of about <b>${usd(e20.base/12)} a month</b>, plus the $12,000 VSF, starting the day you retire.</p>`:'';
   ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:'no',p_vested:yn(you.base>0),p_monthly:dol(you.base/12)});
   $('goalCard').hidden=!(you.fas>0);
   if(m<VEST_M){
     head.innerHTML=`${ctx}<div class="k2">Under 5 years</div><div class="bignum">No pension yet</div>
       <div class="sub2">You need <b>5 years</b> to be vested. Leave before then and you get back the money you paid in, with interest.</div>
-      <p class="hint">You’d be vested in ${fmtMY(addM(c.eq,VEST_M))}. Move the slider to see what you’d get.</p>${stay}`;
+      <p class="hint">You’d be vested in ${fmtMY(addM(c.eq,VEST_M))}. Move the slider to see what you’d get.</p>`;
     updateBar(you,m);return;
   }
   const pct=(you.vestPct*100).toFixed(2).replace(/\.?0+$/,''),late=you.startAge>55;
@@ -1715,9 +1748,7 @@ function renderVested(c,m,you){
       ${late?`<li>You can start it at 55 instead, with a cut, since that comes first for you.</li>`:''}
       ${offOn?`<li>At 62 it drops by half your Social Security: ${usd(you.offset/12)} a month.</li>`:''}
       <li>${you.refund?'Under 10 years you can take back the money you paid in instead. If you do, you give up this pension.':'With 10 years or more you can’t take back what you paid in. This pension is what you get.'}</li>
-      <li>This page doesn’t add any yearly increases to a vested pension. Call the Fund for your exact numbers.</li>
-    </ul>
-    ${stay}`;
+    </ul>`;
   updateBar(you,m);
 }
 
