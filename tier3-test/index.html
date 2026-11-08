@@ -272,13 +272,18 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .stepmin .btn{min-height:46px}
 .step.min{gap:12px}
 .minrow{margin-top:18px}.minrow .btn{width:100%}
-.yn{display:inline-grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;width:min(220px,100%);margin-top:4px}
-.yn button{min-height:46px;border:0;background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:17px;cursor:pointer}
-.yn button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .discheck{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:var(--r);padding:10px 14px;background:var(--surface);cursor:pointer}
 .discheck input{width:24px;height:24px;margin:0;accent-color:var(--accent);flex:none}
 .discheck b{display:block;font-size:17px}.discheck small{display:block;color:var(--muted);font-size:14px;line-height:1.3}
 .discheck:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.dlbl{display:flex!important;align-items:center;justify-content:space-between;gap:10px;min-height:44px}
+.dval{display:inline-flex;align-items:center;gap:10px;font-weight:400;flex:none}
+.dval b{font-size:17px;font-weight:700;color:var(--ink);white-space:nowrap}
+.dedit{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.eqrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.eqyes{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;cursor:pointer;min-height:44px;padding:0 4px;flex:none}
+.eqyes input{width:24px;height:24px;margin:0;accent-color:var(--accent)}
+.stop.today{z-index:2}
 .capline{display:block;color:var(--accent);font-weight:700;margin-top:4px}
 .stephead .n{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
 .stephead h2{font-size:22px}
@@ -808,9 +813,8 @@ body.has-pbar .app{padding-bottom:110px}
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 2</b><span>Members appointed before July 1, 2009 are generally Tier 2, which has different rules. These Tier 3 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier2/#personal">Switch to Tier 2 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="field">
-          <span class="flabel" id="eqQ">Do you have a different equated date?</span>
+          <div class="eqrow"><span class="flabel" id="eqQ">Do you have a different equated date?</span><label class="eqyes"><input type="checkbox" id="eqOn" aria-labelledby="eqQ"> Yes</label></div>
           <span class="hint" style="margin-top:-4px">EMS, military, NYPD, or a retroactive hire date</span>
-          <div class="yn" role="group" aria-labelledby="eqQ"><button type="button" data-eq="0" aria-pressed="true">No</button><button type="button" data-eq="1" aria-pressed="false">Yes</button></div>
           <div id="eqBox" class="field" hidden>
             <span class="flabel" id="eqLbl">Equated date</span>
             <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
@@ -827,7 +831,7 @@ body.has-pbar .app{padding-bottom:110px}
             <div class="ranks" role="group" aria-label="Rank at retirement"></div>
             <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div></div>
         </div>
-        <div class="minrow" id="s1Done" hidden><button type="button" class="btn" data-min="1">Save and minimize</button></div>
+        <div class="minrow" id="s1Done" hidden><button type="button" class="btn green" data-min="1">Save and minimize</button></div>
         </div>
       </section>
 
@@ -932,7 +936,7 @@ body.has-pbar .app{padding-bottom:110px}
             <p class="hint" style="margin:0">Your paychecks only show <b>when</b> the money came in. Each year's total still comes from your earnings above. Read on your device, never uploaded.</p>
           </div>
         </div>
-        <div class="minrow" id="s2Done" hidden><button type="button" class="btn" data-min="2">Save and minimize</button></div>
+        <div class="minrow" id="s2Done" hidden><button type="button" class="btn green" data-min="2">Save and minimize</button></div>
         </div>
       </section>
 
@@ -1218,6 +1222,7 @@ function Slider(root,{id,label,value,onInput}){
   function stops(list){sl.querySelectorAll('.stop').forEach(e=>e.remove());list.forEach(s=>{const pct=(s.m-min)/span,el=document.createElement('div');
     el.className='stop'+(s.low?' low':'')+(pct===0?' l':pct===1?' r':s.side?' '+s.side:'');
     el.style.left=`calc(var(--thumb)/2 + (100% - var(--thumb)) * ${pct})`;
+    if(s.today) el.classList.add('today');
     el.innerHTML=s.today
       ?`<button type="button" class="today" data-m="${s.m}" aria-pressed="false" aria-label="Today: ${fmtSvcLong(s.m)}">Today</button>`
       :`<button type="button" data-m="${s.m}" aria-pressed="false" aria-label="${fmtSvcLong(s.m)}">${fmtSvc(s.m)}<small>yrs</small></button>`;sl.appendChild(el)})}
@@ -1331,17 +1336,29 @@ function setupDate(pre,y0,y1,iso,onChange){
   let ys='<option value="">Year</option>';for(let v=y1;v>=y0;v--) ys+=`<option value="${v}">${v}</option>`;y.innerHTML=ys;
   const days=keep=>{const n=m.value===''?31:new Date(y.value===''?2000:+y.value,+m.value+1,0).getDate();
     d.innerHTML='<option value="">Day</option>'+Array.from({length:n},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');d.value=keep?Math.min(keep,n):''};
-  const set=iso=>{const def=iso?fromISO(iso):null;m.value=def?def.getMonth():'';y.value=def?def.getFullYear():'';days(def?def.getDate():0)};
+  /* TEST (owner, Nov. 7, 2026): a finished date folds up next to its label with an Edit button. */
+  const box=m.closest('.dsel'),lbl=$(box.getAttribute('aria-labelledby')),dv=document.createElement('span');
+  dv.className='dval';dv.innerHTML='<b></b><button type="button" class="dedit">Edit</button>';lbl.classList.add('dlbl');lbl.appendChild(dv);
+  const full=()=>m.value!==''&&d.value!==''&&y.value!=='';
+  let open=false;
+  const show=()=>{const f=full(),shut=f&&!open;box.hidden=shut;dv.hidden=!f;
+    dv.querySelector('b').textContent=shut?fmtDay(new Date(+y.value,+m.value,+d.value)):'';dv.querySelector('button').textContent=shut?'Edit':'Done'};
+  dv.querySelector('button').addEventListener('click',()=>{open=!open;show();if(open) m.focus({preventScroll:true})});
+  const set=iso=>{const def=iso?fromISO(iso):null;m.value=def?def.getMonth():'';y.value=def?def.getFullYear():'';days(def?def.getDate():0);open=false;show()};
   set(iso);
-  const fire=()=>onChange(m.value!==''&&d.value!==''&&y.value!==''?toISO(new Date(+y.value,+m.value,+d.value)):'');
-  m.addEventListener('change',()=>{days(+d.value);fire()});y.addEventListener('change',()=>{days(+d.value);fire()});d.addEventListener('change',fire);
+  const fire=()=>onChange(full()?toISO(new Date(+y.value,+m.value,+d.value)):'');
+  /* Folds when the year is picked last, or when a half-filled date gets its last piece. */
+  const after=(was,isYear)=>{if(full()&&(isYear||!was)) open=false;else if(!full()) open=true;show()};
+  m.addEventListener('change',()=>{const w=full();days(+d.value);fire();after(w,false)});
+  y.addEventListener('change',()=>{const w=full();days(+d.value);fire();after(w,true)});
+  d.addEventListener('change',()=>{const w=full();fire();after(w,false)});
   return {set};
 }
 const dobPick=setupDate('dob',1945,NOW_Y-18,ST.p.dob,v=>{ST.p.dob=v;renderP()});
 const apPick=setupDate('ap',1985,NOW_Y,ST.p.appt,v=>{ST.p.appt=v;wsKey='';renderP()});
 setupDate('eq',1960,NOW_Y,ST.p.eq,v=>{ST.p.eq=v;wsKey='';renderP()});
-const eqSync=()=>{$('eqBox').hidden=!ST.p.eqOn;document.querySelectorAll('[data-eq]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.eq===(ST.p.eqOn?1:0))))};eqSync();
-document.querySelectorAll('[data-eq]').forEach(b=>b.addEventListener('click',()=>{ST.p.eqOn=b.dataset.eq==='1';eqSync();wsKey='';renderP()}));
+$('eqOn').checked=ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn;
+$('eqOn').addEventListener('change',e=>{ST.p.eqOn=e.target.checked;$('eqBox').hidden=!ST.p.eqOn;wsKey='';renderP()});
 /* Save and minimize (TEST, owner Nov. 7, 2026): steps 1 and 2 fold to a one-line summary. */
 document.addEventListener('click',e=>{const mn=e.target.closest('[data-min]'),op=e.target.closest('[data-open]');if(!mn&&!op)return;
   const n=(mn||op).dataset[mn?'min':'open'];ST.p['min'+n]=!!mn;renderP();
