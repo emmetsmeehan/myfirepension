@@ -571,6 +571,9 @@ body.has-pbar .app{padding-bottom:110px}
 .ws .cutl{display:block;color:var(--muted);font-size:12.5px;line-height:1.2}
 .stop button.today[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 #exBox{margin-top:14px}
+.expair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.expair label{display:block;font-weight:600;font-size:15px;margin-bottom:4px}
+.expair .inp{min-height:48px}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){
@@ -809,16 +812,16 @@ body.has-pbar .app{padding-bottom:110px}
         <div class="inp big"><span>$</span><input id="qFas" inputmode="numeric" placeholder="150,000" autocomplete="off"></div>
         <div class="hint">The higher of your last 12 months or your best 3 years in a row, overtime included. Not sure? A guess is fine, or use the personal numbers page.</div>
       </div>
-      <div class="field" id="qSlider"></div>
       <div class="field" id="qExBox">
-        <span class="flabel">Your excess contributions (optional)</span>
-        <span class="hint" style="margin-top:-4px">ESS shows your pension excess split into taxable and non-taxable. Leave blank if you have none.</span>
-        <label for="qExT" style="font-weight:600;font-size:16px">Taxable excess</label>
-        <div class="inp"><span>$</span><input id="qExT" inputmode="numeric" autocomplete="off"></div>
-        <label for="qExN" style="font-weight:600;font-size:16px">Non-taxable excess</label>
-        <div class="inp"><span>$</span><input id="qExN" inputmode="numeric" autocomplete="off"></div>
+        <span class="flabel">Your excess contributions <span style="font-weight:400;color:var(--muted)">(optional)</span></span>
+        <span class="hint" style="margin-top:-4px">From ESS. Leave blank if you have none.</span>
+        <div class="expair">
+          <div><label for="qExT">Taxable</label><div class="inp"><span>$</span><input id="qExT" inputmode="numeric" autocomplete="off"></div></div>
+          <div><label for="qExN">Non-taxable</label><div class="inp"><span>$</span><input id="qExN" inputmode="numeric" autocomplete="off"></div></div>
+        </div>
         <div class="hint" id="qExHint"></div>
       </div>
+      <div class="field" id="qSlider"></div>
     </div>
     <div class="card qres" id="qOut" aria-live="polite"></div>
     <div class="card calc qa2">
@@ -987,12 +990,12 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
         </div>
         <div class="field" id="exBox">
-          <span class="flabel">Your excess contributions (optional)</span>
-          <span class="hint" style="margin-top:-4px">ESS shows your pension excess split into taxable and non-taxable. Leave blank if you have none.</span>
-          <label for="exT" style="font-weight:600;font-size:16px">Taxable excess</label>
-          <div class="inp"><span>$</span><input id="exT" inputmode="numeric" autocomplete="off"></div>
-          <label for="exN" style="font-weight:600;font-size:16px">Non-taxable excess</label>
-          <div class="inp"><span>$</span><input id="exN" inputmode="numeric" autocomplete="off"></div>
+          <span class="flabel">Your excess contributions <span style="font-weight:400;color:var(--muted)">(optional)</span></span>
+          <span class="hint" style="margin-top:-4px">From ESS. Leave blank if you have none.</span>
+          <div class="expair">
+            <div><label for="exT">Taxable</label><div class="inp"><span>$</span><input id="exT" inputmode="numeric" autocomplete="off"></div></div>
+            <div><label for="exN">Non-taxable</label><div class="inp"><span>$</span><input id="exN" inputmode="numeric" autocomplete="off"></div></div>
+          </div>
           <div class="hint" id="exHint"></div>
         </div>
         <div class="minrow" id="s2Done" hidden><button type="button" class="btn green" data-min="2">Save and minimize</button></div>
