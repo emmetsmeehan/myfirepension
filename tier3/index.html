@@ -999,7 +999,7 @@ body.has-pbar .app{padding-bottom:110px}
     </aside>
   </div>
 
-  <section class="card escsec" id="escSec" aria-labelledby="escTitle">
+  <section class="card escsec" id="escSec" aria-labelledby="escTitle" hidden>
     <div style="display:grid;gap:6px"><h2 id="escTitle">The power of escalation</h2><p class="hint" id="escLede"></p></div>
     <div class="esc-cards" id="escCards"></div>
     <div hidden><div class="legend" id="legend"></div><div class="chartwrap" id="chartwrap"><div id="chart"></div><div class="tip" id="tip" hidden></div></div></div>
@@ -1756,9 +1756,8 @@ function renderP(){
   const head=$('head');
   const warn=you.retAge>62?'<p class="warn">That’s past 62, the mandatory retirement age for FDNY members. Move the slider back or check your dates.</p>':'';
   const tier2=c.appt<new Date(2009,6,1)?'<p class="warn">Tier 2 appointment date: these Tier 3 numbers won’t match your pension.</p>':'';
-  if(you.vested&&(you.months<VEST_M||you.fas>0)){renderVested(c,m,you);renderGoal(c,m,you);const sc=!!(you.fas>0);$('escSec').hidden=!sc;if(sc) renderCompare(c,m,you);return}
+  if(you.vested&&(you.months<VEST_M||you.fas>0)){renderVested(c,m,you);renderGoal(c,m,you);return}
   const showCmp=!c.dis&&you.fas>0;
-  $('escSec').hidden=!showCmp;
   if(!you.fas){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once you enter your earnings in step 2. Start with last year's pay.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
@@ -1809,7 +1808,6 @@ function renderP(){
   }
   renderGoal(c,m,you);
   updateBar(you,m);
-  if(showCmp) renderCompare(c,m,you);
 }
 
 /* ---------- leaving before 20 years ---------- */
