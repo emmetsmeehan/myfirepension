@@ -1357,7 +1357,7 @@ function renderQuick(){
       <div class="bignum">${usd(vb/12)}<span>/month</span></div>
       <div class="u">${usd(vb)} a year · 1/40th for each year: ${fmtSvcLong(m)} × 2.5% = ${pct}% of ${usd(fas)}</div>
       ${fas<20000?'<p class="warn">That looks low for a year’s pay. Type the whole amount, like 120000.</p>':''}
-      <p class="fine">It starts when you would have hit 20 years. No VSF and no longevity bonus. You can take back the money you paid in instead, and give up this pension.</p>
+      <p class="fine">For a vested pension the Fund uses your last 12 months as your final average salary. It starts when you would have hit 20 years. No VSF and no longevity bonus. You can take back the money you paid in instead, and give up this pension.</p>
       <a class="btn" href="#personal">Get your exact numbers ${ICON.arrow}</a>`;
     return;
   }
@@ -1590,7 +1590,8 @@ function earnings(months,c){
     const avg=(c3[0]+c3[1]+c3[2])/3;
     if(!best||avg>best.fas+0.005) best={fas:avg,s:e-36,e,from:addM(c.appt,e-36),to:addM(c.appt,e)};
   }
-  const useBest=!!best&&best.fas>fs12+0.005,fs=useBest?best.fas:fs12;
+  /* A vested pension (leaving before 20) uses the last 12 months with the 20% cap (Ch. 372 of 2000, Tiers 1 & 2 SPD p. 53; owner, Nov. 8, 2026). */
+  const vest=!c.dis&&months<240,useBest=!vest&&!!best&&best.fas>fs12+0.005,fs=useBest?best.fas:fs12;
   /* For the earnings table: what each calendar year contributes, after any cap, and how much the cap cut. */
   const fsBy={},capBy={};
   const spread=(e,counted)=>{const raw=blk(e)||0,r=raw?counted/raw:0;for(let k=e-12;k<e;k++){const y=yOf(k);fsBy[y]=(fsBy[y]||0)+mv(k)*r;capBy[y]=(capBy[y]||0)+mv(k)*(1-r)}};
@@ -1860,7 +1861,7 @@ function renderVested(c,m,you){
     <div class="bignum">${usd(you.base/12)}<span>/month</span></div>
     <div class="sub2">${usd(you.base)} a year, starting <b>${fmtMY(you.start)}</b>, when you’d have hit 20 years (age ${fmtAge(you.startAge)})</div>
     <div class="brk">
-      <div class="brow"><div class="bl"><b>Vested pension</b><small>1/40th (2.5%) of your ${usd(you.fs)} final average salary for each year: ${fmtSvcLong(m)} × 2.5% = ${pct}%. No longevity bonus.</small></div><div class="amt"><b>${usd(VEST_PCT*you.S*you.fs/12)}/mo</b><small>${usd(VEST_PCT*you.S*you.fs)}/yr</small></div></div>
+      <div class="brow"><div class="bl"><b>Vested pension</b><small>1/40th (2.5%) of your ${usd(you.fs)} final average salary (your last 12 months${you.lim12!==null&&you.raw12>you.lim12+0.5?', after the 20% limit':''}) for each year: ${fmtSvcLong(m)} × 2.5% = ${pct}%. No longevity bonus.</small></div><div class="amt"><b>${usd(VEST_PCT*you.S*you.fs/12)}/mo</b><small>${usd(VEST_PCT*you.S*you.fs)}/yr</small></div></div>
       ${you.ocsAmt>0?`<div class="brow"><div class="bl"><b>1/80th for other City service</b><small>${fmtOcs(c.ocs)} × 1/80th of ${usd(you.avg5)}</small></div><div class="amt"><b>${usd(you.ocsAmt/12)}/mo</b><small>${usd(you.ocsAmt)}/yr</small></div></div>`:''}
       ${you.exAnn>0?`<div class="brow"><div class="bl"><b>Annuity from your excess</b><small>Rough estimate</small></div><div class="amt"><b>${usd(you.exAnn/12)}/mo</b><small>${usd(you.exAnn)}/yr</small></div></div>`:''}
       <div class="brow"><div class="bl"><b>VSF and banked variable</b><small>Only for 20 years or more</small></div><div class="amt"><b>None</b></div></div>
