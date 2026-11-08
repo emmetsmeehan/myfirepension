@@ -2178,5 +2178,18 @@ document.addEventListener('click',e=>{
   if(t<off) window.scrollBy({top:t-off,behavior:'instant'});
 });
 </script>
+<script>
+/* Commas as you type (owner, Nov. 7, 2026): every dollar box (inputmode="numeric") shows 200,000 while typing, keeping the cursor in place. */
+document.addEventListener('input',e=>{
+  const el=e.target;if(!(el instanceof HTMLInputElement)||el.inputMode!=='numeric')return;
+  const v=el.value;if(!/^\$?[\d,]*(\.\d*)?$/.test(v))return;
+  const [int,dec]=v.replace(/[$,]/g,'').split('.'),out=(int?Number(int).toLocaleString('en-US'):'')+(dec!==undefined?'.'+dec:'');
+  if(out===v)return;
+  const pos=el.selectionStart??v.length,digits=v.slice(0,pos).replace(/[^\d.]/g,'').length;
+  el.value=out;
+  let i=0,n=0;while(i<out.length&&n<digits){if(/[\d.]/.test(out[i]))n++;i++}
+  try{el.setSelectionRange(i,i)}catch{}
+},true);
+</script>
 </body>
 </html>
