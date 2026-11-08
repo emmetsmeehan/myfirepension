@@ -572,6 +572,10 @@ body.has-pbar .app{padding-bottom:110px}
 .news .newsmore{margin:0;padding:0 16px 6px}
 .news .newsmore a{display:flex;align-items:center;min-height:44px;border-top:1px solid var(--line);font-size:15.5px;font-weight:700;color:var(--accent)}
 .stop button.today[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.qsum{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px}
+.qsum .flabel{margin:0}
+.note.bonusnote{margin-top:10px}
+.eqrow[hidden]{display:none!important}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){
@@ -830,6 +834,7 @@ body.has-pbar .app{padding-bottom:110px}
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 2</b><span>Members appointed before July 1, 2009 are generally Tier 2, which has different rules. These Tier 3 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier2/#personal">Switch to Tier 2 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="field">
+          <div class="qsum" id="eqSum" hidden><span class="flabel">Different equated date</span><span class="dval"><b></b><button type="button" class="dedit" data-qedit>Edit</button></span></div>
           <div class="eqrow"><span class="eqq"><span class="flabel" id="eqQ">Do you have a different equated date?</span><span class="hint">EMS, military, NYPD, or a retroactive hire date</span></span>
             <span class="eqopts" role="group" aria-labelledby="eqQ"><label class="eqyes"><input type="checkbox" id="eqNo"> No</label><label class="eqyes"><input type="checkbox" id="eqOn"> Yes</label></span></div>
           <div id="eqBox" class="field" hidden>
@@ -1056,6 +1061,7 @@ const ICON={
   lock:'<svg class="i" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
   arrow:'<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   up:'<svg class="i" viewBox="0 0 24 24"><path d="M4 17l6-6 4 4 6-7M14 8h6v6"/></svg>',
+  warn:'<svg class="i" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>',
   flat:'<svg class="i" viewBox="0 0 24 24"><path d="M4 12h16"/></svg>',
   half:'<svg class="i" viewBox="0 0 24 24"><path d="M4 16l6-3 4 2 6-5"/></svg>'
 };
@@ -1077,7 +1083,7 @@ function rankVals(){const p=ST.p,r=RANKS.find(x=>x.pay===num(p.topPay));
 document.addEventListener('click',e=>{const b=e.target.closest('[data-rk]');
   if(b){const pk=$(b.dataset.rk+'Pick'),open=pk.hidden;pk.hidden=!open;b.textContent=open?'Done':'Change rank';b.setAttribute('aria-expanded',open);return}
   const rb=e.target.closest('.rpick .ranks button');if(!rb) return;
-  const pk=rb.closest('.rpick'),k=pk.id.replace('Pick','');setTimeout(()=>{pk.hidden=true;const t=document.querySelector(`[data-rk="${k}"]`);t.textContent='Change rank';t.setAttribute('aria-expanded','false');rankVals()},0)});
+  const pk=rb.closest('.rpick'),k=pk.id.replace('Pick','');ST.p.qFold=true;renderP();setTimeout(()=>{pk.hidden=true;const t=document.querySelector(`[data-rk="${k}"]`);t.textContent='Change rank';t.setAttribute('aria-expanded','false');rankVals()},0)});
 const rankOpen=box=>box.querySelectorAll('.rgrp').forEach(d=>{if(d.querySelector('button[aria-pressed="true"]'))d.open=true});
 const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s',DC:'a deputy chief’s',FM:'a fire marshal’s',SFM1:'a supervising fire marshal 1’s',SFM2:'a supervising fire marshal 2’s',PILOT:'a pilot’s',MEL:'a chief marine engineer’s',MEU:'an assistant marine engineer’s',WIPER:'a wiper’s'};
 const rankName=pay=>{const r=RANKS.find(x=>x.pay===num(pay));return r?RANK_OF[r.id]:'your rank’s'};
@@ -1297,7 +1303,8 @@ function BillChecks(root,state,onChange,showRank){
 
 /* ===================== QUICK CALCULATOR ===================== */
 const qSlider=Slider($('qSlider'),{id:'qSvc',label:'Years on the job when you retire',value:ST.q.svc,free:true,onInput:v=>{ST.q.svc=v;renderQuick()}});
-const qChecks=BillChecks($('qBills'),()=>ST.q,()=>renderQuick(),()=>!ST.q.dis&&qSlider.value>=300);
+/* No rank in the quick calculator (owner, Nov. 7, 2026): the longevity bonus is left out and a note points to the personal numbers page. */
+const qChecks=BillChecks($('qBills'),()=>ST.q,()=>renderQuick(),()=>false);
 $('qFas').value=ST.q.fas?commas(num(ST.q.fas)):'';
 $('qDis').checked=ST.q.dis;
 $('qFas').addEventListener('input',e=>{ST.q.fas=num(e.target.value)||'';renderQuick()});
@@ -1329,7 +1336,7 @@ function renderQuick(){
     return;
   }
   /* S5058A, if checked: an extra 1/40th of final average salary for each year (prorated by month) past 20. */
-  const bp=dis?0:bonusPct(S,LAW_BONUS),add=bp*num(q.topPay),extra=!dis&&q.b40?fas*Math.max(0,m-240)/12/40:0,base=(dis?R3.disabilityPct:R3.pensionPct)*(fas+add)+extra,mon=base/12;
+  const bp=0,add=0,extra=!dis&&q.b40?fas*Math.max(0,m-240)/12/40:0,base=(dis?R3.disabilityPct:R3.pensionPct)*(fas+add)+extra,mon=base/12;
   const F=q.esc,frac=dis?0:escFrac(S,F),r=frac*R3.escalationMaxRate;
   const grown=y=>usd(mon*Math.pow(1+r,y));
   const billName=F===20?' (if S9203 passes)':'';
@@ -1339,12 +1346,13 @@ function renderQuick(){
   else if(frac<1) note={c:'var(--gold)',i:ICON.half,t:`It grows about ${(r*100).toFixed(2).replace(/0$/,'')}% a year.`,p:`At ${fmtSvcLong(m)} you get ${Math.round(frac*36)}/36 of full escalation${billName}. At 3% inflation, that’s about ${grown(10)} a month after 10 years and ${grown(20)} after 20. Full escalation starts at ${F} years.`};
   else note={c:'var(--sage)',i:ICON.up,t:'It grows with inflation every year.',p:`You get full escalation${billName}: up to 3% a year on your whole pension, for life. At 3% inflation, that’s about ${grown(10)} a month after 10 years and ${grown(20)} after 20.`};
   const bonusLine=dis||!add?'':`<p class="billnote">Includes ${usd(add/2)} a year from the longevity bonus: ${Math.round(bp*100)}% of ${rankName(q.topPay)} top pay added to your final average salary. Change the rank below.</p>`;
-  ctag('quick',{q_fas:dol(fas),q_years:Math.floor(m/12),q_disabled:yn(dis),q_rank:dis||m<300?'n/a':q.rank,q_bills:dis?'none':[q.esc===20&&'S9203',q.b40&&'S5058A'].filter(Boolean).join(' ')||'none',q_monthly:dol(mon)});
+  ctag('quick',{q_fas:dol(fas),q_years:Math.floor(m/12),q_disabled:yn(dis),q_rank:'n/a',q_bills:dis?'none':[q.esc===20&&'S9203',q.b40&&'S5058A'].filter(Boolean).join(' ')||'none',q_monthly:dol(mon)});
   o.innerHTML=`<div class="k">Your pension in your first year of retirement</div>
     <div class="bignum">${usd(mon)}<span>/month</span></div>
     <div class="u">${usd(base)} a year · ${dis?'75%':'50%'} of ${usd(fas+add)}${add?' (with the bonus)':''}${extra?' plus the extra 1/40ths':''}${dis?' · generally tax-free':''}</div>
     ${fas<20000?'<p class="warn">That looks low for a year’s pay. Type the whole amount, like 120000.</p>':''}${bonusLine}${extra?`<p class="billnote">Includes ${usd(extra)} a year from a bill that hasn’t passed: an extra 1/40th of your final average salary for each year past 20 (S5058A).</p>`:''}
     <div class="note" style="--c:${note.c}"><span class="ni">${note.i}</span><div><b>${note.t}</b><p>${note.p}</p></div></div>
+    ${!dis&&m>=300?`<div class="note bonusnote" style="--c:var(--orange)"><span class="ni">${ICON.warn}</span><div><b>This doesn’t include the longevity bonus.</b><p>It depends on your rank, which this calculator doesn’t ask for. Use the personal numbers page for a more accurate number. <a href="#personal">Go to your personal numbers</a></p></div></div>`:''}
     <p class="fine">${dis?'':'This is your pension alone. You’d also get the $12,000 a year VSF, and at 62 your pension drops by half your Social Security. '}The personal numbers page covers all of it, with your real earnings.</p>
     ${dis?'':taxBox('qTaxBtn',base+VSF)}
     <a class="btn" href="#personal">Get your exact numbers ${ICON.arrow}</a>`;
@@ -1454,11 +1462,12 @@ document.addEventListener('change',e=>{const c=e.target;if(c.type!=='checkbox')r
 });
 /* Owner, Nov. 7, 2026: on the personal numbers page nothing jumps. Whatever the member touched
    (the slider, a stop, a checkbox, a rank) stays put on screen while the page around it updates. */
+document.addEventListener('click',e=>{if(e.target.closest('[data-qedit]')){ST.p.qFold=false;renderP()}});
 let anchor=null;
 addEventListener('hashchange',()=>{document.body.style.minHeight=''});
 const anchorOf=t=>{if(!t.closest||!t.closest('#v-personal'))return null;
   if(t.closest('[data-min],[data-open],#goalTog,#goalMin,#wsTog'))return null;
-  return t.closest('#pSlider')||((t.type==='checkbox'||t.closest('.ranks button,[data-rk],.dedit,#futBtn'))?(t.closest('label')||t):null)};
+  return t.closest('#pSlider')||t.closest('#v-personal .rankbox')||((t.type==='checkbox'||t.closest('[data-rk],.dedit,#futBtn'))?(t.closest('label')||t):null)};
 ['input','change','click'].forEach(ev=>{
   document.addEventListener(ev,e=>{const a=anchorOf(e.target);anchor=a?{el:a,top:a.getBoundingClientRect().top,h:document.documentElement.scrollHeight}:null},true);
   document.addEventListener(ev,()=>{if(!anchor)return;const {el,top,h:anchorH}=anchor;anchor=null;
@@ -1690,6 +1699,11 @@ function renderP(){
   if(c.ok) pSlider.set(p.svcSet?p.svc:nowM);
   ST.p.svc=pSlider.value;
   const m=pSlider.value;
+  /* Owner, Nov. 7, 2026: once a rank is picked, the equated date (and other City service) questions fold to a line with Edit, like the dates. */
+  {const f=!!p.qFold,eqOk=!p.eqOn||realDate(p.eq),eqF=f&&eqOk;
+   document.querySelector('#eqSum+.eqrow').hidden=eqF;$('eqBox').hidden=eqF||!p.eqOn;$('eqSum').hidden=!eqF;
+   $('eqSum').querySelector('b').textContent=p.eqOn&&realDate(p.eq)?fmtDay(fromISO(p.eq)):'No';}
+
   $('earnReset').hidden=!earnWiped||['manual','imported','extra'].some(k=>Object.keys(p[k]).length>0);
   document.querySelectorAll('.mode').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===p.mode));
   $('manualPanel').hidden=p.mode!=='manual';$('importPanel').hidden=!impMode(p.mode);
