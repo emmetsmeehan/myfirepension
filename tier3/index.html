@@ -179,6 +179,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .stop button{min-width:50px;height:44px;padding:0 9px;border-radius:var(--r-sm);border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:17px;cursor:pointer;line-height:1}
 .stop button small{display:block;font-weight:600;font-size:11px;color:var(--muted)}
 .stop button:disabled{opacity:.35;cursor:not-allowed}
+.stop button.today{border-color:var(--steel);color:var(--steel)}
 .stop button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 .stop button[aria-pressed="true"] small{color:#fff;opacity:.85}
 .stop.on::before{background:var(--accent)}
@@ -265,6 +266,51 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 /* personal */
 .step{display:grid;gap:18px}
 .stephead{display:flex;gap:12px;align-items:center}
+.stepmin{display:grid;justify-items:start;gap:12px}
+.stepmin p{margin:0;font-size:17px;line-height:1.4}
+.stepmin .btn{min-height:46px}
+.step.min{gap:12px}
+.minrow{margin-top:18px}.minrow .btn{width:100%}
+.discheck{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:var(--r);padding:10px 14px;background:var(--surface);cursor:pointer}
+.discheck input{width:24px;height:24px;margin:0;accent-color:var(--accent);flex:none}
+.discheck b{display:block;font-size:17px}.discheck small{display:block;color:var(--muted);font-size:14px;line-height:1.3}
+.discheck:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.dlbl{display:flex!important;align-items:center;justify-content:space-between;gap:10px;min-height:44px}
+.dval{display:inline-flex;align-items:center;gap:10px;font-weight:400;flex:none}
+.dval b{font-size:17px;font-weight:700;color:var(--ink);white-space:nowrap}
+.dedit{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.eqrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.eqyes{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;cursor:pointer;min-height:44px;padding:0 4px;flex:none}
+.eqyes input{width:24px;height:24px;margin:0;accent-color:var(--accent)}
+.stop.today{z-index:2}
+.eqrow{display:grid!important;gap:6px}.eqq{display:grid;gap:2px}.eqq .hint{margin:0}
+.eqopts{display:flex;gap:22px}
+#rankStep{margin-top:10px}
+.field:has(>.eqrow){margin-top:10px}
+.rankbox{gap:0!important}
+.rsel{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center}
+.rsel .flabel{font-size:16px;grid-column:1/-1}
+.rval{display:flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-weight:700;font-size:16px}
+.rval.none{color:var(--muted);font-weight:600}
+.rsel .dedit{white-space:nowrap}
+.rpick{display:grid;gap:10px;margin-top:10px}
+.rgh{font-weight:700;font-size:14px;color:var(--muted);margin:4px 0 6px}
+.ws .cnt,.rnote .cnt{color:var(--sage);font-weight:700}
+.ws td .cut{color:var(--gold)}
+.wsbox .rnote{margin:10px 14px 6px}
+.nowmsg{margin:0;font-size:14px;line-height:1.4;color:var(--muted);padding:2px 0 4px}.nowmsg b{color:var(--ink)}
+#wsBox,#wsNeed,#wsTog{margin-top:6px}
+.growrow{margin-top:12px}
+#head .eyebrow{line-height:1.4;min-height:2.8em}
+.preview .pvline{margin:0;font-size:17px;line-height:1.45}
+.slider:has(.thumbtip){margin-top:40px}
+.thumbtip{position:absolute;top:-6px;transform:translate(-50%,-100%);display:inline-flex;align-items:center;gap:2px;padding:3px 8px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700;white-space:nowrap;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.thumbtip.drag{cursor:grabbing}
+.thumbtip[data-edge=l]{transform:translate(-15px,-100%)}.thumbtip[data-edge=r]{transform:translate(calc(-100% + 15px),-100%)}
+.thumbtip svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.thumbtip::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;background:inherit;transform:translateX(-50%) rotate(45deg);border-radius:1px}
+.thumbtip[data-edge=l]::after{left:15px}.thumbtip[data-edge=r]::after{left:auto;right:9px;transform:rotate(45deg)}
+.capline{display:block;color:var(--accent);font-weight:700;margin-top:4px}
 .stephead .n{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
 .stephead h2{font-size:22px}
 .pgrid{display:grid;gap:22px}
@@ -344,6 +390,11 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .ws{width:100%;border-collapse:collapse;table-layout:fixed}
 .ws th{font-size:14px;color:var(--muted);font-weight:600;text-align:left;padding:10px 12px;background:var(--soft)}
 .ws th:nth-child(1){width:32%}.ws th:nth-child(2){width:40%}.ws th:nth-child(3){width:28%;text-align:right}
+@media (min-width:561px){.ws th:nth-child(1){width:48%}.ws th:nth-child(2){width:22%}.ws th:nth-child(3){width:30%}}
+.ws tr.nowr td{border-top:0;padding-top:0}
+.bdg{display:inline-flex;align-items:center;gap:3px;font-size:12.5px;font-weight:700;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.bdg.retro{background:color-mix(in srgb,var(--shine) 30%,var(--surface));color:var(--gold)}
+.rnote .bdg{vertical-align:1px;margin-right:4px}
 .ws td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:middle}
 .ws td:nth-child(3){text-align:right;font-size:15.5px}
 .ws .yr{font-weight:800;font-size:18px}
@@ -539,11 +590,11 @@ body.has-pbar .app{padding-bottom:110px}
       <summary>See latest updates</summary>
       <div class="newsbody">
       <ul>
+        <li><time datetime="2026-11-07">11/7/26:</time> Redesigned “Your personal numbers” for Tier 3: it starts from your time on the job today, shows your vested pension if you leave before 20 years, and is quicker to fill in.</li>
         <li><time datetime="2026-11-07">11/7/26:</time> Improved the look, feel, and information provided in “Pension basics” for both Tier 2 and Tier 3.</li>
         <li><time datetime="2026-11-07">11/7/26:</time> Added the Marine Unit ranks: Wiper, Pilot, Assistant Marine Engineer, and Chief Marine Engineer.</li>
         <li><time datetime="2026-11-06">11/6/26:</time> Added new section of the site breaking down other retirement accounts outside of your pension.</li>
         <li><time datetime="2026-11-06">11/6/26:</time> Added the ranks of Fire Marshal, Supervising Fire Marshal 1, and Supervising Fire Marshal 2.</li>
-        <li><time datetime="2026-11-05">11/5/26:</time> Years on the job slider now goes past 40. On both tiers, once you enter your date of birth, it stops at the most you can work before the mandatory retirement age: 62 for Tier 3, 65 for Tier 2.</li>
       </ul>
       <p class="newsmore"><a href="/updates/">See older updates</a></p>
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -756,22 +807,17 @@ body.has-pbar .app{padding-bottom:110px}
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
   <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span></div>
-  <div class="vhead"><h1>Your personal numbers</h1><p>Use your real earnings to see what you'll collect, when, and how it grows. Your numbers stay on this device.</p></div>
+  <div class="vhead"><h1>Your personal numbers</h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
-    <h2 id="pvh">What you'll see</h2>
-    <ul>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your monthly pension and VSF (an extra $12,000 a year) in your first year of retirement</span></li>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your banked variable: $12,000 for each year past 20, paid all at once when you retire</span></li>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>How your pension grows, year by year</span></li>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Retiring at 20, 23 and 25 years, side by side</span></li>
-    </ul>
-    <p class="hint">Fill in the three steps below. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
+    <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
   </section>
 
   <div class="pgrid">
     <div class="pmain">
       <section class="card step" aria-labelledby="s1h">
         <div class="stephead"><span class="n">1</span><h2 id="s1h">About you</h2></div>
+        <div class="stepmin" id="s1Min" hidden><p id="s1Sum"></p><button type="button" class="btn ghost" data-open="1">Update your information</button></div>
+        <div class="stepbody" id="s1Body">
         <div class="field">
           <span class="flabel" id="dobLbl">Date of birth</span>
           <div class="dsel" role="group" aria-labelledby="dobLbl"><span><select id="dobM" aria-label="Birth month"></select></span><span><select id="dobD" aria-label="Birth day"></select></span><span><select id="dobY" aria-label="Birth year"></select></span></div>
@@ -783,7 +829,8 @@ body.has-pbar .app{padding-bottom:110px}
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 2</b><span>Members appointed before July 1, 2009 are generally Tier 2, which has different rules. These Tier 3 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier2/#personal">Switch to Tier 2 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="field">
-          <label class="chk"><input type="checkbox" id="eqOn"> <span>Do you have a different equated date?<span class="hint" style="display:block;font-weight:400">EMS, military, NYPD, or a retroactive hire date</span></span></label>
+          <div class="eqrow"><span class="eqq"><span class="flabel" id="eqQ">Do you have a different equated date?</span><span class="hint">EMS, military, NYPD, or a retroactive hire date</span></span>
+            <span class="eqopts" role="group" aria-labelledby="eqQ"><label class="eqyes"><input type="checkbox" id="eqNo"> No</label><label class="eqyes"><input type="checkbox" id="eqOn"> Yes</label></span></div>
           <div id="eqBox" class="field" hidden>
             <span class="flabel" id="eqLbl">Equated date</span>
             <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
@@ -792,18 +839,21 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
         </div>
         <div class="field" id="rankStep">
-          <div class="rankbox"><span class="flabel" style="font-size:16px" id="curLbl">Current rank</span>
-            <span class="hint" style="margin-top:-4px">Your rank at retirement starts out the same. Change it if you expect a promotion.</span>
-            <div class="ranks" id="curRanks" role="group" aria-labelledby="curLbl"></div></div>
-          <div class="rankbox" id="pRank" hidden><span class="flabel" style="font-size:16px">Rank at retirement</span>
-            <span class="hint" style="margin-top:-4px">At 25+ years, 5% to 15% of your rank’s <b>base pay</b> is added to your final average salary.</span>
-            <div class="ranks" role="group" aria-label="Rank at retirement"></div>
-            <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div></div>
+          <div class="rankbox"><div class="rsel"><span class="flabel" id="curLbl">Current rank</span><span class="rval" id="curVal"></span><button type="button" class="dedit" data-rk="cur" aria-expanded="false">Change rank</button></div>
+            <div class="rpick" id="curPick" hidden><span class="hint">Your rank at retirement starts out the same. Change it if you expect a promotion.</span>
+            <div class="ranks" id="curRanks" role="group" aria-labelledby="curLbl"></div></div></div>
+          <div class="rankbox" id="pRank" hidden><div class="rsel"><span class="flabel" id="retLbl">Rank at retirement</span><span class="rval" id="retVal"></span><button type="button" class="dedit" data-rk="ret" aria-expanded="false">Change rank</button></div>
+            <div class="rpick" id="retPick" hidden><span class="hint">At 25+ years, 5% to 15% of your rank’s <b>base pay</b> is added to your final average salary.</span>
+            <div class="ranks" role="group" aria-labelledby="retLbl"></div>
+            <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div></div></div>
+        </div>
         </div>
       </section>
 
       <section class="card step" aria-labelledby="s2h">
         <div class="stephead"><span class="n">2</span><h2 id="s2h">Your earnings</h2></div>
+        <div class="stepmin" id="s2Min" hidden><p id="s2Sum"></p><button type="button" class="btn ghost" data-open="2">Edit your earnings</button></div>
+        <div class="stepbody" id="s2Body">
         <p class="hint" style="margin-top:-8px">Your final average salary comes from what you earn each year. Pick one way to give us your numbers.</p>
         <p class="tierbox" id="earnReset" role="status" hidden><b>Please add your earnings again</b><span>We changed how earnings are counted (LODI pay is now included from your W-2s), so the numbers you saved before were cleared. Your dates are still saved.</span></p>
         <div class="modes" role="group" aria-label="How to enter your earnings">
@@ -870,8 +920,9 @@ body.has-pbar .app{padding-bottom:110px}
         <div id="w2Prog" class="field" hidden><span class="hint" id="w2ProgTxt">Reading your W-2s…</span><div class="progress"><i id="w2Bar"></i></div></div>
         <p class="msg" id="w2Msg" role="status" hidden></p>
         <p class="empty" id="wsNeed" hidden>Enter your dates in step 1 and your earnings table shows up here, starting with the year you were appointed.</p>
-        <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>Counts</th></tr></thead><tbody id="wsRows"></tbody></table>
-          <p class="rnote" id="retroNote" hidden><b>*</b> Includes a retro check. The Pension Fund spreads retro back to the years it was earned, and these years count toward your pension (or toward the 2-year look-back for the 10% limit), so your real number may come out a little different from what's shown here.</p>
+        <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>What counts toward your pension</th></tr></thead><tbody id="wsRows"></tbody></table>
+          <p class="rnote" id="cutNote" hidden><span class="cnt">Green</span> is what the Pension Fund counts. A year can only count up to 10% more than the average of the two years before it. Anything over that is left out.</p>
+          <p class="rnote" id="retroNote" hidden><span class="bdg retro">Retro check *</span> This year includes a retro check. The Pension Fund spreads retro back to the years it was earned, and these years count toward your pension (or toward the 2-year look-back for the 10% limit), so your real number may come out a little different from what's shown here.</p>
           <button type="button" class="futbtn" id="futBtn" aria-expanded="false"></button></div>
         <div class="growrow">
           <label class="chk"><input type="checkbox" id="growOn"> Fill in future years assuming a raise each year</label>
@@ -901,19 +952,20 @@ body.has-pbar .app{padding-bottom:110px}
             <p class="hint" style="margin:0">Your paychecks only show <b>when</b> the money came in. Each year's total still comes from your earnings above. Read on your device, never uploaded.</p>
           </div>
         </div>
+        <div class="minrow" id="s2Done" hidden><button type="button" class="btn green" data-min="2">Save and minimize</button></div>
+        </div>
       </section>
 
       <section class="card step" aria-labelledby="s3h">
-        <div class="stephead"><span class="n">3</span><h2 id="s3h">Your retirement</h2></div>
-        <label class="bigcheck" for="pDis"><input type="checkbox" id="pDis"><b>3/4s (Disabled)</b><span class="hint">Hurt on the job: 75% of your final average salary at any length of service, generally tax-free.</span></label>
+        <div class="stephead"><span class="n">3</span><h2 id="s3h">Time on the job</h2></div>
         <div class="field" id="pSlider"></div>
-        <div class="field" id="ssField">
-          <label for="ss">Your Social Security at 62 (estimate)</label>
-          <div class="inp"><span>$</span><input id="ss" inputmode="numeric"><span class="after">/month</span></div>
-          <div class="hint">$2,400 is only an example. Put in yours from ssa.gov/myaccount. Half of this comes off your pension at 62.</div>
-        </div>
         <details id="moreOpts">
           <summary style="cursor:pointer;font-weight:700">More options</summary>
+          <div class="field" id="ssField" style="margin-top:12px">
+            <label for="ss">Your Social Security at 62 (estimate)</label>
+            <div class="inp"><span>$</span><input id="ss" inputmode="numeric"><span class="after">/month</span></div>
+            <div class="hint">$2,400 is only an example. Put in yours from ssa.gov/myaccount. Half of this comes off your pension at 62.</div>
+          </div>
           <div class="field" style="margin-top:12px">
             <label for="cpi">Inflation each year</label>
             <div class="inp" style="max-width:170px"><input class="pl" id="cpi" inputmode="decimal"><span class="after">%</span></div>
@@ -925,11 +977,12 @@ body.has-pbar .app{padding-bottom:110px}
     </div>
 
     <aside class="pside" aria-live="polite">
+      <label class="discheck" for="pDis"><input type="checkbox" id="pDis"><span><b>3/4s (Disabled)</b><small>Hurt on the job: 75% of your final average salary</small></span></label>
       <section class="card headline" id="head"></section>
       <section class="card goal" id="goalCard" hidden>
-        <button type="button" class="goaltog" id="goalTog" aria-expanded="false" aria-controls="goalBody"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>Would you rather set a goal?</b><span class="gsub">See how long you’d have to work, or how much you’d have to make, to get the pension you want.</span></span></button>
+        <button type="button" class="goaltog" id="goalTog" aria-expanded="false" aria-controls="goalBody"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b id="goalTogT">Would you rather set a goal?</b><span class="gsub" id="goalTogS">See how long you’d have to work, or how much you’d have to make, to get the pension you want.</span></span></button>
         <div class="gbody" id="goalBody" hidden>
-        <div class="gh"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><h3>Set a goal</h3></div>
+        <div class="gh"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><h3>Set a goal</h3><button type="button" class="dedit" id="goalMin" style="margin-left:auto">Minimize</button></div>
         <div class="field">
           <label for="goal" style="font-size:16px">How much do you want from your pension each month?</label>
           <div class="inp"><span>$</span><input id="goal" inputmode="numeric" placeholder="7,000"><span class="after">/month</span></div>
@@ -940,20 +993,10 @@ body.has-pbar .app{padding-bottom:110px}
     </aside>
   </div>
 
-  <section class="card escsec" id="cmpSec" aria-labelledby="cmpTitle">
-    <h2 id="cmpTitle">Compare 20, 23 and 25 years</h2>
-    <div class="tablebox"><table id="cmp"></table></div>
-    <p class="hint">Retiring later means fewer years collecting, so the total through 85 can come out lower even when each check is bigger. It doesn’t count the pay you earn while you keep working.</p>
-    <p class="swipe" id="swipe" hidden>Swipe the table to see your plan →</p>
-    <div><button type="button" class="linkbtn" id="cmpMore" aria-expanded="false" aria-controls="cmp">Show all rows</button></div>
-  </section>
-
   <section class="card escsec" id="escSec" aria-labelledby="escTitle">
     <div style="display:grid;gap:6px"><h2 id="escTitle">The power of escalation</h2><p class="hint" id="escLede"></p></div>
     <div class="esc-cards" id="escCards"></div>
-    <div class="legend" id="legend"></div>
-    <div class="chartwrap" id="chartwrap"><div id="chart"></div><div class="tip" id="tip" hidden></div></div>
-    <p class="hint">Yearly pension plus VSF by age. Tap the chart to compare. The dip at 62 is the Social Security offset.</p>
+    <div hidden><div class="legend" id="legend"></div><div class="chartwrap" id="chartwrap"><div id="chart"></div><div class="tip" id="tip" hidden></div></div></div>
   </section>
 
   <div class="btnrow"><button type="button" class="btn ghost" id="clearAll">Clear my numbers</button></div>
@@ -966,7 +1009,7 @@ body.has-pbar .app{padding-bottom:110px}
 </footer>
 </div>
 
-<script src="/rules.js"></script>
+<script src="/rules.js?v=20261107b"></script>
 <script>
 const $=id=>document.getElementById(id);
 /* Amounts as people type them: "$120,000", "120k", or "120.000" with a dot for thousands. Signs and letters are dropped. */
@@ -1023,7 +1066,16 @@ RANKS.forEach(r=>{r.pay=RS.rankTopPay[r.id]});
 const FF_PAY=RS.rankTopPay.FF;
 const RGRP=[{g:'m',name:'Marine Unit ranks'},{g:'b',name:'Bureau of Fire Investigation ranks'}];
 const rBtn=r=>`<button type="button" data-r="${r.id}">${r.label||r.id}${r.sub?`<small>${r.sub}</small>`:''}<small>${kfmt(r.pay)}</small></button>`;
-const rankHTML=()=>`<div class="rmain">${RANKS.filter(r=>!r.g).map(rBtn).join('')}</div>`+RGRP.map(x=>`<details class="rgrp" data-g="${x.g}"><summary>${x.name}</summary><div class="rg">${RANKS.filter(r=>r.g===x.g).map(rBtn).join('')}</div></details>`).join('');
+/* the Marine Unit and BFI ranks sit under small headings, not folded. */
+const rankHTML=()=>`<div class="rmain">${RANKS.filter(r=>!r.g).map(rBtn).join('')}</div>`+RGRP.map(x=>`<div class="rgrp" data-g="${x.g}"><div class="rgh">${x.name.replace(/ ranks$/,'')}</div><div class="rg">${RANKS.filter(r=>r.g===x.g).map(rBtn).join('')}</div></div>`).join('');
+const RFULL=id=>(RANK_OF[id]||'').replace(/^an? /,'').replace(/’s$/,'').replace(/\b\w/g,ch=>ch.toUpperCase());
+function rankVals(){const p=ST.p,r=RANKS.find(x=>x.pay===num(p.topPay));
+  $('curVal').textContent=p.cur?RFULL(p.cur):'Not picked';$('curVal').classList.toggle('none',!p.cur);
+  $('retVal').textContent=r?RFULL(r.id):num(p.topPay)>0?'Your own top pay: '+usd(num(p.topPay)):'Firefighter'}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-rk]');
+  if(b){const pk=$(b.dataset.rk+'Pick'),open=pk.hidden;pk.hidden=!open;b.textContent=open?'Done':'Change rank';b.setAttribute('aria-expanded',open);return}
+  const rb=e.target.closest('.rpick .ranks button');if(!rb) return;
+  const pk=rb.closest('.rpick'),k=pk.id.replace('Pick','');setTimeout(()=>{pk.hidden=true;const t=document.querySelector(`[data-rk="${k}"]`);t.textContent='Change rank';t.setAttribute('aria-expanded','false');rankVals()},0)});
 const rankOpen=box=>box.querySelectorAll('.rgrp').forEach(d=>{if(d.querySelector('button[aria-pressed="true"]'))d.open=true});
 const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s',DC:'a deputy chief’s',FM:'a fire marshal’s',SFM1:'a supervising fire marshal 1’s',SFM2:'a supervising fire marshal 2’s',PILOT:'a pilot’s',MEL:'a chief marine engineer’s',MEU:'an assistant marine engineer’s',WIPER:'a wiper’s'};
 const rankName=pay=>{const r=RANKS.find(x=>x.pay===num(pay));return r?RANK_OF[r.id]:'your rank’s'};
@@ -1109,7 +1161,7 @@ function cleanState(){
   {const o=p.pays,c={};if(o&&typeof o==='object')for(const y in o){if(!/^\d{4}$/.test(y)||!Array.isArray(o[y]))continue;const a=o[y].filter(r=>Array.isArray(r)&&realDate(r[0])&&r[0].slice(0,4)===y&&Math.abs(+r[1])<1e6).map(r=>[r[0],+r[1]]);if(a.length)c[y]=a}p.pays=c}
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
   if(!impMode(p.mode)) p.mode='manual';
-  for(const s of [ST.q,p]){if(!(s.svc>=12&&s.svc<=540))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=FF_PAY}}
+  for(const s of [ST.q,p]){if(!(s.svc>=1&&s.svc<=540))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=FF_PAY}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
   /* Lieutenant used to be the starting rank at retirement. Untouched, it isn't the member's choice. */
   if(!p.rankSet&&!p.cur&&p.rank==='LT'&&+p.topPay===140212){p.rank='FF';p.topPay=FF_PAY}
@@ -1164,27 +1216,50 @@ const STOPS=[{m:240},{m:276,low:true},{m:300},{m:360},{m:420,low:true},{m:480},{
 const DIS_STOPS=[{m:60},{m:120,low:true},{m:180},{m:240,low:true},{m:300},{m:360,low:true},{m:420},{m:480,low:true},{m:540}];
 function Slider(root,{id,label,value,onInput}){
   root.innerHTML=`<div class="svc"><label for="${id}">${label}</label><div class="svcval"><b></b><span></span></div></div><div class="hint sub"></div>
-    <div class="slider"><input type="range" id="${id}" min="240" max="${MAXM}" step="1"><div class="fill"></div></div>`;
+    <div class="slider"><div class="thumbtip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Slide<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div><input type="range" id="${id}" min="240" max="${MAXM}" step="1"><div class="fill"></div></div>`;
   const inp=root.querySelector('input'),sl=root.querySelector('.slider'),fill=root.querySelector('.fill'),out=root.querySelector('.svcval b'),mo=root.querySelector('.svcval span');
-  let min=240,cap=Infinity,top=MAXM,span=MAXM-240,list=STOPS;
+  let min=240,base=240,fl=null,cap=Infinity,top=MAXM,span=MAXM-240,list=STOPS;
   inp.value=value;
   /* The slider's right end is the age-62 point once dates are in, else 45 years; stops past it are dropped (owner, Nov. 5, 2026). */
-  function layout(){top=Math.min(MAXM,cap);span=top-min;inp.min=min;inp.max=top;
-    if(+inp.value<min)inp.value=min;if(+inp.value>top)inp.value=top;stops(list.filter(s=>s.m<=top));paint()}
+  function layout(){min=fl!=null?fl:base;top=Math.min(MAXM,cap);span=Math.max(1,top-min);inp.min=min;inp.max=top;
+    if(+inp.value<min)inp.value=min;if(+inp.value>top)inp.value=top;stops(fl!=null?todayStops():list.filter(s=>s.m<=top));paint()}
+  /* Nov. 7, 2026, owner: once dates are in, the slider starts at the member's time on the job today ("Today" stop),
+     and can go under 20 years. Other stops are placed by importance, upper row first, then lower; any that would crowd are dropped. */
+  function todayStops(){
+    const W=sl.clientWidth||300,T=60/W,hi=[{p:-T/2+100/W-T/2,w:1}],lo=[],out=[{m:fl,today:true}];
+    const want=base===240?[240,276,300,360,180,120,420,480,540,60]:list.map(s=>s.m);
+    for(const m of want){if(m<=fl||m>top) continue;const p=(m-fl)/span,free=row=>row.every(o=>Math.abs(p-o.p)>=T*(o.w||1));
+      if(free(hi)){hi.push({p});out.push({m})}else if(free(lo)){lo.push({p});out.push({m,low:true})}}
+    return out.sort((a,b)=>a.m-b.m)}
   function paint(){const m=+inp.value;out.textContent=Math.floor(m/12)===1?'1 year':plural(Math.floor(m/12),'year');mo.textContent=plural(m%12,'month');
     fill.style.width=`calc((100% - var(--thumb)) * ${(m-min)/span})`;
+    const tip=sl.querySelector('.thumbtip'),f=(m-min)/span;tip.style.left=`calc(var(--thumb)/2 + (100% - var(--thumb)) * ${f})`;tip.dataset.edge=f<0.12?'l':f>0.88?'r':'';
     sl.querySelectorAll('.stop').forEach(el=>{const b=el.querySelector('button'),on=+b.dataset.m===m;b.setAttribute('aria-pressed',on);el.classList.toggle('on',on);b.disabled=+b.dataset.m>cap})}
   function stops(list){sl.querySelectorAll('.stop').forEach(e=>e.remove());list.forEach(s=>{const pct=(s.m-min)/span,el=document.createElement('div');
     el.className='stop'+(s.low?' low':'')+(pct===0?' l':pct===1?' r':s.side?' '+s.side:'');
     el.style.left=`calc(var(--thumb)/2 + (100% - var(--thumb)) * ${pct})`;
-    el.innerHTML=`<button type="button" data-m="${s.m}" aria-pressed="false" aria-label="${fmtSvcLong(s.m)}">${fmtSvc(s.m)}<small>yrs</small></button>`;sl.appendChild(el)})}
+    if(s.today) el.classList.add('today');
+    el.innerHTML=s.today
+      ?`<button type="button" class="today" data-m="${s.m}" aria-pressed="false" aria-label="Today: ${fmtSvcLong(s.m)}">Today</button>`
+      :`<button type="button" data-m="${s.m}" aria-pressed="false" aria-label="${fmtSvcLong(s.m)}">${fmtSvc(s.m)}<small>yrs</small></button>`;sl.appendChild(el)})}
   inp.addEventListener('input',()=>{if(+inp.value>cap)inp.value=cap;paint();onInput(+inp.value)});
+  /* The "Slide" tag above the dot can be dragged too (owner, Nov. 7, 2026). */
+  const tip=sl.querySelector('.thumbtip');
+  tip.addEventListener('pointerdown',e=>{e.preventDefault();tip.setPointerCapture(e.pointerId);tip.classList.add('drag')});
+  tip.addEventListener('pointermove',e=>{if(!tip.hasPointerCapture(e.pointerId))return;
+    const r=inp.getBoundingClientRect(),t=parseFloat(getComputedStyle(sl).getPropertyValue('--thumb'))||30;
+    const f=Math.min(1,Math.max(0,(e.clientX-r.left-t/2)/(r.width-t))),v=Math.min(top,Math.round(min+f*span));
+    if(v!==+inp.value){inp.value=v;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
+  const end=e=>{tip.classList.remove('drag');if(tip.hasPointerCapture(e.pointerId))tip.releasePointerCapture(e.pointerId)};
+  tip.addEventListener('pointerup',end);tip.addEventListener('pointercancel',end);
   sl.addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(!b||b.disabled)return;inp.value=b.dataset.m;paint();onInput(+inp.value)});
   const api={get value(){return +inp.value},set(v){inp.value=Math.min(v,cap);paint()},
     /* Mandatory retirement: the slider ends there. Ignored if it falls before the slider's start. */
     cap(mm){const c=mm>=min?mm:Infinity;if(c===cap)return;cap=c;layout()},
-    range(dis){min=dis?12:240;list=dis?DIS_STOPS:STOPS;if(cap<min)cap=Infinity;layout();root.querySelector('label').textContent=dis?'Years on the job when you go out':label},
-    sub(t){root.querySelector('.sub').textContent=t}};
+    /* Time on the job today, in months (null: no dates yet, so the usual 20-year start). */
+    floor(mm){if(mm===fl)return;fl=mm;if(cap<(fl!=null?fl:base))cap=Infinity;layout()},
+    range(dis){base=dis?12:240;list=dis?DIS_STOPS:STOPS;if(cap<(fl!=null?fl:base))cap=Infinity;layout();root.querySelector('label').textContent=dis?'Years on the job when you go out':label},
+    sub(t,cap){const el=root.querySelector('.sub');el.textContent=t;if(cap){const c=document.createElement('span');c.className='capline';c.textContent=cap;el.appendChild(c)}}};
   api.range(false);
   return api;
 }
@@ -1286,22 +1361,41 @@ function setupDate(pre,y0,y1,iso,onChange){
   let ys='<option value="">Year</option>';for(let v=y1;v>=y0;v--) ys+=`<option value="${v}">${v}</option>`;y.innerHTML=ys;
   const days=keep=>{const n=m.value===''?31:new Date(y.value===''?2000:+y.value,+m.value+1,0).getDate();
     d.innerHTML='<option value="">Day</option>'+Array.from({length:n},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');d.value=keep?Math.min(keep,n):''};
-  const set=iso=>{const def=iso?fromISO(iso):null;m.value=def?def.getMonth():'';y.value=def?def.getFullYear():'';days(def?def.getDate():0)};
+  /* Owner, Nov. 7, 2026: a finished date folds up next to its label with an Edit button. */
+  const box=m.closest('.dsel'),lbl=$(box.getAttribute('aria-labelledby')),dv=document.createElement('span');
+  dv.className='dval';dv.innerHTML='<b></b><button type="button" class="dedit">Edit</button>';lbl.classList.add('dlbl');lbl.appendChild(dv);
+  const full=()=>m.value!==''&&d.value!==''&&y.value!=='';
+  let open=false;
+  const show=()=>{const f=full(),shut=f&&!open;box.hidden=shut;dv.hidden=!f;
+    dv.querySelector('b').textContent=shut?fmtDay(new Date(+y.value,+m.value,+d.value)):'';dv.querySelector('button').textContent=shut?'Edit':'Done'};
+  dv.querySelector('button').addEventListener('click',()=>{open=!open;show();if(open) m.focus({preventScroll:true})});
+  const set=iso=>{const def=iso?fromISO(iso):null;m.value=def?def.getMonth():'';y.value=def?def.getFullYear():'';days(def?def.getDate():0);open=false;show()};
   set(iso);
-  const fire=()=>onChange(m.value!==''&&d.value!==''&&y.value!==''?toISO(new Date(+y.value,+m.value,+d.value)):'');
-  m.addEventListener('change',()=>{days(+d.value);fire()});y.addEventListener('change',()=>{days(+d.value);fire()});d.addEventListener('change',fire);
+  const fire=()=>onChange(full()?toISO(new Date(+y.value,+m.value,+d.value)):'');
+  /* Folds when the year is picked last, or when a half-filled date gets its last piece. */
+  const after=(was,isYear)=>{if(full()&&(isYear||!was)) open=false;else if(!full()) open=true;show()};
+  m.addEventListener('change',()=>{const w=full();days(+d.value);fire();after(w,false)});
+  y.addEventListener('change',()=>{const w=full();days(+d.value);fire();after(w,true)});
+  d.addEventListener('change',()=>{const w=full();fire();after(w,false)});
   return {set};
 }
 const dobPick=setupDate('dob',1945,NOW_Y-18,ST.p.dob,v=>{ST.p.dob=v;renderP()});
 const apPick=setupDate('ap',1985,NOW_Y,ST.p.appt,v=>{ST.p.appt=v;wsKey='';renderP()});
 setupDate('eq',1960,NOW_Y,ST.p.eq,v=>{ST.p.eq=v;wsKey='';renderP()});
-$('eqOn').checked=ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn;
-$('eqOn').addEventListener('change',e=>{ST.p.eqOn=e.target.checked;$('eqBox').hidden=!ST.p.eqOn;wsKey='';renderP()});
+const eqSync=()=>{$('eqOn').checked=!!ST.p.eqOn;$('eqNo').checked=!ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn};eqSync();
+$('eqOn').addEventListener('change',()=>{ST.p.eqOn=true;eqSync();wsKey='';renderP()});
+$('eqNo').addEventListener('change',()=>{ST.p.eqOn=false;eqSync();wsKey='';renderP()});
+/* Save and minimize (owner, Nov. 7, 2026): steps 1 and 2 fold to a one-line summary. */
+document.addEventListener('click',e=>{const mn=e.target.closest('[data-min]'),op=e.target.closest('[data-open]');if(!mn&&!op)return;
+  const n=(mn||op).dataset[mn?'min':'open'];ST.p['min'+n]=!!mn;renderP();
+  const sec=$('s'+n+'h').closest('section'),bar=document.querySelector('#personal .topbar')||document.querySelector('.topbar');
+  const top=sec.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().bottom:0)-10;if(top<0) scrollBy({top,behavior:'smooth'})});
 
-const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;renderP()}});
+const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;ST.p.svcSet=true;renderP()}});
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP(),()=>false);
 /* Pending bills sit under More options; keep it open when one is checked so the box isn't hidden. */
 if(ST.p.esc===20||ST.p.b40) $('moreOpts').open=true;
+if(!ST.p.cur) ST.p.cur='FF';
 const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
 /* Current rank: the rank at retirement follows it until the member picks a different one there. */
 (()=>{const box=$('curRanks');
@@ -1320,9 +1414,12 @@ $('ss').addEventListener('input',e=>{ST.p.ss=Math.min(6000,num(e.target.value));
 $('ss').addEventListener('blur',e=>{e.target.value=commas(ST.p.ss)});
 $('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,pctNum(e.target.value));renderP()});
 $('cpi').addEventListener('blur',e=>{e.target.value=ST.p.cpi});
-function goalShow(o){$('goalBody').hidden=!o;$('goalTog').hidden=o;$('goalTog').setAttribute('aria-expanded',o)}
-goalShow(!!ST.p.goal);
-$('goalTog').addEventListener('click',()=>{goalShow(true);$('goal').focus()});
+function goalShow(o){$('goalBody').hidden=!o;$('goalTog').hidden=o;$('goalTog').setAttribute('aria-expanded',o);
+  const g=num(ST.p.goal);$('goalTogT').textContent=g?`Your goal: ${usd(g)} a month`:'Would you rather set a goal?';
+  $('goalTogS').textContent=g?'Tap to see when you get there, or change it.':'See how long you’d have to work, or how much you’d have to make, to get the pension you want.'}
+goalShow(!!ST.p.goal&&!ST.p.goalMin);
+$('goalTog').addEventListener('click',()=>{ST.p.goalMin=false;goalShow(true);$('goal').focus()});
+$('goalMin').addEventListener('click',()=>{ST.p.goalMin=true;goalShow(false);renderP()});
 $('goal').addEventListener('input',e=>{ST.p.goal=num(e.target.value)||'';renderP()});
 $('goal').addEventListener('blur',e=>{const n=num(e.target.value);e.target.value=n?commas(n):''});
 $('growOn').checked=ST.p.growOn;$('grow').value=ST.p.grow;
@@ -1337,7 +1434,17 @@ function toEst(el){requestAnimationFrame(()=>{
 })}
 document.addEventListener('change',e=>{const c=e.target;if(c.type!=='checkbox')return;
   if(c.id==='qDis'||$('qBills').contains(c)) toEst($('qOut'));
-  else if(c.id==='pDis'||c.id==='growOn'||$('pBills').contains(c)) toEst($('head'));
+});
+/* Owner, Nov. 7, 2026: on the personal numbers page nothing jumps. Whatever the member touched
+   (the slider, a stop, a checkbox, a rank) stays put on screen while the page around it updates. */
+let anchor=null;
+const anchorOf=t=>{if(!t.closest||!t.closest('#personal'))return null;
+  if(t.closest('[data-min],[data-open],#goalTog,#goalMin,#wsTog'))return null;
+  return t.closest('#pSlider')||((t.type==='checkbox'||t.closest('.ranks button,[data-rk],.dedit,#futBtn'))?(t.closest('label')||t):null)};
+['input','change','click'].forEach(ev=>{
+  document.addEventListener(ev,e=>{const a=anchorOf(e.target);anchor=a?{el:a,top:a.getBoundingClientRect().top}:null},true);
+  document.addEventListener(ev,()=>{if(!anchor)return;const {el,top}=anchor;anchor=null;
+    if(!el.isConnected||!el.offsetParent)return;const d=el.getBoundingClientRect().top-top;if(Math.abs(d)>0.5) scrollBy(0,d)});
 });
 $('grow').addEventListener('input',e=>{ST.p.grow=Math.min(10,pctNum(e.target.value));renderP()});
 $('grow').addEventListener('blur',e=>{e.target.value=ST.p.grow});
@@ -1459,6 +1566,12 @@ function scenario(months,c){
     rows.push({age,pay,v});
   }
   const at=a=>rows.find(x=>x.age>=a-1e-9)||null;
+  /* Leaving under 20 years: a vested pension (2.1% of FAS a year) from 5 years, paid from the would-be 20-year date. */
+  if(!c.dis&&months<240){
+    const vb=months>=VEST_M?VEST_PCT*S*baseFas:0,start=addM(c.eq,240),startAge=c.age+20;
+    return {months,S,fas:baseFas,baseFas,best:fr.best,bonusPct:0,bonusAdd:0,extra:0,base:vb,retDate,retAge,frac:0,colaRate,escRate:0,offset,drop:0,rows:[],at:()=>null,life:0,
+      vested:true,vestPct:VEST_PCT*S,start,startAge,refund:months<REFUND_M};
+  }
   return {months,S,fas,baseFas,best:fr.best,bonusPct:bp,bonusAdd,extra,base,retDate,retAge,frac,colaRate,escRate,offset,drop,rows,at,life};
 }
 
@@ -1483,8 +1596,8 @@ function renderWorksheet(c,m){
     wsKey=key;let h='';
     for(let y=apptY;y<=showTo;y++){
       h+=isVerified(y)
-        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
-        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>`;
+        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
+        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>${y===NOW_Y?`<tr class="nowr"><td colspan="3"><p class="nowmsg"><b>Get current year (${NOW_Y}):</b> what you’ve made so far is on NYCAPS ESS, under Pay and Tax Information &gt; Pay Summary (Gross YTD). Type in what you expect for the whole year.</p></td></tr>`:''}`;
     }
     $('wsRows').innerHTML=h;
     const store=impMode(p.mode)?p.extra:p.manual;
@@ -1497,9 +1610,10 @@ function renderWorksheet(c,m){
   const res=fasFromEarnings(retDate,c.appt),full=fasFromEarnings(new Date(showTo+2,0,1),c.appt);
   const rW=res.best?[res.best.start-2,res.best.end]:null;
   for(let y=apptY;y<=showTo;y++){
-    const r=full.rows.find(x=>x.y===y),row=$('r-'+y),inp=$('e-'+y);
+    const r=full.rows.find(x=>x.y===y),row=$('r-'+y),inp=$('e-'+y);if(y===apptY) anyCut=false;
     const used=res.best&&y>=res.best.start&&y<=res.best.end,after=y>res.lastY;
-    row.querySelector('.yr').innerHTML=y+(rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?'<sup class="rstar">*</sup>':'');
+    row.querySelector('.yr').textContent=y;
+    row.querySelector('.rslot').innerHTML=rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?' <span class="bdg retro">Retro check *</span>':'';
     const ar=$('a-'+y);if(ar) ar.className='adjr '+(used?'win':'');
     row.className=(used?'win ':'')+(r&&r.kind==='est'?'est ':'')+(after?'after ':'')+(y>NOW_Y?'fut':'');
     const part=used&&res.best.rolling&&((y===res.best.start&&(res.best.from.getMonth()||res.best.from.getDate()>1))||(y===res.best.end&&(res.best.to.getMonth()||res.best.to.getDate()>1)));
@@ -1516,9 +1630,10 @@ function renderWorksheet(c,m){
     if(inp&&document.activeElement!==inp) inp.placeholder=r&&r.kind==='est'?commas(r.v):'';
     /* Raises in the first 5 years often top the 10% limit, but those years are never in the best 3, so only flag the limit after that. */
     const cut=r&&r.v>r.counted+0.5&&(used||y-apptY>=5);
-    $('c-'+y).innerHTML=r&&r.v>0?usd(cut?r.counted:r.v)+(cut?`<span class="cut">${usd(r.v-r.counted)} over the 10% limit</span>`:''):'–';
+    $('c-'+y).innerHTML=r&&r.v>0?`<span class="cnt">${usd(cut?r.counted:r.v)}</span>`+(cut?`<span class="cut">${usd(r.v-r.counted)} doesn’t count (10% limit)</span>`:''):'–';
+    if(cut) anyCut=true;
   }
-  $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));
+  $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));$('cutNote').hidden=!anyCut;
   const futN=showTo-NOW_Y,fb=$('futBtn');
   fb.hidden=futN<1;$('wsBox').querySelector('.ws').classList.toggle('hidefut',!showFut);fb.setAttribute('aria-expanded',showFut);
   const bestFut=res.best&&res.best.end>NOW_Y;
@@ -1528,6 +1643,7 @@ function renderWorksheet(c,m){
   $('growHint').textContent=last==null?'Future years repeat your last year once you enter one.':p.growOn?`Future years start from your ${last} pay (${usd(k[last]+adjOf(last))}) and rise ${num(p.grow)}% a year.`:`Future years repeat your ${last} pay: ${usd(k[last]+adjOf(last))}. Type over any year to change it.`;
 }
 
+let anyCut=false;
 /* ---------- results ---------- */
 const COLORS=['--steel','--gold','--sage','--accent'];
 const cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -1542,9 +1658,17 @@ function gapNote(c){const k=known(),n=[];for(let y=c.appt.getFullYear()+1;y<NOW_
   return n.length?`<p class="hint">${plural(n.length,'past year')} ${n.length>1?'are':'is'} blank in step 2. The estimate uses only the years you filled in.</p>`:''}
 /* Mandatory retirement age: 62 (RSSL § 501, per the Tier 3 Enhanced SPD). c.age is the age at the equated date. */
 const AGE_OUT=R3.mandatoryRetirementAge;
+/* Time on the job today, in whole months from the equated date (at least 1). */
+function svcToday(c){const n=new Date(),e=c.eq;return Math.max(1,(n.getFullYear()-e.getFullYear())*12+n.getMonth()-e.getMonth()-(n.getDate()<e.getDate()?1:0))}
+/* Vesting (RSSL § 516; Tier 3 Enhanced SPD, Dec. 2019, p. 13–14). */
+const VEST_M=(R3.vestingYears??5)*12,VEST_PCT=R3.vestedPctPerYear??0.021,REFUND_M=(R3.vestedRefundUntilYears??10)*12;
 const ageOutM=c=>Math.floor((AGE_OUT-c.age)*12+1e-9);
 function renderP(){
-  const p=ST.p,c=pParams();pSlider.cap(c.ok?ageOutM(c):Infinity);ST.p.svc=pSlider.value;
+  const p=ST.p,c=pParams(),nowM=c.ok?svcToday(c):null;
+  pSlider.floor(nowM);pSlider.cap(c.ok?ageOutM(c):Infinity);
+  /* Until the member moves the slider, it sits on today, so only the years already worked are used. */
+  if(c.ok) pSlider.set(p.svcSet?p.svc:nowM);
+  ST.p.svc=pSlider.value;
   const m=pSlider.value;
   $('earnReset').hidden=!earnWiped||['manual','imported','extra'].some(k=>Object.keys(p[k]).length>0);
   document.querySelectorAll('.mode').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===p.mode));
@@ -1572,26 +1696,35 @@ function renderP(){
   $('tierWarn').hidden=!(c.appt&&c.appt<new Date(2009,6,1));
   $('tierGo').href=`../tier2/?dob=${p.dob}&appt=${p.appt}#personal`;
   $('pBills').hidden=c.dis;$('ssField').hidden=c.dis;
+  rankVals();const min1=false;$('s1Body').hidden=min1;$('s1Min').hidden=!min1;
+  $('s1h').closest('section').classList.toggle('min',min1);
+  if(c.ok) $('s1Sum').textContent=`Born ${fmtDay(c.dob)} · appointed ${fmtDay(c.appt)}${c.off>0?' · equated '+fmtDay(c.eq):''} · ${(()=>{const r=RANKS.find(x=>x.id===(p.cur||p.rank));return r?(r.label||r.id).replace(/\u00a0/g,' '):''})()}`;
   pChecks.sync();pRank.sync();
   if(!c.ok){
     pSlider.sub('Enter your dates in step 1 to see when you’d retire.');
-    $('cmpSec').hidden=true;$('escSec').hidden=true;$('preview').hidden=false;
+    $('escSec').hidden=true;$('preview').hidden=false;
     $('head').innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Start with your date of birth and appointment date in step 1.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);save();return;
   }
 
   const you=scenario(m,c);
   $('preview').hidden=you.fas>0;
+  const hasFas=you.fas>0||you.baseFas>0,min2=!!(p.min2&&hasFas);
+  $('s2Body').hidden=min2;$('s2Min').hidden=!min2;$('s2Done').hidden=!hasFas;$('s2h').closest('section').classList.toggle('min',min2);
+  if(hasFas) $('s2Sum').innerHTML=`Final average salary from your earnings: <b>${usd(you.baseFas)}</b><br><span class="hint">Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span>`;
   const om=ageOutM(c);
-  pSlider.sub((c.dis?'Go out ':'Retire ')+fmtMY(you.retDate)+' at age '+fmtAge(you.retAge)+(om<=MAXM&&om>=(c.dis?12:240)?`. You turn ${AGE_OUT} in ${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}, the mandatory retirement age, so the most you can work is ${fmtSvcLong(om)}.`:''));
+  const isNow=m===nowM,todayT=isNow?`That’s today: you have ${fmtSvcLong(nowM)} on the job. `:`You have ${fmtSvcLong(nowM)} on the job today. `;
+  pSlider.sub(todayT+(c.dis?'Go out ':m<240?'Leave ':'Retire ')+(isNow?'now':fmtMY(you.retDate))+' at age '+fmtAge(you.retAge)+'.',
+    om<=MAXM&&m>=om?`You turn ${AGE_OUT} in ${fmtMY(new Date(c.dob.getFullYear()+AGE_OUT,c.dob.getMonth(),c.dob.getDate()))}, the mandatory retirement age, so the most you can work is ${fmtSvcLong(om)}.`:'');
   renderWorksheet(c,m);renderPays(c,m);
   save();
 
   const head=$('head');
   const warn=you.retAge>62?'<p class="warn">That’s past 62, the mandatory retirement age for FDNY members. Move the slider back or check your dates.</p>':'';
   const tier2=c.appt<new Date(2009,6,1)?'<p class="warn">Tier 2 appointment date: these Tier 3 numbers won’t match your pension.</p>':'';
+  if(you.vested&&(you.months<VEST_M||you.fas>0)){renderVested(c,m,you);renderGoal(c,m,you);const sc=!!(you.fas>0);$('escSec').hidden=!sc;if(sc) renderCompare(c,m,you);return}
   const showCmp=!c.dis&&you.fas>0;
-  $('cmpSec').hidden=!showCmp;$('escSec').hidden=!showCmp;
+  $('escSec').hidden=!showCmp;
   if(!you.fas){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once you enter your earnings in step 2. Start with last year's pay.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
@@ -1621,8 +1754,8 @@ function renderP(){
       return `<tr${off?' class="offrow"':''}><td>${ry+t} <span class="ag">· ${a}</span></td><td>${usd(r.pay/12)}</td><td>${usd(r.pay+r.v)}</td></tr>`+(off?`<tr class="offrow"><td colspan="3" class="offn">At 62 the pension drops ${usd(you.offset/12)} a month for the Social Security offset</td></tr>`:'')}).join('');
     head.innerHTML=`<div class="eyebrow">Retire ${fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
       <div class="k2">Your first year of retirement</div>
-      <div class="bignum">${usd(totY)}<span>/year</span></div>
-      <div class="sub2">About <b>${usd(totY/12)} a month</b>, pension plus VSF</div>
+      <div class="bignum">${usd(totY/12)}<span>/month</span></div>
+      <div class="sub2"><b>${usd(totY)} a year</b>, pension plus VSF</div>
       ${billsOnNote(c)}${tier2}${warn}${gapNote(c)}
       <div class="brk">
         <div class="brow"><div class="bl"><b>Pension</b><small>50% of your ${usd(you.fas)} final average salary${you.extra?', plus the extra 1/40ths':''}. Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':' (calendar years)'}</small></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
@@ -1643,6 +1776,37 @@ function renderP(){
   renderGoal(c,m,you);
   updateBar(you,m);
   if(showCmp) renderCompare(c,m,you);
+}
+
+/* ---------- leaving before 20 years ---------- */
+function renderVested(c,m,you){
+  const head=$('head'),p=ST.p;
+  const ctx=`<div class="eyebrow">Leave ${m===svcToday(c)?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>`;
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:'no',p_vested:yn(you.base>0),p_monthly:dol(you.base/12)});
+  $('goalCard').hidden=!(you.fas>0);
+  if(m<VEST_M){
+    head.innerHTML=`${ctx}<div class="k2">Under 5 years</div><div class="bignum">No pension yet</div>
+      <div class="sub2">You need <b>5 years</b> to be vested. Leave before then and you get back the money you paid in, with interest.</div>
+      <p class="hint">You’d be vested in ${fmtMY(addM(c.eq,VEST_M))}. Move the slider to see what you’d get.</p>`;
+    updateBar(you,m);return;
+  }
+  const pct=(you.vestPct*100).toFixed(2).replace(/\.?0+$/,''),late=you.startAge>55;
+  const offOn=you.offset>0&&you.startAge<62;
+  head.innerHTML=`${ctx}
+    <div class="k2">Your vested pension</div>
+    <div class="bignum">${usd(you.base/12)}<span>/month</span></div>
+    <div class="sub2">${usd(you.base)} a year, starting <b>${fmtMY(you.start)}</b>, when you’d have hit 20 years (age ${fmtAge(you.startAge)})</div>
+    ${gapNote(c)}
+    <div class="brk">
+      <div class="brow"><div class="bl"><b>Vested pension</b><small>2.1% of your ${usd(you.fas)} final average salary for each year: ${fmtSvcLong(m)} × 2.1% = ${pct}%. Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':' (calendar years)'}</small></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
+      <div class="brow"><div class="bl"><b>VSF and banked variable</b><small>Only for 20 years or more</small></div><div class="amt"><b>None</b></div></div>
+    </div>
+    <ul class="hint" style="padding-left:18px;margin:10px 0 0">
+      ${late?`<li>You can start it at 55 instead, with a cut, since that comes first for you.</li>`:''}
+      ${offOn?`<li>At 62 it drops by half your Social Security: ${usd(you.offset/12)} a month.</li>`:''}
+      <li>${you.refund?'Under 10 years you can take back the money you paid in instead. If you do, you give up this pension.':'With 10 years or more you can’t take back what you paid in. This pension is what you get.'}</li>
+    </ul>`;
+  updateBar(you,m);
 }
 
 /* ---------- goal: how much you need to earn, and when you'd get there ---------- */
@@ -1671,41 +1835,17 @@ function renderGoal(c,m,you){
   }
   h+=`<p class="hint">Before the Social Security offset at 62. The $1,000 a month VSF comes on top.</p>`;
   o.innerHTML=h;
-  $('goalUse')?.addEventListener('click',()=>{ST.p.svc=hit.months;pSlider.set(hit.months);renderP();$('head').scrollIntoView({behavior:'smooth',block:'start'})});
+  $('goalUse')?.addEventListener('click',()=>{ST.p.svc=hit.months;ST.p.svcSet=true;pSlider.set(hit.months);renderP();$('head').scrollIntoView({behavior:'smooth',block:'start'})});
 }
 
 /* ---------- comparison table and the power of escalation ---------- */
+/* The 20/23/25 comparison table was removed (owner, Nov. 7, 2026); the same three plans still drive the escalation chart. */
 function renderCompare(c,m,you){
   const om=ageOutM(c),bench=[240,276,300].filter((mm,i)=>i===0||mm<=om);
-  const sc=bench.map(mm=>scenario(mm,c));
-  const isBench=bench.includes(m);
-  const cols=sc.map((s,i)=>({s,name:['20 yrs','23 yrs','25 yrs'][i],c:COLORS[i]}));
-  if(!isBench) cols.push({s:you,name:'Your plan',c:COLORS[3],you:true});
-  const val=(s,a)=>{const r=s.at(a);return r&&r.pay>0?usd(r.pay):'–'};
-  /* Rows marked "more" stay folded until "Show all rows" is tapped. On phones the lifetime total is in millions so the columns fit. */
-  const line=(lab,f,more)=>`<tr${more?' class="more"':''}><td>${lab}</td>${cols.map(x=>`<td class="${x.you?'you':''}">${f(x.s)}</td>`).join('')}</tr>`;
-  const big=n=>innerWidth<=560&&n>=1e6?'$'+(n/1e6).toFixed(2)+'M':usd(n);
-  $('cmp').classList.toggle('wide',cols.length>3);$('swipe').hidden=!(cols.length>3&&innerWidth<=560);
-  $('cmp').innerHTML=`<thead><tr><th>Retire at</th>${cols.map(x=>`<th class="${x.you?'you':''}"><span class="sw" style="background:var(${x.c})"></span>${x.name}</th>`).join('')}</tr></thead><tbody>
-    ${line('Retirement date',s=>fmtMY(s.retDate))}
-    ${line('Age',s=>fmtAgeShort(s.retAge))}
-    ${line('Final average salary',s=>usd(s.fas),1)}
-    ${line('Longevity bonus, a year',s=>s.bonusAdd>0?`<span class="bonus-on">+${usd(s.bonusAdd/2)}</span>`:'Starts at 25 yrs',1)}
-    ${line('Monthly pension, first year',s=>usd(s.base/12))}
-    ${line('Yearly, first year',s=>usd(s.base),1)}
-    ${line('Escalation',s=>(s.escRate*100).toFixed(2)+'%',1)}
-    ${line('Banked variable',s=>usd(s.drop))}
-    ${line('Yearly at 55',s=>val(s,55),1)}
-    ${line('Yearly at 62 (after Social Security offset)',s=>val(s,62))}
-    ${line('Yearly at 75',s=>val(s,75),1)}
-    ${line('Pension and VSF through age 85',s=>big(s.life))}
-  </tbody>`;
-  $('cmp').classList.toggle('all',cmpAll);
-  $('cmpMore').setAttribute('aria-expanded',cmpAll);$('cmpMore').textContent=cmpAll?'Show fewer rows':'Show all rows';
+  const cols=bench.map((mm,i)=>({s:scenario(mm,c),name:['20 yrs','23 yrs','25 yrs'][i],c:COLORS[i]}));
   renderEscalation(cols,c);
 }
-let chartState=null,cmpAll=false;
-$('cmpMore').addEventListener('click',()=>{cmpAll=!cmpAll;renderP()});
+let chartState=null;
 function renderEscalation(cols,c){
   const F=c.esc,cpi=(Math.min(c.cpi,0.03)*100).toFixed(1).replace(/\.0$/,'');
   const first=s=>s.rows.find(r=>r.pay>0);
@@ -1728,7 +1868,6 @@ function renderEscalation(cols,c){
       <span class="g">${lead}</span>
       <div class="rate"><b>${pct(s.escRate)}%</b><span>escalation a year</span></div>
       <ul>${why.map(w=>`<li>${w}</li>`).join('')}</ul></div>`}).join('');
-  drawChart(cols);
 }
 function drawChart(cols){
   const cw=$('chartwrap').clientWidth||720;
@@ -2207,7 +2346,8 @@ let headVisible=false,growOpen=false;
 new IntersectionObserver(es=>{es.forEach(e=>{headVisible=e.isIntersecting});updateBar()}).observe($('head'));
 let barData=null;
 function updateBar(you,m){
-  if(you!==undefined) barData=you?{n:usd((you.base+(ST.p.dis?0:VSF))/12)+'/month',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
+  if(you&&you.vested){barData={n:you.base>0?usd(you.base/12)+'/month':'No pension yet',s:you.base>0?'Vested · starts '+fmtMY(you.start):'Under 5 years'}}
+  else if(you!==undefined) barData=you?{n:usd((you.base+(ST.p.dis?0:VSF))/12)+'/month',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
   const show=barData&&!headVisible&&current==='personal';
   $('pbar').classList.toggle('off',!show);document.body.classList.toggle('has-pbar',current==='personal');
   if(barData){$('pbarN').textContent=barData.n;$('pbarS').textContent=barData.s}
