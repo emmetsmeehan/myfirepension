@@ -1044,6 +1044,7 @@ const commas=n=>Math.round(n).toLocaleString('en-US');
 const NOW_Y=new Date().getFullYear();
 /* Rule numbers live in /rules.js (shared with the iPhone app). */
 const RS=RULES.shared,R3=RULES.tier3;
+const VEST_M=(R3.vestingYears??5)*12,VEST_PCT=R3.vestedPctPerYear??0.021,REFUND_M=(R3.vestedRefundUntilYears??10)*12;
 const VSF=RS.vsfPerYear;
 const ICON={
   check:'<svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
@@ -1214,7 +1215,7 @@ function colaRateOf(cpi){let r=Math.ceil(cpi*100/2*10-1e-9)/10/100;return Math.m
 const MAXM=540;
 const STOPS=[{m:240},{m:276,low:true},{m:300},{m:360},{m:420,low:true},{m:480},{m:540,low:true}];
 const DIS_STOPS=[{m:60},{m:120,low:true},{m:180},{m:240,low:true},{m:300},{m:360,low:true},{m:420},{m:480,low:true},{m:540}];
-function Slider(root,{id,label,value,onInput}){
+function Slider(root,{id,label,value,onInput,free}){
   root.innerHTML=`<div class="svc"><label for="${id}">${label}</label><div class="svcval"><b></b><span></span></div></div><div class="hint sub"></div>
     <div class="slider"><div class="thumbtip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Slide<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div><input type="range" id="${id}" min="240" max="${MAXM}" step="1"><div class="fill"></div></div>`;
   const inp=root.querySelector('input'),sl=root.querySelector('.slider'),fill=root.querySelector('.fill'),out=root.querySelector('.svcval b'),mo=root.querySelector('.svcval span');
@@ -1222,13 +1223,14 @@ function Slider(root,{id,label,value,onInput}){
   inp.value=value;
   /* The slider's right end is the age-62 point once dates are in, else 45 years; stops past it are dropped (owner, Nov. 5, 2026). */
   function layout(){min=fl!=null?fl:base;top=Math.min(MAXM,cap);span=Math.max(1,top-min);inp.min=min;inp.max=top;
-    if(+inp.value<min)inp.value=min;if(+inp.value>top)inp.value=top;stops(fl!=null?todayStops():list.filter(s=>s.m<=top));paint()}
+    if(+inp.value<min)inp.value=min;if(+inp.value>top)inp.value=top;stops(fl!=null||(free&&base<240)?todayStops():list.filter(s=>s.m<=top));paint()}
   /* Nov. 7, 2026, owner: once dates are in, the slider starts at the member's time on the job today ("Today" stop),
      and can go under 20 years. Other stops are placed by importance, upper row first, then lower; any that would crowd are dropped. */
   function todayStops(){
-    const W=sl.clientWidth||300,T=60/W,hi=[{p:-T/2+100/W-T/2,w:1}],lo=[],out=[{m:fl,today:true}];
-    const want=base===240?[240,276,300,360,180,120,420,480,540,60]:list.map(s=>s.m);
-    for(const m of want){if(m<=fl||m>top) continue;const p=(m-fl)/span,free=row=>row.every(o=>Math.abs(p-o.p)>=T*(o.w||1));
+    /* free (quick calculator, owner Nov. 7, 2026): starts at 1 year with no "Today" stop. */
+    const W=sl.clientWidth||300,T=60/W,hi=fl!=null?[{p:-T/2+100/W-T/2,w:1}]:[],lo=[],out=fl!=null?[{m:fl,today:true}]:[],from=fl!=null?fl:min-1;
+    const want=base===240||(free&&list===STOPS)?[240,276,300,360,180,120,420,480,540,60]:list.map(s=>s.m);
+    for(const m of want){if(m<=from||m>top) continue;const p=(m-min)/span,free=row=>row.every(o=>Math.abs(p-o.p)>=T*(o.w||1));
       if(free(hi)){hi.push({p});out.push({m})}else if(free(lo)){lo.push({p});out.push({m,low:true})}}
     return out.sort((a,b)=>a.m-b.m)}
   function paint(){const m=+inp.value;out.textContent=Math.floor(m/12)===1?'1 year':plural(Math.floor(m/12),'year');mo.textContent=plural(m%12,'month');
@@ -1258,7 +1260,7 @@ function Slider(root,{id,label,value,onInput}){
     cap(mm){const c=mm>=min?mm:Infinity;if(c===cap)return;cap=c;layout()},
     /* Time on the job today, in months (null: no dates yet, so the usual 20-year start). */
     floor(mm){if(mm===fl)return;fl=mm;if(cap<(fl!=null?fl:base))cap=Infinity;layout()},
-    range(dis){base=dis?12:240;list=dis?DIS_STOPS:STOPS;if(cap<(fl!=null?fl:base))cap=Infinity;layout();root.querySelector('label').textContent=dis?'Years on the job when you go out':label},
+    range(dis){base=dis||free?12:240;list=dis?DIS_STOPS:STOPS;if(cap<(fl!=null?fl:base))cap=Infinity;layout();root.querySelector('label').textContent=dis?'Years on the job when you go out':label},
     sub(t,cap){const el=root.querySelector('.sub');el.textContent=t;if(cap){const c=document.createElement('span');c.className='capline';c.textContent=cap;el.appendChild(c)}}};
   api.range(false);
   return api;
@@ -1293,7 +1295,7 @@ function BillChecks(root,state,onChange,showRank){
 }
 
 /* ===================== QUICK CALCULATOR ===================== */
-const qSlider=Slider($('qSlider'),{id:'qSvc',label:'Years on the job when you retire',value:ST.q.svc,onInput:v=>{ST.q.svc=v;renderQuick()}});
+const qSlider=Slider($('qSlider'),{id:'qSvc',label:'Years on the job when you retire',value:ST.q.svc,free:true,onInput:v=>{ST.q.svc=v;renderQuick()}});
 const qChecks=BillChecks($('qBills'),()=>ST.q,()=>renderQuick(),()=>!ST.q.dis&&qSlider.value>=300);
 $('qFas').value=ST.q.fas?commas(num(ST.q.fas)):'';
 $('qDis').checked=ST.q.dis;
@@ -1306,11 +1308,25 @@ qSlider.set(ST.q.svc);
 function renderQuick(){
   const q=ST.q,m=qSlider.value,S=m/12,fas=num(q.fas),dis=q.dis;
   $('qBills').hidden=dis;
-  qSlider.sub(dis?'Count your years up to when you go out.':'You can retire with a pension once you have 20 years.');
+  qSlider.sub(dis?'Count your years up to when you go out.':m<VEST_M?'Under 5 years: no pension yet, just the money you paid in back.':m<240?'Under 20 years: a vested pension, paid from when you’d have hit 20.':'20 years or more: your full service pension.');
   qChecks.sync();
   save();
   const o=$('qOut');
   if(!fas){o.innerHTML=`<div class="k">Your pension in your first year of retirement</div><div class="empty">Type your final average salary to see your monthly pension.</div>`;return}
+  if(!dis&&m<240){
+    const vb=m>=VEST_M?VEST_PCT*S*fas:0,pct=(VEST_PCT*S*100).toFixed(2).replace(/\.?0+$/,'');
+    ctag('quick',{q_fas:dol(fas),q_years:Math.floor(m/12),q_disabled:'no',q_rank:'n/a',q_bills:'none',q_monthly:dol(vb/12)});
+    o.innerHTML=m<VEST_M?`<div class="k">Leave with ${fmtSvcLong(m)}</div><div class="bignum">No pension yet</div>
+      <div class="u">You need 5 years to be vested. Leave before then and you get back the money you paid in, with interest.</div>
+      <a class="btn" href="#personal">Get your exact numbers ${ICON.arrow}</a>`
+    :`<div class="k">Your vested pension</div>
+      <div class="bignum">${usd(vb/12)}<span>/month</span></div>
+      <div class="u">${usd(vb)} a year · 2.1% for each year: ${fmtSvcLong(m)} × 2.1% = ${pct}% of ${usd(fas)}</div>
+      ${fas<20000?'<p class="warn">That looks low for a year’s pay. Type the whole amount, like 120000.</p>':''}
+      <p class="fine">It starts when you would have hit 20 years (or at 55 with a cut, if that comes first). No VSF, and at 62 it drops by half your Social Security. ${m<REFUND_M?'Under 10 years you can take back the money you paid in instead, and give up this pension.':'With 10 years or more you can’t take back what you paid in.'}</p>
+      <a class="btn" href="#personal">Get your exact numbers ${ICON.arrow}</a>`;
+    return;
+  }
   /* S5058A, if checked: an extra 1/40th of final average salary for each year (prorated by month) past 20. */
   const bp=dis?0:bonusPct(S,LAW_BONUS),add=bp*num(q.topPay),extra=!dis&&q.b40?fas*Math.max(0,m-240)/12/40:0,base=(dis?R3.disabilityPct:R3.pensionPct)*(fas+add)+extra,mon=base/12;
   const F=q.esc,frac=dis?0:escFrac(S,F),r=frac*R3.escalationMaxRate;
@@ -1661,7 +1677,6 @@ const AGE_OUT=R3.mandatoryRetirementAge;
 /* Time on the job today, in whole months from the equated date (at least 1). */
 function svcToday(c){const n=new Date(),e=c.eq;return Math.max(1,(n.getFullYear()-e.getFullYear())*12+n.getMonth()-e.getMonth()-(n.getDate()<e.getDate()?1:0))}
 /* Vesting (RSSL § 516; Tier 3 Enhanced SPD, Dec. 2019, p. 13–14). */
-const VEST_M=(R3.vestingYears??5)*12,VEST_PCT=R3.vestedPctPerYear??0.021,REFUND_M=(R3.vestedRefundUntilYears??10)*12;
 const ageOutM=c=>Math.floor((AGE_OUT-c.age)*12+1e-9);
 function renderP(){
   const p=ST.p,c=pParams(),nowM=c.ok?svcToday(c):null;

@@ -76,6 +76,7 @@ Home (headline "Learn about your pension.", sub "Everything you need to know, an
 - **Step 3 is "Time on the job".** Social Security at 62 moved into More options. The 3/4s checkbox is a compact box at the top of the results column (`.discheck`).
 - **Removed:** the "What you'll see" checklist (now one line), the "Your numbers stay on this device" line, the 20/23/25 comparison table (the escalation cards remain, still built from 20/23/25 in `renderCompare()`), and the yearly-pension-by-age chart (markup kept hidden so old listeners don't break).
 - **Goal card:** a "Minimize" button; folded with a goal saved it reads "Your goal: $X a month" (`goalMin`).
+- **Quick calculator (Tier 3, Nov. 7, 2026, owner):** the slider starts at 1 year (`free:true` in `Slider()`, stops by priority, no "Today"); under 5 years "No pension yet", 5 to 20 years the vested pension (2.1% × years × typed FAS), with the start date, VSF and refund notes in the fine print. The Slide tag is on every slider.
 - Tier 2 is getting the same changes on `/tier2-test/` first.
 
 ## Calculation rules
