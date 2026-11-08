@@ -284,6 +284,24 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .eqyes{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;cursor:pointer;min-height:44px;padding:0 4px;flex:none}
 .eqyes input{width:24px;height:24px;margin:0;accent-color:var(--accent)}
 .stop.today{z-index:2}
+.eqrow{display:grid!important;gap:6px}.eqq{display:grid;gap:2px}.eqq .hint{margin:0}
+.eqopts{display:flex;gap:22px}
+#rankStep{margin-top:10px}
+.rankbox{gap:0!important}
+.rsel{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center}
+.rsel .flabel{font-size:16px;grid-column:1/-1}
+.rval{display:flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-weight:700;font-size:16px}
+.rval.none{color:var(--muted);font-weight:600}
+.rsel .dedit{white-space:nowrap}
+.rpick{display:grid;gap:10px;margin-top:10px}
+.rgh{font-weight:700;font-size:14px;color:var(--muted);margin:4px 0 6px}
+.ws .cnt,.rnote .cnt{color:var(--sage);font-weight:700}
+.ws td .cut{color:var(--gold)}
+.wsbox .rnote{margin:10px 14px 6px}
+.nowmsg{margin:0;font-size:14px;line-height:1.4;color:var(--muted);padding:2px 0 4px}.nowmsg b{color:var(--ink)}
+#wsBox,#wsNeed,#wsTog{margin-top:6px}
+.growrow{margin-top:12px}
+#head .eyebrow{line-height:1.4;min-height:2.8em}
 .capline{display:block;color:var(--accent);font-weight:700;margin-top:4px}
 .stephead .n{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
 .stephead h2{font-size:22px}
@@ -369,8 +387,6 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .bdg{display:inline-flex;align-items:center;gap:3px;font-size:12.5px;font-weight:700;border-radius:999px;padding:1px 8px;white-space:nowrap}
 .bdg.retro{background:color-mix(in srgb,var(--shine) 30%,var(--surface));color:var(--gold)}
 .rnote .bdg{vertical-align:1px;margin-right:4px}
-.ws .nowbtn{display:grid;width:100%;text-align:left;min-height:44px;padding:6px 10px;border-radius:var(--r-sm);border:1.5px solid var(--steel);background:var(--surface);color:var(--steel);cursor:pointer;font:inherit;line-height:1.2}
-.ws .nowbtn b{font-size:14px}.ws .nowbtn small{font-size:12.5px;color:var(--muted)}
 .ws td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:middle}
 .ws td:nth-child(3){text-align:right;font-size:15.5px}
 .ws .yr{font-weight:800;font-size:18px}
@@ -791,7 +807,6 @@ body.has-pbar .app{padding-bottom:110px}
       <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your monthly pension and VSF (an extra $12,000 a year) in your first year of retirement</span></li>
       <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your banked variable: $12,000 for each year past 20, paid all at once when you retire</span></li>
       <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>How your pension grows, year by year</span></li>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Retiring at 20, 23 and 25 years, side by side</span></li>
     </ul>
     <p class="hint">Fill in the three steps below. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
   </section>
@@ -813,8 +828,8 @@ body.has-pbar .app{padding-bottom:110px}
           <div class="tierbox" id="tierWarn" role="alert" hidden><b>You're probably in Tier 2</b><span>Members appointed before July 1, 2009 are generally Tier 2, which has different rules. These Tier 3 numbers won't match your pension.</span><a class="btn small" id="tierGo" href="../tier2/#personal">Switch to Tier 2 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="field">
-          <div class="eqrow"><span class="flabel" id="eqQ">Do you have a different equated date?</span><label class="eqyes"><input type="checkbox" id="eqOn" aria-labelledby="eqQ"> Yes</label></div>
-          <span class="hint" style="margin-top:-4px">EMS, military, NYPD, or a retroactive hire date</span>
+          <div class="eqrow"><span class="eqq"><span class="flabel" id="eqQ">Do you have a different equated date?</span><span class="hint">EMS, military, NYPD, or a retroactive hire date</span></span>
+            <span class="eqopts" role="group" aria-labelledby="eqQ"><label class="eqyes"><input type="checkbox" id="eqNo"> No</label><label class="eqyes"><input type="checkbox" id="eqOn"> Yes</label></span></div>
           <div id="eqBox" class="field" hidden>
             <span class="flabel" id="eqLbl">Equated date</span>
             <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
@@ -823,15 +838,14 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
         </div>
         <div class="field" id="rankStep">
-          <div class="rankbox"><span class="flabel" style="font-size:16px" id="curLbl">Current rank</span>
-            <span class="hint" style="margin-top:-4px">Your rank at retirement starts out the same. Change it if you expect a promotion.</span>
-            <div class="ranks" id="curRanks" role="group" aria-labelledby="curLbl"></div></div>
-          <div class="rankbox" id="pRank" hidden><span class="flabel" style="font-size:16px">Rank at retirement</span>
-            <span class="hint" style="margin-top:-4px">At 25+ years, 5% to 15% of your rank’s <b>base pay</b> is added to your final average salary.</span>
-            <div class="ranks" role="group" aria-label="Rank at retirement"></div>
-            <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div></div>
+          <div class="rankbox"><div class="rsel"><span class="flabel" id="curLbl">Current rank</span><span class="rval" id="curVal"></span><button type="button" class="dedit" data-rk="cur" aria-expanded="false">Change rank</button></div>
+            <div class="rpick" id="curPick" hidden><span class="hint">Your rank at retirement starts out the same. Change it if you expect a promotion.</span>
+            <div class="ranks" id="curRanks" role="group" aria-labelledby="curLbl"></div></div></div>
+          <div class="rankbox" id="pRank" hidden><div class="rsel"><span class="flabel" id="retLbl">Rank at retirement</span><span class="rval" id="retVal"></span><button type="button" class="dedit" data-rk="ret" aria-expanded="false">Change rank</button></div>
+            <div class="rpick" id="retPick" hidden><span class="hint">At 25+ years, 5% to 15% of your rank’s <b>base pay</b> is added to your final average salary.</span>
+            <div class="ranks" role="group" aria-labelledby="retLbl"></div>
+            <div class="inp"><span>$</span><input inputmode="numeric" aria-label="Top base pay for your rank at retirement"></div></div></div>
         </div>
-        <div class="minrow" id="s1Done" hidden><button type="button" class="btn green" data-min="1">Save and minimize</button></div>
         </div>
       </section>
 
@@ -906,6 +920,7 @@ body.has-pbar .app{padding-bottom:110px}
         <p class="msg" id="w2Msg" role="status" hidden></p>
         <p class="empty" id="wsNeed" hidden>Enter your dates in step 1 and your earnings table shows up here, starting with the year you were appointed.</p>
         <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>What counts toward your pension</th></tr></thead><tbody id="wsRows"></tbody></table>
+          <p class="rnote" id="cutNote" hidden><span class="cnt">Green</span> is what the Pension Fund counts. A year can only count up to 10% more than the average of the two years before it. Anything over that is left out.</p>
           <p class="rnote" id="retroNote" hidden><span class="bdg retro">Retro check *</span> This year includes a retro check. The Pension Fund spreads retro back to the years it was earned, and these years count toward your pension (or toward the 2-year look-back for the 10% limit), so your real number may come out a little different from what's shown here.</p>
           <button type="button" class="futbtn" id="futBtn" aria-expanded="false"></button></div>
         <div class="growrow">
@@ -941,7 +956,7 @@ body.has-pbar .app{padding-bottom:110px}
       </section>
 
       <section class="card step" aria-labelledby="s3h">
-        <div class="stephead"><span class="n">3</span><h2 id="s3h">Your retirement</h2></div>
+        <div class="stephead"><span class="n">3</span><h2 id="s3h">Time on the job</h2></div>
         <div class="field" id="pSlider"></div>
         <details id="moreOpts">
           <summary style="cursor:pointer;font-weight:700">More options</summary>
@@ -976,14 +991,6 @@ body.has-pbar .app{padding-bottom:110px}
       </section>
     </aside>
   </div>
-
-  <section class="card escsec" id="cmpSec" aria-labelledby="cmpTitle">
-    <h2 id="cmpTitle">Compare 20, 23 and 25 years</h2>
-    <div class="tablebox"><table id="cmp"></table></div>
-    <p class="hint">Retiring later means fewer years collecting, so the total through 85 can come out lower even when each check is bigger. It doesn’t count the pay you earn while you keep working.</p>
-    <p class="swipe" id="swipe" hidden>Swipe the table to see your plan →</p>
-    <div><button type="button" class="linkbtn" id="cmpMore" aria-expanded="false" aria-controls="cmp">Show all rows</button></div>
-  </section>
 
   <section class="card escsec" id="escSec" aria-labelledby="escTitle">
     <div style="display:grid;gap:6px"><h2 id="escTitle">The power of escalation</h2><p class="hint" id="escLede"></p></div>
@@ -1060,7 +1067,16 @@ RANKS.forEach(r=>{r.pay=RS.rankTopPay[r.id]});
 const FF_PAY=RS.rankTopPay.FF;
 const RGRP=[{g:'m',name:'Marine Unit ranks'},{g:'b',name:'Bureau of Fire Investigation ranks'}];
 const rBtn=r=>`<button type="button" data-r="${r.id}">${r.label||r.id}${r.sub?`<small>${r.sub}</small>`:''}<small>${kfmt(r.pay)}</small></button>`;
-const rankHTML=()=>`<div class="rmain">${RANKS.filter(r=>!r.g).map(rBtn).join('')}</div>`+RGRP.map(x=>`<details class="rgrp" data-g="${x.g}"><summary>${x.name}</summary><div class="rg">${RANKS.filter(r=>r.g===x.g).map(rBtn).join('')}</div></details>`).join('');
+/* TEST: the Marine Unit and BFI ranks sit under small headings, not folded. */
+const rankHTML=()=>`<div class="rmain">${RANKS.filter(r=>!r.g).map(rBtn).join('')}</div>`+RGRP.map(x=>`<div class="rgrp" data-g="${x.g}"><div class="rgh">${x.name.replace(/ ranks$/,'')}</div><div class="rg">${RANKS.filter(r=>r.g===x.g).map(rBtn).join('')}</div></div>`).join('');
+const RFULL=id=>(RANK_OF[id]||'').replace(/^an? /,'').replace(/’s$/,'').replace(/\b\w/g,ch=>ch.toUpperCase());
+function rankVals(){const p=ST.p,r=RANKS.find(x=>x.pay===num(p.topPay));
+  $('curVal').textContent=p.cur?RFULL(p.cur):'Not picked';$('curVal').classList.toggle('none',!p.cur);
+  $('retVal').textContent=r?RFULL(r.id):num(p.topPay)>0?'Your own top pay: '+usd(num(p.topPay)):'Firefighter'}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-rk]');
+  if(b){const pk=$(b.dataset.rk+'Pick'),open=pk.hidden;pk.hidden=!open;b.textContent=open?'Done':'Change rank';b.setAttribute('aria-expanded',open);return}
+  const rb=e.target.closest('.rpick .ranks button');if(!rb) return;
+  const pk=rb.closest('.rpick'),k=pk.id.replace('Pick','');setTimeout(()=>{pk.hidden=true;const t=document.querySelector(`[data-rk="${k}"]`);t.textContent='Change rank';t.setAttribute('aria-expanded','false');rankVals()},0)});
 const rankOpen=box=>box.querySelectorAll('.rgrp').forEach(d=>{if(d.querySelector('button[aria-pressed="true"]'))d.open=true});
 const RANK_OF={FF:'a firefighter’s',LT:'a lieutenant’s',CAPT:'a captain’s',BC:'a battalion chief’s',DC:'a deputy chief’s',FM:'a fire marshal’s',SFM1:'a supervising fire marshal 1’s',SFM2:'a supervising fire marshal 2’s',PILOT:'a pilot’s',MEL:'a chief marine engineer’s',MEU:'an assistant marine engineer’s',WIPER:'a wiper’s'};
 const rankName=pay=>{const r=RANKS.find(x=>x.pay===num(pay));return r?RANK_OF[r.id]:'your rank’s'};
@@ -1357,8 +1373,9 @@ function setupDate(pre,y0,y1,iso,onChange){
 const dobPick=setupDate('dob',1945,NOW_Y-18,ST.p.dob,v=>{ST.p.dob=v;renderP()});
 const apPick=setupDate('ap',1985,NOW_Y,ST.p.appt,v=>{ST.p.appt=v;wsKey='';renderP()});
 setupDate('eq',1960,NOW_Y,ST.p.eq,v=>{ST.p.eq=v;wsKey='';renderP()});
-$('eqOn').checked=ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn;
-$('eqOn').addEventListener('change',e=>{ST.p.eqOn=e.target.checked;$('eqBox').hidden=!ST.p.eqOn;wsKey='';renderP()});
+const eqSync=()=>{$('eqOn').checked=!!ST.p.eqOn;$('eqNo').checked=!ST.p.eqOn;$('eqBox').hidden=!ST.p.eqOn};eqSync();
+$('eqOn').addEventListener('change',()=>{ST.p.eqOn=true;eqSync();wsKey='';renderP()});
+$('eqNo').addEventListener('change',()=>{ST.p.eqOn=false;eqSync();wsKey='';renderP()});
 /* Save and minimize (TEST, owner Nov. 7, 2026): steps 1 and 2 fold to a one-line summary. */
 document.addEventListener('click',e=>{const mn=e.target.closest('[data-min]'),op=e.target.closest('[data-open]');if(!mn&&!op)return;
   const n=(mn||op).dataset[mn?'min':'open'];ST.p['min'+n]=!!mn;renderP();
@@ -1547,9 +1564,7 @@ const adjRow=(y,cols)=>{const t=adjNote(y);return t?`<tr class="adjr" id="a-${y}
 /* Retro checks from the contract settlements were paid in these years (owner, Nov. 3, 2026: same years for everyone). */
 const RETRO_Y=[2022,2024];
 let wsKey='',showFut=false,wsOpen=false;
-document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}
-  if(e.target.closest('[data-now]')){payOpen=true;renderP();const w=$('payWrap'),bar=w.closest('.view')?.querySelector('.topbar');
-    requestAnimationFrame(()=>scrollBy({top:w.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().bottom:0)-10,behavior:'smooth'}))}});
+document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}});
 function renderWorksheet(c,m){
   const p=ST.p,retDate=addM(c.eq,m),apptY=c.appt.getFullYear();
   const showTo=Math.max(retDate.getFullYear(),addM(c.eq,300).getFullYear());
@@ -1559,7 +1574,7 @@ function renderWorksheet(c,m){
     for(let y=apptY;y<=showTo;y++){
       h+=isVerified(y)
         ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="locked">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr>${adjRow(y,3)}`
-        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>${y===NOW_Y?`<tr class="nowr"><td colspan="3"><button type="button" class="nowbtn" data-now="1"><b>Get this year from NYCAPS ESS</b><small>Screenshot or copy and paste your paychecks so far</small></button></td></tr>`:''}`;
+        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr>${y===NOW_Y?`<tr class="nowr"><td colspan="3"><p class="nowmsg"><b>Get current year (${NOW_Y}):</b> what you’ve made so far is on NYCAPS ESS, under Pay and Tax Information &gt; Pay Summary (Gross YTD). Type in what you expect for the whole year.</p></td></tr>`:''}`;
     }
     $('wsRows').innerHTML=h;
     const store=impMode(p.mode)?p.extra:p.manual;
@@ -1572,7 +1587,7 @@ function renderWorksheet(c,m){
   const res=fasFromEarnings(retDate,c.appt),full=fasFromEarnings(new Date(showTo+2,0,1),c.appt);
   const rW=res.best?[res.best.start-2,res.best.end]:null;
   for(let y=apptY;y<=showTo;y++){
-    const r=full.rows.find(x=>x.y===y),row=$('r-'+y),inp=$('e-'+y);
+    const r=full.rows.find(x=>x.y===y),row=$('r-'+y),inp=$('e-'+y);if(y===apptY) anyCut=false;
     const used=res.best&&y>=res.best.start&&y<=res.best.end,after=y>res.lastY;
     row.querySelector('.yr').textContent=y;
     row.querySelector('.rslot').innerHTML=rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?' <span class="bdg retro">Retro check *</span>':'';
@@ -1592,9 +1607,10 @@ function renderWorksheet(c,m){
     if(inp&&document.activeElement!==inp) inp.placeholder=r&&r.kind==='est'?commas(r.v):'';
     /* Raises in the first 5 years often top the 10% limit, but those years are never in the best 3, so only flag the limit after that. */
     const cut=r&&r.v>r.counted+0.5&&(used||y-apptY>=5);
-    $('c-'+y).innerHTML=r&&r.v>0?usd(cut?r.counted:r.v)+(cut?`<span class="cut">${usd(r.v-r.counted)} over the 10% limit</span>`:''):'–';
+    $('c-'+y).innerHTML=r&&r.v>0?`<span class="cnt">${usd(cut?r.counted:r.v)}</span>`+(cut?`<span class="cut">${usd(r.v-r.counted)} doesn’t count (10% limit)</span>`:''):'–';
+    if(cut) anyCut=true;
   }
-  $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));
+  $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));$('cutNote').hidden=!anyCut;
   const futN=showTo-NOW_Y,fb=$('futBtn');
   fb.hidden=futN<1;$('wsBox').querySelector('.ws').classList.toggle('hidefut',!showFut);fb.setAttribute('aria-expanded',showFut);
   const bestFut=res.best&&res.best.end>NOW_Y;
@@ -1604,6 +1620,7 @@ function renderWorksheet(c,m){
   $('growHint').textContent=last==null?'Future years repeat your last year once you enter one.':p.growOn?`Future years start from your ${last} pay (${usd(k[last]+adjOf(last))}) and rise ${num(p.grow)}% a year.`:`Future years repeat your ${last} pay: ${usd(k[last]+adjOf(last))}. Type over any year to change it.`;
 }
 
+let anyCut=false;
 /* ---------- results ---------- */
 const COLORS=['--steel','--gold','--sage','--accent'];
 const cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -1656,13 +1673,13 @@ function renderP(){
   $('tierWarn').hidden=!(c.appt&&c.appt<new Date(2009,6,1));
   $('tierGo').href=`../tier2/?dob=${p.dob}&appt=${p.appt}#personal`;
   $('pBills').hidden=c.dis;$('ssField').hidden=c.dis;
-  const min1=!!(p.min1&&c.ok);$('s1Body').hidden=min1;$('s1Min').hidden=!min1;$('s1Done').hidden=!c.ok;
+  rankVals();const min1=false;$('s1Body').hidden=min1;$('s1Min').hidden=!min1;
   $('s1h').closest('section').classList.toggle('min',min1);
   if(c.ok) $('s1Sum').textContent=`Born ${fmtDay(c.dob)} · appointed ${fmtDay(c.appt)}${c.off>0?' · equated '+fmtDay(c.eq):''} · ${(()=>{const r=RANKS.find(x=>x.id===(p.cur||p.rank));return r?(r.label||r.id).replace(/\u00a0/g,' '):''})()}`;
   pChecks.sync();pRank.sync();
   if(!c.ok){
     pSlider.sub('Enter your dates in step 1 to see when you’d retire.');
-    $('cmpSec').hidden=true;$('escSec').hidden=true;$('preview').hidden=false;
+    $('escSec').hidden=true;$('preview').hidden=false;
     $('head').innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Start with your date of birth and appointment date in step 1.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);save();return;
   }
@@ -1682,9 +1699,9 @@ function renderP(){
   const head=$('head');
   const warn=you.retAge>62?'<p class="warn">That’s past 62, the mandatory retirement age for FDNY members. Move the slider back or check your dates.</p>':'';
   const tier2=c.appt<new Date(2009,6,1)?'<p class="warn">Tier 2 appointment date: these Tier 3 numbers won’t match your pension.</p>':'';
-  if(you.vested&&(you.months<VEST_M||you.fas>0)){renderVested(c,m,you);renderGoal(c,m,you);const sc=!!(you.fas>0);$('cmpSec').hidden=!sc;$('escSec').hidden=!sc;if(sc) renderCompare(c,m,you);return}
+  if(you.vested&&(you.months<VEST_M||you.fas>0)){renderVested(c,m,you);renderGoal(c,m,you);const sc=!!(you.fas>0);$('escSec').hidden=!sc;if(sc) renderCompare(c,m,you);return}
   const showCmp=!c.dis&&you.fas>0;
-  $('cmpSec').hidden=!showCmp;$('escSec').hidden=!showCmp;
+  $('escSec').hidden=!showCmp;
   if(!you.fas){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once you enter your earnings in step 2. Start with last year's pay.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
@@ -1799,37 +1816,13 @@ function renderGoal(c,m,you){
 }
 
 /* ---------- comparison table and the power of escalation ---------- */
+/* The 20/23/25 comparison table was removed on the test page (owner, Nov. 7, 2026); the same three plans still drive the escalation chart. */
 function renderCompare(c,m,you){
   const om=ageOutM(c),bench=[240,276,300].filter((mm,i)=>i===0||mm<=om);
-  const sc=bench.map(mm=>scenario(mm,c));
-  const isBench=bench.includes(m);
-  const cols=sc.map((s,i)=>({s,name:['20 yrs','23 yrs','25 yrs'][i],c:COLORS[i]}));
-  if(!isBench&&!you.vested) cols.push({s:you,name:'Your plan',c:COLORS[3],you:true});
-  const val=(s,a)=>{const r=s.at(a);return r&&r.pay>0?usd(r.pay):'–'};
-  /* Rows marked "more" stay folded until "Show all rows" is tapped. On phones the lifetime total is in millions so the columns fit. */
-  const line=(lab,f,more)=>`<tr${more?' class="more"':''}><td>${lab}</td>${cols.map(x=>`<td class="${x.you?'you':''}">${f(x.s)}</td>`).join('')}</tr>`;
-  const big=n=>innerWidth<=560&&n>=1e6?'$'+(n/1e6).toFixed(2)+'M':usd(n);
-  $('cmp').classList.toggle('wide',cols.length>3);$('swipe').hidden=!(cols.length>3&&innerWidth<=560);
-  $('cmp').innerHTML=`<thead><tr><th>Retire at</th>${cols.map(x=>`<th class="${x.you?'you':''}"><span class="sw" style="background:var(${x.c})"></span>${x.name}</th>`).join('')}</tr></thead><tbody>
-    ${line('Retirement date',s=>fmtMY(s.retDate))}
-    ${line('Age',s=>fmtAgeShort(s.retAge))}
-    ${line('Final average salary',s=>usd(s.fas),1)}
-    ${line('Longevity bonus, a year',s=>s.bonusAdd>0?`<span class="bonus-on">+${usd(s.bonusAdd/2)}</span>`:'Starts at 25 yrs',1)}
-    ${line('Monthly pension, first year',s=>usd(s.base/12))}
-    ${line('Yearly, first year',s=>usd(s.base),1)}
-    ${line('Escalation',s=>(s.escRate*100).toFixed(2)+'%',1)}
-    ${line('Banked variable',s=>usd(s.drop))}
-    ${line('Yearly at 55',s=>val(s,55),1)}
-    ${line('Yearly at 62 (after Social Security offset)',s=>val(s,62))}
-    ${line('Yearly at 75',s=>val(s,75),1)}
-    ${line('Pension and VSF through age 85',s=>big(s.life))}
-  </tbody>`;
-  $('cmp').classList.toggle('all',cmpAll);
-  $('cmpMore').setAttribute('aria-expanded',cmpAll);$('cmpMore').textContent=cmpAll?'Show fewer rows':'Show all rows';
+  const cols=bench.map((mm,i)=>({s:scenario(mm,c),name:['20 yrs','23 yrs','25 yrs'][i],c:COLORS[i]}));
   renderEscalation(cols,c);
 }
-let chartState=null,cmpAll=false;
-$('cmpMore').addEventListener('click',()=>{cmpAll=!cmpAll;renderP()});
+let chartState=null;
 function renderEscalation(cols,c){
   const F=c.esc,cpi=(Math.min(c.cpi,0.03)*100).toFixed(1).replace(/\.0$/,'');
   const first=s=>s.rows.find(r=>r.pay>0);
