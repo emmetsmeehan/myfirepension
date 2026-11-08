@@ -571,6 +571,7 @@ body.has-pbar .app{padding-bottom:110px}
 .news time{font-weight:700;color:var(--muted)}
 .news .newsmore{margin:0;padding:0 16px 6px}
 .news .newsmore a{display:flex;align-items:center;min-height:44px;border-top:1px solid var(--line);font-size:15.5px;font-weight:700;color:var(--accent)}
+.stop button.today[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){
@@ -1404,7 +1405,7 @@ $('eqNo').addEventListener('change',()=>{ST.p.eqOn=false;eqSync();wsKey='';rende
 /* Save and minimize (owner, Nov. 7, 2026): steps 1 and 2 fold to a one-line summary. */
 document.addEventListener('click',e=>{const mn=e.target.closest('[data-min]'),op=e.target.closest('[data-open]');if(!mn&&!op)return;
   const n=(mn||op).dataset[mn?'min':'open'];ST.p['min'+n]=!!mn;renderP();
-  const sec=$('s'+n+'h').closest('section'),bar=document.querySelector('#personal .topbar')||document.querySelector('.topbar');
+  const sec=$('s'+n+'h').closest('section'),bar=document.querySelector('#v-personal .topbar');
   const top=sec.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().bottom:0)-10;if(top<0) scrollBy({top,behavior:'smooth'})});
 
 const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;ST.p.svcSet=true;renderP()}});
@@ -1454,13 +1455,17 @@ document.addEventListener('change',e=>{const c=e.target;if(c.type!=='checkbox')r
 /* Owner, Nov. 7, 2026: on the personal numbers page nothing jumps. Whatever the member touched
    (the slider, a stop, a checkbox, a rank) stays put on screen while the page around it updates. */
 let anchor=null;
-const anchorOf=t=>{if(!t.closest||!t.closest('#personal'))return null;
+addEventListener('hashchange',()=>{document.body.style.minHeight=''});
+const anchorOf=t=>{if(!t.closest||!t.closest('#v-personal'))return null;
   if(t.closest('[data-min],[data-open],#goalTog,#goalMin,#wsTog'))return null;
   return t.closest('#pSlider')||((t.type==='checkbox'||t.closest('.ranks button,[data-rk],.dedit,#futBtn'))?(t.closest('label')||t):null)};
 ['input','change','click'].forEach(ev=>{
-  document.addEventListener(ev,e=>{const a=anchorOf(e.target);anchor=a?{el:a,top:a.getBoundingClientRect().top}:null},true);
-  document.addEventListener(ev,()=>{if(!anchor)return;const {el,top}=anchor;anchor=null;
-    if(!el.isConnected||!el.offsetParent)return;const d=el.getBoundingClientRect().top-top;if(Math.abs(d)>0.5) scrollBy(0,d)});
+  document.addEventListener(ev,e=>{const a=anchorOf(e.target);anchor=a?{el:a,top:a.getBoundingClientRect().top,h:document.documentElement.scrollHeight}:null},true);
+  document.addEventListener(ev,()=>{if(!anchor)return;const {el,top,h:anchorH}=anchor;anchor=null;
+    if(!el.isConnected||!el.offsetParent)return;
+    /* If the page got shorter (say 3/4s hides sections below), hold its height so the browser doesn't pull the page up. */
+    if(document.documentElement.scrollHeight<anchorH) document.body.style.minHeight=anchorH+'px';
+    const d=el.getBoundingClientRect().top-top;if(Math.abs(d)>0.5) scrollBy(0,d)});
 });
 $('grow').addEventListener('input',e=>{ST.p.grow=Math.min(10,pctNum(e.target.value));renderP()});
 $('grow').addEventListener('blur',e=>{e.target.value=ST.p.grow});
@@ -1749,7 +1754,7 @@ function renderP(){
   const at62=you.at(62);
   if(c.dis){
     const c5=you.at(you.retAge+5),a85=you.at(85);
-    head.innerHTML=`<div class="eyebrow">3/4s disability · go out ${fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
+    head.innerHTML=`<div class="eyebrow">3/4s disability · go out ${m===nowM?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
       <div class="bignum">${usd(you.base/12)}<span>/month</span></div>
       <div class="hint">${usd(you.base)} a year · 75% of your final average salary</div>
       ${tier2}${warn}
@@ -1767,7 +1772,7 @@ function renderP(){
     const ry=you.retDate.getFullYear();
     const trows=you.rows.filter(r=>r.age<=85.0001).map((r,t)=>{const a=Math.floor(r.age+1e-9),off=a>=62&&Math.floor(r.age-1+1e-9)<62&&you.offset>0;
       return `<tr${off?' class="offrow"':''}><td>${ry+t} <span class="ag">· ${a}</span></td><td>${usd(r.pay/12)}</td><td>${usd(r.pay+r.v)}</td></tr>`+(off?`<tr class="offrow"><td colspan="3" class="offn">At 62 the pension drops ${usd(you.offset/12)} a month for the Social Security offset</td></tr>`:'')}).join('');
-    head.innerHTML=`<div class="eyebrow">Retire ${fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
+    head.innerHTML=`<div class="eyebrow">Retire ${m===nowM?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
       <div class="k2">Your first year of retirement</div>
       <div class="bignum">${usd(totY/12)}<span>/month</span></div>
       <div class="sub2"><b>${usd(totY)} a year</b>, pension plus VSF</div>

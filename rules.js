@@ -51,6 +51,9 @@ window.RULES = {
     "ithp": {"cityRate": 0.05, "creditRate": 0.0825, "estimatePayoutRate": 0.07, "estimatePayoutToAge": 85},
     "ithpSource": "City pays 5%, credited 8.25% (ACFR FY2025). The 7% payout to age 85 is the site's own rough estimate.",
     "mandatoryRetirementAge": 65,
-    "mandatoryRetirementSource": "Admin Code 15-121"
+    "mandatoryRetirementSource": "Admin Code 15-121",
+    "vestingYears": 5,
+    "vestedFractionPerYear": 0.025,
+    "vestedSource": "Tiers 1 & 2 SPD (Sept. 2014) p. 27: 1/40th of FAS per year of fire service, no longevity, from 5 years, paid from the would-be 20-year date; no VSF (p. 35)"
   }
 };
