@@ -287,6 +287,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .eqrow{display:grid!important;gap:6px}.eqq{display:grid;gap:2px}.eqq .hint{margin:0}
 .eqopts{display:flex;gap:22px}
 #rankStep{margin-top:10px}
+.field:has(>.eqrow){margin-top:10px}
 .rankbox{gap:0!important}
 .rsel{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center}
 .rsel .flabel{font-size:16px;grid-column:1/-1}
@@ -302,6 +303,13 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 #wsBox,#wsNeed,#wsTog{margin-top:6px}
 .growrow{margin-top:12px}
 #head .eyebrow{line-height:1.4;min-height:2.8em}
+.preview .pvline{margin:0;font-size:17px;line-height:1.45}
+.slider:has(.thumbtip){margin-top:40px}
+.thumbtip{position:absolute;top:-6px;transform:translate(-50%,-100%);display:inline-flex;align-items:center;gap:2px;padding:3px 8px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700;white-space:nowrap;pointer-events:none;z-index:3}
+.thumbtip[data-edge=l]{transform:translate(-15px,-100%)}.thumbtip[data-edge=r]{transform:translate(calc(-100% + 15px),-100%)}
+.thumbtip svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.thumbtip::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;background:inherit;transform:translateX(-50%) rotate(45deg);border-radius:1px}
+.thumbtip[data-edge=l]::after{left:15px}.thumbtip[data-edge=r]::after{left:auto;right:9px;transform:rotate(45deg)}
 .capline{display:block;color:var(--accent);font-weight:700;margin-top:4px}
 .stephead .n{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
 .stephead h2{font-size:22px}
@@ -802,13 +810,7 @@ body.has-pbar .app{padding-bottom:110px}
   <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span></div>
   <div class="vhead"><h1>Your personal numbers</h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
-    <h2 id="pvh">What you'll see</h2>
-    <ul>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your monthly pension and VSF (an extra $12,000 a year) in your first year of retirement</span></li>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your banked variable: $12,000 for each year past 20, paid all at once when you retire</span></li>
-      <li><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>How your pension grows, year by year</span></li>
-    </ul>
-    <p class="hint">Fill in the three steps below. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
+    <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
   </section>
 
   <div class="pgrid">
@@ -979,9 +981,9 @@ body.has-pbar .app{padding-bottom:110px}
       <label class="discheck" for="pDis"><input type="checkbox" id="pDis"><span><b>3/4s (Disabled)</b><small>Hurt on the job: 75% of your final average salary</small></span></label>
       <section class="card headline" id="head"></section>
       <section class="card goal" id="goalCard" hidden>
-        <button type="button" class="goaltog" id="goalTog" aria-expanded="false" aria-controls="goalBody"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>Would you rather set a goal?</b><span class="gsub">See how long you’d have to work, or how much you’d have to make, to get the pension you want.</span></span></button>
+        <button type="button" class="goaltog" id="goalTog" aria-expanded="false" aria-controls="goalBody"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b id="goalTogT">Would you rather set a goal?</b><span class="gsub" id="goalTogS">See how long you’d have to work, or how much you’d have to make, to get the pension you want.</span></span></button>
         <div class="gbody" id="goalBody" hidden>
-        <div class="gh"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><h3>Set a goal</h3></div>
+        <div class="gh"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><h3>Set a goal</h3><button type="button" class="dedit" id="goalMin" style="margin-left:auto">Minimize</button></div>
         <div class="field">
           <label for="goal" style="font-size:16px">How much do you want from your pension each month?</label>
           <div class="inp"><span>$</span><input id="goal" inputmode="numeric" placeholder="7,000"><span class="after">/month</span></div>
@@ -995,9 +997,7 @@ body.has-pbar .app{padding-bottom:110px}
   <section class="card escsec" id="escSec" aria-labelledby="escTitle">
     <div style="display:grid;gap:6px"><h2 id="escTitle">The power of escalation</h2><p class="hint" id="escLede"></p></div>
     <div class="esc-cards" id="escCards"></div>
-    <div class="legend" id="legend"></div>
-    <div class="chartwrap" id="chartwrap"><div id="chart"></div><div class="tip" id="tip" hidden></div></div>
-    <p class="hint">Yearly pension plus VSF by age. Tap the chart to compare. The dip at 62 is the Social Security offset.</p>
+    <div hidden><div class="legend" id="legend"></div><div class="chartwrap" id="chartwrap"><div id="chart"></div><div class="tip" id="tip" hidden></div></div></div>
   </section>
 
   <div class="btnrow"><button type="button" class="btn ghost" id="clearAll">Clear my numbers</button></div>
@@ -1217,7 +1217,7 @@ const STOPS=[{m:240},{m:276,low:true},{m:300},{m:360},{m:420,low:true},{m:480},{
 const DIS_STOPS=[{m:60},{m:120,low:true},{m:180},{m:240,low:true},{m:300},{m:360,low:true},{m:420},{m:480,low:true},{m:540}];
 function Slider(root,{id,label,value,onInput}){
   root.innerHTML=`<div class="svc"><label for="${id}">${label}</label><div class="svcval"><b></b><span></span></div></div><div class="hint sub"></div>
-    <div class="slider"><input type="range" id="${id}" min="240" max="${MAXM}" step="1"><div class="fill"></div></div>`;
+    <div class="slider"><div class="thumbtip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Slide<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div><input type="range" id="${id}" min="240" max="${MAXM}" step="1"><div class="fill"></div></div>`;
   const inp=root.querySelector('input'),sl=root.querySelector('.slider'),fill=root.querySelector('.fill'),out=root.querySelector('.svcval b'),mo=root.querySelector('.svcval span');
   let min=240,base=240,fl=null,cap=Infinity,top=MAXM,span=MAXM-240,list=STOPS;
   inp.value=value;
@@ -1234,6 +1234,7 @@ function Slider(root,{id,label,value,onInput}){
     return out.sort((a,b)=>a.m-b.m)}
   function paint(){const m=+inp.value;out.textContent=Math.floor(m/12)===1?'1 year':plural(Math.floor(m/12),'year');mo.textContent=plural(m%12,'month');
     fill.style.width=`calc((100% - var(--thumb)) * ${(m-min)/span})`;
+    const tip=sl.querySelector('.thumbtip'),f=(m-min)/span;tip.style.left=`calc(var(--thumb)/2 + (100% - var(--thumb)) * ${f})`;tip.dataset.edge=f<0.12?'l':f>0.88?'r':'';
     sl.querySelectorAll('.stop').forEach(el=>{const b=el.querySelector('button'),on=+b.dataset.m===m;b.setAttribute('aria-pressed',on);el.classList.toggle('on',on);b.disabled=+b.dataset.m>cap})}
   function stops(list){sl.querySelectorAll('.stop').forEach(e=>e.remove());list.forEach(s=>{const pct=(s.m-min)/span,el=document.createElement('div');
     el.className='stop'+(s.low?' low':'')+(pct===0?' l':pct===1?' r':s.side?' '+s.side:'');
@@ -1386,6 +1387,7 @@ const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you re
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP(),()=>false);
 /* Pending bills sit under More options; keep it open when one is checked so the box isn't hidden. */
 if(ST.p.esc===20||ST.p.b40) $('moreOpts').open=true;
+if(!ST.p.cur) ST.p.cur='FF';
 const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
 /* Current rank: the rank at retirement follows it until the member picks a different one there. */
 (()=>{const box=$('curRanks');
@@ -1404,9 +1406,12 @@ $('ss').addEventListener('input',e=>{ST.p.ss=Math.min(6000,num(e.target.value));
 $('ss').addEventListener('blur',e=>{e.target.value=commas(ST.p.ss)});
 $('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,pctNum(e.target.value));renderP()});
 $('cpi').addEventListener('blur',e=>{e.target.value=ST.p.cpi});
-function goalShow(o){$('goalBody').hidden=!o;$('goalTog').hidden=o;$('goalTog').setAttribute('aria-expanded',o)}
-goalShow(!!ST.p.goal);
-$('goalTog').addEventListener('click',()=>{goalShow(true);$('goal').focus()});
+function goalShow(o){$('goalBody').hidden=!o;$('goalTog').hidden=o;$('goalTog').setAttribute('aria-expanded',o);
+  const g=num(ST.p.goal);$('goalTogT').textContent=g?`Your goal: ${usd(g)} a month`:'Would you rather set a goal?';
+  $('goalTogS').textContent=g?'Tap to see when you get there, or change it.':'See how long you’d have to work, or how much you’d have to make, to get the pension you want.'}
+goalShow(!!ST.p.goal&&!ST.p.goalMin);
+$('goalTog').addEventListener('click',()=>{ST.p.goalMin=false;goalShow(true);$('goal').focus()});
+$('goalMin').addEventListener('click',()=>{ST.p.goalMin=true;goalShow(false);renderP()});
 $('goal').addEventListener('input',e=>{ST.p.goal=num(e.target.value)||'';renderP()});
 $('goal').addEventListener('blur',e=>{const n=num(e.target.value);e.target.value=n?commas(n):''});
 $('growOn').checked=ST.p.growOn;$('grow').value=ST.p.grow;
@@ -1421,7 +1426,17 @@ function toEst(el){requestAnimationFrame(()=>{
 })}
 document.addEventListener('change',e=>{const c=e.target;if(c.type!=='checkbox')return;
   if(c.id==='qDis'||$('qBills').contains(c)) toEst($('qOut'));
-  else if(c.id==='pDis'||c.id==='growOn'||$('pBills').contains(c)) toEst($('head'));
+});
+/* TEST (owner, Nov. 7, 2026): on the personal numbers page nothing jumps. Whatever the member touched
+   (the slider, a stop, a checkbox, a rank) stays put on screen while the page around it updates. */
+let anchor=null;
+const anchorOf=t=>{if(!t.closest||!t.closest('#personal'))return null;
+  if(t.closest('[data-min],[data-open],#goalTog,#goalMin,#wsTog'))return null;
+  return t.closest('#pSlider')||((t.type==='checkbox'||t.closest('.ranks button,[data-rk],.dedit,#futBtn'))?(t.closest('label')||t):null)};
+['input','change','click'].forEach(ev=>{
+  document.addEventListener(ev,e=>{const a=anchorOf(e.target);anchor=a?{el:a,top:a.getBoundingClientRect().top}:null},true);
+  document.addEventListener(ev,()=>{if(!anchor)return;const {el,top}=anchor;anchor=null;
+    if(!el.isConnected||!el.offsetParent)return;const d=el.getBoundingClientRect().top-top;if(Math.abs(d)>0.5) scrollBy(0,d)});
 });
 $('grow').addEventListener('input',e=>{ST.p.grow=Math.min(10,pctNum(e.target.value));renderP()});
 $('grow').addEventListener('blur',e=>{e.target.value=ST.p.grow});
@@ -1845,7 +1860,6 @@ function renderEscalation(cols,c){
       <span class="g">${lead}</span>
       <div class="rate"><b>${pct(s.escRate)}%</b><span>escalation a year</span></div>
       <ul>${why.map(w=>`<li>${w}</li>`).join('')}</ul></div>`}).join('');
-  drawChart(cols);
 }
 function drawChart(cols){
   const cw=$('chartwrap').clientWidth||720;
