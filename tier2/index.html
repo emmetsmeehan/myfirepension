@@ -103,6 +103,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .inp.big>span{font-size:24px}
 .dsel{display:grid;grid-template-columns:1.5fr .9fr 1.1fr;gap:8px}
 .dsel>span{position:relative;min-width:0}
+.rdsel{grid-template-columns:1.5fr 1.1fr;margin-top:8px}
+.rdate{margin-top:4px}
 .dsel>span::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
 .dsel select{font-weight:600;font-size:17px;background:var(--bg);border:1.5px solid var(--line);border-radius:var(--r-sm);min-height:52px;padding:10px 32px 10px 12px;min-width:0;width:100%;-webkit-appearance:none;appearance:none;cursor:pointer}
 @media (max-width:360px){.dsel select{padding:10px 24px 10px 8px;font-size:16px}.dsel>span::after{right:10px}}
@@ -596,11 +598,11 @@ body.has-pbar .app{padding-bottom:110px}
       <summary>See latest updates</summary>
       <div class="newsbody">
       <ul>
+        <li><time datetime="2026-11-08">11/8/26:</time> You can now pick your retirement date instead of using the slider on “Your personal numbers,” for both Tier 2 and Tier 3.</li>
         <li><time datetime="2026-11-08">11/8/26:</time> Various improvements in both look and functionality of “Quick calculator” and “Your personal numbers” for both Tier 2 and 3.</li>
         <li><time datetime="2026-11-07">11/7/26:</time> Improved the look, feel, and information provided in “Pension basics” for both Tier 2 and Tier 3.</li>
         <li><time datetime="2026-11-07">11/7/26:</time> Added the Marine Unit ranks: Wiper, Pilot, Assistant Marine Engineer, and Chief Marine Engineer.</li>
         <li><time datetime="2026-11-06">11/6/26:</time> Added new section of the site breaking down other retirement accounts outside of your pension.</li>
-        <li><time datetime="2026-11-06">11/6/26:</time> Added the ranks of Fire Marshal, Supervising Fire Marshal 1, and Supervising Fire Marshal 2.</li>
       </ul>
       <p class="newsmore"><a href="/updates/">See older updates</a></p>
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -1009,6 +1011,11 @@ body.has-pbar .app{padding-bottom:110px}
       <section class="card step" aria-labelledby="s3h">
         <div class="stephead"><span class="n">3</span><h2 id="s3h">Time on the job</h2></div>
         <div class="field" id="pSlider"></div>
+        <div class="field rdate" id="rdField" hidden>
+          <span class="flabel dlbl" id="rdLbl"><span id="rdTxt">Or pick a date</span><span class="dval"><b id="rdVal"></b><button type="button" class="dedit" id="rdEdit">Change</button></span></span>
+          <div class="dsel rdsel" role="group" aria-labelledby="rdTxt" id="rdBox" hidden><span><select id="rdM" aria-label="Retirement month"></select></span><span><select id="rdY" aria-label="Retirement year"></select></span></div>
+          <p class="hint" id="rdNote" hidden></p>
+        </div>
         <details id="moreOpts">
           <summary style="cursor:pointer;font-weight:700">More options</summary>
           <div class="field" style="margin-top:12px">
@@ -1451,7 +1458,7 @@ $('ocsOn').addEventListener('change',()=>{ST.p.ocsOn=true;ocsSync();renderP()});
 $('ocsNo').addEventListener('change',()=>{ST.p.ocsOn=false;ocsSync();renderP()});
 $('ocsY').addEventListener('change',e=>{ST.p.ocsY=+e.target.value;renderP()});
 
-const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;ST.p.svcSet=true;renderP()}});
+const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you retire',value:ST.p.svc,onInput:v=>{ST.p.svc=v;ST.p.svcSet=true;rd.msg='';renderP()}});
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP());
 /* Pending bills sit under More options; keep it open when one is checked so the box isn't hidden. */
 if(ST.p.b40||ST.p.b67) $('moreOpts').open=true;
@@ -1721,6 +1728,35 @@ function annRow(s,dis){
 const ageOut=()=>ST.p.b67?67:R2.mandatoryRetirementAge;
 /* Time on the job today, in whole months from the equated date (at least 1). */
 function svcToday(c){const n=new Date(),e=c.eq;return Math.max(1,(n.getFullYear()-e.getFullYear())*12+n.getMonth()-e.getMonth()-(n.getDate()<e.getDate()?1:0))}
+/* Retirement date (owner, Nov. 8, 2026): "Or pick a date" under the slider shows the date it lands on (kept in sync both ways), and "Change" opens a month and year
+   picker that moves the slider there. Month and year only: service counts in whole months from the equated (or appointment) date,
+   so the day is always that date's day. Out-of-range picks go to today or the age limit, with a note. */
+const rd={open:false,msg:'',ys:''};
+$('rdM').innerHTML=MONTHS.map((n,i)=>`<option value="${i}">${n}</option>`).join('');
+function rdShow(c,m){
+  $('rdField').hidden=!c.ok;if(!c.ok)return;
+  const d=addM(c.eq,m),y0=addM(c.eq,svcToday(c)).getFullYear(),y1=addM(c.eq,ageOutM(c)).getFullYear(),ys=y0+'-'+y1;
+  if(ys!==rd.ys){rd.ys=ys;let h='';for(let v=y0;v<=y1;v++) h+=`<option value="${v}">${v}</option>`;$('rdY').innerHTML=h}
+  /* Months before today or after the age limit can't be picked (owner, Nov. 8, 2026). */
+  const a=addM(c.eq,svcToday(c)),z=addM(c.eq,ageOutM(c)),yy=d.getFullYear();
+  [...$('rdM').options].forEach((o,i)=>o.disabled=(yy===a.getFullYear()&&i<a.getMonth())||(yy===z.getFullYear()&&i>z.getMonth()));
+  $('rdM').value=d.getMonth();$('rdY').value=yy;
+  $('rdVal').textContent=m===svcToday(c)?'Today':fmtDay(d);$('rdBox').hidden=!rd.open;$('rdEdit').textContent=rd.open?'Done':'Change';
+  $('rdNote').hidden=!rd.msg;$('rdNote').textContent=rd.msg;
+}
+function rdPick(){
+  const c=pParams();if(!c.ok)return;
+  const e=c.eq,lo=svcToday(c),hi=ageOutM(c);
+  let m=(+$('rdY').value-e.getFullYear())*12+(+$('rdM').value)-e.getMonth();rd.msg='';
+  if(m<lo){m=lo;rd.msg='That date has already passed, so this shows today.'}
+  else if(m>hi){m=hi;rd.msg='That’s past the age you have to retire by, so this shows the latest date you can go.'}
+  else{const n=e.getDate(),o=n%100>10&&n%100<14?'th':['th','st','nd','rd'][n%10]||'th';
+    rd.msg=`The day is always the ${n}${o}, because service counts in whole months from your ${ST.p.eqOn&&realDate(ST.p.eq)?'equated':'appointment'} date.`}
+  ST.p.svc=m;ST.p.svcSet=true;pSlider.set(m);renderP();
+}
+$('rdM').addEventListener('change',rdPick);
+$('rdY').addEventListener('change',rdPick);
+$('rdEdit').addEventListener('click',()=>{rd.open=!rd.open;if(!rd.open)rd.msg='';renderP()});
 const ageOutM=c=>Math.floor((ageOut()-c.age)*12+1e-9);
 function renderP(){
   const p=ST.p,c=pParams(),nowM=c.ok?svcToday(c):null;
@@ -1728,7 +1764,7 @@ function renderP(){
   /* Until the member moves the slider, it sits on today, so only the years already worked are used. */
   if(c.ok) pSlider.set(p.svcSet?p.svc:nowM);
   ST.p.svc=pSlider.value;
-  const m=pSlider.value;rankVals();
+  const m=pSlider.value;rdShow(c,m);rankVals();
   /* Owner, Nov. 7, 2026: once a rank is picked, the equated date (and other City service) questions fold to a line with Edit, like the dates. */
   {const f=!!p.qFold,eqOk=!p.eqOn||realDate(p.eq),eqF=f&&eqOk;
    document.querySelector('#eqSum+.eqrow').hidden=eqF;$('eqBox').hidden=eqF||!p.eqOn;$('eqSum').hidden=!eqF;
