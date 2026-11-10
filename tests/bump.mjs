@@ -1,7 +1,12 @@
-// Bumps the site version in version.js by one (2.3.6 -> 2.3.7). Run once per change, before pushing.
+// Bumps the site version by one (2.3.7 -> 2.3.8) in version.js and the three home pages. Run once per change, before pushing.
 import {readFileSync, writeFileSync} from 'node:fs';
-const f = new URL('../version.js', import.meta.url).pathname, t = readFileSync(f, 'utf8');
+const root = new URL('..', import.meta.url).pathname;
+const vf = root + 'version.js', t = readFileSync(vf, 'utf8');
 const m = t.match(/SITE_VERSION = "(\d+)\.(\d+)\.(\d+)"/);
 const v = `${m[1]}.${m[2]}.${+m[3] + 1}`;
-writeFileSync(f, t.replace(m[0], `SITE_VERSION = "${v}"`));
+writeFileSync(vf, t.replace(m[0], `SITE_VERSION = "${v}"`));
+for (const f of ['index.html', 'tier2/index.html', 'tier3/index.html']) {
+  const h = readFileSync(root + f, 'utf8');
+  writeFileSync(root + f, h.replace(/(<span class="ver">You are running on version <b>)[\d.]+(<\/b>)/, `$1${v}$2`));
+}
 console.log('Version ' + v);

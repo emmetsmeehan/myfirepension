@@ -26,6 +26,10 @@ try {
     process.exit(1);
   }
 } catch {}
+// The home pages show the version inline; it must match version.js.
+{const v = (read('version.js').match(/SITE_VERSION = "([\d.]+)"/) || [])[1];
+ for (const f of ['index.html', 'tier2/index.html', 'tier3/index.html'])
+   if (!read(f).includes(`You are running on version <b>${v}</b>`)) {console.log(`FAIL  ${f} doesn't show version ${v}. Run: node tests/bump.mjs`); process.exit(1)}}
 const pages = {
   3: {html: read('tier3/index.html'), key: 'fdny-tier3-v2', url: 'https://myfirepension.com/tier3/'},
   2: {html: read('tier2/index.html'), key: 'fdny-tier2-v1', url: 'https://myfirepension.com/tier2/'},
