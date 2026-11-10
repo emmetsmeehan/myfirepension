@@ -504,6 +504,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .growtbl td{padding:5px 10px;border-top:1px solid var(--line);text-align:right;font-weight:600;white-space:nowrap}
 .growtbl .ag{color:var(--muted);font-weight:400}
 .growtbl td.offn{white-space:normal;text-align:left;font-size:13.5px;font-weight:600;color:var(--accent)}
+.growtbl td.offn .linkbtn{display:inline;min-height:0;padding:0;font:inherit;color:inherit;text-decoration:underline;vertical-align:baseline}
 .growtbl td small{display:block;font-size:12.5px;color:var(--muted);font-weight:400}
 .growtbl tr.offrow td{background:color-mix(in srgb,var(--accent) 7%,var(--surface))}
 .taxbox{margin-top:10px}
@@ -638,7 +639,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">You are running on version <b>2.3.12</b></span>
+    <span class="ver">You are running on version <b>2.41</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1>
@@ -1473,6 +1474,8 @@ const pSlider=Slider($('pSlider'),{id:'pSvc',label:'Years on the job when you re
 const pChecks=BillChecks($('pBills'),()=>ST.p,()=>renderP(),()=>false);
 /* Pending bills sit under More options; keep it open when one is checked so the box isn't hidden. */
 if(ST.p.esc===20||ST.p.b40) $('moreOpts').open=true;
+/* "More options" link under the age-62 row (owner, Nov. 9, 2026): opens it and goes to the Social Security box. */
+document.addEventListener('click',e=>{if(!e.target.closest('[data-moreopts]'))return;const d=$('moreOpts');d.open=true;requestAnimationFrame(()=>window.scrollBy({top:d.querySelector('summary').getBoundingClientRect().top-110,behavior:'smooth'}))});
 if(!ST.p.cur) ST.p.cur='FF';
 const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
 /* Current rank: the rank at retirement follows it until the member picks a different one there. */
@@ -1886,7 +1889,7 @@ function renderP(){
     const growS=you.frac>=1?`Full escalation, assuming ${inf}% inflation.`:you.frac>0?`${Math.round(you.frac*36)}/36 of full escalation, assuming ${inf}% inflation.`:'No escalation. Only a small COLA on the first $18,000 later on.';
     const ry=you.retDate.getFullYear();
     const trows=you.rows.filter(r=>r.age<=85.0001).map((r,t)=>{const a=Math.floor(r.age+1e-9),off=a>=62&&Math.floor(r.age-1+1e-9)<62&&you.offset>0;
-      return `<tr${off?' class="offrow"':''}><td>${ry+t} <span class="ag">· ${a}</span></td><td>${usd(r.pay/12)}</td><td>${usd(r.pay+r.v)}</td></tr>`+(off?`<tr class="offrow"><td colspan="3" class="offn">At 62 the pension drops ${usd(you.offset/12)} a month for the Social Security offset</td></tr>`:'')}).join('');
+      return `<tr${off?' class="offrow"':''}><td>${ry+t} <span class="ag">· ${a}</span></td><td>${usd(r.pay/12)}</td><td>${usd(r.pay+r.v)}</td></tr>`+(off?`<tr class="offrow"><td colspan="3" class="offn">At 62 the pension drops for the Social Security offset. Change this number in <button type="button" class="linkbtn" data-moreopts>More options</button>.</td></tr>`:'')}).join('');
     head.innerHTML=`<div class="eyebrow">Retire ${m===nowM?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
       <div class="k2">Your first year of retirement</div>
       <div class="bignum">${usd(totY/12)}<span>/month</span></div>

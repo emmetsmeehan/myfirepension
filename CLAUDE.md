@@ -25,8 +25,8 @@ This repository is the source of truth. The calculator used to live on a claude.
 
 ## Version number (Nov. 9, 2026, owner's request)
 
-- `version.js` at the root holds the site version (started at 2.3.6). Every page shows it in small gold type at the top right (`.ver`): on the three home pages (`index.html`, `tier2/`, `tier3/`) under "See latest updates", and on Other accounts, Updates, Suggestions, Privacy and the 404 page beside the Home button (owner, Nov. 9, 2026), "You are running on version 2.3.6". The number is written into each of those pages, not loaded from version.js, because browsers kept serving a cached version.js (owner saw the old number, Nov. 9, 2026).
-- **Every change to the site bumps it by one: run `node tests/bump.mjs` (2.3.7 → 2.3.8) before pushing; it updates version.js and every page.** `tests/run.mjs` fails if anything outside CLAUDE.md, `.gitignore` and `tests/` differs from `origin/main` while version.js doesn't, or if a page shows a different number than version.js.
+- `version.js` at the root holds the site version (started at 2.3.6; the owner reset it to 2.41 on Nov. 9, 2026 and wants one decimal point only: 2.42, 2.43, … , 2.99, 2.100). Every page shows it in small gold type at the top right (`.ver`): on the three home pages (`index.html`, `tier2/`, `tier3/`) under "See latest updates", and on Other accounts, Updates, Suggestions, Privacy and the 404 page beside the Home button (owner, Nov. 9, 2026), "You are running on version 2.3.6". The number is written into each of those pages, not loaded from version.js, because browsers kept serving a cached version.js (owner saw the old number, Nov. 9, 2026).
+- **Every change to the site bumps it by one: run `node tests/bump.mjs` (2.41 → 2.42) before pushing; it updates version.js and every page.** `tests/run.mjs` fails if anything outside CLAUDE.md, `.gitignore` and `tests/` differs from `origin/main` while version.js doesn't, or if a page shows a different number than version.js.
 
 ## Rules file and test cases (Nov. 7, 2026, owner's request)
 
