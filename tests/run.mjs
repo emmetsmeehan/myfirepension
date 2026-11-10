@@ -14,6 +14,18 @@ if (rulesJs) {
   try {JSON.parse(rulesJs.slice(i + 14).trim().replace(/;$/, ''))}
   catch (e) {console.log('FAIL  rules.js is not strict JSON after "window.RULES =", so the app can\'t read it:\n      ' + e.message); process.exit(1)}
 }
+// Every change to the site bumps version.js (owner, Nov. 9, 2026). Compared with origin/main; skipped without git.
+import {execSync} from 'node:child_process';
+try {
+  const sh = c => execSync(c, {cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']});
+  const changed = (sh('git diff --name-only origin/main') + sh('git ls-files --others --exclude-standard')).split('\n')
+    .filter(f => f && !/^(CLAUDE\.md|\.gitignore|version\.js|tests\/)/.test(f));
+  let old = '';try {old = sh('git show origin/main:version.js')} catch {}
+  if (changed.length && old && old === read('version.js')) {
+    console.log('FAIL  The site changed but version.js didn\'t. Run: node tests/bump.mjs\n      Changed: ' + changed.join(', '));
+    process.exit(1);
+  }
+} catch {}
 const pages = {
   3: {html: read('tier3/index.html'), key: 'fdny-tier3-v2', url: 'https://myfirepension.com/tier3/'},
   2: {html: read('tier2/index.html'), key: 'fdny-tier2-v1', url: 'https://myfirepension.com/tier2/'},

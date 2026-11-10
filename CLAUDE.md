@@ -23,6 +23,11 @@ This repository is the source of truth. The calculator used to live on a claude.
 - `.nojekyll` stops GitHub from processing the files. Leave it in place.
 - The owner's standing instruction (Oct. 2026): once a change he asked for is tested, merge it to `main` so it goes live, unless he says otherwise.
 
+## Version number (Nov. 9, 2026, owner's request)
+
+- `version.js` at the root holds the site version (started at 2.3.6). The three home pages (`index.html`, `tier2/`, `tier3/`) show it in small gold type under "See latest updates": "You are running on version 2.3.6" (`.ver`, filled in by version.js, hidden if it doesn't load).
+- **Every change to the site bumps it by one: run `node tests/bump.mjs` (2.3.6 → 2.3.7) before pushing.** `tests/run.mjs` fails if anything outside CLAUDE.md, `.gitignore` and `tests/` differs from `origin/main` while version.js doesn't.
+
 ## Rules file and test cases (Nov. 7, 2026, owner's request)
 
 - **`rules.js`** at the root holds every rule number the math uses, for both tiers: VSF, longevity bonus, COLA, rank top pay, 2026 federal tax brackets, Tier 3 pension %, 3/4s %, 110% cap, full escalation years (23) and the 36-month ramp, 3% escalation cap, Social Security offset, mandatory age; Tier 2 pension %, 1/60th, 120% cap, ITHP rates, mandatory age. Each calculator page loads it with `<script src="/rules.js">` before its main script (`RS`, `R3`/`R2` in the script). Change a rule number there and nowhere else. The iPhone app downloads `https://myfirepension.com/rules.js` at launch and parses everything after the last `window.RULES =` (minus the final `;`) as JSON, keeping its built-in copy as a fallback, so that part must stay strict JSON (the tests check it). Wording on the pages that quotes a number ("$12,000", "23 years", "3%") is not wired to the file: when a number changes, fix the wording too.
