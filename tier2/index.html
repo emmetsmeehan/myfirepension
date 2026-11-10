@@ -362,14 +362,31 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .ws .locked svg{width:16px;height:16px;color:var(--muted)}
 .ws tr.win td{background:color-mix(in srgb,var(--sage) 12%,var(--surface))}
 .ws tr.after td{opacity:.45}
-.lodibtn{display:inline-flex;align-items:center;min-height:32px;margin-top:2px;padding:0 10px;border:1.5px solid var(--accent);border-radius:999px;background:var(--surface);color:var(--accent);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.lodibtn{display:inline-flex;align-items:center;min-height:40px;padding:0 10px;white-space:nowrap;border:1.5px solid var(--accent);border-radius:999px;background:var(--surface);color:var(--accent);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
 .lodibtn[hidden]{display:none}
-.wsbox tr.lodir td{border-top:0;padding-top:0}
-.lodiw{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.lodiw label{font-size:14px;font-weight:700;color:var(--accent)}
-.lodiw .inp{flex:1 1 140px;max-width:220px}
-.wsbox tr.lodir[hidden],.wsbox tr.adjr[hidden]{display:none}
-.lodinote{margin:0 0 10px}
+.wsbox tr.adjr[hidden],.lodiinp[hidden]{display:none}
+#wsBox .ws th:nth-child(1){width:27%}#wsBox .ws th:nth-child(2){width:29%}#wsBox .ws th:nth-child(3){width:20%}#wsBox .ws th:nth-child(4){width:24%;text-align:right}
+#wsBox .ws td:nth-child(3){text-align:left;font-size:inherit;padding-left:4px;padding-right:4px}#wsBox .ws td:nth-child(4){text-align:right;font-size:15.5px}
+#wsBox .ws td.lodic .inp{min-width:0}#wsBox .ws td.lodic .inp input{min-width:0;width:100%}
+#wsBox .ws.nolodi .lodith,#wsBox .ws.nolodi td.lodic{display:none}
+#wsBox .ws.nolodi th:nth-child(1){width:32%}#wsBox .ws.nolodi th:nth-child(2){width:40%}#wsBox .ws.nolodi th:nth-child(4){width:28%}
+@media (min-width:561px){#wsBox .ws th:nth-child(1){width:38%}#wsBox .ws th:nth-child(2){width:22%}#wsBox .ws th:nth-child(3){width:18%}#wsBox .ws th:nth-child(4){width:22%}
+  #wsBox .ws.nolodi th:nth-child(1){width:48%}#wsBox .ws.nolodi th:nth-child(2){width:22%}#wsBox .ws.nolodi th:nth-child(4){width:30%}}
+@media (max-width:360px){#wsBox .ws td:nth-child(4){font-size:14px}}
+#lodiNote span+span{margin-top:6px}#lodiW2{font-weight:700}
+/* Four columns on a phone: tighter padding and type so the green amounts fit (owner, Nov. 9, 2026). */
+@media (max-width:480px){#wsBox .ws:not(.nolodi) td,#wsBox .ws:not(.nolodi) th{padding-left:5px;padding-right:5px}
+  #wsBox .ws:not(.nolodi) th:nth-child(1){width:19%}#wsBox .ws:not(.nolodi) th:nth-child(2){width:31%}#wsBox .ws:not(.nolodi) th:nth-child(3){width:24%}#wsBox .ws:not(.nolodi) th:nth-child(4){width:26%}
+  #wsBox .ws .lodith{text-align:center}#wsBox .ws td.lodic .inp input{padding-right:4px}
+  #wsBox .ws:not(.nolodi) .yr{font-size:16.5px}#wsBox .ws:not(.nolodi) .locked{font-size:15px;gap:3px}#wsBox .ws:not(.nolodi) .locked svg{width:12px;height:12px}
+  #wsBox .ws:not(.nolodi) .inp>span{padding-left:5px;font-size:14px}#wsBox .ws:not(.nolodi) .inp input{font-size:15px;padding:8px 5px 8px 1px}
+  #wsBox .ws:not(.nolodi) td:nth-child(4){font-size:14.5px}#wsBox .ws:not(.nolodi) .lodibtn{padding:0 7px;font-size:12px}}
+@media (max-width:360px){#wsBox .ws:not(.nolodi) td,#wsBox .ws:not(.nolodi) th{padding-left:3px;padding-right:3px}
+  #wsBox .ws:not(.nolodi) th:nth-child(1){width:22%}#wsBox .ws:not(.nolodi) th:nth-child(2){width:30%}#wsBox .ws:not(.nolodi) th:nth-child(3){width:22%}#wsBox .ws:not(.nolodi) th:nth-child(4){width:26%}#wsBox .ws:not(.nolodi) .inp>span{display:none}#wsBox .ws:not(.nolodi) .inp input{padding-left:5px}
+  #wsBox .ws:not(.nolodi) .locked svg{display:none}#wsBox .ws:not(.nolodi) .tg{font-size:11.5px}#wsBox .ws:not(.nolodi) .yr{font-size:15.5px}#wsBox .ws td.lodic .inp input{padding-left:4px}
+  #wsBox .ws:not(.nolodi) .locked{font-size:13.5px}#wsBox .ws:not(.nolodi) .inp input{font-size:14px}#wsBox .ws:not(.nolodi) .inp>span{padding-left:4px;font-size:13px}
+  #wsBox .ws:not(.nolodi) td:nth-child(4){font-size:13px}#wsBox .ws:not(.nolodi) .lodibtn{padding:0 5px;font-size:11.5px}}
+.lodinote{margin:10px 0 0}
 .wsbox tr.adjr td{border-top:0;padding-top:0;font-size:13px;color:var(--muted);white-space:nowrap;text-align:right}
 @media (max-width:360px){.wsbox tr.adjr td{font-size:11.5px;letter-spacing:-.2px;padding-left:2px;padding-right:2px}}
 .ws .cut{display:block;color:var(--gold);font-size:12.5px;line-height:1.2}
@@ -618,7 +635,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">You are running on version <b>2.3.8</b></span>
+    <span class="ver">You are running on version <b>2.3.9</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1>
@@ -763,7 +780,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p>The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was out on LODI. Does that pay count?</summary><div class="ans">
       <p><b>Yes.</b> Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year.</p>
-      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. If you type in your years or import from NYCAPS, tap <b>+ LODI</b> next to each year you were out and type in the LODI from box 14 of that year's W-2.</p>
+      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. If you type in your years, put the LODI from box 14 of that year's W-2 in the <b>LODI</b> box next to it; if you import from NYCAPS, tap <b>+ LODI</b> on that year.</p>
       <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension. Upload your W-2s and the page takes it out for you; if you type in your years, subtract it from that year.</p>
       <p>This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was on unpaid leave (LWOP). Does that time count?</summary><div class="ans">
@@ -927,7 +944,7 @@ body.has-pbar .app{padding-bottom:110px}
         </div>
 
         <div id="manualPanel" class="field">
-          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Your W-2 (box 5, Medicare wages) is a good place to look. If you were out on LODI, that pay isn’t in box 5: tap + LODI on that year to add it. You’ll find it as LODI in box 14 of your W-2.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
+          <div class="empty" id="manualEmpty"><span>Type what you earned in each year below. Your W-2 (box 5, Medicare wages) is a good place to look. If you were out on LODI, that pay isn’t in box 5: put it in the LODI box next to that year. You’ll find it as LODI in box 14 of your W-2.</span><button type="button" class="linkbtn" id="exampleBtn">Or try it with example numbers first</button></div>
         </div>
 
         <div id="importPanel" hidden>
@@ -976,6 +993,7 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
           <div class="verbar" id="verBar" hidden><span class="vt"><span class="vcheck"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span id="verTxt"></span></span><span class="btnrow"><button type="button" class="btn ghost small" id="w2More">Add W-2s</button><button type="button" class="btn ghost small" id="startOver">Start over</button></span></div>
           <div class="tierbox" id="needDates" role="alert" hidden><b>Add your dates to see your results</b><span>Your earnings are saved. Fill in your date of birth and appointment date in step 1, and your pension shows up.</span><button type="button" class="btn small" id="needGo">Go to step 1</button></div>
+          <p class="tierbox lodinote" id="lodiNote" hidden><b>These numbers don’t include LODI</b><span>The NYCAPS Tax Summary leaves out LODI pay. If you were ever out on LODI, tap <b style="white-space:nowrap">+ LODI</b> on that year and add it. It’s on your W-2 as LODI in box 14.</span><span>Want it done for you? <button type="button" class="linkbtn" id="lodiW2">Upload your W-2s</button> instead and LODI is counted automatically.</span></p>
           <button type="button" class="growbtn wstog" id="wsTog" aria-expanded="false" aria-controls="wsBox" hidden><span><b>Your earnings, year by year</b><small id="wsTogS"></small></span><span class="chev"></span></button>
           <div class="wsbox" id="impList" hidden><table class="ws"><thead><tr><th>Year</th><th>Earnings</th></tr></thead><tbody id="impRows"></tbody></table></div>
         </div>
@@ -984,7 +1002,7 @@ body.has-pbar .app{padding-bottom:110px}
         <div id="w2Prog" class="field" hidden><span class="hint" id="w2ProgTxt">Reading your W-2s…</span><div class="progress"><i id="w2Bar"></i></div></div>
         <p class="msg" id="w2Msg" role="status" hidden></p>
         <p class="empty" id="wsNeed" hidden>Enter your dates in step 1 and your earnings table shows up here, starting with the year you were appointed.</p>
-        <div class="wsbox" id="wsBox"><p class="tierbox lodinote" id="lodiNote" hidden><b>Out on LODI?</b><span>LODI pay isn’t in these numbers. Tap <b style="white-space:nowrap">+ LODI</b> on that year to add it. It’s on your W-2 as LODI in box 14.</span></p><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th>What counts toward your pension</th></tr></thead><tbody id="wsRows"></tbody></table>
+        <div class="wsbox" id="wsBox"><table class="ws"><thead><tr><th>Year</th><th>Earnings</th><th class="lodith">LODI</th><th>What counts toward your pension</th></tr></thead><tbody id="wsRows"></tbody></table>
           <p class="rnote" id="cutNote" hidden><span class="cnt">Green</span> is what the Pension Fund counts. A year can only count up to 20% more than the average of the two years before it. Anything over that is left out.</p>
           <p class="rnote" id="retroNote" hidden><span class="bdg retro">Retro check *</span> This year includes a retro check. The Pension Fund spreads retro back to the years it was earned, and these years count toward your pension (or toward the 2-year look-back for the 20% limit), so your real number may come out a little different from what's shown here.</p>
           <button type="button" class="futbtn" id="futBtn" aria-expanded="false"></button></div>
@@ -1683,7 +1701,7 @@ function scenario(months,c){
 /* Nov. 9, 2026 (owner): LODI can also be added by hand on any year ("+ LODI" in step 2), so it counts on typed years too. */
 const adjOf=y=>(ST.p.lodi[y]||0)-(isVerified(y)?(ST.p.onetime[y]||0):0);
 /* Under a verified year that has LODI or a bonus: how the number was put together. */
-const adjNote=y=>{const l=ST.p.lodi[y]||0,b=isVerified(y)?ST.p.onetime[y]||0:0,w=isVerified(y)?ST.p.imported[y]:known()[y];if(!(l||b)||!(w>0)) return '';return `Wages ${usd(w)}${l?` + LODI ${usd(l)}`:''}${b?` − HWB ${usd(b)}`:''}`};
+const adjNote=y=>{const l=ST.p.lodi[y]||0,b=ST.p.onetime[y]||0;if(ST.p.mode!=='w2'||!isVerified(y)||!(l||b)) return '';return `Wages ${usd(ST.p.imported[y])}${l?` + LODI ${usd(l)}`:''}${b?` − HWB ${usd(b)}`:''}`};
 /* The breakdown sits on its own full-width line under the year, so it stays on one line. */
 const adjRow=(y,cols)=>{const t=adjNote(y);return t?`<tr class="adjr" id="a-${y}"><td colspan="${cols}">${t}</td></tr>`:''};
 
@@ -1691,11 +1709,12 @@ const adjRow=(y,cols)=>{const t=adjNote(y);return t?`<tr class="adjr" id="a-${y}
 /* Retro checks from the contract settlements were paid in these years (owner, Nov. 3, 2026: same years for everyone). */
 const RETRO_Y=[2022,2024];
 let wsKey='',showFut=false,wsOpen=false;
-/* "+ LODI" on a year opens a LODI box under it (owner, Nov. 9, 2026); Remove clears it. */
+/* LODI column (owner, Nov. 9, 2026): Type in each year shows a LODI box on every year; Import from NYCAPS shows "+ LODI",
+   which opens the box in place. Upload your W-2s hides the column, since box 14 has the LODI. */
 const lodiOpen=new Set();
-document.addEventListener('click',e=>{const a=e.target.closest('[data-lodi]'),x=e.target.closest('[data-lodix]');
+document.addEventListener('click',e=>{const a=e.target.closest('[data-lodi]');
   if(a){const y=+a.dataset.lodi;lodiOpen.add(y);renderP();$('li-'+y)?.focus()}
-  else if(x){const y=+x.dataset.lodix;lodiOpen.delete(y);delete ST.p.lodi[y];renderP()}});
+  else if(e.target.closest('#lodiW2')) document.querySelector('.mode[data-mode="w2"]')?.click()});
 document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}});
 let anyCut=false;
 function renderWorksheet(c,m,you){
@@ -1707,8 +1726,8 @@ function renderWorksheet(c,m,you){
     wsKey=key;let h='';
     for(let y=firstY;y<=showTo;y++){
       h+=isVerified(y)
-        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="rslot"></span><span class="tg" id="t-${y}"></span>${y<=NOW_Y?`<button type="button" class="lodibtn" data-lodi="${y}">+ LODI</button>`:''}</td><td><div class="locked" id="lk-${y}">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="3"></td></tr>${y<=NOW_Y?`<tr class="lodir" id="l-${y}" hidden><td colspan="3"><div class="lodiw"><label for="li-${y}">LODI pay in ${y}</label><div class="inp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric"></div><button type="button" class="linkbtn" data-lodix="${y}">Remove</button></div></td></tr>`:''}`
-        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span>${y<=NOW_Y?`<button type="button" class="lodibtn" data-lodi="${y}">+ LODI</button>`:''}</td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="3"></td></tr>${y<=NOW_Y?`<tr class="lodir" id="l-${y}" hidden><td colspan="3"><div class="lodiw"><label for="li-${y}">LODI pay in ${y}</label><div class="inp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric"></div><button type="button" class="linkbtn" data-lodix="${y}">Remove</button></div></td></tr>`:''}${y===NOW_Y?`<tr class="nowr"><td colspan="3"><p class="nowmsg"><b>Get current year (${NOW_Y}):</b> what you’ve made so far is on NYCAPS ESS, under Pay and Tax Information &gt; Pay Summary (Gross YTD). Type in what you expect for the whole year.</p></td></tr>`:''}`;
+        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="locked" id="lk-${y}">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td class="lodic">${y<=NOW_Y?`<button type="button" class="lodibtn" data-lodi="${y}">+ LODI</button><div class="inp lodiinp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric" aria-label="LODI pay in ${y}"></div>`:''}</td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="4"></td></tr>`
+        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td class="lodic">${y<=NOW_Y?`<button type="button" class="lodibtn" data-lodi="${y}">+ LODI</button><div class="inp lodiinp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric" aria-label="LODI pay in ${y}"></div>`:''}</td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="4"></td></tr>${y===NOW_Y?`<tr class="nowr"><td colspan="4"><p class="nowmsg"><b>Get current year (${NOW_Y}):</b> what you’ve made so far is on NYCAPS ESS, under Pay and Tax Information &gt; Pay Summary (Gross YTD). Type in what you expect for the whole year.</p></td></tr>`:''}`;
     }
     $('wsRows').innerHTML=h;
     const store=impMode(p.mode)?p.extra:p.manual;
@@ -1730,9 +1749,11 @@ function renderWorksheet(c,m,you){
     row.querySelector('.yr').textContent=y;if(y===firstY) anyCut=false;
     row.querySelector('.rslot').innerHTML=rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?' <span class="bdg retro">Retro check *</span>':'';
     const ar=$('a-'+y);if(ar){const tx=adjNote(y);ar.hidden=!tx;ar.firstElementChild.textContent=tx;ar.className='adjr '+(fsP?'win':'')}
-    {const lr=$('l-'+y),lb=row.querySelector('.lodibtn'),on=lodiOpen.has(y)||(ST.p.lodi[y]||0)>0;if(lr)lr.hidden=!on;if(lb)lb.hidden=on;
+    {const lb=row.querySelector('.lodibtn'),lw=row.querySelector('.lodiinp'),on=p.mode==='manual'||lodiOpen.has(y)||(ST.p.lodi[y]||0)>0;
+     if(lb)lb.hidden=on;if(lw)lw.hidden=!on;
      const li=$('li-'+y);if(li&&document.activeElement!==li)li.value=ST.p.lodi[y]?commas(ST.p.lodi[y]):'';
-     const lk=$('lk-'+y);if(lk)lk.firstChild.textContent=usd(p.imported[y]+adjOf(y))}
+     /* With the LODI column showing, Earnings is the wages alone; W-2 mode shows the total, with the breakdown line under it. */
+     const lk=$('lk-'+y);if(lk)lk.firstChild.textContent=usd(p.imported[y]+adjOf(y)-(p.mode==='w2'?0:(ST.p.lodi[y]||0)))}
     row.className=(fsP?'win ':'')+(kind[y]==='est'?'est ':'')+(after?'after ':'')+(y>NOW_Y?'fut':'');
     row.querySelector('.bslot').innerHTML=fsP?` <span class="bdg best">${you.useBest?'Best 3':'Final 12'}</span>`:'';
     let tag='',orange=false;
@@ -1752,7 +1773,7 @@ function renderWorksheet(c,m,you){
     if(a20P&&v>0) parts.push(`<span class="cnt">${usd(a20P)}</span><span class="cutl">1/60th</span>`);
     $('c-'+y).innerHTML=parts.length?parts.join(''):'–';
   }
-  $('lodiNote').hidden=p.mode==='w2';
+  $('lodiNote').hidden=p.mode!=='import';$('wsBox').querySelector('.ws').classList.toggle('nolodi',p.mode==='w2');
   $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));$('cutNote').hidden=!anyCut;
   /* The slider now sets which future years show, so the "Show future years" button stays hidden. */
   $('futBtn').hidden=true;$('wsBox').querySelector('.ws').classList.remove('hidefut');
