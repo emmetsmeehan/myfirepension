@@ -161,7 +161,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .svcval b{font-size:26px;font-weight:800;line-height:1}
 .svcval span{font-size:15px;color:var(--muted)}
 .slider{--thumb:30px;position:relative;padding-bottom:106px;margin-top:6px}
-.slider input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:var(--thumb);background:transparent;margin:0;cursor:pointer;position:relative;z-index:2}
+.slider input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:var(--thumb);background:transparent;margin:0;cursor:pointer;position:relative;z-index:2;touch-action:pan-y}
 .slider input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:var(--line)}
 .slider input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:var(--line)}
 .slider input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:var(--thumb);height:var(--thumb);border-radius:50%;background:var(--accent);border:4px solid var(--surface);box-shadow:0 1px 6px color-mix(in srgb,var(--ink) 35%,transparent);margin-top:calc((8px - var(--thumb))/2)}
@@ -1312,11 +1312,21 @@ function Slider(root,{id,label,value,onInput,free}){
   inp.addEventListener('input',()=>{if(+inp.value>cap)inp.value=cap;paint();onInput(+inp.value)});
   /* The "Slide" tag above the dot can be dragged too (owner, Nov. 7, 2026). */
   const tip=sl.querySelector('.thumbtip');
+  const toX=x=>{const r=inp.getBoundingClientRect(),t=parseFloat(getComputedStyle(sl).getPropertyValue('--thumb'))||30;
+    const f=Math.min(1,Math.max(0,(x-r.left-t/2)/(r.width-t))),v=Math.min(top,Math.round(min+f*span));
+    if(v!==+inp.value){inp.value=v;inp.dispatchEvent(new Event('input',{bubbles:true}))}};
   tip.addEventListener('pointerdown',e=>{e.preventDefault();tip.setPointerCapture(e.pointerId);tip.classList.add('drag')});
-  tip.addEventListener('pointermove',e=>{if(!tip.hasPointerCapture(e.pointerId))return;
-    const r=inp.getBoundingClientRect(),t=parseFloat(getComputedStyle(sl).getPropertyValue('--thumb'))||30;
-    const f=Math.min(1,Math.max(0,(e.clientX-r.left-t/2)/(r.width-t))),v=Math.min(top,Math.round(min+f*span));
-    if(v!==+inp.value){inp.value=v;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
+  tip.addEventListener('pointermove',e=>{if(!tip.hasPointerCapture(e.pointerId))return;toX(e.clientX)});
+  /* The red bar and the grey track drag too, not just the dot (owner, Nov. 9, 2026). Phones only let the dot drag, so on touch
+     a sideways drag that starts anywhere on the bar moves the slider, and a tap jumps there; an up-and-down swipe still scrolls the page.
+     A mouse already does this natively. */
+  let tch=null;
+  inp.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;tch={id:e.pointerId,x:e.clientX,y:e.clientY,drag:false}});
+  inp.addEventListener('pointermove',e=>{if(!tch||e.pointerId!==tch.id)return;
+    if(!tch.drag){const dx=Math.abs(e.clientX-tch.x),dy=Math.abs(e.clientY-tch.y);if(dx>6&&dx>dy)tch.drag=true;else if(dy>10){tch=null;return}else return}
+    toX(e.clientX)});
+  inp.addEventListener('pointerup',e=>{if(!tch||e.pointerId!==tch.id)return;if(!tch.drag)toX(e.clientX);tch=null});
+  inp.addEventListener('pointercancel',()=>{tch=null});
   const end=e=>{tip.classList.remove('drag');if(tip.hasPointerCapture(e.pointerId))tip.releasePointerCapture(e.pointerId)};
   tip.addEventListener('pointerup',end);tip.addEventListener('pointercancel',end);
   sl.addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(!b||b.disabled)return;inp.value=b.dataset.m;paint();onInput(+inp.value)});
@@ -1673,7 +1683,8 @@ document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFu
 let anyCut=false;
 function renderWorksheet(c,m,you){
   const p=ST.p,retY=you.retDate.getFullYear(),firstY=you.first;
-  const showTo=Math.max(retY,NOW_Y+1);
+  /* Rows follow the slider (owner, Nov. 9, 2026): through the year you retire if any of it counts (or it's this year), else the year before. */
+  const showTo=retY<=NOW_Y||(you.fsBy[retY]||0)>0||(you.a20By[retY]||0)>0?retY:retY-1;
   const key=[firstY,showTo,p.mode,Object.keys(p.imported).join(','),JSON.stringify([p.lodi,p.onetime])].join('|');
   if(key!==wsKey){
     wsKey=key;let h='';
@@ -1717,9 +1728,8 @@ function renderWorksheet(c,m,you){
     $('c-'+y).innerHTML=parts.length?parts.join(''):'–';
   }
   $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));$('cutNote').hidden=!anyCut;
-  const futN=showTo-NOW_Y,fb=$('futBtn');
-  fb.hidden=futN<1;$('wsBox').querySelector('.ws').classList.toggle('hidefut',!showFut);fb.setAttribute('aria-expanded',showFut);
-  fb.textContent=showFut?'Hide future years':`Show future years (${NOW_Y+1===showTo?showTo:(NOW_Y+1)+'–'+showTo})${Object.keys(you.fsBy).some(y=>+y>NOW_Y)?' · your final average salary years are there':''}`;
+  /* The slider now sets which future years show, so the "Show future years" button stays hidden. */
+  $('futBtn').hidden=true;$('wsBox').querySelector('.ws').classList.remove('hidefut');
   const k=known(),ks=Object.keys(k).map(Number).filter(y=>k[y]>0).sort((a,b)=>a-b),last=ks[ks.length-1];
   $('growAmt').hidden=!p.growOn;
   $('growHint').textContent=last==null?'Future years repeat your last year once you enter one.':p.growOn?`Future years start from your ${last} pay (${usd(k[last]+adjOf(last))}) and rise ${num(p.grow)}% a year.`:`Future years repeat your ${last} pay: ${usd(k[last]+adjOf(last))}. Type over any year to change it.`;
