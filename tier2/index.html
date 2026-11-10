@@ -638,7 +638,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">You are running on version <b>2.3.10</b></span>
+    <span class="ver">You are running on version <b>2.3.11</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1>
@@ -783,7 +783,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p>The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was out on LODI. Does that pay count?</summary><div class="ans">
       <p><b>Yes.</b> Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year.</p>
-      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. If you type in your years, put the LODI from box 14 of that year's W-2 in the <b>LODI</b> box next to it; if you import from NYCAPS, tap <b>+ LODI</b> on that year.</p>
+      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. If you type in your years, put the LODI from box 14 of that year's W-2 in the <b>LODI</b> box next to it; the same goes if you import from NYCAPS.</p>
       <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension. Upload your W-2s and the page takes it out for you; if you type in your years, subtract it from that year.</p>
       <p>This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was on unpaid leave (LWOP). Does that time count?</summary><div class="ans">
@@ -990,13 +990,13 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
           <div class="panelbox review" id="impReview" hidden>
             <b style="font-size:18px">Check these against your screen</b>
-            <p class="hint">These are the Medicare Wages for each year. Fix anything that's off, then lock them in. Once locked, they can't be changed. LODI pay isn't in this table. Once they're locked in, tap + LODI on any year you were out to add it.</p>
+            <p class="hint">These are the Medicare Wages for each year. Fix anything that's off, then lock them in. Once locked, they can't be changed. LODI pay isn't in this table. Once they're locked in, type it in the LODI box next to any year you were out.</p>
             <table><tbody id="reviewRows"></tbody></table>
             <div class="btnrow"><button type="button" class="btn green" id="lockBtn">These are right, lock them in</button><button type="button" class="btn ghost" id="cancelReview">Cancel</button></div>
           </div>
           <div class="verbar" id="verBar" hidden><span class="vt"><span class="vcheck"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span id="verTxt"></span></span><span class="btnrow"><button type="button" class="btn ghost small" id="w2More">Add W-2s</button><button type="button" class="btn ghost small" id="startOver">Start over</button></span></div>
           <div class="tierbox" id="needDates" role="alert" hidden><b>Add your dates to see your results</b><span>Your earnings are saved. Fill in your date of birth and appointment date in step 1, and your pension shows up.</span><button type="button" class="btn small" id="needGo">Go to step 1</button></div>
-          <p class="tierbox lodinote" id="lodiNote" hidden><b>These numbers don’t include LODI</b><span>The NYCAPS Tax Summary leaves out LODI pay. If you were ever out on LODI, tap <b style="white-space:nowrap">+ LODI</b> on that year and add it. It’s on your W-2 as LODI in box 14.</span><span>Want it done for you? <button type="button" class="linkbtn" id="lodiW2">Upload your W-2s</button> instead and LODI is counted automatically.</span></p>
+          <p class="tierbox lodinote" id="lodiNote" hidden><b>These numbers don’t include LODI</b><span>The NYCAPS Tax Summary leaves out LODI pay. If you were ever out on LODI, type it in the LODI box next to that year. It’s on your W-2 as LODI in box 14.</span><span>Want it done for you? <button type="button" class="linkbtn" id="lodiW2">Upload your W-2s</button> instead and LODI is counted automatically.</span></p>
           <button type="button" class="growbtn wstog" id="wsTog" aria-expanded="false" aria-controls="wsBox" hidden><span><b>Your earnings, year by year</b><small id="wsTogS"></small></span><span class="chev"></span></button>
           <div class="wsbox" id="impList" hidden><table class="ws"><thead><tr><th>Year</th><th>Earnings</th></tr></thead><tbody id="impRows"></tbody></table></div>
         </div>
@@ -1701,7 +1701,7 @@ function scenario(months,c){
 
 /* LODI pay (tax-free, so missing from box 5, but pensionable) and one-time bonuses (in box 5, not pensionable), by year, from box 14 of the W-2. */
 /* LODI pay and one-time bonuses read from W-2 box 14, for the verified years they came with. Typed years are taken as typed. */
-/* Nov. 9, 2026 (owner): LODI can also be added by hand on any year ("+ LODI" in step 2), so it counts on typed years too. */
+/* Nov. 9, 2026 (owner): LODI can also be added by hand on any year (the LODI column in step 2), so it counts on typed years too. */
 const adjOf=y=>(ST.p.lodi[y]||0)-(isVerified(y)?(ST.p.onetime[y]||0):0);
 /* Under a verified year that has LODI or a bonus: how the number was put together. */
 const adjNote=y=>{const b=ST.p.onetime[y]||0;if(!isVerified(y)||!b) return '';return `Wages ${usd(ST.p.imported[y])} − HWB ${usd(b)}`};
@@ -1712,12 +1712,10 @@ const adjRow=(y,cols)=>{const t=adjNote(y);return t?`<tr class="adjr" id="a-${y}
 /* Retro checks from the contract settlements were paid in these years (owner, Nov. 3, 2026: same years for everyone). */
 const RETRO_Y=[2022,2024];
 let wsKey='',showFut=false,wsOpen=false;
-/* LODI column (owner, Nov. 9, 2026): Type in each year shows a LODI box on every year; Import from NYCAPS shows "+ LODI",
-   which opens the box in place. Upload your W-2s hides the column, since box 14 has the LODI. */
+/* LODI column (owner, Nov. 9, 2026): a LODI box on every year (blank counts as zero), in Type in each year and Import from NYCAPS;
+   in Upload your W-2s, W-2 years show box 14's LODI as text and years without a W-2 get the box. */
 const lodiOpen=new Set();
-document.addEventListener('click',e=>{const a=e.target.closest('[data-lodi]');
-  if(a){const y=+a.dataset.lodi;lodiOpen.add(y);renderP();$('li-'+y)?.focus()}
-  else if(e.target.closest('#lodiW2')) document.querySelector('.mode[data-mode="w2"]')?.click()});
+document.addEventListener('click',e=>{if(e.target.closest('#lodiW2')) document.querySelector('.mode[data-mode="w2"]')?.click()});
 document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}});
 let anyCut=false;
 function renderWorksheet(c,m,you){
@@ -1729,8 +1727,8 @@ function renderWorksheet(c,m,you){
     wsKey=key;let h='';
     for(let y=firstY;y<=showTo;y++){
       h+=isVerified(y)
-        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="locked" id="lk-${y}">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td class="lodic">${y<=NOW_Y?`<button type="button" class="lodibtn" data-lodi="${y}">+ LODI</button><span class="lodiv" hidden></span><div class="inp lodiinp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric" aria-label="LODI pay in ${y}"></div>`:''}</td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="4"></td></tr>`
-        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td class="lodic">${y<=NOW_Y?`<button type="button" class="lodibtn" data-lodi="${y}">+ LODI</button><span class="lodiv" hidden></span><div class="inp lodiinp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric" aria-label="LODI pay in ${y}"></div>`:''}</td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="4"></td></tr>${y===NOW_Y?`<tr class="nowr"><td colspan="4"><p class="nowmsg"><b>Get current year (${NOW_Y}):</b> what you’ve made so far is on NYCAPS ESS, under Pay and Tax Information &gt; Pay Summary (Gross YTD). Type in what you expect for the whole year.</p></td></tr>`:''}`;
+        ?`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="bdg ver">${ICON.check}Verified</span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="locked" id="lk-${y}">${usd(p.imported[y]+adjOf(y))}${ICON.lock}</div></td><td class="lodic">${y<=NOW_Y?`<span class="lodiv" hidden></span><div class="inp lodiinp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric" aria-label="LODI pay in ${y}"></div>`:''}</td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="4"></td></tr>`
+        :`<tr id="r-${y}"><td><span class="yr">${y}</span><span class="bslot"></span><span class="rslot"></span><span class="tg" id="t-${y}"></span></td><td><div class="inp"><span>$</span><input id="e-${y}" data-y="${y}" inputmode="numeric" aria-label="Earnings for ${y}"></div></td><td class="lodic">${y<=NOW_Y?`<span class="lodiv" hidden></span><div class="inp lodiinp"><span>$</span><input id="li-${y}" data-ly="${y}" inputmode="numeric" aria-label="LODI pay in ${y}"></div>`:''}</td><td id="c-${y}"></td></tr><tr class="adjr" id="a-${y}" hidden><td colspan="4"></td></tr>${y===NOW_Y?`<tr class="nowr"><td colspan="4"><p class="nowmsg"><b>Get current year (${NOW_Y}):</b> what you’ve made so far is on NYCAPS ESS, under Pay and Tax Information &gt; Pay Summary (Gross YTD). Type in what you expect for the whole year.</p></td></tr>`:''}`;
     }
     $('wsRows').innerHTML=h;
     const store=impMode(p.mode)?p.extra:p.manual;
@@ -1754,7 +1752,7 @@ function renderWorksheet(c,m,you){
     const ar=$('a-'+y);if(ar){const tx=adjNote(y);ar.hidden=!tx;ar.firstElementChild.textContent=tx;ar.className='adjr '+(fsP?'win':'')}
     /* W-2 mode (owner, Nov. 9, 2026): a year with a W-2 shows its box 14 LODI as plain text; a year without one gets a LODI box, as when typing. */
     {const lb=row.querySelector('.lodibtn'),lw=row.querySelector('.lodiinp'),lv=row.querySelector('.lodiv'),w2y=p.mode==='w2'&&isVerified(y),
-       on=!w2y&&(p.mode!=='import'||lodiOpen.has(y)||(ST.p.lodi[y]||0)>0);
+       on=!w2y;
      if(lb)lb.hidden=on||w2y;if(lw)lw.hidden=!on;if(lv){lv.hidden=!w2y;lv.textContent=ST.p.lodi[y]?usd(ST.p.lodi[y]):'–'}
      const li=$('li-'+y);if(li&&document.activeElement!==li)li.value=ST.p.lodi[y]?commas(ST.p.lodi[y]):'';
      /* Earnings is the wages (less any one-time bonus); LODI has its own column. */
@@ -2097,7 +2095,7 @@ function openReview(vals,note){
   const odd=v=>v<5000||v>400000;
   $('reviewRows').innerHTML=ys.map(y=>`<tr><td>${y}${odd(vals[y])?'<span class="tg orange" style="display:block;font-size:13px">Check this one</span>':''}</td><td><div class="inp"><span>$</span><input data-ry="${y}" inputmode="numeric" value="${commas(vals[y])}"></div></td></tr>`).join('');
   $('impReview').hidden=false;$('impStart').hidden=true;imsg('', '');
-  const rh=$('impReview').querySelector('.w2note,.hint');rh.className='hint';rh.textContent='These are the Medicare Wages for each year. '+(note?note+' ':'')+'Fix anything that’s off, then lock them in. Once locked, they can’t be changed. LODI pay isn’t in this table. Once they’re locked in, tap + LODI on any year you were out to add it.';
+  const rh=$('impReview').querySelector('.w2note,.hint');rh.className='hint';rh.textContent='These are the Medicare Wages for each year. '+(note?note+' ':'')+'Fix anything that’s off, then lock them in. Once locked, they can’t be changed. LODI pay isn’t in this table. Once they’re locked in, type it in the LODI box next to any year you were out.';
   renderP();$('impReview').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function closeReview(){pending=null;w2Pending=null;w2PrevMode=null;$('impReview').hidden=true}
