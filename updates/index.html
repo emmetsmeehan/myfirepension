@@ -90,6 +90,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .ask p{margin:0}
 .backbtn svg{width:22px;height:22px}
 .top{padding-top:calc(14px + env(safe-area-inset-top))}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ver{font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap;text-align:right}
+@media (max-width:360px){.ver{font-size:11px}.top .backbtn{padding-right:12px}}
 .upd{display:grid;gap:12px}
 .upd h1{margin:0;font-size:30px;line-height:1.15}
 .upd ul{margin:0;padding:0;list-style:none}
@@ -108,7 +111,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </head>
 <body>
 <main class="app">
-  <div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a></div>
+  <div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="ver">You are running on version <b>2.3.12</b></span></div>
   <section class="card upd" aria-labelledby="updTitle">
     <h1 id="updTitle">Updates and fixes</h1>
     <p class="hint">This website gets better every day. Newest first.</p>

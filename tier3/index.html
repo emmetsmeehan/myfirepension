@@ -72,6 +72,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 /* top-left Home button to the tier chooser (owner, Nov. 6, 2026) */
 .hometop{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative;margin:0;padding-top:14px}
 .hometop .backbtn{gap:6px;padding:0 16px 0 12px}
+@media (max-width:360px){.hometop .news summary{font-size:14.5px;padding:0 11px;gap:6px}.hometop .backbtn{padding:0 12px 0 10px}}
 .hometop:has(.ver:not([hidden])){padding-bottom:18px}
 .ver{position:absolute;right:2px;bottom:0;font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap}
 /* home */
@@ -637,7 +638,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">You are running on version <b>2.3.11</b></span>
+    <span class="ver">You are running on version <b>2.3.12</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1>
