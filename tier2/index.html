@@ -1054,7 +1054,7 @@ body.has-pbar .app{padding-bottom:110px}
     </aside>
   </div>
 
-  <div class="btnrow"><button type="button" class="btn ghost" id="clearAll">Clear my numbers</button></div>
+  <div class="btnrow"><button type="button" class="btn ghost" id="clearAll">Clear my earnings</button></div>
   <div class="pbar off" id="pbar"><div><b id="pbarN"></b><small id="pbarS"></small></div><button type="button" id="pbarGo">See results</button></div>
 </main>
 
@@ -1993,9 +1993,13 @@ $('exampleBtn').addEventListener('click',()=>{
 });
 let noSave=false;
 $('clearAll').addEventListener('click',()=>{
-  if(!confirm('Clear all your numbers from this device, on both the Tier 2 and Tier 3 pages? This can’t be undone.')) return;
+  if(!confirm('Clear your earnings from this device, on both the Tier 2 and Tier 3 pages? Your dates stay. This can’t be undone.')) return;
   noSave=true;clearTimeout(saveT);
-  try{['fdny-tier3-v2','fdny-tier2-v1'].forEach(k=>localStorage.removeItem(k))}catch{}
+  /* Earnings only (typed, imported, W-2 LODI and bonuses, paychecks). Dates, rank and the rest stay. */
+  const wipe=p=>{for(const k of ['manual','imported','extra','lodi','onetime','pays']) p[k]={};p.mode='manual'};
+  wipe(ST.p);
+  try{localStorage.setItem(KEY,JSON.stringify(ST))}catch{}
+  for(const k of ['fdny-tier3-v2','fdny-tier2-v1']){if(k===KEY)continue;try{const s=JSON.parse(localStorage.getItem(k)||'null');if(s&&s.p&&typeof s.p==='object'){wipe(s.p);localStorage.setItem(k,JSON.stringify(s))}}catch{}}
   location.hash='#personal';location.reload();
 });
 
