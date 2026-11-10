@@ -35,6 +35,17 @@ window.RULES = {
     "escalationMaxRate": 0.03,
     "escalationSource": "RSSL 510(b)(2-a), FY2027 budget Part ZZ: full at 23 years, 1/36 less per month earlier",
     "socialSecurityOffsetPct": 0.5,
+    "ssOffsetEstimate": {
+      "source": "RSSL 511 (Tier 3 offset: public-employer wages only, zeros otherwise, lower of the (c)(1) and (c)(2) computations, cut 5/9 of 1% a month before 65, at most 20%); SSA PIA formula and bend points for 2026; SSA contribution and benefit base by year",
+      "bendPoints": [1286, 7749],
+      "pct": [0.90, 0.32, 0.15],
+      "computationYears": 35,
+      "firstAge": 22,
+      "lastAge": 61,
+      "altCutPerYear": 0.05,
+      "earlyCut": 0.20,
+      "wageBase": {"2009": 106800, "2010": 106800, "2011": 106800, "2012": 110100, "2013": 113700, "2014": 117000, "2015": 118500, "2016": 118500, "2017": 127200, "2018": 128400, "2019": 132900, "2020": 137700, "2021": 142800, "2022": 147000, "2023": 160200, "2024": 168600, "2025": 176100, "2026": 184500}
+    },
     "mandatoryRetirementAge": 62,
     "mandatoryRetirementSource": "RSSL 501(15)",
     "vestingYears": 5,

@@ -642,7 +642,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">Version <b>2.43</b></span>
+    <span class="ver">Version <b>2.44</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1>
@@ -694,7 +694,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">Version <b>2.43</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">Version <b>2.44</b></span></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -783,11 +783,18 @@ body.has-pbar .app{padding-bottom:110px}
       <p>The <b>VSF</b> (Variable Supplements Fund) pays <b>$12,000 a year</b> to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members.</p>
       <p>The <b>banked variable</b>: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000.</p>
       <p>Until you turn 62, any COLA you get is taken out of your VSF.</p></div></details>
-    <details><summary>What happens to my pension at 62?</summary><div class="ans">
-      <p>At 62, your pension goes down by <b>half of your Social Security benefit</b>. This is called the Social Security offset. Only your earnings from public service in New York count toward it. The amount is set when you retire, but it doesn't kick in until 62.</p>
-      <p class="ex">Example: if your Social Security is $2,400 a month, your pension drops by $1,200 a month at 62.</p>
-      <p>Escalation keeps going after 62, figured on the lower amount.</p>
-      <p>Social Security itself is paid separately, by the federal government.</p></div></details>
+    <details id="ssq"><summary>What is the Social Security offset?</summary><div class="ans">
+      <p>At 62, your pension goes down by <b>half of a Social Security figure</b>. That's the Social Security offset. It's a Tier 3 rule.</p>
+      <p>It isn't half of the Social Security check you'll actually get. The Fund works out its own figure (state law, RSSL § 511):</p>
+      <ul>
+        <li>Only your pay from a public employer counts. Every other year counts as zero, so private jobs don't add to it.</li>
+        <li>It's set the day you retire. Later Social Security raises don't change it.</li>
+        <li>A second way of figuring it, from your highest pay in your last 5 years, is used if it comes out lower.</li>
+        <li>It's cut 20% because the offset starts before 65.</li>
+      </ul>
+      <p class="ex">For most members that works out to roughly $700 to $900 a month off at 62. The personal numbers page estimates yours from the earnings you enter.</p>
+      <p>Escalation keeps going after 62, figured on the lower amount. Social Security itself is paid separately, by the federal government.</p>
+      <p><b>Albany is fighting it.</b> <a href="https://www.nysenate.gov/legislation/bills/2025/S6289/amendment/A" target="_blank" rel="noopener">S6289A</a> (Gounardes) would end the offset for FDNY members. It's in the Senate Civil Service and Pensions Committee and hasn't passed either house. Like every 2025–26 bill, it dies Dec. 31, 2026 unless it passes.</p></div></details>
     <details><summary>Does Tier 3 have the “death gamble”?</summary><div class="ans">
       <p><b>No.</b> In Tier 2, if you die on the job with 20 or more years (not line of duty), your family gets the reserve for your pension: the lump sum it would take to pay it for the rest of your life. That's the "death gamble." The Fund's Tier 3 plan description has no such benefit.</p>
       <p>In Tier 3, if you die before you retire (not line of duty), your beneficiary gets the <b>ordinary death benefit</b> at any length of service: 3 times your last 12 months' pay (rounded up to the next $1,000), plus your contributions back with interest. It doesn't change at 20 years, so staying on the job longer doesn't add protection for your family the way it does in Tier 2.</p>
@@ -822,7 +829,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">Version <b>2.43</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">Version <b>2.44</b></span></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -831,7 +838,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">Version <b>2.43</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">Version <b>2.44</b></span></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -852,7 +859,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">Version <b>2.43</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">Version <b>2.44</b></span></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1015,9 +1022,10 @@ body.has-pbar .app{padding-bottom:110px}
         <details id="moreOpts">
           <summary style="cursor:pointer;font-weight:700">More options</summary>
           <div class="field" id="ssField" style="margin-top:12px">
-            <label for="ss">Your Social Security at 62 (estimate)</label>
+            <label for="ss">Social Security for the offset</label>
             <div class="inp"><span>$</span><input id="ss" inputmode="numeric"><span class="after">/month</span></div>
-            <div class="hint">$2,400 is only an example. Put in yours from ssa.gov/myaccount. Half of this comes off your pension at 62.</div>
+            <div class="hint" id="ssHint"></div>
+            <a href="#basics" class="linkbtn" data-ssq>Learn more about the Social Security offset</a>
           </div>
           <div class="field" style="margin-top:12px">
             <label for="cpi">Inflation each year</label>
@@ -1203,7 +1211,7 @@ $('billsTag').textContent=`${PENDING.length} being considered · ${BILLS.filter(
 const KEY='fdny-tier3-v2';
 const DEF={
   q:{fas:'',svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,b40:false},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,cur:'',rankSet:false,eqOn:false,eq:'',lodi:{},onetime:{},ss:2400,cpi:3,goal:'',b40:false,pays:{},earnV:2}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,cur:'',rankSet:false,eqOn:false,eq:'',lodi:{},onetime:{},ss:2400,ssAuto:true,cpi:3,goal:'',b40:false,pays:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1239,6 +1247,8 @@ function loadState(){
   if(s&&s.p&&!('cur' in s.p)&&(s.p.rank&&s.p.rank!=='LT'||s.p.topPay&&s.p.topPay!==140212)) ST.p.rankSet=true;
   /* Numbers saved before the 2026 budget change: escalation at 23 is now the law, and the bonus is no longer a choice. */
   for(const k of ['q','p']){if(ST[k].esc!==20) ST[k].esc=LAW_ESC;delete ST[k].bonus}
+  /* Nov. 9, 2026: Social Security for the offset is now estimated from the member's earnings. A number typed before then (not the $2,400 example) stays. */
+  if(s&&s.p&&!('ssAuto' in s.p)) ST.p.ssAuto=!(+s.p.ss>0&&+s.p.ss!==2400);
   cleanState();
 }
 let saveT;
@@ -1493,9 +1503,13 @@ const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
 
 $('pDis').checked=ST.p.dis;if(ST.p.dis) pSlider.range(true);pSlider.set(ST.p.svc);
 $('pDis').addEventListener('change',e=>{ST.p.dis=e.target.checked;pSlider.range(ST.p.dis);ST.p.svc=pSlider.value;renderP()});
-$('ss').value=commas(ST.p.ss);$('cpi').value=ST.p.cpi;$('goal').value=ST.p.goal?commas(num(ST.p.goal)):'';
-$('ss').addEventListener('input',e=>{ST.p.ss=Math.min(6000,num(e.target.value));renderP()});
-$('ss').addEventListener('blur',e=>{e.target.value=commas(ST.p.ss)});
+if(!ST.p.ssAuto) $('ss').value=commas(ST.p.ss);$('cpi').value=ST.p.cpi;$('goal').value=ST.p.goal?commas(num(ST.p.goal)):'';
+$('ss').addEventListener('input',e=>{const v=e.target.value.trim();if(v===''){ST.p.ssAuto=true}else{ST.p.ssAuto=false;ST.p.ss=Math.min(6000,num(v))}renderP()});
+$('ss').addEventListener('blur',e=>{if(!ST.p.ssAuto) e.target.value=commas(ST.p.ss)});
+/* "Use the estimate" puts the earnings-based figure back; "Learn more" opens the Pension basics answer. */
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-ssauto]')){ST.p.ssAuto=true;renderP();return}
+  if(e.target.closest('[data-ssq]')){e.preventDefault();location.hash='#basics';setTimeout(()=>{const d=$('ssq');if(!d)return;d.open=true;window.scrollTo(0,d.getBoundingClientRect().top+window.scrollY-90)},60)}});
 $('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,pctNum(e.target.value));renderP()});
 $('cpi').addEventListener('blur',e=>{e.target.value=ST.p.cpi});
 function goalShow(o){$('goalBody').hidden=!o;$('goalTog').hidden=o;$('goalTog').setAttribute('aria-expanded',o);
@@ -1632,15 +1646,40 @@ function rollBest(retDate,appt){
   }
   return best;
 }
-function pParams(){const d=pDates(),p=ST.p;return {...d,dis:p.dis,esc:p.dis?LAW_ESC:p.esc,b40:!p.dis&&!!p.b40,bonus:p.dis?'':LAW_BONUS,topPay:num(p.topPay),ss:num(p.ss),cpi:num(p.cpi)/100}}
+function pParams(){const d=pDates(),p=ST.p;return {...d,dis:p.dis,esc:p.dis?LAW_ESC:p.esc,b40:!p.dis&&!!p.b40,bonus:p.dis?'':LAW_BONUS,topPay:num(p.topPay),ss:p.ssAuto?null:num(p.ss),cpi:num(p.cpi)/100}}
 
+/* Social Security for the offset (owner, Nov. 9, 2026), estimated from the member's own earnings, per RSSL § 511:
+   (c)(1) only public-employer wages count, every other year in the 35-year computation period is zero;
+   (c)(2) the highest wage of the final 5 calendar years is used for the last year and every year after it to 62, earlier years
+   5% less per year back, and the result is cut by the share of the 35 years spent in public service. The lower one is used,
+   then cut 5/9 of 1% a month before 65 (at most 20%, so 20% at 62). Wages are capped at each year's Social Security wage base
+   and not indexed, and 2026 bend points are used for every year: a ballpark, not the Fund's figure. Earlier public service
+   (EMS, NYPD) counts toward the share of years but its pay isn't known, so method (c)(1) can come out low for those members. */
+const SSR=R3.ssOffsetEstimate||{bendPoints:[1286,7749],pct:[.9,.32,.15],computationYears:35,firstAge:22,lastAge:61,altCutPerYear:.05,earlyCut:.2,wageBase:{}};
+const ssWB=y=>{const w=SSR.wageBase||{},ks=Object.keys(w).map(Number);if(!ks.length)return Infinity;return w[y]||w[Math.min(Math.max(y,Math.min(...ks)),Math.max(...ks))]};
+const ssPIA=a=>{const [b1,b2]=SSR.bendPoints,[p1,p2,p3]=SSR.pct;return p1*Math.min(a,b1)+p2*Math.max(0,Math.min(a,b2)-b1)+p3*Math.max(0,a-b2)};
+const ssEstMemo=new Map();
+function ssEst(months,c){
+  if(!c.dob||!c.appt) return 0;
+  const retDate=addM(c.eq,months),retY=retDate.getFullYear(),apptY=c.appt.getFullYear(),y0=c.dob.getFullYear()+SSR.firstAge,y1=c.dob.getFullYear()+SSR.lastAge;
+  const {vals}=yearValues(apptY,retY),part=retDate.getMonth()/12,n=SSR.computationYears;
+  const key=[months,c.dob.getTime(),c.eq.getTime(),c.appt.getTime(),JSON.stringify(vals),part].join('|');if(ssEstMemo.has(key))return ssEstMemo.get(key);
+  const wage=y=>y<apptY||y>retY?0:(vals[y]||0)*(y===retY?part:1);
+  const top=a=>a.sort((x,z)=>z-x).slice(0,n).reduce((s,v)=>s+v,0)/(n*12);
+  const m1=[];for(let y=y0;y<=y1;y++) m1.push(Math.min(wage(y),ssWB(y)));
+  const F=part>0?retY:retY-1;let H=0;for(let y=F-4;y<=F;y++) H=Math.max(H,y===retY?(vals[y]||0):wage(y));
+  const m2=[];for(let y=y0;y<=y1;y++) m2.push(Math.min(y>=F?H:H*Math.max(0,1-SSR.altCutPerYear*(F-y)),ssWB(y)));
+  const pia=Math.min(ssPIA(top(m1)),ssPIA(top(m2))*Math.min(1,months/(n*12)));
+  const out=Math.round(pia*(1-SSR.earlyCut));
+  if(ssEstMemo.size>500) ssEstMemo.clear();ssEstMemo.set(key,out);return out;
+}
 function scenario(months,c){
   const S=months/12,retDate=addM(c.eq,months);
   const fr=fasFromEarnings(retDate,c.appt),baseFas=fr.best?fr.best.fas:0;
   const bp=c.dis?0:bonusPct(S,c.bonus),bonusAdd=baseFas?bp*c.topPay:0,fas=baseFas+bonusAdd;
   const extra=c.b40?baseFas*Math.max(0,months-240)/12/40:0,base=(c.dis?R3.disabilityPct:R3.pensionPct)*fas+extra,retAge=c.age+S;
   const frac=c.dis?0:escFrac(S,c.esc),escRate=frac*Math.min(c.cpi,R3.escalationMaxRate),colaRate=colaRateOf(c.cpi);
-  const vsf=c.dis?0:VSF,offset=c.dis?0:R3.socialSecurityOffsetPct*c.ss*12,drop=vsf*Math.max(0,Math.floor(months-240))/12;
+  const ssM=c.ss==null?ssEst(months,c):c.ss,vsf=c.dis?0:VSF,offset=c.dis?0:R3.socialSecurityOffsetPct*ssM*12,drop=vsf*Math.max(0,Math.floor(months-240))/12;
   const rows=[];let pen=base,colaTot=0,offApplied=false,life=drop;
   for(let t=0;t<120;t++){
     const age=retAge+t;if(!(age<=90.0001)) break;
@@ -1659,9 +1698,9 @@ function scenario(months,c){
   if(!c.dis&&months<240){
     const vb=months>=VEST_M?VEST_PCT*S*baseFas:0,start=addM(c.eq,240),startAge=c.age+20;
     return {months,S,fas:baseFas,baseFas,best:fr.best,bonusPct:0,bonusAdd:0,extra:0,base:vb,retDate,retAge,frac:0,colaRate,escRate:0,offset,drop:0,rows:[],at:()=>null,life:0,
-      vested:true,vestPct:VEST_PCT*S,start,startAge,refund:months<REFUND_M};
+      vested:true,vestPct:VEST_PCT*S,start,startAge,refund:months<REFUND_M,ssM};
   }
-  return {months,S,fas,baseFas,best:fr.best,bonusPct:bp,bonusAdd,extra,base,retDate,retAge,frac,colaRate,escRate,offset,drop,rows,at,life};
+  return {months,S,fas,baseFas,best:fr.best,bonusPct:bp,bonusAdd,extra,base,retDate,retAge,frac,colaRate,escRate,offset,drop,rows,at,life,ssM};
 }
 
 /* LODI pay (tax-free, so missing from box 5, but pensionable) and one-time bonuses (in box 5, not pensionable), by year, from box 14 of the W-2. */
@@ -1850,6 +1889,9 @@ function renderP(){
   }
 
   const you=scenario(m,c);
+  {const sIn=$('ss'),est=ssEst(m,c);
+   if(ST.p.ssAuto){if(document.activeElement!==sIn) sIn.value=est?commas(est):'';$('ssHint').innerHTML=`An estimate from the earnings you entered. Half of it, ${usd(est/2)} a month, comes off your pension at 62. Type your own number to change it.`}
+   else $('ssHint').innerHTML=`Using the number you typed. Half of it comes off your pension at 62. <button type="button" class="linkbtn" data-ssauto>Use the estimate (${usd(est)})</button>`}
   $('preview').hidden=you.fas>0;
   const hasFas=you.fas>0||you.baseFas>0,min2=!!(p.min2&&hasFas);
   $('s2Body').hidden=min2;$('s2Min').hidden=!min2;$('s2Done').hidden=!hasFas;$('s2h').closest('section').classList.toggle('min',min2);
@@ -1870,7 +1912,7 @@ function renderP(){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once you enter your earnings in step 2. Start with last year's pay.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
-  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:c.dis?'none':[c.esc===20&&'S9203',c.b40&&'S5058A'].filter(Boolean).join(' ')||'none',p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:c.dis?'none':[c.esc===20&&'S9203',c.b40&&'S5058A'].filter(Boolean).join(' ')||'none',p_goal:yn(num(p.goal)>0),p_ss:dol(you.ssM||0),p_ss_source:ST.p.ssAuto?'estimate':'typed',p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
   const at62=you.at(62);
   if(c.dis){
@@ -1922,7 +1964,7 @@ function renderP(){
 function renderVested(c,m,you){
   const head=$('head'),p=ST.p;
   const ctx=`<div class="eyebrow">Leave ${m===svcToday(c)?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>`;
-  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:'no',p_vested:yn(you.base>0),p_monthly:dol(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:'no',p_vested:yn(you.base>0),p_ss:dol(you.ssM||0),p_ss_source:ST.p.ssAuto?'estimate':'typed',p_monthly:dol(you.base/12)});
   $('goalCard').hidden=!(you.fas>0);
   if(m<VEST_M){
     head.innerHTML=`${ctx}<div class="k2">Under 5 years</div><div class="bignum">No pension yet</div>
