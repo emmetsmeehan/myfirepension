@@ -1770,8 +1770,9 @@ const ageOutM=c=>Math.floor((ageOut()-c.age)*12+1e-9);
 function renderP(){
   const p=ST.p,c=pParams(),nowM=c.ok?svcToday(c):null;
   pSlider.floor(nowM);pSlider.cap(c.ok?ageOutM(c):Infinity);
-  /* Until the member moves the slider, it sits on today, so only the years already worked are used. */
-  if(c.ok) pSlider.set(p.svcSet?p.svc:nowM);
+  /* Until the member moves the slider, it sits on 20 years, or today if already past 20 (owner, Nov. 9, 2026: at today, the current year
+     was the retirement year and so wasn't counted). */
+  if(c.ok) pSlider.set(p.svcSet?p.svc:Math.max(nowM,240));
   ST.p.svc=pSlider.value;
   const m=pSlider.value;rdShow(c,m);rankVals();
   /* Owner, Nov. 7, 2026: once a rank is picked, the equated date (and other City service) questions fold to a line with Edit, like the dates. */
