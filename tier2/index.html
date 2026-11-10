@@ -66,6 +66,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .topbar{position:sticky;top:0;z-index:30;margin:0 -16px;padding:10px 16px calc(10px);padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;gap:12px;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
 .tb-title{font-weight:700;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Version in every section's top bar (owner, Nov. 9, 2026): right side on wide screens, tucked under the bar's right edge on phones. */
+.topbar .ver{position:static;margin-left:auto;flex-shrink:0}
+@media (max-width:560px){.topbar{padding-bottom:20px}.topbar .ver{position:absolute;right:16px;bottom:4px;margin:0}}
 .vhead{display:grid;gap:8px;padding-top:6px}
 .vhead p{color:var(--muted);font-size:18px;max-width:60ch}
 
@@ -639,7 +642,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">You are running on version <b>2.41</b></span>
+    <span class="ver">You are running on version <b>2.42</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1>
@@ -691,7 +694,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">You are running on version <b>2.42</b></span></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1></div>
 
   <ul class="keys">
@@ -796,7 +799,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p>It starts at age 62 once you've been retired 5 years, or at 55 once you've been retired 10 years.</p></div></details>
     <details><summary>What are the VSF and the banked variable?</summary><div class="ans">
       <p>The <b>VSF</b> (Variable Supplements Fund) pays <b>$12,000 a year</b> to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members.</p>
-      <p>The <b>banked variable</b>: for each full year you work past 20, one $12,000 payment is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000.</p>
+      <p>The <b>banked variable</b>: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000.</p>
       <p>Until you turn 62, any COLA you get is taken out of your VSF.</p></div></details>
     <details><summary>Does Social Security lower my pension?</summary><div class="ans">
       <p>No. The Social Security offset at 62 is a Tier 3 rule. Your Tier 2 pension isn't reduced when you start Social Security.</p></div></details>
@@ -839,7 +842,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">You are running on version <b>2.42</b></span></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Changes to Tier 2 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -848,7 +851,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">You are running on version <b>2.42</b></span></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -883,7 +886,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">You are running on version <b>2.42</b></span></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Use your real earnings to see what you'll collect, and what working longer gets you.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1441,7 +1444,7 @@ function renderQuick(){
     </div>
     <div class="note" style="--c:${note.c}"><span class="ni">${note.i}</span><div><b>${note.t}</b><p>${note.p}</p></div></div>
     ${!dis&&m>=300?`<div class="note bonusnote" style="--c:var(--orange)"><span class="ni">${ICON.warn}</span><div><b>This doesn’t include the longevity bonus.</b><p>It depends on your rank, which this calculator doesn’t ask for. Use the personal numbers page for a more accurate number. <a href="#personal">Go to your personal numbers</a></p></div></div>`:''}
-    <p class="fine">${dis?'':`This is your pension alone. You’d also get the $12,000 a year VSF${past>=1?`, and a ${usd(VSF*Math.floor(past))} banked variable lump sum when you retire`:''}. `}The personal numbers page covers all of it, with your real earnings.</p>
+    <p class="fine">${dis?'':`This is your pension alone. You’d also get the $12,000 a year VSF${m>=241?`, and a ${usd(VSF*Math.max(0,m-240)/12)} banked variable lump sum when you retire`:''}. `}The personal numbers page covers all of it, with your real earnings.</p>
     ${dis?'':taxBox('qTaxBtn',base+VSF)}
     <a class="btn" href="#personal">Get your exact numbers ${ICON.arrow}</a>`;
   if(!dis) $('qTaxBtn').addEventListener('click',()=>{taxOpen=!taxOpen;renderQuick()});
@@ -1678,7 +1681,8 @@ function scenario(months,c){
   /* Excess balance from ESS, grown at the Fund's 8.25% from today to the retirement date. */
   const grow=Math.pow(1+ACCT_INT,Math.max(0,yrsBetween(new Date(),e.retDate))),exT=c.exT*grow,exN=c.exN*grow,exBal=exT+exN;
   const exAnn=excessAnnuity(exBal,retAge),ann=ithpEst+exAnn,ocsAmt=!c.dis&&c.ocs>0?e.avg5*c.ocs/80:0,base=ok?half+sixty+ann+ocsAmt:0;
-  const colaRate=colaRateOf(c.cpi),vsf=c.dis?0:VSF,drop=c.dis?0:vsf*Math.max(0,Math.floor((months-240)/12));
+  const colaRate=colaRateOf(c.cpi),vsf=c.dis?0:VSF,/* Banked variable by the month (owner, Nov. 9, 2026; Admin Code § 13-385(g): the VSF you'd have gotten from your 20-year date, and the VSF accrues 1/12 a month, § 13-385(a)(12)). */
+    drop=c.dis?0:vsf*Math.max(0,Math.floor(months-240))/12;
   const rows=[];let pen=base,colaTot=0,life=drop,colaAge=null;
   for(let t=0;t<120;t++){
     const age=retAge+t;if(!(age<=90.0001)) break;
@@ -1933,7 +1937,7 @@ function renderP(){
         <div class="brow"><div class="bl"><b>VSF</b><small>Variable Supplements Fund: one payment every December or January</small></div><div class="amt"><b>${usd(VSF)}/yr</b><small>about ${usd(VSF/12)}/mo</small></div></div>
         <div class="brow tot"><div class="bl"><b>Total</b></div><div class="amt"><b>${usd(totY/12)}/mo</b><small>${usd(totY)}/yr</small></div></div>
       </div>
-      ${you.drop>0?`<div class="lump"><span class="li">${ICON.up}</span><div><span>Plus, the day you retire</span><b>${usd(you.drop)} lump sum</b><small>Your banked variable: one $12,000 VSF payment for each full year past 20.</small></div></div>`:''}
+      ${you.drop>0?`<div class="lump"><span class="li">${ICON.up}</span><div><span>Plus, the day you retire</span><b>${usd(you.drop)} lump sum</b><small>Your banked variable: $1,000 for each full month past 20 years.</small></div></div>`:''}
       <div class="growbox">
         <button type="button" class="growbtn" id="growBtn" aria-expanded="${growOpen}"><span><b>Your pension stays about the same</b><small>No escalation in Tier 2. ${colaS} Tap to see each year.</small></span><span class="chev"></span></button>
         <div class="growtbl"${growOpen?'':' hidden'}><table><thead><tr><th>Year · age</th><th>Pension/mo</th><th>With VSF/yr</th></tr></thead><tbody>${trows}</tbody></table></div>

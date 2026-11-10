@@ -8,6 +8,6 @@ const v = `${m[1]}.${+m[2] + 1}`;
 writeFileSync(vf, t.replace(m[0], `SITE_VERSION = "${v}"`));
 for (const f of ['index.html', 'tier2/index.html', 'tier3/index.html', 'updates/index.html', 'suggest/index.html', 'privacy/index.html', 'accounts/index.html', '404.html']) {
   const h = readFileSync(root + f, 'utf8');
-  writeFileSync(root + f, h.replace(/(<span class="ver">You are running on version <b>)[\d.]+(<\/b>)/, `$1${v}$2`));
+  writeFileSync(root + f, h.replace(/(<span class="ver">You are running on version <b>)[\d.]+(<\/b>)/g, `$1${v}$2`));
 }
 console.log('Version ' + v);
