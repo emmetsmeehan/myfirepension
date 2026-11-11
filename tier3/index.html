@@ -75,7 +75,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 /* top-left Home button to the tier chooser (owner, Nov. 6, 2026) */
 .hometop{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative;margin:0;padding-top:14px}
 .hometop .backbtn{gap:6px;padding:0 16px 0 12px}
-@media (max-width:360px){.hometop .news summary{font-size:14.5px;padding:0 11px;gap:6px}.hometop .backbtn{padding:0 12px 0 10px}}
+@media (max-width:360px){.hometop .backbtn{padding:0 12px 0 10px}}
+.lshort{display:none}@media (max-width:360px){.lfull{display:none}.lshort{display:inline}}
 .hometop:has(.ver:not([hidden])){padding-bottom:18px}
 .ver{position:absolute;right:2px;bottom:0;font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap}
 /* home */
@@ -491,7 +492,11 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .incl{display:flex;gap:8px;align-items:flex-start;padding:0 14px 12px;font-size:14.5px;color:var(--sage)}
 .incl svg{width:18px;height:18px;flex:none;margin-top:2px;stroke-width:3}
 .incl span{color:var(--ink)}
+.incl2{display:flex;gap:8px;align-items:flex-start;font-size:14.5px;color:var(--sage)}.incl2 svg{width:18px;height:18px;flex:none;margin-top:2px;stroke-width:3}.incl2 span{color:var(--ink)}
+.bignum b.g,.payline b.g{color:var(--sage)}.bignum b.g{font-weight:800}
+.payline{font-size:18px;line-height:1.35}@media (max-width:420px){.payline{font-size:16px}}@media (max-width:360px){#head .bignum{font-size:38px}#head .bignum span{font-size:16px}.payline{font-size:15px}}.payline .pl{font-size:15px;color:var(--muted)}
 .lump{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border-radius:var(--r);padding:14px 16px;background:color-mix(in srgb,var(--shine) 14%,var(--surface));border:1.5px solid color-mix(in srgb,var(--shine) 55%,transparent)}
+.lump .li svg{width:42px;height:42px;stroke-width:1.7}
 .lump .li{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,var(--shine),var(--gold));color:#fff}
 .lump div{display:grid;gap:1px}
 .lump span{font-size:15px;font-weight:600;color:var(--muted)}
@@ -598,6 +603,7 @@ body.has-pbar .app{padding-bottom:110px}
 @media (max-width:360px){.ws td,.ws th{padding-left:6px;padding-right:6px}.ws th:nth-child(1){width:30%}.ws th:nth-child(3){width:30%}.ws td:nth-child(3){font-size:14px}
   #cmp th,#cmp td{font-size:13px;padding:7px 3px}#cmp th:first-child,#cmp td:first-child{width:25%}.growtbl td,.growtbl th{padding-left:7px;padding-right:7px}}
 .news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
 .news summary::-webkit-details-marker{display:none}
 .news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
 .news[open] summary::after{transform:rotate(-135deg);margin-top:3px}
@@ -632,7 +638,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>See latest updates</summary>
+      <summary>Version <b>2.55</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-11">11/11/26:</time> Made it clearer to see your final average salary in “Your personal numbers.”</li>
@@ -645,7 +651,6 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">Version <b>2.54</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1>
@@ -697,7 +702,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">Version <b>2.54</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -832,7 +837,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">Version <b>2.54</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -841,7 +846,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">Version <b>2.54</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -862,7 +867,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">Version <b>2.54</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1444,7 +1449,7 @@ function taxBox(id,inc){
   return `<div class="growbox taxbox">
     <button type="button" class="growbtn" id="${id}" aria-expanded="${taxOpen}"><span><b>Don’t forget about taxes</b><small>Your pension and VSF are taxed federally. Tap for a ballpark and the states that don’t tax them.</small></span><span class="chev"></span></button>
     <div class="taxbody"${taxOpen?'':' hidden'}>
-      <p><b>Federal:</b> taxed like a paycheck. On the ${usd(inc)} a year above (pension plus VSF), 2026 federal tax would be about <b>${usd(fedTax(inc,'mfj'))} a year, ${pct('mfj')}% of it</b>, if you’re married, file jointly and have no other income. Single: about ${pct('single')}%.</p>
+      <p><b>Federal:</b> taxed like a paycheck. On ${usd(inc)} a year (your pension plus VSF), 2026 federal tax would be about <b>${usd(fedTax(inc,'mfj'))} a year, ${pct('mfj')}% of it</b>, if you’re married, file jointly and have no other income. Single: about ${pct('single')}%.</p>
       <p><b>States that don’t tax your pension:</b> Alabama, Alaska, Florida, Illinois, Iowa (at 55 or older), Mississippi, Nevada, New Hampshire, New York, Pennsylvania, South Dakota, Tennessee, Texas, Washington and Wyoming.</p>
       <p class="fine">Most other states tax it, at least in part. Rules change, so check with a tax professional before you move.</p>
     </div>
@@ -1959,16 +1964,12 @@ function renderP(){
         <span>Final average salary: <b class="g">${usd(you.fas)}</b>${you.bonusAdd>0?' (with the longevity bonus)':''}</span>
         <span>Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span></div>
       <div class="k2">Your first year of retirement</div>
-      <div class="bignum">${usd(totY/12)}<span>/month</span></div>
-      <div class="sub2"><b>${usd(totY)} a year</b> (your pension and VSF combined)</div>
+      <div class="bignum"><b class="g">${usd(you.base)}</b><span>per year</span></div>
+      <div class="payline">Pension payments: <b class="g">${usd(you.base/12)}</b> per month</div>
+      ${you.extra>0?`<div class="incl2">${ICON.check}<span>Includes <b>${usd(you.extra)} a year</b> from S5058A if it passes: 1/40th of your final average salary for each year past 20</span></div>`:''}
+      ${you.bonusAdd>0?`<div class="incl2">${ICON.check}<span>Includes the <b>longevity bonus</b>: +${usd(you.bonusAdd/2)} a year (${Math.round(you.bonusPct*100)}% of your rank’s top pay added to your salary)</span></div>`:''}
+      <div class="payline">VSF: <b class="g">${usd(VSF)}</b> per year <span class="pl">(one payment every December or January)</span></div>
       ${billsOnNote(c)}${tier2}${warn}${gapNote(c)}
-      <div class="brk">
-        <div class="brow"><div class="bl"><b>Pension</b><small>50% of your final average salary${you.extra?', plus the extra 1/40ths':''}</small></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
-        ${you.extra>0?`<div class="incl">${ICON.check}<span>Includes <b>${usd(you.extra)} a year</b> from S5058A if it passes: 1/40th of your final average salary for each year past 20</span></div>`:''}
-        ${you.bonusAdd>0?`<div class="incl">${ICON.check}<span>Includes the <b>longevity bonus</b>: +${usd(you.bonusAdd/2)} a year (${Math.round(you.bonusPct*100)}% of your rank’s top pay added to your salary)</span></div>`:''}
-        <div class="brow"><div class="bl"><b>VSF</b><small>Variable Supplements Fund: one payment every December or January</small></div><div class="amt"><b>${usd(VSF)}/yr</b><small>about ${usd(VSF/12)}/mo</small></div></div>
-        <div class="brow tot"><div class="bl"><b>Total</b></div><div class="amt"><b>${usd(totY/12)}/mo</b><small>${usd(totY)}/yr</small></div></div>
-      </div>
       ${you.drop>0?`<div class="lump"><span class="li">${ICON.bag}</span><div><span>Plus, the day you retire</span><b>${usd(you.drop)} lump sum</b><small>Your banked variable: $1,000 for each full month past 20 years.</small></div></div>`:''}
       <div class="growbox">
         <button type="button" class="growbtn" id="growBtn" aria-expanded="${growOpen}"><span><b>${growT}</b><small>${growS} Tap to see each year.</small></span><span class="chev"></span></button>
@@ -2561,7 +2562,7 @@ new IntersectionObserver(es=>{es.forEach(e=>{headVisible=e.isIntersecting});upda
 let barData=null;
 function updateBar(you,m){
   if(you&&you.vested){barData={n:you.base>0?usd(you.base/12)+'/month':'No pension yet',s:you.base>0?'Vested · starts '+fmtMY(you.start):'Under 5 years'}}
-  else if(you!==undefined) barData=you?{n:usd((you.base+(ST.p.dis?0:VSF))/12)+'/month',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
+  else if(you!==undefined) barData=you?{n:ST.p.dis?usd(you.base/12)+'/month':usd(you.base)+'/year',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
   const show=barData&&!headVisible&&current==='personal';
   $('pbar').classList.toggle('off',!show);document.body.classList.toggle('has-pbar',current==='personal');
   if(barData){$('pbarN').textContent=barData.n;$('pbarS').textContent=barData.s}

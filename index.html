@@ -55,7 +55,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .hometop:has(.ver:not([hidden])){padding-bottom:18px}
 .ver{position:absolute;right:2px;bottom:0;font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap}
 .hometop{min-width:0}.lshort{display:none}
-@media (max-width:360px){.hometop{gap:6px}.hometop .chip{font-size:13.5px;padding:4px 9px}.hometop .news summary{font-size:14px;padding:0 10px;gap:6px}.lfull{display:none}.lshort{display:inline}}
+@media (max-width:360px){.hometop{gap:6px}.hometop .chip{font-size:13.5px;padding:4px 9px}}@media (max-width:430px){.lfull{display:none}.lshort{display:inline}}@media (max-width:360px){.lshort{display:none}}
 .hero{display:grid;gap:14px;padding:0 0 6px}
 .chip{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-weight:600;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:5px 12px;border-radius:999px}
 .hero .sub{font-size:clamp(19px,3.6vw,23px);color:var(--muted);max-width:34ch}
@@ -76,6 +76,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
 @media (max-width:560px){.card{padding:16px}}
 .news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
 .news summary::-webkit-details-marker{display:none}
 .news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
 .news[open] summary::after{transform:rotate(-135deg);margin-top:3px}
@@ -105,7 +106,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
   <div class="hometop">
     <span class="chip">For FDNY members</span>
     <details class="news">
-      <summary><span class="lfull">See latest updates</span><span class="lshort">Latest updates</span></summary>
+      <summary>Version <b>2.55</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-11">11/11/26:</time> Made it clearer to see your final average salary in “Your personal numbers.”</li>
@@ -118,7 +119,6 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">Version <b>2.54</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension.</h1>

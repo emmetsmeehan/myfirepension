@@ -94,6 +94,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .ver{font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap;text-align:right}
 @media (max-width:360px){.ver{font-size:11px}.top .backbtn{padding-right:12px}}
+a.ver{text-decoration:none}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){
@@ -105,7 +106,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </head>
 <body>
 <main class="app">
-  <div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="ver">Version <b>2.54</b></span></div>
+  <div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
   <section class="card ask" aria-labelledby="askTitle">
     <h1 id="askTitle">What else would you like to see here?</h1>
     <p>This is a work in progress and I'm happy to add what people want. Send your questions or suggestions.</p>
