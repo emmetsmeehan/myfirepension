@@ -58,6 +58,24 @@ button,input,select,textarea{font:inherit;color:inherit}
 .doc h2{font-size:21px}
 .doc ul{margin:0;padding-left:20px;display:grid;gap:6px}
 a.ver{text-decoration:none}
+.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
+.news summary::-webkit-details-marker{display:none}
+.news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
+.news[open] summary::after{transform:rotate(-135deg);margin-top:3px}
+.news summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.news .newsbody{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:20;border:2px solid var(--gold);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow);padding-top:6px}
+.news ul{margin:0;padding:0 16px 10px;list-style:none}
+.news .newsask{margin:0;padding:12px 16px 14px;border-top:1px solid var(--line);font-size:15.5px;font-weight:700}
+.news .newsask a{color:var(--accent);padding:10px 0}
+.news li{padding:7px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.4;color:var(--body)}
+.news li:first-child{border-top:0}
+.news time{font-weight:700;color:var(--muted)}
+.news .newsmore{margin:0;padding:0 16px 6px}
+.news .newsmore a{display:flex;align-items:center;min-height:44px;border-top:1px solid var(--line);font-size:15.5px;font-weight:700;color:var(--accent)}
+.top,.top404{position:relative}
+.news .newsbody{text-align:left}
+.lshort{display:none}@media (max-width:360px){.lfull{display:none}.lshort{display:inline}}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){
@@ -69,7 +87,20 @@ a.ver{text-decoration:none}
 </head>
 <body>
 <main class="app">
-  <div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><a class="ver" href="/updates/">Version <b>2.72</b> (click for updates)</a></div>
+  <div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><details class="news">
+      <summary>Version <b>2.73</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <div class="newsbody">
+      <ul>
+        <li><time datetime="2026-11-11">11/11/26:</time> Your equated date can now be later than your appointment date. This may apply to members who took LWOP or other extended leaves.</li>
+        <li><time datetime="2026-11-11">11/11/26:</time> Made your final average salary more clear, along with important numbers surrounding retirement.</li>
+        <li><time datetime="2026-11-09">11/9/26:</time> Tier 3’s Social Security offset is now personalized, calculated live from your own earnings.</li>
+        <li><time datetime="2026-11-09">11/9/26:</time> Added information on pension loans.</li>
+        <li><time datetime="2026-11-08">11/8/26:</time> You can now pick your retirement date instead of using the slider on “Your personal numbers,” for both Tier 2 and Tier 3.</li>
+      </ul>
+      <p class="newsmore"><a href="/updates/">See older updates</a></p>
+      <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
+      </div>
+    </details></div>
   <article class="doc">
     <div>
       <h1>Privacy</h1>
@@ -116,5 +147,10 @@ a.ver{text-decoration:none}
     <p>Built and maintained by LT Emmet Meehan, Division 14. Contact me directly: <a href="mailto:emmetsmeehan@gmail.com">emmetsmeehan@gmail.com</a></p>
   </footer>
 </main>
+<script>
+/* A tap outside the Version drop-down closes it. */
+document.addEventListener('click',function(e){var inN=e.target.closest&&e.target.closest('details.news');
+  document.querySelectorAll('details.news[open]').forEach(function(d){if(d!==inN)d.open=false})});
+</script>
 </body>
 </html>

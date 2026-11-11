@@ -227,3 +227,11 @@ Sources: the full Tiers 1 & 2 Summary Plan Description (Sept. 12, 2014; `pension
 ## Typeface: Barlow (Nov. 11, 2026, owner; v2.70)
 
 The owner felt Source Sans 3 made the site look AI-made, compared four options on a hidden `/font-test/` page (Libre Franklin, IBM Plex Sans, Atkinson Hyperlegible, Barlow; now deleted) and picked Barlow. Every page loads `Barlow:wght@400;600;700;800` from Google Fonts and sets `--body:"Barlow",…`; the Tier 3 chart's `ff` too. Checked at 390 and 320px (no sideways overflow). The three link preview images were redone in Barlow the same day (v2.71), and their wording matched to the site (v2.72): chip "For FDNY members" on the home one, Tier 2 "Appointed before July 1, 2009", Tier 3 "Appointed on or after July 1, 2009" (the 1973 dates are gone). The iPhone app's type is its own.
+
+## Version drop-down on every page (Nov. 11, 2026, owner; v2.73)
+
+The owner wanted one consistent button: the gold "Version 2.73 (click for updates)" pill that drops down the updates list, on every page and screen, not a plain link in some places. Now:
+- **Other accounts, Suggestions, Privacy, Updates and the 404 page** carry the same `<details class="news">` block and its CSS as the home pages (it replaced the `.ver` link; on the Updates page, the plain version text).
+- **Tier pages, section top bars** (Pension basics, Bills in Albany, Quick calculator, Your personal numbers): the HTML still has the `a.ver` link as a fallback, and a script before `</body>` swaps each for a copy of the home screen's drop-down. At 560px and under the pill sits on its own row at the right of the sticky bar (30px tall), with the panel inset 16px.
+- A tap outside closes the drop-down, on every page; on the tier pages opening one closes the others.
+- **The five visible entries are edited in `index.html` only; then run `node tests/sync-news.mjs`**, which copies that block to the other seven pages (this replaces "keep the same five on all three pages"). `updates/index.html` still keeps the full list by hand.
