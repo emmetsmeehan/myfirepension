@@ -435,7 +435,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .incl span{color:var(--ink)}
 /* Owner, Nov. 11, 2026: a thin line under the big per-year number, to break up the headline. */
 .bignum.ln{padding-bottom:12px;border-bottom:1px solid var(--line)}
-.bignum b.g,.payline b.g{color:var(--sage)}.bignum b.g{font-weight:800}
+.bignum b.g,.payline b.g{color:var(--sage)}.payline b.r,#head .hint b.r{color:var(--accent)}.bignum b.g{font-weight:800}
 .payline{font-size:18px;line-height:1.35}@media (max-width:420px){.payline{font-size:16px}}@media (max-width:360px){#head .bignum{font-size:38px}#head .bignum span{font-size:16px}.payline{font-size:15px}}.payline .pl{white-space:nowrap;font-size:15px;color:var(--muted)}
 .lump{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border-radius:var(--r);padding:14px 16px;background:color-mix(in srgb,var(--shine) 14%,var(--surface));border:1.5px solid color-mix(in srgb,var(--shine) 55%,transparent)}
 .lump .li svg{width:42px;height:42px;stroke-width:1.7}
@@ -640,7 +640,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 2 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>2.65</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>2.66</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-11">11/11/26:</time> Your equated date can now be later than your appointment date. This may apply to members who took LWOP or other extended leaves.</li>
@@ -704,7 +704,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.65</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.66</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1></div>
 
   <ul class="keys">
@@ -853,7 +853,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.65</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.66</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Changes to Tier 2 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -862,7 +862,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.65</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.66</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -897,7 +897,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.65</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.66</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Use your real earnings to see what you'll collect, and what working longer gets you.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1433,7 +1433,7 @@ function renderQuick(){
     :`<div class="k">Your vested pension</div>
       <div class="bignum ln"><b class="g">${usd(vb)}</b><span>per year</span></div>
       <div class="payline">Pension payments: <b class="g">${usd(vb/12)}</b> per month</div>
-      <div class="payline">VSF: <b>None</b> <span class="pl">(only for 20 years or more)</span></div>
+      <div class="payline">VSF: <b class="r">None</b> <span class="pl">(only for 20 years or more)</span></div>
       <div class="u">1/40th for each year: ${fmtSvcLong(m)} × 2.5% = ${pct}% of ${usd(fas)}</div>
       ${fas<20000?'<p class="warn">That looks low for a year’s pay. Type the whole amount, like 120000.</p>':''}
       <p class="fine">For a vested pension the Fund uses your last 12 months as your final average salary. It starts when you would have hit 20 years. No VSF and no longevity bonus. You can take back the money you paid in instead, and give up this pension.</p>
@@ -2025,8 +2025,8 @@ function renderVested(c,m,you){
     <div class="k2">Your vested pension</div>
     <div class="bignum ln"><b class="g">${usd(you.base)}</b><span>per year</span></div>
     <div class="payline">Pension payments: <b class="g">${usd(you.base/12)}</b> per month</div>
-    <div class="payline">VSF: <b>None</b> <span class="pl">(only for 20 years or more)</span></div>
-    <div class="payline">Starts: <b>${fmtMY(you.start)}</b> <span class="pl">(when you’d have hit 20 years)</span></div>
+    <div class="payline">VSF: <b class="r">None</b> <span class="pl">(only for 20 years or more)</span></div>
+    <div class="payline">Starts: <b class="r">${fmtMY(you.start)}</b> <span class="pl">(when you’d have hit 20 years)</span></div>
     <div class="k2">What makes up your pension</div>
     <div class="brk">
       <div class="brow"><div class="bl"><b>Vested pension</b><small>1/40th (2.5%) of your final average salary for each year</small><small>${fmtSvcLong(m)} × 2.5% = ${pct}%. No longevity bonus.</small></div><div class="amt"><b>${usd(VEST_PCT*you.S*you.fs/12)}/mo</b><small>${usd(VEST_PCT*you.S*you.fs)}/yr</small></div></div>
@@ -2035,7 +2035,7 @@ function renderVested(c,m,you){
       <div class="brow tot"><div class="bl"><b>Pension</b></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
     </div>
     <ul class="hint" style="padding-left:18px;margin:10px 0 0">
-      <li>You’d be ${fmtAge(you.startAge)} when it starts. No banked variable.</li>
+      <li>You’d be <b class="r">${fmtAge(you.startAge)}</b> when it starts.</li>
       <li>You can take back the money you paid in instead. If you do, you give up this pension.</li>
       <li>Apply with the Pension Fund at least 30 days before you leave.</li>
     </ul>`;
