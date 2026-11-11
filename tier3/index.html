@@ -313,7 +313,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 #head .eyebrow{line-height:1.4;min-height:2.8em}
 .asm{display:grid;gap:1px;font-size:16px;line-height:1.45;color:var(--muted)}
 .asm .asmh{color:var(--ink);font-weight:700}
-.asm b.y{color:var(--gold)}.asm b.g{color:var(--sage)}
+.asm b.k{color:var(--ink)}.asm b.y{color:var(--gold)}.asm b.g{color:var(--sage)}
 .preview .pvline{margin:0;font-size:17px;line-height:1.45}
 .slider:has(.thumbtip){margin-top:40px}
 .thumbtip{position:absolute;top:-6px;transform:translate(-50%,-100%);display:inline-flex;align-items:center;gap:2px;padding:3px 8px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700;white-space:nowrap;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
@@ -640,7 +640,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>2.61</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>2.62</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-11">11/11/26:</time> Your equated date can now be later than your appointment date in “Your personal numbers.”</li>
@@ -704,7 +704,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.61</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.62</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -841,7 +841,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.61</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.62</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -850,7 +850,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.61</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.62</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -871,7 +871,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.61</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.62</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1957,19 +1957,17 @@ function renderP(){
         <span>Final average salary: <b class="g">${usd(you.fas)}</b>${you.bonusAdd>0?' (with the longevity bonus)':''}</span>
         <span>Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span></div>`;
   if(c.dis){
-    const c5=you.at(you.retAge+5),a85=you.at(85);
-    head.innerHTML=`${asm}
+    /* Owner, Nov. 11, 2026: on a 3/4s, taxes and the COLA are one line each at the end of the Assumptions block (they were big
+       boxes under the headline); the "At age 85" box and the "75% of your final average salary" line are gone. */
+    const c5=you.at(you.retAge+5),asmD=asm.replace(/<\/div>$/,`
+        <span>Taxes: <b class="k">Generally none</b></span>
+        <span>COLA: ${c5&&c5.pay>you.base?`<b class="k">+${usd(c5.pay-you.base)} a year</b> after 5 years`:'<b class="k">After 5 years</b>'}</span></div>`);
+    head.innerHTML=`${asmD}
       <div class="k2">Your first year of retirement</div>
       <div class="bignum ln"><b class="g">${usd(you.base)}</b><span>per year</span></div>
       <div class="payline">Pension payments: <b class="g">${usd(you.base/12)}</b> per month</div>
       <div class="payline">VSF: <b>None</b> <span class="pl">(not paid on a 3/4s)</span></div>
-      <div class="hint">75% of your final average salary</div>
       ${tier2}${warn}
-      <div class="stats">
-        <div class="stat"><span class="k">Taxes</span><span class="v">Generally none</span><span class="s">3/4s pensions are generally not taxed</span></div>
-        <div class="stat"><span class="k">COLA</span><span class="v">${c5&&c5.pay>you.base?'+'+usd(c5.pay-you.base)+'/yr':'–'}</span><span class="s">First raise after 5 years retired</span></div>
-        <div class="stat"><span class="k">At age 85</span><span class="v">${(()=>{const a=you.at(85);return a?usd(a.pay/12)+'/mo':'–'})()}</span><span class="s">No Social Security offset</span></div>
-      </div>
       <p class="hint">Needs approval from the Pension Fund's Medical Board and Board of Trustees. No VSF on a disability pension. Health insurance continues regardless of years.</p>`;
   } else {
     const totY=you.base+VSF,inf=num(p.cpi);
