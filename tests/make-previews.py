@@ -31,10 +31,10 @@ def page(chip, sub, cards, url):
             '<div class="foot"><b>%s</b><span>Unofficial planning tool</span></div>') % (CSS, chip, sub, one, c, url)
 STEEL, RED = '#2f5d8a', '#b3261e'
 P = {
- 'preview.png': page('For FDNY uniformed members', 'Tier 2 and Tier 3 calculators: see what you’ll collect in retirement.',
-                     [(STEEL, 'Tier 2', 'Appointed 1973 to 2009'), (RED, 'Tier 3', 'Appointed 2009 or later')], 'myfirepension.com'),
+ 'preview.png': page('For FDNY members', 'Tier 2 and Tier 3 calculators: see what you’ll collect in retirement.',
+                     [(STEEL, 'Tier 2', 'Appointed before<br>July 1, 2009'), (RED, 'Tier 3', 'Appointed on or after<br>July 1, 2009')], 'myfirepension.com'),
  'preview-tier2.png': page('For FDNY Tier 2 members', 'Half pay at 20, the 1/60th, ITHP and the VSF, worked out for you.',
-                     [(STEEL, 'Tier 2', 'Appointed July 1, 1973<br>to June 30, 2009')], 'myfirepension.com/tier2'),
+                     [(STEEL, 'Tier 2', 'Appointed before<br>July 1, 2009')], 'myfirepension.com/tier2'),
  'preview-tier3.png': page('For FDNY Tier 3 members', 'Half pay at 20, escalation, the longevity bonus and the VSF, worked out for you.',
                      [(RED, 'Tier 3', 'Appointed on or after<br>July 1, 2009')], 'myfirepension.com/tier3'),
 }
