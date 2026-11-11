@@ -642,7 +642,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">Version <b>2.46</b></span>
+    <span class="ver">Version <b>2.47</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1>
@@ -694,7 +694,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">Version <b>2.46</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">Version <b>2.47</b></span></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -829,7 +829,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">Version <b>2.46</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">Version <b>2.47</b></span></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -838,7 +838,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">Version <b>2.46</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">Version <b>2.47</b></span></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -859,7 +859,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">Version <b>2.46</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">Version <b>2.47</b></span></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1211,7 +1211,7 @@ $('billsTag').textContent=`${PENDING.length} being considered · ${BILLS.filter(
 const KEY='fdny-tier3-v2';
 const DEF={
   q:{fas:'',svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,b40:false},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,cur:'',rankSet:false,eqOn:false,eq:'',lodi:{},onetime:{},ss:2400,ssAuto:true,cpi:3,goal:'',b40:false,pays:{},earnV:2}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},src:{},extra:{},growOn:false,grow:2.5,svc:276,dis:false,esc:LAW_ESC,rank:'FF',topPay:FF_PAY,cur:'',rankSet:false,eqOn:false,eq:'',lodi:{},onetime:{},ss:2400,ssAuto:true,cpi:3,goal:'',b40:false,pays:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1223,6 +1223,8 @@ function cleanState(){
   for(const k of ['dob','appt','eq']) if(!realDate(p[k])) p[k]='';
   {const o=p.pays,c={};if(o&&typeof o==='object')for(const y in o){if(!/^\d{4}$/.test(y)||!Array.isArray(o[y]))continue;const a=o[y].filter(r=>Array.isArray(r)&&realDate(r[0])&&r[0].slice(0,4)===y&&Math.abs(+r[1])<1e6).map(r=>[r[0],+r[1]]);if(a.length)c[y]=a}p.pays=c}
   for(const k of ['manual','imported','extra','lodi','onetime']){const o=p[k],c={};if(o&&typeof o==='object')for(const y in o){const v=+o[y];if(/^\d{4}$/.test(y)&&v>0&&v<1e7)c[y]=v}p[k]=c}
+  /* Where each verified year came from: 'n' NYCAPS Tax Summary, 'w' a W-2. Saves from before Nov. 11, 2026 don't have it. */
+  {const o=p.src,c={};if(o&&typeof o==='object')for(const y in p.imported){if(o[y]==='w'||o[y]==='n')c[y]=o[y]}p.src=c}
   if(!impMode(p.mode)) p.mode='manual';
   for(const s of [ST.q,p]){if(!(s.svc>=1&&s.svc<=540))s.svc=DEF.p.svc;if(!(+s.topPay>0&&+s.topPay<1e6)){s.rank='FF';s.topPay=FF_PAY}}
   for(const [k,max] of [['grow',10],['cpi',10],['ss',6000]]) if(k in p) p[k]=Math.min(max,Math.max(0,+p[k]||0));
@@ -1239,7 +1241,7 @@ function loadState(){
      Dates, rank and the rest stay. Bump earnV (and DEF) to do this again. */
   if(s&&s.p&&s.p.earnV!==2){
     const p=ST.p;earnWiped=['manual','imported','extra'].some(k=>p[k]&&typeof p[k]==='object'&&Object.keys(p[k]).length>0);
-    for(const k of ['manual','imported','extra','lodi','onetime']) p[k]={};
+    for(const k of ['manual','imported','src','extra','lodi','onetime']) p[k]={};
     if(p.mode!=='manual') p.mode='manual';
   }
   ST.p.earnV=2;
@@ -1561,6 +1563,16 @@ function pDates(){const p=ST.p,dob=p.dob?fromISO(p.dob):null,appt=p.appt?fromISO
 /* Earnings for the chosen mode. In import mode, verified years come from NYCAPS and can't be edited; other years can be typed. */
 function known(){const p=ST.p;return impMode(p.mode)?{...p.extra,...p.imported}:{...p.manual}}
 function isVerified(y){return impMode(ST.p.mode)&&ST.p.imported[y]>0}
+/* A verified year's source is what it was read from, not which button is pressed (owner, Nov. 11, 2026: tapping Upload your W-2s
+   after a NYCAPS import said the years were verified from W-2s). Older saves have no source: those follow the button, as before. */
+function fromW2(y){const s=ST.p.src[y];return s?s==='w':ST.p.mode==='w2'}
+function verLabel(ys){
+  const src=ST.p.src,w=ys.filter(y=>src[y]==='w').length,n=ys.filter(y=>src[y]==='n').length,rng=`(${ys[0]}–${ys[ys.length-1]})`,tot=plural(ys.length,'year');
+  if(w+n<ys.length) return `${tot} verified ${rng}`;
+  if(!w) return `${tot} verified from NYCAPS ${rng}`;
+  if(!n) return `${tot} verified from your W-2s ${rng}`;
+  return `${tot} verified: ${n} from NYCAPS, ${w} from your W-2s ${rng}`;
+}
 function yearValues(apptY,lastY){
   const k=known(),vals={},kind={};let lastY0=null;
   const g=ST.p.growOn?num(ST.p.grow)/100:0;
@@ -1757,7 +1769,7 @@ function renderWorksheet(c,m){
     row.querySelector('.rslot').innerHTML=rW&&RETRO_Y.includes(y)&&y>=rW[0]&&y<=rW[1]?' <span class="bdg retro">Retro<span class="rlong"> check</span> *</span>':'';
     const ar=$('a-'+y);if(ar){const tx=adjNote(y);ar.hidden=!tx;ar.firstElementChild.textContent=tx;ar.className='adjr '+(used?'win':'')}
     /* W-2 mode (owner, Nov. 9, 2026): a year with a W-2 shows its box 14 LODI as plain text; a year without one gets a LODI box, as when typing. */
-    {const lb=row.querySelector('.lodibtn'),lw=row.querySelector('.lodiinp'),lv=row.querySelector('.lodiv'),w2y=p.mode==='w2'&&isVerified(y),
+    {const lb=row.querySelector('.lodibtn'),lw=row.querySelector('.lodiinp'),lv=row.querySelector('.lodiv'),w2y=isVerified(y)&&fromW2(y),
        on=!w2y;
      if(lb)lb.hidden=on||w2y;if(lw)lw.hidden=!on;if(lv){lv.hidden=!w2y;lv.textContent=ST.p.lodi[y]?usd(ST.p.lodi[y]):'–'}
      const li=$('li-'+y);if(li&&document.activeElement!==li)li.value=ST.p.lodi[y]?commas(ST.p.lodi[y]):'';
@@ -1781,7 +1793,7 @@ function renderWorksheet(c,m){
     $('c-'+y).innerHTML=r&&r.v>0?`<span class="cnt">${usd(cut?r.counted:r.v)}</span>`+(cut?`<span class="cut">${usd(r.v-r.counted)} doesn’t count (10% limit)</span>`:''):'–';
     if(cut) anyCut=true;
   }
-  $('lodiNote').hidden=p.mode!=='import';
+  $('lodiNote').hidden=!(impMode(p.mode)&&Object.keys(p.imported).some(y=>!fromW2(y)));
   $('retroNote').hidden=!(rW&&RETRO_Y.some(y=>y>=rW[0]&&y<=rW[1]));$('cutNote').hidden=!anyCut;
   /* The slider now sets which future years show, so the "Show future years" button stays hidden. */
   $('futBtn').hidden=true;$('wsBox').querySelector('.ws').classList.remove('hidefut');
@@ -1860,7 +1872,7 @@ function renderP(){
     const reviewing=!$('impReview').hidden;
     $('impStart').hidden=hasImp||reviewing||p.mode!=='import';$('w2Start').hidden=hasImp||reviewing||p.mode!=='w2';$('verBar').hidden=!hasImp||reviewing;
     $('wsBox').hidden=!hasImp&&!reviewing?true:reviewing;
-    if(hasImp){const ys=Object.keys(p.imported).map(Number).sort((a,b)=>a-b);$('verTxt').textContent=`${plural(ys.length,'year')} verified from ${p.mode==='w2'?'your W-2s':'NYCAPS'} (${ys[0]}–${ys[ys.length-1]})`}
+    if(hasImp){const ys=Object.keys(p.imported).map(Number).sort((a,b)=>a-b);$('verTxt').textContent=verLabel(ys)}
   } else $('wsBox').hidden=false;
   /* After an import is locked in, the earnings table folds away behind a button. */
   const folded=impMode(p.mode)&&hasImp&&$('impReview').hidden;
@@ -2115,7 +2127,7 @@ $('clearAll').addEventListener('click',()=>{
   if(!confirm('Clear your earnings from this device, on both the Tier 2 and Tier 3 pages? Your dates stay. This can’t be undone.')) return;
   noSave=true;clearTimeout(saveT);
   /* Earnings only (typed, imported, W-2 LODI and bonuses, paychecks). Dates, rank and the rest stay. */
-  const wipe=p=>{for(const k of ['manual','imported','extra','lodi','onetime','pays']) p[k]={};p.mode='manual'};
+  const wipe=p=>{for(const k of ['manual','imported','src','extra','lodi','onetime','pays']) p[k]={};p.mode='manual'};
   wipe(ST.p);
   try{localStorage.setItem(KEY,JSON.stringify(ST))}catch{}
   for(const k of ['fdny-tier3-v2','fdny-tier2-v1']){if(k===KEY)continue;try{const s=JSON.parse(localStorage.getItem(k)||'null');if(s&&s.p&&typeof s.p==='object'){wipe(s.p);localStorage.setItem(k,JSON.stringify(s))}}catch{}}
@@ -2178,14 +2190,14 @@ $('lockBtn').addEventListener('click',()=>{
   const vals={};let bad=0;$('reviewRows').querySelectorAll('input').forEach(i=>{const n=num(i.value);if(n>0&&n<1e7) vals[+i.dataset.ry]=n;else bad++});
   if(!Object.keys(vals).length) return;
   if(bad&&!confirm(`${plural(bad,'year')} ${bad>1?'are':'is'} blank or not a number and will be left out. Lock in the rest?`)) return;
-  ST.p.imported=vals;ST.p.extra={};closeReview();$('impTxt').value='';wsKey='';wsOpen=false;renderP();
+  ST.p.imported=vals;ST.p.src={};for(const y in vals)ST.p.src[y]='n';ST.p.extra={};closeReview();$('impTxt').value='';wsKey='';wsOpen=false;renderP();
   $('verBar').scrollIntoView({behavior:'smooth',block:'start'});
 });
 $('wsTog').addEventListener('click',()=>{wsOpen=!wsOpen;renderP()});
 $('needGo').addEventListener('click',()=>{const t=ST.p.dob?$('apM'):$('dobM');$('s1h').scrollIntoView({behavior:'smooth',block:'start'});t.focus({preventScroll:true})});
 $('startOver').addEventListener('click',()=>{
   if(!confirm('Remove your imported numbers and start over?')) return;
-  ST.p.imported={};ST.p.extra={};wsKey='';renderP();
+  ST.p.imported={};ST.p.src={};ST.p.extra={};wsKey='';renderP();
 });
 
 /* Screenshot reading runs on the device with Tesseract.js, loaded only when someone picks a picture. */
@@ -2519,7 +2531,7 @@ function lockW2(){
   list.forEach(r=>rows[r.year]=r);const ys=Object.keys(rows);
   if(w2PrevMode==='manual'){p.extra={...p.manual,...p.extra}}
   for(const y of ys){
-    const r=rows[y];p.imported[y]=r.wages;delete p.extra[y];
+    const r=rows[y];p.imported[y]=r.wages;p.src[y]='w';delete p.extra[y];
     if(r.lodi) p.lodi[y]=r.lodi; else delete p.lodi[y];
     if(r.bonus) p.onetime[y]=r.bonus; else delete p.onetime[y];
   }
