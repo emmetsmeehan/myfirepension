@@ -638,7 +638,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>2.55</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>2.56</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-11">11/11/26:</time> Made it clearer to see your final average salary in “Your personal numbers.”</li>
@@ -702,7 +702,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.56</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -837,7 +837,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.56</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -846,7 +846,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.56</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -867,7 +867,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.55</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.56</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1937,14 +1937,23 @@ function renderP(){
   ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:c.dis?'none':[c.esc===20&&'S9203',c.b40&&'S5058A'].filter(Boolean).join(' ')||'none',p_goal:yn(num(p.goal)>0),p_ss:dol(you.ssM||0),p_ss_source:ST.p.ssAuto?'estimate':'typed',p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
   const at62=you.at(62);
+  /* The same Assumptions block and headline for a service retirement and a 3/4s (owner, Nov. 11, 2026: don't change the layout for a 3/4s). */
+  const asm=`<div class="asm"><span class="asmh">Assumptions:</span>
+        <span>Retirement date: <b class="y">${m===nowM?'Today':fmtMYL(you.retDate)}</b></span>
+        <span>Time served: <b class="y">${fmtSvcLong(m)}</b></span>
+        <span>Age: <b class="y">${fmtAge(you.retAge)}</b></span>
+        <span>Final average salary: <b class="g">${usd(you.fas)}</b>${you.bonusAdd>0?' (with the longevity bonus)':''}</span>
+        <span>Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span></div>`;
   if(c.dis){
     const c5=you.at(you.retAge+5),a85=you.at(85);
-    head.innerHTML=`<div class="eyebrow">3/4s disability · go out ${m===nowM?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
-      <div class="bignum">${usd(you.base/12)}<span>/month</span></div>
-      <div class="hint">${usd(you.base)} a year · 75% of your final average salary</div>
+    head.innerHTML=`${asm}
+      <div class="k2">Your first year on a 3/4s</div>
+      <div class="bignum"><b class="g">${usd(you.base)}</b><span>per year</span></div>
+      <div class="payline">Pension payments: <b class="g">${usd(you.base/12)}</b> per month</div>
+      <div class="payline">VSF: <b>None</b> <span class="pl">(not paid on a 3/4s)</span></div>
+      <div class="hint">75% of your final average salary</div>
       ${tier2}${warn}
       <div class="stats">
-        <div class="stat"><span class="k">Final average salary</span><span class="v">${usd(you.fas)}</span><span class="s">Best 3 years: ${bestTxt(you.best)}${you.best.rolling?'':' (calendar years)'}</span></div>
         <div class="stat"><span class="k">Taxes</span><span class="v">Generally none</span><span class="s">3/4s pensions are generally not taxed</span></div>
         <div class="stat"><span class="k">COLA</span><span class="v">${c5&&c5.pay>you.base?'+'+usd(c5.pay-you.base)+'/yr':'–'}</span><span class="s">First raise after 5 years retired</span></div>
         <div class="stat"><span class="k">At age 85</span><span class="v">${(()=>{const a=you.at(85);return a?usd(a.pay/12)+'/mo':'–'})()}</span><span class="s">No Social Security offset</span></div>
@@ -1957,12 +1966,7 @@ function renderP(){
     const ry=you.retDate.getFullYear();
     const trows=you.rows.filter(r=>r.age<=85.0001).map((r,t)=>{const a=Math.floor(r.age+1e-9),off=a>=62&&Math.floor(r.age-1+1e-9)<62&&you.offset>0;
       return `<tr${off?' class="offrow"':''}><td>${ry+t} <span class="ag">· ${a}</span></td><td>${usd(r.pay/12)}</td><td>${usd(r.pay+r.v)}</td></tr>`+(off?`<tr class="offrow"><td colspan="3" class="offn">At 62 the pension drops for the Social Security offset. Change this number in <button type="button" class="linkbtn" data-moreopts>More options</button>.</td></tr>`:'')}).join('');
-    head.innerHTML=`<div class="asm"><span class="asmh">Assumptions:</span>
-        <span>Retirement date: <b class="y">${m===nowM?'Today':fmtMYL(you.retDate)}</b></span>
-        <span>Time served: <b class="y">${fmtSvcLong(m)}</b></span>
-        <span>Age: <b class="y">${fmtAge(you.retAge)}</b></span>
-        <span>Final average salary: <b class="g">${usd(you.fas)}</b>${you.bonusAdd>0?' (with the longevity bonus)':''}</span>
-        <span>Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span></div>
+    head.innerHTML=`${asm}
       <div class="k2">Your first year of retirement</div>
       <div class="bignum"><b class="g">${usd(you.base)}</b><span>per year</span></div>
       <div class="payline">Pension payments: <b class="g">${usd(you.base/12)}</b> per month</div>
@@ -2562,7 +2566,7 @@ new IntersectionObserver(es=>{es.forEach(e=>{headVisible=e.isIntersecting});upda
 let barData=null;
 function updateBar(you,m){
   if(you&&you.vested){barData={n:you.base>0?usd(you.base/12)+'/month':'No pension yet',s:you.base>0?'Vested · starts '+fmtMY(you.start):'Under 5 years'}}
-  else if(you!==undefined) barData=you?{n:ST.p.dis?usd(you.base/12)+'/month':usd(you.base)+'/year',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
+  else if(you!==undefined) barData=you?{n:usd(you.base)+'/year',s:(ST.p.dis?'3/4s · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
   const show=barData&&!headVisible&&current==='personal';
   $('pbar').classList.toggle('off',!show);document.body.classList.toggle('has-pbar',current==='personal');
   if(barData){$('pbarN').textContent=barData.n;$('pbarS').textContent=barData.s}
