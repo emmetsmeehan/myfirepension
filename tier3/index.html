@@ -642,7 +642,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
       </div>
     </details>
-    <span class="ver">Version <b>2.47</b></span>
+    <span class="ver">Version <b>2.48</b></span>
   </div>
   <header class="hero">
     <h1>Learn about your pension. <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1>
@@ -694,7 +694,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">Version <b>2.47</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><span class="ver">Version <b>2.48</b></span></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -829,7 +829,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">Version <b>2.47</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><span class="ver">Version <b>2.48</b></span></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -838,7 +838,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">Version <b>2.47</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><span class="ver">Version <b>2.48</b></span></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -859,7 +859,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">Version <b>2.47</b></span></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><span class="ver">Version <b>2.48</b></span></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1950,10 +1950,11 @@ function renderP(){
     head.innerHTML=`<div class="eyebrow">Retire ${m===nowM?'now':fmtMY(you.retDate)} at ${fmtSvcLong(m)}, age ${fmtAge(you.retAge)}</div>
       <div class="k2">Your first year of retirement</div>
       <div class="bignum">${usd(totY/12)}<span>/month</span></div>
-      <div class="sub2"><b>${usd(totY)} a year</b>, pension plus VSF</div>
+      <div class="sub2"><b>${usd(totY)} a year</b> (your pension and VSF combined)</div>
       ${billsOnNote(c)}${tier2}${warn}${gapNote(c)}
       <div class="brk">
-        <div class="brow"><div class="bl"><b>Pension</b><small>50% of your ${usd(you.fas)} final average salary${you.extra?', plus the extra 1/40ths':''}. Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':' (calendar years)'}</small></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
+        <div class="brow"><div class="bl"><b>Your final average salary</b><small>Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':' (calendar years)'}${you.bonusAdd>0?', with the longevity bonus':''}</small></div><div class="amt"><b>${usd(you.fas)}</b></div></div>
+        <div class="brow"><div class="bl"><b>Pension</b><small>50% of your final average salary${you.extra?', plus the extra 1/40ths':''}</small></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
         ${you.extra>0?`<div class="incl">${ICON.check}<span>Includes <b>${usd(you.extra)} a year</b> from S5058A if it passes: 1/40th of your final average salary for each year past 20</span></div>`:''}
         ${you.bonusAdd>0?`<div class="incl">${ICON.check}<span>Includes the <b>longevity bonus</b>: +${usd(you.bonusAdd/2)} a year (${Math.round(you.bonusPct*100)}% of your rank’s top pay added to your salary)</span></div>`:''}
         <div class="brow"><div class="bl"><b>VSF</b><small>Variable Supplements Fund: one payment every December or January</small></div><div class="amt"><b>${usd(VSF)}/yr</b><small>about ${usd(VSF/12)}/mo</small></div></div>
