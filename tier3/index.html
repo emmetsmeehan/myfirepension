@@ -638,14 +638,14 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>2.58</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>2.59</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
+        <li><time datetime="2026-11-11">11/11/26:</time> Your equated date can now be later than your appointment date in “Your personal numbers.”</li>
         <li><time datetime="2026-11-11">11/11/26:</time> Made it clearer to see your final average salary in “Your personal numbers.”</li>
         <li><time datetime="2026-11-09">11/9/26:</time> Tier 3’s Social Security offset is now personalized, calculated live from your own earnings.</li>
         <li><time datetime="2026-11-09">11/9/26:</time> Added information on pension loans.</li>
         <li><time datetime="2026-11-08">11/8/26:</time> You can now pick your retirement date instead of using the slider on “Your personal numbers,” for both Tier 2 and Tier 3.</li>
-        <li><time datetime="2026-11-08">11/8/26:</time> Various improvements in both look and functionality of “Quick calculator” and “Your personal numbers” for both Tier 2 and 3.</li>
       </ul>
       <p class="newsmore"><a href="/updates/">See older updates</a></p>
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -702,7 +702,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.58</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.59</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -745,9 +745,11 @@ body.has-pbar .app{padding-bottom:110px}
       <p>A service pension is subject to federal income tax but not New York State or New York City income tax.</p>
       <p>An accident disability (3/4s) pension is generally not taxed. If you move out of state, check that state's rules or ask a tax professional.</p></div></details>
     <details><summary>What is an equated date?</summary><div class="ans">
-      <p>It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to <b>3 years</b> of military service once you have 5 years in. Uniformed service right before the FDNY, like EMS or the NYPD, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier <b>equated date</b>, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus.</p></div></details>
+      <p>It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to <b>3 years</b> of military service once you have 5 years in. Uniformed service right before the FDNY, like EMS or the NYPD, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier <b>equated date</b>, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus.</p>
+      <p>If you were out on leave without pay (LWOP), your equated date may be later than your appointment date.</p></div></details>
     <details><summary>What is my “minimum required,” and what if I'm in deficit?</summary><div class="ans">
-      <p>For your first 25 years, you pay into the pension: a basic 3% of your pay, plus about 2% more (the Fund reviews that rate every three years). <b>After 25 years, those payments stop</b>, and you keep your full paycheck. Your money in the account earns 5% interest.</p>
+      <p>For your first 25 years, you pay into the pension: a basic 3% of your pay, plus about 2% more. <b>After 25 years, those payments stop</b>, and you keep your full paycheck. Your money in the account earns 5% interest.</p>
+      <p>The extra 2% pays for the enhanced disability plan: the 3/4s if you're hurt on the job, and a better pension if you're disabled off duty. Everyone appointed on or after June 15, 2016 pays it. Tier 3 members appointed before that had a one-time choice to join. The Fund reviews the rate every three years, and by law it can't go above 3% (RSSL §517(h)).</p>
       <p>Your <b>minimum required</b> is what your account should hold for the service you have so far. If you're below it, you're in <b>deficit</b>.</p>
       <p>You can't retire with a deficit. Pay it off before you go, either in one lump sum or through payroll deductions. You can check your balance on the Fund's member portal.</p></div></details>
     <details><summary>Can I borrow from my pension?</summary><div class="ans">
@@ -768,7 +770,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p>This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was on unpaid leave (LWOP). Does that time count?</summary><div class="ans">
       <p><b>No.</b> Time on leave without pay, like the LWOP during the 2021–22 COVID vaccine mandate, doesn't count as service. If you were out 3 months, you reach 20, 23 and 25 years 3 months later than your appointment date says.</p>
-      <p>The calculators count from your appointment date and don't know about the leave, so move the slider ahead by the time you were out.</p>
+      <p>The calculators count from your appointment date unless you enter your equated date in Your personal numbers.</p>
       <p>It won't drag down your salary average, though. If unpaid leave falls in the years your pension is figured on, up to 12 months of it is left out and the same stretch just before those years is used instead. The calculators don't make this swap.</p>
       <p>Confirm your service dates with the Pension Fund.</p></div></details>
     <details><summary>Does my pension go up after I retire?</summary><div class="ans">
@@ -837,7 +839,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.58</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.59</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
@@ -846,7 +848,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.58</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.59</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -867,7 +869,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.58</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.59</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -896,7 +898,7 @@ body.has-pbar .app{padding-bottom:110px}
           <div id="eqBox" class="field" hidden>
             <span class="flabel" id="eqLbl">Equated date</span>
             <div class="dsel" role="group" aria-labelledby="eqLbl"><span><select id="eqM" aria-label="Equated month"></select></span><span><select id="eqD" aria-label="Equated day"></select></span><span><select id="eqY" aria-label="Equated year"></select></span></div>
-            <span class="hint" id="eqBad" style="color:var(--accent)" hidden>Your equated date should be before your appointment date.</span>
+            <span class="hint" id="eqBad" style="color:var(--accent)" hidden>Your equated date can’t be in the future.</span>
             <span class="hint">The date the Pension Fund counts your service from. It’s earlier than your appointment if you bought back up to 3 years of military, have prior EMS, police or other uniformed service (which can be longer), or were given an earlier date because you were entitled to be hired sooner. Your 20, 23 and 25-year marks count from it. Your pay still counts from your appointment.</span>
           </div>
         </div>
@@ -1565,9 +1567,10 @@ $('grow').addEventListener('input',e=>{ST.p.grow=Math.min(10,pctNum(e.target.val
 $('grow').addEventListener('blur',e=>{e.target.value=ST.p.grow});
 
 /* eq: the equated date, which service counts from (bought-back military or prior uniformed time); the appointment date if none.
-   off: months between them. Service marks (20, 23, 25 years) count from eq; earnings still start at appointment. */
+   It can also be later than the appointment date (owner, Nov. 11, 2026: the Fund moves it later for LWOP); a date in the future is ignored.
+   off: months between them (negative when eq is later). Service marks (20, 23, 25 years) count from eq; earnings still start at appointment. */
 function pDates(){const p=ST.p,dob=p.dob?fromISO(p.dob):null,appt=p.appt?fromISO(p.appt):null,e=p.eqOn&&p.eq?fromISO(p.eq):null;
-  const eq=appt&&e&&e<appt?e:appt,off=appt?(appt.getFullYear()-eq.getFullYear())*12+appt.getMonth()-eq.getMonth()-(appt.getDate()<eq.getDate()?1:0):0;
+  const eq=appt&&e&&e<=new Date()?e:appt,off=appt?(appt.getFullYear()-eq.getFullYear())*12+appt.getMonth()-eq.getMonth()-(appt.getDate()<eq.getDate()?1:0):0;
   return {dob,appt,eq,off,ok:!!(dob&&appt&&yrsBetween(dob,appt)>=17),age:dob&&eq?yrsBetween(dob,eq):0}}
 
 /* Earnings for the chosen mode. In import mode, verified years come from NYCAPS and can't be edited; other years can be typed. */
@@ -1894,14 +1897,14 @@ function renderP(){
   $('needDates').hidden=!folded||c.ok;
   $('wsNeed').hidden=c.ok||folded;if(!c.ok) $('wsBox').hidden=true;
   document.querySelector('.growrow').hidden=$('wsBox').hidden;
-  $('eqBad').hidden=!(p.eqOn&&p.eq&&c.appt&&fromISO(p.eq)>=c.appt);
+  $('eqBad').hidden=!(p.eqOn&&realDate(p.eq)&&fromISO(p.eq)>new Date());
   $('apBad').hidden=!(c.dob&&c.appt&&yrsBetween(c.dob,c.appt)<17);
   $('tierWarn').hidden=!(c.appt&&c.appt<new Date(2009,6,1));
   $('tierGo').href=`../tier2/?dob=${p.dob}&appt=${p.appt}#personal`;
   $('pBills').hidden=c.dis;$('ssField').hidden=c.dis;
   rankVals();const min1=false;$('s1Body').hidden=min1;$('s1Min').hidden=!min1;
   $('s1h').closest('section').classList.toggle('min',min1);
-  if(c.ok) $('s1Sum').textContent=`Born ${fmtDay(c.dob)} · appointed ${fmtDay(c.appt)}${c.off>0?' · equated '+fmtDay(c.eq):''} · ${(()=>{const r=RANKS.find(x=>x.id===(p.cur||p.rank));return r?(r.label||r.id).replace(/\u00a0/g,' '):''})()}`;
+  if(c.ok) $('s1Sum').textContent=`Born ${fmtDay(c.dob)} · appointed ${fmtDay(c.appt)}${c.eq.getTime()!==c.appt.getTime()?' · equated '+fmtDay(c.eq):''} · ${(()=>{const r=RANKS.find(x=>x.id===(p.cur||p.rank));return r?(r.label||r.id).replace(/\u00a0/g,' '):''})()}`;
   pChecks.sync();pRank.sync();
   if(!c.ok){
     pSlider.sub('Enter your dates in step 1 to see when you’d retire.');
@@ -1934,7 +1937,7 @@ function renderP(){
     head.innerHTML=`<div class="eyebrow">Your results</div><div class="empty"><span>Your monthly pension shows up here once you enter your earnings in step 2. Start with last year's pay.</span></div>`;
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
-  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.off>0),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:c.dis?'none':[c.esc===20&&'S9203',c.b40&&'S5058A'].filter(Boolean).join(' ')||'none',p_goal:yn(num(p.goal)>0),p_ss:dol(you.ssM||0),p_ss_source:ST.p.ssAuto?'estimate':'typed',p_monthly:dol(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.eq.getTime()!==c.appt.getTime()),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:c.dis?'none':[c.esc===20&&'S9203',c.b40&&'S5058A'].filter(Boolean).join(' ')||'none',p_goal:yn(num(p.goal)>0),p_ss:dol(you.ssM||0),p_ss_source:ST.p.ssAuto?'estimate':'typed',p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
   const at62=you.at(62);
   /* The same Assumptions block and headline for a service retirement and a 3/4s (owner, Nov. 11, 2026: don't change the layout for a 3/4s). */
