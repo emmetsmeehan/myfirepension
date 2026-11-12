@@ -71,6 +71,15 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 @media (max-width:560px){.topbar{padding-bottom:20px}.topbar .ver{position:absolute;right:16px;bottom:4px;margin:0}}
 .vhead{display:grid;gap:8px;padding-top:6px}
 .vhead p{color:var(--muted);font-size:18px;max-width:60ch}
+.tiert{color:var(--c)}
+.vhead .session{color:var(--ink);font-size:17px}
+.howlaw summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:700;font-size:16px;color:var(--steel);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;min-height:44px}
+.howlaw summary::-webkit-details-marker{display:none}
+.howlaw summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
+.howlaw[open] summary::after{transform:rotate(225deg) translate(-2px,-2px)}
+.howlaw .hl{margin-top:10px;background:var(--soft);border-radius:var(--r-sm);padding:12px 14px 12px 14px;display:grid;gap:8px;font-size:16px;max-width:60ch}
+.howlaw ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.howlaw .hl p{color:var(--ink);font-size:16px;margin:0}
 
 /* top-left Home button to the tier chooser (owner, Nov. 6, 2026) */
 .hometop{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative;margin:0;padding-top:14px}
@@ -652,14 +661,14 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>2.73</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>2.74</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
+        <li><time datetime="2026-11-12">11/12/26:</time> Bills in Albany now explains how a bill becomes law, and when this session’s bills run out.</li>
         <li><time datetime="2026-11-11">11/11/26:</time> Your equated date can now be later than your appointment date. This may apply to members who took LWOP or other extended leaves.</li>
         <li><time datetime="2026-11-11">11/11/26:</time> Made your final average salary more clear, along with important numbers surrounding retirement.</li>
         <li><time datetime="2026-11-09">11/9/26:</time> Tier 3’s Social Security offset is now personalized, calculated live from your own earnings.</li>
         <li><time datetime="2026-11-09">11/9/26:</time> Added information on pension loans.</li>
-        <li><time datetime="2026-11-08">11/8/26:</time> You can now pick your retirement date instead of using the slider on “Your personal numbers,” for both Tier 2 and Tier 3.</li>
       </ul>
       <p class="newsmore"><a href="/updates/">See older updates</a></p>
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -716,7 +725,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.73</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.74</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -853,16 +862,17 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.73</b> (click for updates)</a></div>
-  <div class="vhead"><h1>Bills in Albany <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Changes to Tier 3 pensions that are being proposed, voted on, or recently passed. A bill becomes law only after the Senate and the Assembly pass it and the governor signs it.</p><p class="hint checked">Status last checked Nov. 5, 2026.</p></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.74</b> (click for updates)</a></div>
+  <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--accent)">Tier 3</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
+    <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
+    <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 692 of 2025,” the law that let Tier 3 retire at 20 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the 23-year rule for full escalation in May 2026.</p></div></details></div>
   <section class="billgroup" aria-labelledby="bgNow"><h2 id="bgNow">Being considered</h2><div class="bills-list" id="billsNow"></div></section>
   <section class="billgroup" aria-labelledby="bgLaw"><h2 id="bgLaw">Signed into law</h2><div class="bills-list" id="billsLaw"></div></section>
-  <p class="fine">Unofficial summaries. Read the full bills on nysenate.gov, and confirm anything that affects your retirement with the Pension Fund.</p>
 </main>
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.73</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.74</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -883,7 +893,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.73</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.74</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
