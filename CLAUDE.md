@@ -235,3 +235,7 @@ The owner wanted one consistent button: the gold "Version 2.73 (click for update
 - **Tier pages, section top bars** (Pension basics, Bills in Albany, Quick calculator, Your personal numbers): the HTML still has the `a.ver` link as a fallback, and a script before `</body>` swaps each for a copy of the home screen's drop-down. At 560px and under the pill sits on its own row at the right of the sticky bar (30px tall), with the panel inset 16px.
 - A tap outside closes the drop-down, on every page; on the tier pages opening one closes the others.
 - **The five visible entries are edited in `index.html` only; then run `node tests/sync-news.mjs`**, which copies that block to the other seven pages (this replaces "keep the same five on all three pages"). `updates/index.html` still keeps the full list by hand.
+
+## "Disability pension (3/4s)" wording (Nov. 13, 2026, owner; v2.84)
+
+The owner doesn't want the page calling the pension "a 3/4s" everywhere. In member-facing text it's "disability pension" with "(3/4s)" in parentheses, or "line-of-duty disability pension (3/4s)" where ordinary disability is in the same passage (excess and 50% indicator answers) or in the Tier 3 SSD line. The checkboxes read "Disability pension (3/4s)", the phone bottom bar "Disability · …", the VSF line "(not paid on a disability pension)". Kept as is: the Pension basics question titles "What if I'm hurt on the job? (3/4s)" and the "three quarters" definition in that answer. Code comments still say 3/4s. Use this wording for new text.
