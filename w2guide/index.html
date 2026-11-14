@@ -29,7 +29,36 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
 a{color:var(--steel)}
 main{max-width:900px;margin:0 auto;padding:20px 16px 48px}
-.home{display:inline-block;font-weight:600;text-decoration:none;margin:0 0 18px}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
+button,input,select,textarea{font:inherit;color:inherit}
+.ask h1{margin:0;font-size:30px;line-height:1.15;color:var(--ink)}
+.ask p{margin:0}
+.backbtn svg{width:22px;height:22px}
+.top{padding-top:calc(14px + env(safe-area-inset-top))}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ver{font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap;text-align:right}
+@media (max-width:360px){.ver{font-size:11px}.top .backbtn{padding-right:12px}}
+a.ver{text-decoration:none}
+.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
+.news summary::-webkit-details-marker{display:none}
+.news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
+.news[open] summary::after{transform:rotate(-135deg);margin-top:3px}
+.news summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.news .newsbody{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:20;border:2px solid var(--gold);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow);padding-top:6px}
+.news ul{margin:0;padding:0 16px 10px;list-style:none}
+.news .newsask{margin:0;padding:12px 16px 14px;border-top:1px solid var(--line);font-size:15.5px;font-weight:700}
+.news .newsask a{color:var(--accent);padding:10px 0}
+.news li{padding:7px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.4;color:var(--body)}
+.news li:first-child{border-top:0}
+.news time{font-weight:700;color:var(--muted)}
+.news .newsmore{margin:0;padding:0 16px 6px}
+.news .newsmore a{display:flex;align-items:center;min-height:44px;border-top:1px solid var(--line);font-size:15.5px;font-weight:700;color:var(--accent)}
+.top,.top404{position:relative}
+.news .newsbody{text-align:left}
+.lshort{display:none}@media (max-width:360px){.lfull{display:none}.lshort{display:inline}}
+h1{margin-top:22px!important}
 h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6px}
 .lede{color:var(--muted);margin:0 0 18px}
 .pick{display:flex;gap:8px;margin:0 0 20px}
@@ -52,7 +81,20 @@ h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6p
 </head>
 <body>
 <main>
-<a class="home" href="/">&larr; Home</a>
+<div class="top"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><details class="news">
+      <summary>Version <b>3.15</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <div class="newsbody">
+      <ul>
+        <li><time datetime="2026-11-14">11/14/26:</time> Importing your earnings is now one button: pick screenshots or PDFs of your W-2s, or a screenshot of your Tax Summary, straight from NYCAPS ESS.</li>
+        <li><time datetime="2026-11-14">11/14/26:</time> Tier 2: you can now import your earnings from SSA.gov, including years before 1998 that NYCAPS ESS doesn’t have.</li>
+        <li><time datetime="2026-11-13">11/13/26:</time> Added an explanation to the Tier 2 quick calculator’s ITHP estimate of why it may be high. Use “Your personal numbers” for a more accurate estimate.</li>
+        <li><time datetime="2026-11-12">11/12/26:</time> Bills in Albany now explains how a bill becomes law, and when this session’s bills run out.</li>
+        <li><time datetime="2026-11-11">11/11/26:</time> Your equated date can now be later than your appointment date. This may apply to members who took LWOP or other extended leaves.</li>
+      </ul>
+      <p class="newsmore"><a href="/updates/">See older updates</a></p>
+      <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
+      </div>
+    </details></div>
 <h1>Get your W-2s from ESS</h1>
 <p class="lede">Every W-2 you've had with the City is in NYCAPS Employee Self Service (ESS).</p>
 
@@ -122,6 +164,11 @@ const P=document.getElementById('phone'),C=document.getElementById('comp'),bP=do
 function show(ph){P.hidden=!ph;C.hidden=ph;bP.setAttribute('aria-pressed',ph);bC.setAttribute('aria-pressed',!ph)}
 bP.onclick=()=>show(true);bC.onclick=()=>show(false);
 show(matchMedia('(max-width:700px)').matches);
+</script>
+<script>
+/* A tap outside the Version drop-down closes it. */
+document.addEventListener('click',function(e){var inN=e.target.closest&&e.target.closest('details.news');
+  document.querySelectorAll('details.news[open]').forEach(function(d){if(d!==inN)d.open=false})});
 </script>
 </body>
 </html>

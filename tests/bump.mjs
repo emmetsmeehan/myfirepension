@@ -7,7 +7,7 @@ const m = t.match(/SITE_VERSION = "(\d+)\.(\d+)"/);
 // node tests/bump.mjs 3.01 sets a number; otherwise the part after the dot goes up by one, keeping its leading zero (3.01 -> 3.02).
 const v = process.argv[2] || `${m[1]}.${String(+m[2] + 1).padStart(m[2].length, '0')}`;
 writeFileSync(vf, t.replace(m[0], `SITE_VERSION = "${v}"`));
-for (const f of ['index.html', 'tier2/index.html', 'tier3/index.html', 'updates/index.html', 'suggest/index.html', 'privacy/index.html', 'accounts/index.html', '404.html']) {
+for (const f of ['index.html', 'tier2/index.html', 'tier3/index.html', 'updates/index.html', 'suggest/index.html', 'privacy/index.html', 'accounts/index.html', '404.html', 'w2guide/index.html']) {
   const h = readFileSync(root + f, 'utf8');
   writeFileSync(root + f, h.replace(/(Version <b>)[\d.]+(<\/b>)/g, `$1${v}$2`));
 }

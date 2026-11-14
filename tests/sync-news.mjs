@@ -4,7 +4,7 @@ import {readFileSync, writeFileSync} from 'node:fs';
 const root = new URL('..', import.meta.url).pathname;
 const re = /<details class="news">[\s\S]*?<\/details>/;
 const block = readFileSync(root + 'index.html', 'utf8').match(re)[0];
-for (const f of ['tier2/index.html', 'tier3/index.html', 'accounts/index.html', 'updates/index.html', 'suggest/index.html', 'privacy/index.html', '404.html']) {
+for (const f of ['tier2/index.html', 'tier3/index.html', 'accounts/index.html', 'updates/index.html', 'suggest/index.html', 'privacy/index.html', '404.html', 'w2guide/index.html']) {
   const h = readFileSync(root + f, 'utf8');
   if (!re.test(h)) throw new Error(f + ': no updates drop-down found');
   writeFileSync(root + f, h.replace(re, () => block));
