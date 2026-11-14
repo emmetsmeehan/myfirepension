@@ -508,6 +508,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 /* Owner, Nov. 11, 2026: a thin line under the big per-year number, to break up the headline. */
 .bignum.ln{padding-bottom:12px;border-bottom:1px solid var(--line)}
 .bignum b.g,.payline b.g{color:var(--sage)}.payline b.r,#head .hint b.r{color:var(--accent)}.bignum b.g{font-weight:800}
+.paidas{font-size:15px;color:var(--muted);margin:2px 0 -4px}
 .payline{font-size:18px;line-height:1.35}@media (max-width:420px){.payline{font-size:16px}}@media (max-width:360px){#head .bignum{font-size:38px}#head .bignum span{font-size:16px}.payline{font-size:15px}}.payline .pl{white-space:nowrap;font-size:15px;color:var(--muted)}
 .lump{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border-radius:var(--r);padding:14px 16px;background:color-mix(in srgb,var(--shine) 14%,var(--surface));border:1.5px solid color-mix(in srgb,var(--shine) 55%,transparent)}
 .lump .li svg{width:42px;height:42px;stroke-width:1.7}
@@ -663,7 +664,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>2.92</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>2.93</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-13">11/13/26:</time> Added an explanation to the Tier 2 quick calculator’s ITHP estimate of why it may be high. Use “Your personal numbers” for a more accurate estimate.</li>
@@ -727,7 +728,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.92</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.93</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -864,7 +865,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.92</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.93</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--accent)">Tier 3</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
     <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
     <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 692 of 2025,” the law that let Tier 3 retire at 20 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the 23-year rule for full escalation in May 2026.</p></div></details></div>
@@ -874,7 +875,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.92</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.93</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -897,7 +898,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.92</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.93</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1459,9 +1460,10 @@ function renderQuick(){
   const bonusLine=dis||!add?'':`<p class="billnote">Includes ${usd(add/2)} a year from the longevity bonus: ${Math.round(bp*100)}% of ${rankName(q.topPay)} top pay added to your final average salary. Change the rank below.</p>`;
   ctag('quick',{q_fas:dol(fas),q_years:Math.floor(m/12),q_disabled:yn(dis),q_rank:'n/a',q_bills:dis?'none':[q.esc===20&&'S9203',q.b40&&'S5058A'].filter(Boolean).join(' ')||'none',q_monthly:dol(mon)});
   o.innerHTML=`<div class="k">Your pension in your first year of retirement</div>
-    <div class="bignum ln"><b class="g">${usd(base)}</b><span>per year</span></div>
+    <div class="bignum ln"><b class="g">${usd(dis?base:base+VSF)}</b><span>per year</span></div>
+    ${dis?'':'<div class="paidas">Paid to you as:</div>'}
     <div class="payline">Pension payments: <b class="g">${usd(mon)}</b> per month</div>
-    <div class="payline">VSF: ${dis?'<b>None</b> <span class="pl">(not paid on a disability pension)</span>':`<b class="g">${usd(VSF)}</b> per year <span class="pl">(paid every Dec or Jan)</span>`}</div>
+    <div class="payline">VSF: ${dis?'<b>None</b> <span class="pl">(not paid on a disability pension)</span>':`one <b class="g">${usd(VSF)}</b> payment per year <span class="pl">(every Dec or Jan)</span>`}</div>
     <div class="u">${dis?'75%':'50%'} of ${usd(fas+add)}${add?' (with the bonus)':''}${extra?' plus the extra 1/40ths':''}${dis?' · generally tax-free':''}</div>
     ${fas<20000?'<p class="warn">That looks low for a year’s pay. Type the whole amount, like 120000.</p>':''}${bonusLine}${extra?`<p class="billnote">Includes ${usd(extra)} a year from a bill that hasn’t passed: an extra 1/40th of your final average salary for each year past 20 (S5058A).</p>`:''}
     ${!dis&&m>=300?`<div class="note bonusnote" style="--c:var(--orange)"><span class="ni">${ICON.warn}</span><div><b>This doesn’t include the longevity bonus.</b><p>It depends on your rank, which this calculator doesn’t ask for. Use the personal numbers page for a more accurate number. <a href="#personal">Go to your personal numbers</a></p></div></div>`:''}
@@ -2009,11 +2011,12 @@ function renderP(){
       return `<tr${off?' class="offrow"':''}><td>${ry+t} <span class="ag">· ${a}</span></td><td>${usd(r.pay/12)}</td><td>${usd(r.pay+r.v)}</td></tr>`+(off?`<tr class="offrow"><td colspan="3" class="offn">At 62 the pension drops for the Social Security offset. Change this number in <button type="button" class="linkbtn" data-moreopts>More options</button>.</td></tr>`:'')}).join('');
     head.innerHTML=`${asm}
       <div class="k2">Your first year of retirement</div>
-      <div class="bignum ln"><b class="g">${usd(you.base)}</b><span>per year</span></div>
+      <div class="bignum ln"><b class="g">${usd(totY)}</b><span>per year</span></div>
+      <div class="paidas">Paid to you as:</div>
       <div class="payline">Pension payments: <b class="g">${usd(you.base/12)}</b> per month</div>
       ${you.extra>0?`<div class="incl2">${ICON.check}<span>Includes <b>${usd(you.extra)} a year</b> from S5058A if it passes: 1/40th of your final average salary for each year past 20</span></div>`:''}
       ${you.bonusAdd>0?`<div class="incl2">${ICON.check}<span>Includes the <b>longevity bonus</b>: +${usd(you.bonusAdd/2)} a year (${Math.round(you.bonusPct*100)}% of your rank’s top pay added to your salary)</span></div>`:''}
-      <div class="payline">VSF: <b class="g">${usd(VSF)}</b> per year <span class="pl">(paid every Dec or Jan)</span></div>
+      <div class="payline">VSF: one <b class="g">${usd(VSF)}</b> payment per year <span class="pl">(every Dec or Jan)</span></div>
       ${billsOnNote(c)}${tier2}${warn}${gapNote(c)}
       ${you.drop>0?`<div class="lump"><span class="li">${ICON.bag}</span><div><span>Plus, the day you retire</span><b>${usd(you.drop)} lump sum</b><small>Your banked variable: $1,000 for each full month past 20 years.</small></div></div>`:''}
       <div class="growbox">
@@ -2607,7 +2610,7 @@ new IntersectionObserver(es=>{es.forEach(e=>{headVisible=e.isIntersecting});upda
 let barData=null;
 function updateBar(you,m){
   if(you&&you.vested){barData={n:you.base>0?usd(you.base)+'/year':'No pension yet',s:you.base>0?'Vested · starts '+fmtMY(you.start):'Under 5 years'}}
-  else if(you!==undefined) barData=you?{n:usd(you.base)+'/year',s:(ST.p.dis?'Disability · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
+  else if(you!==undefined) barData=you?{n:usd(you.base+(ST.p.dis?0:VSF))+'/year',s:(ST.p.dis?'Disability · ':'Retire ')+fmtMY(you.retDate)+' · '+(m%12&&m%12!==6?fmtSvc(m):fmtSvc(m)+' years')}:null;
   const show=barData&&!headVisible&&current==='personal';
   $('pbar').classList.toggle('off',!show);document.body.classList.toggle('has-pbar',current==='personal');
   if(barData){$('pbarN').textContent=barData.n;$('pbarS').textContent=barData.s}
