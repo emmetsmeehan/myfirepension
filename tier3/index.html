@@ -664,7 +664,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>2.97</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>2.98</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-13">11/13/26:</time> Added an explanation to the Tier 2 quick calculator’s ITHP estimate of why it may be high. Use “Your personal numbers” for a more accurate estimate.</li>
@@ -728,7 +728,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.97</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>2.98</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -759,6 +759,39 @@ body.has-pbar .app{padding-bottom:110px}
       <p>The personal numbers page uses whole calendar years until you add your paychecks from ESS under <b>Find your exact best 3</b>. Then it counts each year the Fund's way.</p>
       <p>There's one limit: a year only counts up to 10% more than the average of the 2 years before it. Anything above that is cut.</p>
       <p class="ex">Example: you made $100,000 and then $110,000. Their average is $105,000, so the next year counts only up to $115,500. If you made $130,000 that year, $14,500 of it doesn't count.</p></div></details>
+    <details><summary>Why do 23 and 25 years matter?</summary><div class="ans">
+      <p><b>Completing 23 years</b> gets you full escalation. Your pension grows every year and each raise builds on the last.</p>
+      <p class="ex">Example: a $90,000 pension that grows 3% a year is about $162,500 after 20 years. Without escalation, the same pension stays close to $90,000.</p>
+      <p><b>25 years</b> starts the longevity bonus, which raises the salary your pension is figured on.</p></div></details>
+    <details><summary>What is the longevity bonus?</summary><div class="ans">
+      <p>If you retire with <b>25 years or more</b>, part of your rank's top pay is added to your final average salary: <b>5% at 25 years, plus 1% for each year after, up to 15% at 35</b>. It became law in the 2026 state budget, signed May 27, 2026, and it applies to any uniformed rank.</p>
+      <p class="ex">Example: a firefighter retiring at 28 years gets 8% of the top firefighter pay ($109,352), which is $8,748. That's added to their final average salary, so their pension goes up about $4,374 a year.</p>
+      <p>It doesn't apply to a disability pension (3/4s) in these calculators.</p></div></details>
+    <details><summary>What are the VSF and the banked variable?</summary><div class="ans">
+      <p>The <b>VSF</b> (Variable Supplements Fund) pays <b>$12,000 a year</b> to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members.</p>
+      <p>The <b>banked variable</b>: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000.</p>
+      <p>Until you turn 62, any COLA you get is taken out of your VSF.</p></div></details>
+    <details id="ssq"><summary>What is the Social Security offset?</summary><div class="ans">
+      <p>At 62, your pension goes down by <b>half of a Social Security figure</b>. That's the Social Security offset. It's a Tier 3 rule.</p>
+      <p>It isn't half of the Social Security check you'll actually get. The Fund works out its own figure (state law, RSSL § 511):</p>
+      <ul>
+        <li>Only your pay from a public employer counts. Every other year counts as zero, so private jobs don't add to it.</li>
+        <li>It's set the day you retire. Later Social Security raises don't change it.</li>
+        <li>A second way of figuring it, from your highest pay in your last 5 years, is used if it comes out lower.</li>
+        <li>It's cut 20% because the offset starts before 65.</li>
+      </ul>
+      <p class="ex">For most members that works out to roughly $700 to $900 a month off at 62. The personal numbers page estimates yours from the earnings you enter.</p>
+      <p>Escalation keeps going after 62, figured on the lower amount. Social Security itself is paid separately, by the federal government.</p>
+      <p><b>Albany is fighting it.</b> <a href="https://www.nysenate.gov/legislation/bills/2025/S6289/amendment/A" target="_blank" rel="noopener">S6289A</a> (Gounardes) would end the offset for FDNY members. It's in the Senate Civil Service and Pensions Committee and hasn't passed either house. Like every 2025–26 bill, it dies Dec. 31, 2026 unless it passes.</p></div></details>
+    <details><summary>Does Tier 3 have the “death gamble”?</summary><div class="ans">
+      <p><b>No.</b> In Tier 2, if you die on the job with 20 or more years (not line of duty), your family gets the reserve for your pension: the lump sum it would take to pay it for the rest of your life. That's the "death gamble." The Fund's Tier 3 plan description has no such benefit.</p>
+      <p>In Tier 3, if you die before you retire (not line of duty), your beneficiary gets the <b>ordinary death benefit</b> at any length of service: 3 times your last 12 months' pay (rounded up to the next $1,000), plus your contributions back with interest. It doesn't change at 20 years, so staying on the job longer doesn't add protection for your family the way it does in Tier 2.</p>
+      <ul>
+        <li><b>After you retire:</b> what your family gets depends on the option you pick when you retire. With the maximum pension (no option), payments stop when you die. Options lower your pension to leave something to a beneficiary.</li>
+        <li><b>Line of duty:</b> a separate benefit: a pension for your spouse of 50% of your final average salary, plus a state benefit that brings the total, with Social Security, up to your last year's pay.</li>
+        <li><b>Life insurance:</b> $8,500, tax-free, from the Fire Department Life Insurance Fund while you're active; $7,500 after you retire.</li>
+      </ul>
+      <p>This is from the Fund's Tier 3 plan description, revised December 2019. A later law could change it, so check with the Fund.</p></div></details>
     <details><summary>What if I’m hurt on the job? (“three quarters”)</summary><div class="ans">
       <p>An accident disability retirement ("three quarters") pays <b>75% of your final average salary</b>, at any length of service, and it's generally not taxed.</p>
       <ul>
@@ -808,39 +841,6 @@ body.has-pbar .app{padding-bottom:110px}
         <li><b>20 years: no escalation.</b> You only get a small COLA: half of inflation (between 1% and 3%) on the first $18,000 of your pension, about $270 a year when inflation is 3%. It starts at age 62 once you've been retired 5 years, or at 55 once you've been retired 10 years.</li>
       </ul>
       <p>This changed in the 2026 state budget, signed May 27, 2026. Before that, full escalation took 25 years. Another bill (S9203) would move it to 20 years; it hasn't passed. See <a href="#bills">Bills in Albany</a>.</p></div></details>
-    <details><summary>Why do 23 and 25 years matter?</summary><div class="ans">
-      <p><b>Completing 23 years</b> gets you full escalation. Your pension grows every year and each raise builds on the last.</p>
-      <p class="ex">Example: a $90,000 pension that grows 3% a year is about $162,500 after 20 years. Without escalation, the same pension stays close to $90,000.</p>
-      <p><b>25 years</b> starts the longevity bonus, which raises the salary your pension is figured on.</p></div></details>
-    <details><summary>What is the longevity bonus?</summary><div class="ans">
-      <p>If you retire with <b>25 years or more</b>, part of your rank's top pay is added to your final average salary: <b>5% at 25 years, plus 1% for each year after, up to 15% at 35</b>. It became law in the 2026 state budget, signed May 27, 2026, and it applies to any uniformed rank.</p>
-      <p class="ex">Example: a firefighter retiring at 28 years gets 8% of the top firefighter pay ($109,352), which is $8,748. That's added to their final average salary, so their pension goes up about $4,374 a year.</p>
-      <p>It doesn't apply to a disability pension (3/4s) in these calculators.</p></div></details>
-    <details><summary>What are the VSF and the banked variable?</summary><div class="ans">
-      <p>The <b>VSF</b> (Variable Supplements Fund) pays <b>$12,000 a year</b> to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members.</p>
-      <p>The <b>banked variable</b>: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000.</p>
-      <p>Until you turn 62, any COLA you get is taken out of your VSF.</p></div></details>
-    <details id="ssq"><summary>What is the Social Security offset?</summary><div class="ans">
-      <p>At 62, your pension goes down by <b>half of a Social Security figure</b>. That's the Social Security offset. It's a Tier 3 rule.</p>
-      <p>It isn't half of the Social Security check you'll actually get. The Fund works out its own figure (state law, RSSL § 511):</p>
-      <ul>
-        <li>Only your pay from a public employer counts. Every other year counts as zero, so private jobs don't add to it.</li>
-        <li>It's set the day you retire. Later Social Security raises don't change it.</li>
-        <li>A second way of figuring it, from your highest pay in your last 5 years, is used if it comes out lower.</li>
-        <li>It's cut 20% because the offset starts before 65.</li>
-      </ul>
-      <p class="ex">For most members that works out to roughly $700 to $900 a month off at 62. The personal numbers page estimates yours from the earnings you enter.</p>
-      <p>Escalation keeps going after 62, figured on the lower amount. Social Security itself is paid separately, by the federal government.</p>
-      <p><b>Albany is fighting it.</b> <a href="https://www.nysenate.gov/legislation/bills/2025/S6289/amendment/A" target="_blank" rel="noopener">S6289A</a> (Gounardes) would end the offset for FDNY members. It's in the Senate Civil Service and Pensions Committee and hasn't passed either house. Like every 2025–26 bill, it dies Dec. 31, 2026 unless it passes.</p></div></details>
-    <details><summary>Does Tier 3 have the “death gamble”?</summary><div class="ans">
-      <p><b>No.</b> In Tier 2, if you die on the job with 20 or more years (not line of duty), your family gets the reserve for your pension: the lump sum it would take to pay it for the rest of your life. That's the "death gamble." The Fund's Tier 3 plan description has no such benefit.</p>
-      <p>In Tier 3, if you die before you retire (not line of duty), your beneficiary gets the <b>ordinary death benefit</b> at any length of service: 3 times your last 12 months' pay (rounded up to the next $1,000), plus your contributions back with interest. It doesn't change at 20 years, so staying on the job longer doesn't add protection for your family the way it does in Tier 2.</p>
-      <ul>
-        <li><b>After you retire:</b> what your family gets depends on the option you pick when you retire. With the maximum pension (no option), payments stop when you die. Options lower your pension to leave something to a beneficiary.</li>
-        <li><b>Line of duty:</b> a separate benefit: a pension for your spouse of 50% of your final average salary, plus a state benefit that brings the total, with Social Security, up to your last year's pay.</li>
-        <li><b>Life insurance:</b> $8,500, tax-free, from the Fire Department Life Insurance Fund while you're active; $7,500 after you retire.</li>
-      </ul>
-      <p>This is from the Fund's Tier 3 plan description, revised December 2019. A later law could change it, so check with the Fund.</p></div></details>
     <details><summary>Do I keep my health insurance?</summary><div class="ans">
       <p class="ex"><b>These rules change</b> with new laws, court rulings and union contracts. Always check your coverage directly with your health plan, your union, or the Fire Pension Fund before you make decisions.</p>
       <ul>
@@ -866,7 +866,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.97</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>2.98</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--accent)">Tier 3</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
     <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
     <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 692 of 2025,” the law that let Tier 3 retire at 20 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the 23-year rule for full escalation in May 2026.</p></div></details></div>
@@ -876,7 +876,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.97</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>2.98</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -899,7 +899,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.97</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>2.98</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
