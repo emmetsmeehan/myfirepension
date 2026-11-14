@@ -318,6 +318,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .mode[aria-pressed="true"] .tick{display:grid}
 .panelbox{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:14px;background:var(--soft)}
 .panelbox ol{margin:0;padding-left:22px;display:grid;gap:6px}
+.nolodi{color:var(--orange);font-weight:600}
 .panelbox textarea{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;width:100%;min-height:110px;resize:vertical;font-size:15px}
 .ways{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .way{display:grid;gap:4px;justify-items:center;text-align:center;border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 8px;cursor:pointer;font-weight:700;font-size:16px}
@@ -668,7 +669,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 2 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>3.08</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>3.09</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-14">11/14/26:</time> Importing your earnings is now one button: pick screenshots or PDFs of your W-2s, or a screenshot of your Tax Summary, straight from NYCAPS ESS.</li>
@@ -732,7 +733,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.08</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1></div>
 
   <ul class="keys">
@@ -891,7 +892,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.08</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--steel)">Tier 2</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
     <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
     <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 540 of 2021,” the law that gave all Tier 2 members the best 3 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the longevity bonus in May 2026.</p></div></details></div>
@@ -901,7 +902,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.08</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -938,7 +939,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.08</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Use your real earnings to see what you'll collect, and what working longer gets you.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -998,7 +999,7 @@ body.has-pbar .app{padding-bottom:110px}
         <p class="tierbox" id="earnReset" role="status" hidden><b>Please add your earnings again</b><span>We changed how earnings are counted (LODI pay is now included from your W-2s), so the numbers you saved before were cleared. Your dates are still saved.</span></p>
         <div class="modes" role="group" aria-label="How to enter your earnings">
           <button type="button" class="mode" data-mode="manual" aria-pressed="true"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg></span><b>Type in each year</b><small>Enter by hand what you made each year</small></button>
-          <button type="button" class="mode" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Import via screenshot or PDF</b><small>From your W-2s or NYCAPS ESS. LODI is counted for you.</small></button>
+          <button type="button" class="mode" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Import via screenshot or PDF</b><small>From your W-2s or NYCAPS ESS.</small></button>
         </div>
 
         <div class="panelbox pre98" id="pre98" hidden>
@@ -1051,16 +1052,22 @@ body.has-pbar .app{padding-bottom:110px}
           </div>
           <div class="panelbox" id="w2Start" hidden>
             <b style="font-size:18px">Import your earnings</b>
-            <p><b>Already have your W-2s saved</b> on your phone or computer, as PDFs or pictures? Just tap <b>Choose screenshots or PDFs</b> below and pick them.</p>
-            <p style="margin-bottom:-6px">Don’t have them? Screenshot them from NYCAPS:</p>
+            <p>Already have screenshots or PDFs of your W-2s? Import them here.</p>
+            <p style="margin-bottom:-6px">Don’t have them? Screenshot them from NYCAPS ESS:</p>
             <ol>
               <li>Sign in to <b>NYCAPS Employee Self Service</b> and tap <b>Electronic W2 Delivery</b>.</li>
               <li>Tap a <b>year</b>. That year's <b>Tax Details</b> opens.</li>
               <li>Take a <b>screenshot</b> of the whole page, zoomed out so every box fits. Do the same for each year.</li>
             </ol>
-            <p class="hint">Pick all of them at once. We read your Medicare wages and LODI pay (and one-time bonuses like HWB), so LODI is counted for you. A screenshot of the <b>Tax Summary</b> table on that same page works too: it brings in every year at once, but without LODI. Everything is read on your phone and never uploaded anywhere.</p>
+            <p class="hint">Pick all of them at once. We read your Medicare wages and LODI pay (and one-time bonuses like HWB), so LODI is counted for you.</p>
+            <p class="hint">Or you can screenshot the <b>Tax Summary</b> table to pull in every year at once, <span class="nolodi">but this doesn’t include LODI.</span></p>
+            <p class="hint">Everything is read on your phone and never uploaded anywhere.</p>
             <div><button type="button" class="btn green" id="w2Pick">Choose screenshots or PDFs</button></div>
             <p class="hint" style="margin:0"><button type="button" class="linkbtn" id="w2Paste">On a computer? Copy and paste your Tax Summary instead</button></p>
+            <div class="field" id="w2PasteBox" hidden>
+              <textarea id="w2Txt" spellcheck="false" placeholder="You can paste your Tax Summary here." aria-label="Paste your Tax Summary"></textarea>
+              <div><button type="button" class="btn green" id="w2PasteGo">Read my numbers</button></div>
+            </div>
             <p class="hint" style="margin:0"><button type="button" class="linkbtn" id="w2Ssa">Years before 1998? Import them from SSA.gov</button></p>
           </div>
           <div class="panelbox review" id="impReview" hidden>
@@ -2540,7 +2547,10 @@ let w2Pending=null,w2PrevMode=null,w2Busy=false;
 $('w2Pick').addEventListener('click',()=>$('w2File').click());
 $('w2More').addEventListener('click',()=>$('w2File').click());
 /* Owner, Nov. 14, 2026: one import button. Copy and paste still goes through the Tax Summary panel. */
-$('w2Paste').addEventListener('click',()=>{ST.p.mode='import';wsKey='';closeReview();renderP();pickSrc('n');pickWay('Paste');$('impStart').scrollIntoView({behavior:'smooth',block:'start'})});
+$('w2Paste').addEventListener('click',()=>{const b=$('w2PasteBox');b.hidden=!b.hidden;if(!b.hidden)$('w2Txt').focus()});
+$('w2PasteGo').addEventListener('click',()=>{const txt=$('w2Txt').value;
+  if(!Object.keys(parseEarnings(txt,false).out).length){w2msg('We couldn’t find any years in that. Copy the whole Tax Summary table, from the word “Year” to the last row.','err');return}
+  w2msg('','');impSrc='n';handleText(txt,false);$('w2Txt').value='';$('w2PasteBox').hidden=true});
 $('w2Ssa').addEventListener('click',goSsa);
 $('w2File').addEventListener('change',async e=>{
   const files=[...e.target.files].slice(0,40);e.target.value='';if(!files.length||w2Busy) return;
