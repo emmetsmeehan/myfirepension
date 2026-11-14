@@ -14,17 +14,17 @@
 html{-webkit-text-size-adjust:100%}
 :root{
   --bg:#f3f5f8; --surface:#ffffff; --ink:#16202b; --muted:#5a6776; --line:#dce2e8;
-  --accent:#b3261e; --steel:#2f5d8a; --gold:#a8730f; --sage:#2f7d55; --soft:#eef2f6;
+  --accent:#b3261e; --steel:#2f5d8a; --gold:#a8730f; --sage:#2f7d55; --soft:#eef2f6; --orange:#c2620a;
   --body:"Barlow","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --r:14px; --r-sm:10px;
   --shadow:0 1px 2px color-mix(in srgb,var(--ink) 7%,transparent),0 6px 20px color-mix(in srgb,var(--ink) 6%,transparent);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
-  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}}
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; --orange:#f0913d; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
-  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; --orange:#f0913d; color-scheme:dark}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
 a{color:var(--steel)}
@@ -44,6 +44,7 @@ h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6p
 .ring{position:absolute;border:4px solid #c8281e;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,40,30,.5)}50%{box-shadow:0 0 0 10px rgba(200,40,30,0)}}
 .cap{font-size:15px;color:var(--muted);margin:8px 0 0}
+.sumnote{margin:12px 0 0}.nolodi{color:var(--orange);font-weight:700}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:28px}
 .foot p{margin:0}
 </style>
@@ -69,6 +70,7 @@ h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6p
     <p><span class="n">2.</span> The Tax Summary comes up very small. Pinch to zoom in, then tap a <b>year</b>.</p>
     <div class="shot"><img src="phone-2.png" alt="Tax Summary, zoomed in">
       <div class="ring" style="left:12.6%;top:68.4%;width:19%;height:25%"></div></div>
+    <p class="sumnote"><b>You can screenshot this entire page to save time,</b> but it won’t be completely accurate because <b class="nolodi">it doesn’t include LODI</b>.</p>
   </div>
   <div class="step">
     <p><span class="n">3.</span> That year's <b>Tax Details</b> opens. It has every box from your W-2, including LODI.</p>
@@ -93,6 +95,7 @@ h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6p
     <div class="shot"><img src="ess-w2.png" alt="Tax Summary">
       <div class="ring" style="left:24.1%;top:41.2%;width:11%;aspect-ratio:1/1"></div></div>
     <p class="cap">Example numbers. Yours will show your own years.</p>
+    <p class="sumnote"><b>You can screenshot this entire page to save time,</b> but it won’t be completely accurate because <b class="nolodi">it doesn’t include LODI</b>.</p>
   </div>
   <div class="step">
     <p><span class="n">3.</span> That year's <b>Tax Details</b> opens. It has every box from your W-2, including LODI.</p>
