@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get your W-2s from ESS · My Fire Pension</title>
+<link rel="icon" href="/favicon-48.png?v=3" type="image/png" sizes="48x48">
+<link rel="icon" href="/favicon-32.png?v=3" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --ink:#16202b; --muted:#5a6776; --line:#dce2e8;
+  --accent:#b3261e; --steel:#2f5d8a; --gold:#a8730f; --sage:#2f7d55; --soft:#eef2f6;
+  --body:"Barlow","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r:14px; --r-sm:10px;
+  --shadow:0 1px 2px color-mix(in srgb,var(--ink) 7%,transparent),0 6px 20px color-mix(in srgb,var(--ink) 6%,transparent);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151b; --surface:#18202a; --ink:#e7ecf1; --muted:#9aa7b5; --line:#2b3643;
+  --accent:#e0574d; --steel:#6fa3d6; --gold:#d9a441; --sage:#5fbf88; --soft:#1f2934; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+a{color:var(--steel)}
+main{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+.home{display:inline-block;font-weight:600;text-decoration:none;margin:0 0 18px}
+h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 18px}
+.pick{display:flex;gap:8px;margin:0 0 20px}
+.pick button{font:inherit;font-weight:600;padding:9px 16px;min-height:44px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:var(--r-sm);cursor:pointer}
+.pick button[aria-pressed=true]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.step{margin:0 0 28px}
+.step p{margin:0 0 10px}
+.n{font-weight:700}
+.shot{position:relative;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.phone .shot{max-width:340px;border-radius:var(--r)}
+.ring{position:absolute;border:4px solid #c8281e;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,40,30,.5)}50%{box-shadow:0 0 0 10px rgba(200,40,30,0)}}
+.cap{font-size:15px;color:var(--muted);margin:8px 0 0}
+.tip{border-left:3px solid var(--accent);padding:2px 0 2px 12px;margin:0 0 28px}
+.foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:28px}
+.foot p{margin:0}
+</style>
+</head>
+<body>
+<main>
+<a class="home" href="/">&larr; Home</a>
+<h1>Get your W-2s from ESS</h1>
+<p class="lede">Every W-2 you've had with the City is in NYCAPS Employee Self Service (ESS).</p>
+
+<div class="pick" role="group" aria-label="Device">
+  <button id="bPhone">On your phone</button>
+  <button id="bComp">On a computer</button>
+</div>
+
+<section id="phone" class="phone">
+  <div class="step">
+    <p><span class="n">1.</span> Log in to ESS. Scroll down and tap <b>Electronic W2 Delivery</b>.</p>
+    <div class="shot"><img src="phone-1.png" alt="ESS home on a phone">
+      <div class="ring" style="left:52%;top:88%;width:84%;height:21%"></div></div>
+  </div>
+  <div class="step">
+    <p><span class="n">2.</span> The Tax Summary comes up very small. Pinch to zoom in, then tap a <b>year</b>.</p>
+    <div class="shot"><img src="phone-2.png" alt="Tax Summary, zoomed in">
+      <div class="ring" style="left:12.6%;top:68.4%;width:19%;height:25%"></div></div>
+  </div>
+  <div class="step">
+    <p><span class="n">3.</span> That year's <b>Tax Details</b> opens. It has every box from your W-2, including LODI.</p>
+    <div class="shot"><img src="phone-3.png" alt="Tax Details page with name and address covered">
+      <div class="ring" style="left:84.2%;top:46.3%;width:23%;height:10%"></div>
+      <div class="ring" style="left:34%;top:46.3%;width:18%;height:10%"></div></div>
+    <p class="cap">The circled boxes are the two that matter for your pension: <b>Medicare Wages</b> (your earnings for the year) and <b>Lodi</b> (pay while out on line-of-duty injury, which counts too). Example numbers shown.
+  </div>
+  <p class="tip">Want another year? Don't hit Back. The page errors out. Go back to the ESS home and tap Electronic W2 Delivery again.</p>
+</section>
+
+<section id="comp" hidden>
+  <div class="step">
+    <p><span class="n">1.</span> Log in to ESS and click <b>Electronic W2 Delivery</b>.</p>
+    <div class="shot"><img src="ess-home.png" alt="ESS home on a computer">
+      <div class="ring" style="left:16.4%;top:51.9%;width:19%;aspect-ratio:1/1"></div></div>
+  </div>
+  <div class="step">
+    <p><span class="n">2.</span> You land on the <b>Tax Summary</b>. Click a <b>year</b> to open that year's W-2.</p>
+    <div class="shot"><img src="ess-w2.png" alt="Tax Summary">
+      <div class="ring" style="left:24.1%;top:41.2%;width:11%;aspect-ratio:1/1"></div></div>
+    <p class="cap">Example numbers. Yours will show your own years.</p>
+  </div>
+  <p class="tip">Want another year? Don't use the browser's Back button. Click Electronic W2 Delivery again.</p>
+</section>
+
+<footer class="foot">
+  <p><b>Unofficial planning tool.</b> Not affiliated with or endorsed by the FDNY or the NYC Fire Pension Fund. Your actual numbers may vary.</p>
+  <p>Built and maintained by LT Emmet Meehan, Division 14. Contact me directly: <a href="mailto:emmetsmeehan@gmail.com">emmetsmeehan@gmail.com</a></p>
+</footer>
+</main>
+<script>
+const P=document.getElementById('phone'),C=document.getElementById('comp'),bP=document.getElementById('bPhone'),bC=document.getElementById('bComp');
+function show(ph){P.hidden=!ph;C.hidden=ph;bP.setAttribute('aria-pressed',ph);bC.setAttribute('aria-pressed',!ph)}
+bP.onclick=()=>show(true);bC.onclick=()=>show(false);
+show(matchMedia('(max-width:700px)').matches);
+</script>
+</body>
+</html>
