@@ -352,7 +352,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .tierbox .btn{margin-top:8px;justify-self:start;min-height:48px}
 .tierbox b{color:var(--accent)}
 .tierbox span{font-size:15px}
-.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .mode b,.mode small{overflow-wrap:break-word}
 @media (max-width:360px){.mode{padding:10px 5px}.mode b{font-size:14.5px}.mode small{font-size:12px;overflow-wrap:anywhere}}
 .mode{position:relative;display:grid;gap:6px;justify-items:start;text-align:left;border:2px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 12px;cursor:pointer;min-height:118px;align-content:start}
@@ -664,10 +664,10 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>3.06</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>3.07</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
-        <li><time datetime="2026-11-14">11/14/26:</time> You can now upload a screenshot of your W-2 straight from NYCAPS ESS. No PDF needed.</li>
+        <li><time datetime="2026-11-14">11/14/26:</time> Importing your earnings is now one button: pick screenshots or PDFs of your W-2s, or a screenshot of your Tax Summary, straight from NYCAPS ESS.</li>
         <li><time datetime="2026-11-14">11/14/26:</time> Tier 2: you can now import your earnings from SSA.gov, including years before 1998 that NYCAPS ESS doesn’t have.</li>
         <li><time datetime="2026-11-13">11/13/26:</time> Added an explanation to the Tier 2 quick calculator’s ITHP estimate of why it may be high. Use “Your personal numbers” for a more accurate estimate.</li>
         <li><time datetime="2026-11-12">11/12/26:</time> Bills in Albany now explains how a bill becomes law, and when this session’s bills run out.</li>
@@ -728,7 +728,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.06</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.07</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -826,8 +826,8 @@ body.has-pbar .app{padding-bottom:110px}
       <p>The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was out on LODI. Does that pay count?</summary><div class="ans">
       <p><b>Yes.</b> Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year.</p>
-      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Upload your W-2s</b> in step 2, and the page reads LODI from box 14 for you. If you type in your years, put the LODI from box 14 of that year's W-2 in the <b>LODI</b> box next to it; the same goes if you import from NYCAPS.</p>
-      <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension. Upload your W-2s and the page takes it out for you; if you type in your years, subtract it from that year.</p>
+      <p>But LODI pay is tax-free, so it's <b>left out of box 5</b> (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose <b>Import via screenshot or PDF</b> in step 2 and add your W-2s, and the page reads LODI from box 14 for you. If you type in your years, put the LODI from box 14 of that year's W-2 in the <b>LODI</b> box next to it; the same goes if you import your Tax Summary.</p>
+      <p>The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (<b>HWB</b> in box 14): it's in box 5 but doesn't count toward your pension. Import your W-2s and the page takes it out for you; if you type in your years, subtract it from that year.</p>
       <p>This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure.</p></div></details>
     <details><summary>I was on unpaid leave (LWOP). Does that time count?</summary><div class="ans">
       <p><b>No.</b> Time on leave without pay, like the LWOP during the 2021–22 COVID vaccine mandate, doesn't count as service. If you were out 3 months, you reach 20, 23 and 25 years 3 months later than your appointment date says.</p>
@@ -867,7 +867,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.06</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.07</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--accent)">Tier 3</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
     <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
     <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 692 of 2025,” the law that let Tier 3 retire at 20 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the 23-year rule for full escalation in May 2026.</p></div></details></div>
@@ -877,7 +877,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.06</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.07</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -900,7 +900,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.06</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.07</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -953,8 +953,7 @@ body.has-pbar .app{padding-bottom:110px}
         <p class="tierbox" id="earnReset" role="status" hidden><b>Please add your earnings again</b><span>We changed how earnings are counted (LODI pay is now included from your W-2s), so the numbers you saved before were cleared. Your dates are still saved.</span></p>
         <div class="modes" role="group" aria-label="How to enter your earnings">
           <button type="button" class="mode" data-mode="manual" aria-pressed="true"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg></span><b>Type in each year</b><small>Enter by hand what you made each year</small></button>
-          <button type="button" class="mode" data-mode="import" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></span><b>Import from NYCAPS ESS</b><small>Your numbers automatically imported from Tax Summary</small><em class="mtag">Fastest</em></button>
-          <button type="button" class="mode" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Upload your W‑2s</b><small>Automatically calculates with LODI pay</small><em class="mtag">Most accurate</em></button>
+          <button type="button" class="mode" data-mode="w2" aria-pressed="false"><span class="tick"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mi"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>Import via screenshot or PDF</b><small>From your W-2s or NYCAPS ESS. LODI is counted for you.</small></button>
         </div>
 
         <div id="manualPanel" class="field">
@@ -988,16 +987,17 @@ body.has-pbar .app{padding-bottom:110px}
             <p class="msg" id="impMsg" role="status" hidden></p>
           </div>
           <div class="panelbox" id="w2Start" hidden>
-            <b style="font-size:18px">Upload your W-2s</b>
-            <p><b>Already have your W-2s saved</b> on your phone or computer, as PDFs or pictures? Just tap <b>Choose my W‑2s</b> below and pick them.</p>
+            <b style="font-size:18px">Import your earnings</b>
+            <p><b>Already have your W-2s saved</b> on your phone or computer, as PDFs or pictures? Just tap <b>Choose screenshots or PDFs</b> below and pick them.</p>
             <p style="margin-bottom:-6px">Don’t have them? Screenshot them from NYCAPS:</p>
             <ol>
               <li>Sign in to <b>NYCAPS Employee Self Service</b> and tap <b>Electronic W2 Delivery</b>.</li>
               <li>Tap a <b>year</b>. That year's <b>Tax Details</b> opens.</li>
               <li>Take a <b>screenshot</b> of the whole page, zoomed out so every box fits. Do the same for each year.</li>
             </ol>
-            <p class="hint">Pick all of them at once. We read your Medicare wages and LODI pay (and one-time bonuses like HWB), so LODI is counted for you. Your W-2s and screenshots are read on your phone and never uploaded anywhere.</p>
-            <div><button type="button" class="btn green" id="w2Pick">Choose my W-2s</button></div>
+            <p class="hint">Pick all of them at once. We read your Medicare wages and LODI pay (and one-time bonuses like HWB), so LODI is counted for you. A screenshot of the <b>Tax Summary</b> table on that same page works too: it brings in every year at once, but without LODI. Everything is read on your phone and never uploaded anywhere.</p>
+            <div><button type="button" class="btn green" id="w2Pick">Choose screenshots or PDFs</button></div>
+            <p class="hint" style="margin:0"><button type="button" class="linkbtn" id="w2Paste">On a computer? Copy and paste your Tax Summary instead</button></p>
           </div>
           <div class="panelbox review" id="impReview" hidden>
             <b style="font-size:18px">Check these against your screen</b>
@@ -1005,9 +1005,9 @@ body.has-pbar .app{padding-bottom:110px}
             <table><tbody id="reviewRows"></tbody></table>
             <div class="btnrow"><button type="button" class="btn green" id="lockBtn">These are right, lock them in</button><button type="button" class="btn ghost" id="cancelReview">Cancel</button></div>
           </div>
-          <div class="verbar" id="verBar" hidden><span class="vt"><span class="vcheck"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span id="verTxt"></span></span><span class="btnrow"><button type="button" class="btn ghost small" id="w2More">Add W-2s</button><button type="button" class="btn ghost small" id="startOver">Start over</button></span></div>
+          <div class="verbar" id="verBar" hidden><span class="vt"><span class="vcheck"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span id="verTxt"></span></span><span class="btnrow"><button type="button" class="btn ghost small" id="w2More">Add more</button><button type="button" class="btn ghost small" id="startOver">Start over</button></span></div>
           <div class="tierbox" id="needDates" role="alert" hidden><b>Add your dates to see your results</b><span>Your earnings are saved. Fill in your date of birth and appointment date in step 1, and your pension shows up.</span><button type="button" class="btn small" id="needGo">Go to step 1</button></div>
-          <p class="tierbox lodinote" id="lodiNote" hidden><b>These numbers don’t include LODI</b><span>The NYCAPS Tax Summary leaves out LODI pay. If you were ever out on LODI, type it in the LODI box next to that year. It’s on your W-2 as LODI in box 14.</span><span>Want it done for you? <button type="button" class="linkbtn" id="lodiW2">Upload your W-2s</button> instead and LODI is counted automatically.</span></p>
+          <p class="tierbox lodinote" id="lodiNote" hidden><b>These numbers don’t include LODI</b><span>The NYCAPS Tax Summary leaves out LODI pay. If you were ever out on LODI, type it in the LODI box next to that year. It’s on your W-2 as LODI in box 14.</span><span>Want it done for you? <button type="button" class="linkbtn" id="lodiW2">Add your W-2s</button> (screenshots or PDFs) and LODI is counted automatically.</span></p>
           <button type="button" class="growbtn wstog" id="wsTog" aria-expanded="false" aria-controls="wsBox" hidden><span><b>Your earnings, year by year</b><small id="wsTogS"></small></span><span class="chev"></span></button>
           <div class="wsbox" id="impList" hidden><table class="ws"><thead><tr><th>Year</th><th>Earnings</th></tr></thead><tbody id="impRows"></tbody></table><div class="wshide" hidden><button type="button" class="btn ghost small" data-wshide>Hide earnings</button></div></div>
         </div>
@@ -1784,7 +1784,7 @@ let wsKey='',showFut=false,wsOpen=false;
 /* LODI column (owner, Nov. 9, 2026): a LODI box on every year (blank counts as zero), in Type in each year and Import from NYCAPS;
    in Upload your W-2s, W-2 years show box 14's LODI as text and years without a W-2 get the box. */
 const lodiOpen=new Set();
-document.addEventListener('click',e=>{if(e.target.closest('#lodiW2')) document.querySelector('.mode[data-mode="w2"]')?.click()});
+document.addEventListener('click',e=>{if(e.target.closest('#lodiW2')) $('w2File').click()});
 document.addEventListener('click',e=>{if(e.target.id==='futBtn'){showFut=!showFut;renderP()}});
 function renderWorksheet(c,m){
   const p=ST.p,retDate=addM(c.eq,m),apptY=c.appt.getFullYear(),retY=retDate.getFullYear();
@@ -1919,7 +1919,7 @@ function renderP(){
    $('eqSum').querySelector('b').textContent=p.eqOn&&realDate(p.eq)?fmtDay(fromISO(p.eq)):'No';}
 
   $('earnReset').hidden=!earnWiped||['manual','imported','extra'].some(k=>Object.keys(p[k]).length>0);
-  document.querySelectorAll('.mode').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===p.mode));
+  document.querySelectorAll('.mode').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===p.mode||(b.dataset.mode==='w2'&&p.mode==='import')));
   $('manualPanel').hidden=p.mode!=='manual';$('importPanel').hidden=!impMode(p.mode);
   const hasImp=Object.keys(p.imported).length>0;
   $('manualEmpty').hidden=Object.keys(p.manual).length>0;
@@ -2270,6 +2270,17 @@ $('startOver').addEventListener('click',()=>{
 const TESS_URL='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
 let tessLoad=null;
 function loadTess(){if(window.Tesseract) return Promise.resolve();return tessLoad||(tessLoad=new Promise((res,rej)=>{const s=document.createElement('script');s.src=TESS_URL;s.onload=res;s.onerror=()=>{tessLoad=null;rej(new Error('load'))};document.head.appendChild(s)}))}
+/* Tables (the Tax Summary, SSA's Earnings Record) are read as one uniform block of rows (Tesseract page mode 6).
+   Tested on the owner's real Tax Summary screenshots, Nov. 14, 2026: the automatic layout dropped the underlined
+   year links and split the table into columns; block mode read every row, year included, on a phone and a computer. */
+async function ocrBlock(cv,onProg){
+  await loadTess();
+  const w=await Tesseract.createWorker('eng',1,{logger:m=>{if(m.status==='recognizing text'&&onProg) onProg(m.progress)}});
+  try{
+    await w.setParameters({tessedit_pageseg_mode:'6'});
+    return (await Promise.race([w.recognize(cv),new Promise((_,rej)=>setTimeout(()=>rej(new Error('load')),120000))])).data;
+  }finally{w.terminate()}
+}
 function prepImage(file){
   return new Promise((res,rej)=>{const url=URL.createObjectURL(file),img=new Image();
     img.onload=()=>{const sc=Math.min(3,Math.max(1,2200/img.width)),cv=document.createElement('canvas');cv.width=Math.round(img.width*sc);cv.height=Math.round(img.height*sc);
@@ -2283,9 +2294,9 @@ $('shotFile').addEventListener('change',async e=>{
     await loadTess();
     const cv=await prepImage(f);
     $('shotProgTxt').textContent='Reading your screenshot…';
-    const r=await Tesseract.recognize(cv,'eng',{logger:m=>{if(m.status==='recognizing text') $('shotBar').style.width=Math.round(10+m.progress*90)+'%'}});
+    const d=await ocrBlock(cv,pr=>$('shotBar').style.width=Math.round(10+pr*90)+'%');
     $('shotBar').style.width='100%';
-    handleText(r.data.text,true);
+    handleText(ocrRows(d),true);
   }catch(err){
     imsg(err&&err.message==='load'?'Couldn’t load the screenshot reader. Check your internet connection and try again, or use copy and paste.':'Sorry, we couldn’t read that picture. Try another screenshot, or use copy and paste.','err');
   }finally{$('shotProg').hidden=true;$('shotPick').disabled=false}
@@ -2538,23 +2549,31 @@ async function readW2(f,onProg){
       return w2Parse(await ocrLines(cv,onProg),true);
     }finally{doc.destroy()}
   }
-  return w2Parse(await ocrLines(await prepImage(f),onProg),true);
+  const cv=await prepImage(f),L=await ocrLines(cv,onProg);
+  /* One picker for everything (owner, Nov. 14, 2026). A Tax Summary screenshot ("Click on Year link to see Tax Details",
+     "Tax Summary for All Years") is read again as a block of rows, one per year. A Tax Details page or a W-2 is read as a W-2. */
+  const txt=L.map(l=>l.map(t=>t.s).join(' ')).join('\n');
+  if(/Click\s*on\s*Year|Summary\s*for\s*All/i.test(txt)){const sum=parseEarnings(ocrRows(await ocrBlock(cv,onProg)),true).out;if(Object.keys(sum).length) return {summary:sum}}
+  return w2Parse(L,true);
 }
 function w2msg(t,cls){const s=$('w2Msg');s.textContent=t;s.className='msg '+cls;s.hidden=!t}
 let w2Pending=null,w2PrevMode=null,w2Busy=false;
 $('w2Pick').addEventListener('click',()=>$('w2File').click());
 $('w2More').addEventListener('click',()=>$('w2File').click());
+/* Owner, Nov. 14, 2026: one import button. Copy and paste still goes through the Tax Summary panel. */
+$('w2Paste').addEventListener('click',()=>{ST.p.mode='import';wsKey='';closeReview();renderP();pickWay('Paste');$('impStart').scrollIntoView({behavior:'smooth',block:'start'})});
 $('w2File').addEventListener('change',async e=>{
   const files=[...e.target.files].slice(0,40);e.target.value='';if(!files.length||w2Busy) return;
   w2Busy=true;w2msg('','');imsg('','');$('w2Prog').hidden=false;$('w2Bar').style.width='3%';
   $('w2Prog').scrollIntoView({behavior:'smooth',block:'center'});
-  const got=[],notes=[],bad=[],other=[];
+  const got=[],notes=[],bad=[],other=[],sums={};
   try{
     for(let i=0;i<files.length;i++){
       const f=files[i],step=p=>{$('w2Bar').style.width=Math.round((i+Math.max(.05,p))/files.length*100)+'%'};
-      $('w2ProgTxt').textContent=files.length>1?`Reading W-2 ${i+1} of ${files.length}…`:'Reading your W-2…';step(0);
+      $('w2ProgTxt').textContent=files.length>1?`Reading ${i+1} of ${files.length}…`:'Reading your file…';step(0);
       let r=null;
       try{r=await readW2(f,step)}catch(err){if(err&&err.message==='load') throw err}
+      if(r&&r.summary){for(const y in r.summary) sums[y]=r.summary[y];continue}
       if(!r||!r.wages){bad.push(f.name);continue}
       if(!r.nyc&&!r.ocr){other.push(r.year);continue}
       if(r.year>=NOW_Y) continue;
@@ -2567,12 +2586,23 @@ $('w2File').addEventListener('change',async e=>{
   }catch(err){
     w2msg('Couldn’t load the W-2 reader. Check your internet connection and try again.','err');return;
   }finally{$('w2Prog').hidden=true;w2Busy=false}
-  if(bad.length) notes.push(`We couldn’t read ${bad.length===1?bad[0]:plural(bad.length,'file')}. Make sure it’s a W-2 and the whole form shows.`);
+  if(bad.length) notes.push(`We couldn’t read ${bad.length===1?bad[0]:plural(bad.length,'file')}. Make sure it’s a W-2, a Tax Details page or the Tax Summary, and the whole thing shows.`);
   if(other.length) notes.push(`${plural(other.length,'W-2')} (${other.join(', ')}) ${other.length>1?'aren’t':'isn’t'} from the City of New York, so we left ${other.length>1?'them':'it'} out.`);
   /* Two different W-2s that read as the same year: keep both, and ask which year each is. */
   const dup=[...new Set(got.filter(g=>g.year&&got.filter(h=>h.year===g.year).length>1).map(g=>g.year))];
   got.forEach(g=>{if(dup.includes(g.year)){g.check=true;g.dup=true}});
   if(dup.length) notes.push(`Two of your W-2s read as ${dup.join(', ')}. Check the year on each and fix the one that’s wrong.`);
+  /* Tax Summary years fill in around W-2 years; a W-2 for the same year wins, since it has LODI. */
+  const sumYs=Object.keys(sums).map(Number).filter(y=>y<NOW_Y&&!got.some(g=>g.year===y));
+  sumYs.forEach(y=>got.push({year:y,wages:sums[y],lodi:0,bonus:0,check:true,src:'n'}));
+  if(sumYs.length) notes.push('Years from your Tax Summary don’t include LODI. If you were out on LODI one of those years, type it in its LODI box here.');
+  /* A W-2 with no readable year: if its wages match a year we already have (another W-2 or the Tax Summary), it's that year. */
+  for(const g of got.filter(g=>g.noyr)){
+    const m=got.find(h=>h!==g&&h.year&&Math.abs(h.wages-g.wages)<1);
+    if(!m) continue;
+    if(m.src==='n'){m.src=undefined;m.lodi=g.lodi;m.bonus=g.bonus;m.check=true}
+    got.splice(got.indexOf(g),1);
+  }
   if(got.some(g=>g.noyr)) notes.push('We couldn’t read the year on one of them. Pick the right year.');
   if(!got.length){w2msg(notes.join(' ')||'We couldn’t find a W-2 in that file.','err');return}
   openW2Review(got,notes);
@@ -2585,25 +2615,25 @@ function openW2Review(got,notes){
   const fld=(i,k,lab,val)=>`<label>${lab}<div class="inp"><span>$</span><input data-w="${k}" data-i="${i}" inputmode="decimal" value="${v(val)}" aria-label="${lab}"></div></label>`;
   /* The year is plain text. Only when two different W-2s read as the same year does it become a picker, so the member can fix the wrong one. */
   const yrSel=(i,y)=>{let o='';for(let x=NOW_Y-1;x>=NOW_Y-45;x--)o+=`<option${x===y?' selected':''}>${x}</option>`;return `<select class="w2yr" data-i="${i}" aria-label="Tax year">${o}</select>`};
-  $('reviewRows').innerHTML=got.map((g,i)=>`<tr class="w2row" data-y="${g.year}"><td>${g.dup?yrSel(i,g.year):g.year}${g.check||odd(g.wages)?`<span class="tg orange" style="display:block;font-size:13px">${g.dup?'Check the year':'Check this one'}</span>`:''}</td><td><div class="w2f">${fld(i,'wages','Wages',g.wages)}${fld(i,'lodi','LODI',g.lodi)}${fld(i,'bonus','One-time bonus',g.bonus)}</div></td></tr>`).join('');
+  $('reviewRows').innerHTML=got.map((g,i)=>`<tr class="w2row" data-y="${g.year}" data-src="${g.src||'w'}"><td>${g.dup?yrSel(i,g.year):g.year}${g.check||odd(g.wages)?`<span class="tg orange" style="display:block;font-size:13px">${g.dup?'Check the year':'Check this one'}</span>`:''}</td><td><div class="w2f">${fld(i,'wages','Wages',g.wages)}${fld(i,'lodi','LODI',g.lodi)}${fld(i,'bonus','One-time bonus',g.bonus)}</div></td></tr>`).join('');
   const h=$('impReview').querySelector('.w2note,.hint');
   h.innerHTML='';h.className='w2note';
-  [['From your W-2s.','Check each year against its W-2: box 5, and LODI and any one-time bonus (like HWB) in box 14. Then lock them in.'],...notes.map(n=>['',n])].forEach(([b,t])=>{const p=document.createElement('span');if(b){const e=document.createElement('b');e.textContent=b+' ';p.append(e)}p.append(t);h.append(p)});
+  [['Check each year against your screen.','Wages are Medicare wages (box 5 on a W-2). LODI and one-time bonuses like HWB are in box 14. Then lock them in.'],...notes.map(n=>['',n])].forEach(([b,t])=>{const p=document.createElement('span');if(b){const e=document.createElement('b');e.textContent=b+' ';p.append(e)}p.append(t);h.append(p)});
   $('impReview').hidden=false;$('impStart').hidden=true;$('w2Start').hidden=true;
   renderP();$('impReview').scrollIntoView({behavior:'smooth',block:'start'});
 }
 const commas2=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 function lockW2(){
   const p=ST.p,rows={},list=[];
-  $('reviewRows').querySelectorAll('tr').forEach(tr=>{const sel=tr.querySelector('.w2yr'),r={year:+(sel?sel.value:tr.dataset.y)};tr.querySelectorAll('input[data-w]').forEach(i=>{const n=num(i.value);r[i.dataset.w]=n>0&&n<1e7?n:0});if(r.wages>0)list.push(r)});
+  $('reviewRows').querySelectorAll('tr').forEach(tr=>{const sel=tr.querySelector('.w2yr'),r={year:+(sel?sel.value:tr.dataset.y),src:tr.dataset.src||'w'};tr.querySelectorAll('input[data-w]').forEach(i=>{const n=num(i.value);r[i.dataset.w]=n>0&&n<1e7?n:0});if(r.wages>0)list.push(r)});
   if(!list.length) return;
   const twice=[...new Set(list.filter(r=>list.filter(q=>q.year===r.year).length>1).map(r=>r.year))];
   if(twice.length){alert(`More than one W-2 is set to ${twice.join(', ')}. Fix the year on the wrong one, then lock them in.`);return}
   list.forEach(r=>rows[r.year]=r);const ys=Object.keys(rows);
   if(w2PrevMode==='manual'){p.extra={...p.manual,...p.extra}}
   for(const y of ys){
-    const r=rows[y];p.imported[y]=r.wages;p.src[y]='w';delete p.extra[y];
-    if(r.lodi) p.lodi[y]=r.lodi; else delete p.lodi[y];
+    const r=rows[y];p.imported[y]=r.wages;p.src[y]=r.src;delete p.extra[y];
+    if(r.lodi) p.lodi[y]=r.lodi; else if(r.src==='w') delete p.lodi[y];
     if(r.bonus) p.onetime[y]=r.bonus; else delete p.onetime[y];
   }
   closeReview();wsKey='';wsOpen=false;renderP();
