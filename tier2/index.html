@@ -319,6 +319,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .panelbox{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:14px;background:var(--soft)}
 .panelbox ol{margin:0;padding-left:22px;display:grid;gap:6px}
 .nolodi{color:var(--orange);font-weight:600}
+.sumnote{color:var(--sage);font-weight:600;margin:6px 0 0}
+.getw2{display:flex;align-items:center;gap:6px;font-weight:700;margin:8px 0 0}.getw2 svg{width:20px;height:20px;color:var(--sage)}
+.guidelink{border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);padding:10px 12px;font-weight:600}.guidelink a{font-weight:700}
 .panelbox textarea{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;width:100%;min-height:110px;resize:vertical;font-size:15px}
 .ways{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .way{display:grid;gap:4px;justify-items:center;text-align:center;border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 8px;cursor:pointer;font-weight:700;font-size:16px}
@@ -669,7 +672,7 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 2 Pension">
   <div class="hometop"><a class="backbtn" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>3.09</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>3.10</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-14">11/14/26:</time> Importing your earnings is now one button: pick screenshots or PDFs of your W-2s, or a screenshot of your Tax Summary, straight from NYCAPS ESS.</li>
@@ -733,7 +736,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.10</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1></div>
 
   <ul class="keys">
@@ -892,7 +895,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.10</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--steel)">Tier 2</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
     <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
     <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 540 of 2021,” the law that gave all Tier 2 members the best 3 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the longevity bonus in May 2026.</p></div></details></div>
@@ -902,7 +905,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.10</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -939,7 +942,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.09</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.10</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Use your real earnings to see what you'll collect, and what working longer gets you.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1055,12 +1058,13 @@ body.has-pbar .app{padding-bottom:110px}
             <p>Already have screenshots or PDFs of your W-2s? Import them here.</p>
             <p style="margin-bottom:-6px">Don’t have them? Screenshot them from NYCAPS ESS:</p>
             <ol>
-              <li>Sign in to <b>NYCAPS Employee Self Service</b> and tap <b>Electronic W2 Delivery</b>.</li>
+              <li>Sign in to <b>NYCAPS Employee Self Service</b> and tap <b>Electronic W2 Delivery</b>.
+                <p class="sumnote">You can screenshot this entire page to import all your earnings at once. However, this doesn’t include LODI, so if you were ever out injured on duty (LODI), you’ll get a more accurate estimate by screenshotting your W-2s.</p>
+                <p class="getw2"><svg class="i" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6"/></svg>To get your W-2:</p></li>
               <li>Tap a <b>year</b>. That year's <b>Tax Details</b> opens.</li>
-              <li>Take a <b>screenshot</b> of the whole page, zoomed out so every box fits. Do the same for each year.</li>
+              <li>Take a <b>screenshot</b> of that page, or use its numbers to type in each year. Do the same for each year.</li>
             </ol>
-            <p class="hint">Pick all of them at once. We read your Medicare wages and LODI pay (and one-time bonuses like HWB), so LODI is counted for you.</p>
-            <p class="hint">Or you can screenshot the <b>Tax Summary</b> table to pull in every year at once, <span class="nolodi">but this doesn’t include LODI.</span></p>
+            <p class="guidelink">Still not sure how to do this? <a href="/w2guide/">See the guide here</a></p>
             <p class="hint">Everything is read on your phone and never uploaded anywhere.</p>
             <div><button type="button" class="btn green" id="w2Pick">Choose screenshots or PDFs</button></div>
             <p class="hint" style="margin:0"><button type="button" class="linkbtn" id="w2Paste">On a computer? Copy and paste your Tax Summary instead</button></p>
