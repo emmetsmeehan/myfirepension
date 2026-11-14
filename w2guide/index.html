@@ -44,7 +44,6 @@ h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6p
 .ring{position:absolute;border:4px solid #c8281e;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,40,30,.5)}50%{box-shadow:0 0 0 10px rgba(200,40,30,0)}}
 .cap{font-size:15px;color:var(--muted);margin:8px 0 0}
-.tip{border-left:3px solid var(--accent);padding:2px 0 2px 12px;margin:0 0 28px}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:28px}
 .foot p{margin:0}
 </style>
@@ -78,7 +77,9 @@ h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6p
       <div class="ring" style="left:34%;top:46.3%;width:18%;height:10%"></div></div>
     <p class="cap">The circled boxes are the two that matter for your pension: <b>Medicare Wages</b> (your earnings for the year) and <b>Lodi</b> (pay while out on line-of-duty injury, which counts too). Example numbers shown.
   </div>
-  <p class="tip">Want another year? Don't hit Back. The page errors out. Go back to the ESS home and tap Electronic W2 Delivery again.</p>
+  <div class="step">
+    <p><span class="n">4.</span> <b>Take a screenshot</b> of the whole page, zoomed out so every box fits. Do the same for each year you need.</p>
+  </div>
 </section>
 
 <section id="comp" hidden>
@@ -100,7 +101,9 @@ h1{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15;margin:0 0 6p
       <div class="ring" style="left:88.7%;top:37.5%;width:19%;height:13%"></div></div>
     <p class="cap">The circled boxes are the two that matter for your pension: <b>Medicare Wages</b> (your earnings for the year) and <b>Lodi</b> (pay while out on line-of-duty injury, which counts too). Example numbers shown.</p>
   </div>
-  <p class="tip">Want another year? Don't use the browser's Back button. Click Electronic W2 Delivery again.</p>
+  <div class="step">
+    <p><span class="n">4.</span> <b>Take a screenshot</b> of the Tax Details. On a Mac press Shift-Command-4 and drag over it; on Windows press Windows-Shift-S. Do the same for each year you need.</p>
+  </div>
 </section>
 
 <footer class="foot">
