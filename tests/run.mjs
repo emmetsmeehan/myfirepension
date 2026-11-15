@@ -52,6 +52,7 @@ function run(c) {
   if (c.topPay) p.topPay = c.topPay;
   if (c.ithpO) p.ithpO = c.ithpO;
   if (c.exT) p.exT = c.exT;
+  if (c.exOn) p.exOn = true;
   if (c.eq) {p.eqOn = true; p.eq = c.eq}
   const dom = new JSDOM(html, {
     url: pg.url, runScripts: 'dangerously', pretendToBeVisual: true, virtualConsole: vc,
