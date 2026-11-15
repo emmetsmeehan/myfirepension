@@ -50,6 +50,8 @@ function run(c) {
   const p = {dob: c.dob, appt: c.appt, mode: 'manual', manual: c.earnings, svc: months, dis: !!c.dis,
     rank: c.rank || 'FF', rankSet: true, cur: '', earnV: 2, ss: c.ss ?? 2400, cpi: c.cpi ?? 3, b40: false};
   if (c.topPay) p.topPay = c.topPay;
+  if (c.ithpO) p.ithpO = c.ithpO;
+  if (c.exT) p.exT = c.exT;
   if (c.eq) {p.eqOn = true; p.eq = c.eq}
   const dom = new JSDOM(html, {
     url: pg.url, runScripts: 'dangerously', pretendToBeVisual: true, virtualConsole: vc,

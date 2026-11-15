@@ -676,14 +676,14 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 2 Pension">
   <div class="hometop"><a class="backbtn homeback" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a>
     <details class="news">
-      <summary>Version <b>3.20</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>3.21</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
+        <li><time datetime="2026-11-15">11/15/26:</time> Fixed: Tier 2 no longer adds your excess contributions to your pension. It’s shown separately, as the lump sum most members take. You can also type your ITHP Over 20 from the Pension Portal for an exact ITHP number.</li>
         <li><time datetime="2026-11-14">11/14/26:</time> Tier 2: the earnings table in “Your personal numbers” now ends with your 1/60th total: everything you earn after 20 years, divided by 60.</li>
         <li><time datetime="2026-11-14">11/14/26:</time> Importing your earnings is now one button: pick screenshots or PDFs of your W-2s, or a screenshot of your Tax Summary, straight from NYCAPS ESS.</li>
         <li><time datetime="2026-11-14">11/14/26:</time> Tier 2: you can now import your earnings from SSA.gov, including years before 1998 that NYCAPS ESS doesn’t have.</li>
         <li><time datetime="2026-11-13">11/13/26:</time> Added an explanation to the Tier 2 quick calculator’s ITHP estimate of why it may be high. Use “Your personal numbers” for a more accurate estimate.</li>
-        <li><time datetime="2026-11-12">11/12/26:</time> Bills in Albany now explains how a bill becomes law, and when this session’s bills run out.</li>
       </ul>
       <p class="newsmore"><a href="/updates/">See older updates</a></p>
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -740,7 +740,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.20</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Pension basics</span><a class="ver" href="/updates/">Version <b>3.21</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1></div>
 
   <ul class="keys">
@@ -899,7 +899,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.20</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Bills in Albany</span><a class="ver" href="/updates/">Version <b>3.21</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--steel)">Tier 2</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
     <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
     <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 540 of 2021,” the law that gave all Tier 2 members the best 3 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the longevity bonus in May 2026.</p></div></details></div>
@@ -909,7 +909,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.20</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Quick calculator</span><a class="ver" href="/updates/">Version <b>3.21</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -946,7 +946,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 2" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.20</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Tier 2 home</a><span class="tb-title">Your personal numbers</span><a class="ver" href="/updates/">Version <b>3.21</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Use your real earnings to see what you'll collect, and what working longer gets you.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1134,6 +1134,11 @@ body.has-pbar .app{padding-bottom:110px}
             <div><label for="exN">Non-taxable</label><div class="inp"><span>$</span><input id="exN" inputmode="numeric" autocomplete="off"></div></div>
           </div>
           <div class="hint" id="exHint"></div>
+        </div>
+        <div class="field" id="ithpBox">
+          <label class="flabel" for="ithpO">Your ITHP Over 20 <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+          <span class="hint" style="margin-top:-4px">On your Pension Portal, in the Pension Plan Summary. With it, the ITHP part of your pension is figured from your real balance instead of estimated.</span>
+          <div class="inp"><span>$</span><input id="ithpO" inputmode="numeric" autocomplete="off"></div>
         </div>
         <div class="minrow" id="s2Done" hidden><button type="button" class="btn green" data-min="2">Save and minimize</button></div>
         </div>
@@ -1340,7 +1345,7 @@ const billNote=st=>{const l=[st.b40&&'1/40th after 20 years (S5058A)',st.b67&&'r
 const KEY='fdny-tier2-v1';
 const DEF={
   q:{fas:'',svc:300,dis:false,exT:'',exN:'',b40:false,rank:'FF',topPay:FF_PAY},
-  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},src:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',cpi:3,goal:'',b40:false,b67:false,rank:'FF',topPay:FF_PAY,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,lodi:{},onetime:{},pays:{},earnV:2}
+  p:{dob:'',appt:'',mode:'manual',manual:{},imported:{},src:{},extra:{},growOn:false,grow:2.5,svc:300,dis:false,exT:'',exN:'',ithpO:'',cpi:3,goal:'',b40:false,b67:false,rank:'FF',topPay:FF_PAY,cur:'',rankSet:false,eqOn:false,eq:'',ocsOn:false,ocsY:0,lodi:{},onetime:{},pays:{},earnV:2}
 };
 let ST;
 /* Saved numbers can be old or damaged: keep only real dates and sensible amounts. */
@@ -1393,7 +1398,7 @@ loadState();
 }catch{}})();
 
 /* ---------- pension rules (Tier 2: Fire Pension Fund ACFR FY2025, summary of Tier I and II benefits) ---------- */
-/* ITHP: the City pays 5% of pay; contributions earn 8.25%. The payout is a rough estimate: level to age 85 at 7%. */
+/* ITHP: the City pays 5% of pay; contributions earn 8.25%. The payout is an estimate: level to age 80 at 8.25% (rules.js; matched to one member's Fund estimate, Nov. 15, 2026). */
 const ITHP_RATE=R2.ithp.cityRate,ACCT_INT=R2.ithp.creditRate,ANN_INT=R2.ithp.estimatePayoutRate,ANN_TO=R2.ithp.estimatePayoutToAge;
 function annuityFactor(age){const n=Math.max(1,ANN_TO-age);return (1-Math.pow(1+ANN_INT,-n))/ANN_INT}
 /* Excess contributions (the member's own money above the required amount): taken as a lump sum or turned into an annuity.
@@ -1519,7 +1524,7 @@ function renderQuick(){
   }
   const bp=0,add=0;
   const dv=sixtyDiv(q),past=Math.max(0,m-240)/12,half=(dis?R2.disabilityPct:R2.pensionPct)*(fas+add),sixty=fas*past/dv;
-  const ithp=showIthp?quickIthp(fas,m,dis):0,exAnn=excessAnnuity(exT+exN,qAge),ann=ithp+exAnn,base=half+sixty+ann,mon=base/12;
+  const ithp=showIthp?quickIthp(fas,m,dis):0,exAnn=excessAnnuity(exT+exN,qAge),ann=ithp,base=half+sixty+ann,mon=base/12;
   $('qExHint').textContent=exHintText(exT,exN,exT+exN,exAnn/12,dis);
   const note=dis
     ?{c:'var(--steel)',i:ICON.flat,t:'This number won’t grow with inflation.',p:'A disability pension (3/4s) has no escalation. After 5 years retired you get a small COLA on the first $18,000, about $270 a year. The 75% is free of federal tax.'}
@@ -1537,8 +1542,8 @@ function renderQuick(){
       <div class="brow"><div class="bl"><b>1/${dv}th after 20 years</b><small>${sixty?`About ${usd(fas*past)} earned after 20 years, ÷ ${dv}`:'Starts once you pass 20 years'}</small></div><div class="amt"><b>${usd(sixty/12)}/mo</b></div></div>
       ${showIthp?`<div class="brow"><div class="bl"><b>ITHP pension (estimate)</b><small><span class="rough">Rough estimate</span> ${dis?'from the City’s 5% over your career':'from the City’s 5% after 20 years'}</small></div><div class="amt"><b>${usd(ithp/12)}/mo</b></div></div>`:''}
       ${showIthp&&dis?`<div class="note ithpnote" style="--c:var(--orange)"><span class="ni">${ICON.warn}</span><div><b>This ITHP estimate is probably too high.</b><p>On a disability pension (3/4s) you get the City’s 5% for your whole career. This calculator assumes you earned your final average salary every year since you were appointed, but you made less early on, especially as a probie. The personal numbers page figures it from what you actually earned each year. <a href="#personal">Go to your personal numbers</a></p></div></div>`:''}
-      ${exAnn?`<div class="brow"><div class="bl"><b>Excess annuity (estimate)</b><small>From your ${usd(exT+exN)} excess, or take it as a lump sum</small></div><div class="amt"><b>${usd(exAnn/12)}/mo</b></div></div>`:''}
     </div>
+    ${exLump({exBal:exT+exN,exAnn})}
     ${!dis&&m>=300?`<div class="note bonusnote" style="--c:var(--orange)"><span class="ni">${ICON.warn}</span><div><b>This doesn’t include the longevity bonus.</b><p>It depends on your rank, which this calculator doesn’t ask for. Use the personal numbers page for a more accurate number. <a href="#personal">Go to your personal numbers</a></p></div></div>`:''}
     <div class="note" style="--c:${note.c}"><span class="ni">${note.i}</span><div><b>${note.t}</b><p>${note.p}</p></div></div>
     <p class="fine">${!dis&&m>=241?`You’d also get a ${usd(VSF*Math.max(0,m-240)/12)} banked variable lump sum when you retire. `:''}The personal numbers page covers all of it, with your real earnings.</p>
@@ -1627,7 +1632,7 @@ const pRank=RankBox($('pRank'),()=>ST.p,()=>renderP(),()=>!ST.p.dis);
   sync();})();
 $('pDis').checked=ST.p.dis;if(ST.p.dis) pSlider.range(true);pSlider.set(ST.p.svc);
 $('pDis').addEventListener('change',e=>{ST.p.dis=e.target.checked;pSlider.range(ST.p.dis);ST.p.svc=pSlider.value;wsKey='';renderP()});
-bindMoney('exT',ST.p,'exT',()=>renderP());bindMoney('exN',ST.p,'exN',()=>renderP());$('cpi').value=ST.p.cpi;$('goal').value=ST.p.goal?commas(num(ST.p.goal)):'';
+bindMoney('exT',ST.p,'exT',()=>renderP());bindMoney('ithpO',ST.p,'ithpO',()=>renderP());bindMoney('exN',ST.p,'exN',()=>renderP());$('cpi').value=ST.p.cpi;$('goal').value=ST.p.goal?commas(num(ST.p.goal)):'';
 $('cpi').addEventListener('input',e=>{ST.p.cpi=Math.min(10,pctNum(e.target.value));renderP()});
 $('cpi').addEventListener('blur',e=>{e.target.value=ST.p.cpi});
 function goalShow(o){$('goalBody').hidden=!o;$('goalTog').hidden=o;$('goalTog').setAttribute('aria-expanded',o);
@@ -1773,29 +1778,32 @@ function earnings(months,c){
   const spread=(e,counted)=>{const raw=blk(e)||0,r=raw?counted/raw:0;for(let k=e-12;k<e;k++){const y=yOf(k);fsBy[y]=(fsBy[y]||0)+mv(k)*r;capBy[y]=(capBy[y]||0)+mv(k)*(1-r)}};
   if(useBest) for(const e of [best.e-24,best.e-12,best.e]) spread(e,cntB(e));
   else if(raw12) spread(W,fs12);
-  const a20By={},missing=new Set();let a20=0,ithp=0;
-  const ithpFrom=c.dis?0:Math.max(0,A20);
+  const a20By={},missing=new Set();let a20=0,ithp=0,ithpFut=0;
+  const ithpFrom=c.dis?0:Math.max(0,A20),nowK=svcToday(c)-c.off;
   for(let k=Math.max(0,Math.min(W-12,ithpFrom));k<W;k++){
     const y=yOf(k),v=mv(k),inFs=k>=W-12,in20=k>=A20;
     /* On a 3/4s the ITHP counts every year from appointment, so every blank year is flagged (owner, Nov. 13, 2026). */
     if((inFs||in20||c.dis)&&!(vals[y]>0)) missing.add(y);
     if(in20){a20+=v;a20By[y]=(a20By[y]||0)+v}
-    if(k>=ithpFrom) ithp+=ITHP_RATE*v*Math.pow(1+ACCT_INT,(W-k-0.5)/12);
+    if(k>=ithpFrom){const a=ITHP_RATE*v*Math.pow(1+ACCT_INT,(W-k-0.5)/12);ithp+=a;if(k>=nowK) ithpFut+=a}
   }
   /* 1/80th: average annual earnings of the last 5 years (Tiers 1 & 2 Summary Plan Description, Sept. 2014). */
   let avg5=0;
   if(c.ocs>0&&!c.dis){for(let k=Math.max(0,W-60);k<W;k++){const y=yOf(k);if(!(vals[y]>0)) missing.add(y)}const s5=sumM(Math.max(0,W-60),W);avg5=s5?s5/(Math.min(60,W)/12):0}
-  return {retDate,usePay,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,a20By,avg5,missing:[...missing].sort((a,b)=>a-b)};
+  return {retDate,usePay,vals,kind,fs,fs12,raw12,lim12,best,useBest,fsBy,capBy,a20,ithp,ithpFut,a20By,avg5,missing:[...missing].sort((a,b)=>a-b)};
 }
-function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0):0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),cpi:num(p.cpi)/100,b40:!!p.b40,b67:!!p.b67,topPay:num(p.topPay)}}
+function pParams(){const d=pDates(),p=ST.p;return {...d,ocs:p.ocsOn?(+p.ocsY||0):0,dis:p.dis,exT:num(p.exT),exN:num(p.exN),ithpO:num(p.ithpO),cpi:num(p.cpi)/100,b40:!!p.b40,b67:!!p.b67,topPay:num(p.topPay)}}
 
 function scenario(months,c){
   const S=months/12,e=earnings(months,c),first=c.appt.getFullYear(),retAge=c.age+S;
   const ok=e.fs>0&&!e.missing.length;
-  const bp=c.dis?0:bonusPct(S),bonusAdd=e.fs?bp*c.topPay:0,dv=sixtyDiv(c),half=(c.dis?R2.disabilityPct:R2.pensionPct)*(e.fs+bonusAdd),sixty=e.a20/dv,ithpEst=e.ithp/annuityFactor(retAge);
+  const bp=c.dis?0:bonusPct(S),bonusAdd=e.fs?bp*c.topPay:0,dv=sixtyDiv(c),half=(c.dis?R2.disabilityPct:R2.pensionPct)*(e.fs+bonusAdd),sixty=e.a20/dv;
   /* Excess balance from the Pension Portal or Pension Statement, grown at the Fund's 8.25% from today to the retirement date. */
   const grow=Math.pow(1+ACCT_INT,Math.max(0,yrsBetween(new Date(),e.retDate))),exT=c.exT*grow,exN=c.exN*grow,exBal=exT+exN;
-  const exAnn=excessAnnuity(exBal,retAge),ann=ithpEst+exAnn,ocsAmt=!c.dis&&c.ocs>0?e.avg5*c.ocs/80:0,base=ok?half+sixty+ann+ocsAmt:0;
+  /* ITHP Over 20 from the Pension Portal, when typed: grown to the retirement date, plus the City's 5% still to come (service retirement only). */
+  const ithpTyped=!c.dis&&c.ithpO>0&&months>240,ithpBal=ithpTyped?c.ithpO*grow+e.ithpFut:e.ithp,ithpEst=ithpBal/annuityFactor(retAge);
+  /* The excess is not part of the pension: most members take it as a lump sum (Fund portal estimate, Nov. 15, 2026). Shown beside the pension, never added in. */
+  const exAnn=excessAnnuity(exBal,retAge),ann=ithpEst,ocsAmt=!c.dis&&c.ocs>0?e.avg5*c.ocs/80:0,base=ok?half+sixty+ann+ocsAmt:0;
   const colaRate=colaRateOf(c.cpi),vsf=c.dis?0:VSF,/* Banked variable by the month (owner, Nov. 9, 2026; Admin Code § 13-385(g): the VSF you'd have gotten from your 20-year date, and the VSF accrues 1/12 a month, § 13-385(a)(12)). */
     drop=c.dis?0:vsf*Math.max(0,Math.floor(months-240))/12;
   const rows=[];let pen=base,colaTot=0,life=drop,colaAge=null;
@@ -1812,11 +1820,11 @@ function scenario(months,c){
   const at=a=>rows.find(x=>x.age>=a-1e-9)||null;
   /* Leaving under 20 years: 1/40th of final average salary per year from 5 years, no longevity bonus, no VSF, paid from the would-be 20-year date. */
   if(!c.dis&&months<240){
-    const vb=ok&&months>=VEST_M?VEST_PCT*S*e.fs+ocsAmt+exAnn:0;
-    return {months,S,ok,first,...e,bonusPct:0,bonusAdd:0,dv,half:0,sixty:0,ocsAmt,ithpEst:0,exT,exN,exBal,exAnn,ann:exAnn,base:vb,retAge,colaRate,colaAge:null,drop:0,rows:[],at:()=>null,life:0,
+    const vb=ok&&months>=VEST_M?VEST_PCT*S*e.fs+ocsAmt:0;
+    return {months,S,ok,first,...e,bonusPct:0,bonusAdd:0,dv,half:0,sixty:0,ocsAmt,ithpEst:0,ithpBal:0,ithpTyped:false,exT,exN,exBal,exAnn,ann:0,base:vb,retAge,colaRate,colaAge:null,drop:0,rows:[],at:()=>null,life:0,
       vested:true,vestPct:VEST_PCT*S,start:addM(c.eq,240),startAge:c.age+20};
   }
-  return {months,S,ok,first,...e,bonusPct:bp,bonusAdd,dv,half,sixty,ocsAmt,ithpEst,exT,exN,exBal,exAnn,ann,base,retAge,colaRate,colaAge,drop,rows,at,life};
+  return {months,S,ok,first,...e,bonusPct:bp,bonusAdd,dv,half,sixty,ocsAmt,ithpEst,ithpBal,ithpTyped,exT,exN,exBal,exAnn,ann,base,retAge,colaRate,colaAge,drop,rows,at,life};
 }
 
 /* LODI pay (tax-free, so missing from box 5, but pensionable) and one-time bonuses (in box 5, not pensionable), by year, from box 14 of the W-2. */
@@ -1911,8 +1919,11 @@ function renderWorksheet(c,m,you){
 /* ---------- results ---------- */
 function fmtOcs(y){const yy=Math.floor(y+1e-9),mm=Math.round((y-yy)*12);return [yy?`${yy} year${yy===1?'':'s'}`:'',mm?`${mm} month${mm===1?'':'s'}`:''].filter(Boolean).join(' ')||'0 years'}
 function annRow(s,dis){
-  return `<div class="brow"><div class="bl"><b>ITHP pension (estimate)</b><small>${dis?'Rough estimate from the City’s 5% of the earnings you entered for every year since your appointment':'Rough estimate from the City’s 5% after 20 years'}</small></div><div class="amt"><b>${usd(s.ithpEst/12)}/mo</b><small>${usd(s.ithpEst)}/yr</small></div></div>`
-   +(s.exAnn?`<div class="brow"><div class="bl"><b>Excess annuity (estimate)</b><small>Your excess grows to about ${usd(s.exBal)} by ${fmtMY(s.retDate)}. Or take that as a lump sum.</small></div><div class="amt"><b>${usd(s.exAnn/12)}/mo</b><small>${usd(s.exAnn)}/yr</small></div></div>`:'');
+  return `<div class="brow"><div class="bl"><b>ITHP pension (estimate)</b><small>${dis?'Rough estimate from the City’s 5% of the earnings you entered for every year since your appointment':s.ithpTyped?`From your ITHP Over 20 (${usd(s.ithpBal)} by ${fmtMY(s.retDate)}, with the City’s 5% still to come)`:'Rough estimate from the City’s 5% after 20 years. Type your ITHP Over 20 in step 2 for an exact number.'}</small></div><div class="amt"><b>${usd(s.ithpEst/12)}/mo</b><small>${usd(s.ithpEst)}/yr</small></div></div>`;
+}
+/* The excess is paid on top of the pension, usually as a lump sum (owner, Nov. 15, 2026). */
+function exLump(s){
+  return s.exBal>0?`<div class="lump"><span class="li">${ICON.bag}</span><div><span>Plus, your excess contributions</span><b>${usd(s.exBal)} lump sum</b><small>Most members take it out when they retire. Or turn it into an annuity: about ${usd(s.exAnn/12)} a month (estimate). Not included in the pension above.</small></div></div>`:'';
 }
 
 /* Mandatory retirement age: 65 (NYC Administrative Code § 15-121). c.age is the age at the equated date. */
@@ -2027,7 +2038,7 @@ function renderP(){
     $('goalOut').innerHTML='';$('goalCard').hidden=true;updateBar(null);return;
   }
   if(you.vested){renderVested(c,m,you);renderGoal(c,m,you);updateBar(you,m);return}
-  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.eq.getTime()!==c.appt.getTime()),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:[!c.dis&&c.b40&&'S5058A',p.b67&&'A9291'].filter(Boolean).join(',')||'none',p_excess:dol(c.exT+c.exN),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
+  ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.fs),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:yn(c.dis),p_rank:c.dis||m<300?'n/a':p.rank,p_equated:yn(c.eq.getTime()!==c.appt.getTime()),p_paycheck_years:Object.keys(p.pays||{}).length,p_lodi:yn(Object.values(p.lodi||{}).some(v=>v>0)),p_bills:[!c.dis&&c.b40&&'S5058A',p.b67&&'A9291'].filter(Boolean).join(',')||'none',p_excess:dol(c.exT+c.exN),p_ithp_over20:dol(c.ithpO),p_goal:yn(num(p.goal)>0),p_monthly:dol(you.base/12)});
   $('goalCard').hidden=false;
   const brk=`<div class="brow"><div class="bl"><b>${c.dis?'75%':'50%'} of final average salary</b><small>${c.dis?'75%':'50%'} of ${usd(you.fs+you.bonusAdd)}${you.bonusAdd?' (with the bonus)':''}, ${you.useBest?`your best 3 years (${you.usePay?`${fmtDay(you.best.from)} to ${fmtDay(dayBefore(you.best.to))}`:`${fmtMY(you.best.from)} to ${fmtMY(you.best.to)}`})`:'your last 12 months'}${you.usePay?', from your paychecks':'. Each year split evenly by month'}</small></div><div class="amt"><b>${usd(you.half/12)}/mo</b><small>${usd(you.half)}/yr</small></div></div>
         <div class="incl">${ICON.check}<span>The higher of your <b>last 12 months</b> (${usd(you.fs12)}${you.lim12!==null&&you.raw12>you.lim12+0.5?`, cut from ${usd(you.raw12)} by the 20% limit`:''}) and your <b>best 3 years in a row</b> (${you.best?usd(you.best.fas):'not enough years yet'}).</span></div>
@@ -2058,6 +2069,7 @@ function renderP(){
       <div class="brk">${brk}
         <div class="brow tot"><div class="bl"><b>Pension</b></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
       </div>
+      ${exLump(you)}
       <p class="hint">Needs approval from the Pension Fund's Medical Board and Board of Trustees. No VSF on a disability pension. Health insurance continues regardless of years.</p>`;
   } else {
     const totY=you.base+VSF,ry=you.retDate.getFullYear();
@@ -2073,6 +2085,7 @@ function renderP(){
       <div class="brk">${brk}
         <div class="brow tot"><div class="bl"><b>Pension</b></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
       </div>
+      ${exLump(you)}
       ${you.drop>0?`<div class="lump"><span class="li">${ICON.bag}</span><div><span>Plus, the day you retire</span><b>${usd(you.drop)} lump sum</b><small>Your banked variable: $1,000 for each full month past 20 years.</small></div></div>`:''}
       <div class="growbox">
         <button type="button" class="growbtn" id="growBtn" aria-expanded="${growOpen}"><span><b>Your pension stays about the same</b><small>No escalation in Tier 2. ${colaS} Tap to see each year.</small></span><span class="chev"></span></button>
@@ -2120,9 +2133,9 @@ function renderVested(c,m,you){
     <div class="brk">
       <div class="brow"><div class="bl"><b>Vested pension</b><small>1/40th (2.5%) of your final average salary for each year</small><small>${fmtSvcLong(m)} × 2.5% = ${pct}%. No longevity bonus.</small></div><div class="amt"><b>${usd(VEST_PCT*you.S*you.fs/12)}/mo</b><small>${usd(VEST_PCT*you.S*you.fs)}/yr</small></div></div>
       ${you.ocsAmt>0?`<div class="brow"><div class="bl"><b>1/80th for other City service</b><small>${fmtOcs(c.ocs)} × 1/80th of ${usd(you.avg5)}</small></div><div class="amt"><b>${usd(you.ocsAmt/12)}/mo</b><small>${usd(you.ocsAmt)}/yr</small></div></div>`:''}
-      ${you.exAnn>0?`<div class="brow"><div class="bl"><b>Annuity from your excess</b><small>Rough estimate</small></div><div class="amt"><b>${usd(you.exAnn/12)}/mo</b><small>${usd(you.exAnn)}/yr</small></div></div>`:''}
       <div class="brow tot"><div class="bl"><b>Pension</b></div><div class="amt"><b>${usd(you.base/12)}/mo</b><small>${usd(you.base)}/yr</small></div></div>
     </div>
+    ${exLump(you)}
     <ul class="hint" style="padding-left:18px;margin:10px 0 0">
       <li>You can take back the money you paid in instead. If you do, you give up this pension.</li>
       <li>Apply with the Pension Fund at least 30 days before you leave.</li>
@@ -2180,7 +2193,7 @@ function renderCompare(c,m,you){
     ${line(`1/${you.dv}th after 20`,s=>usd(s.sixty),1)}
     ${you.ocsAmt>0?line('1/80th, other City service',s=>usd(s.ocsAmt),1):''}
     ${line('ITHP (estimate)',s=>usd(s.ithpEst),1)}
-    ${you.exAnn?line('Excess annuity (estimate)',s=>usd(s.exAnn),1):''}
+    ${you.exBal?line('Excess lump sum',s=>usd(s.exBal),1):''}
     ${line('Pension a month',s=>usd(s.base/12))}
     ${line('With VSF, a year',s=>usd(s.base+VSF))}
     ${line('Banked variable',s=>usd(s.drop))}
