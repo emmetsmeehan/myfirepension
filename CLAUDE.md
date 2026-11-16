@@ -272,3 +272,10 @@ Checked against a real Tier 2 member's Fund portal (40 yrs, DC; screenshot of th
 - With 2026 filled in and his ITHP Over 20 typed, the site gave $251,443 a year against the Fund's $248,128; the gap is the 1/60ths lag.
 - **Annuitize toggle (owner, Nov. 15, 2026; v3.22):** the excess block has a full-width checkbox "Annuitize and add to monthly payments" (`[data-exann]`, `exOn` in saved state, `ST.p` and `ST.q` separately). On: the annuity is added to the pension (`exIn` in `scenario()`/`renderQuick()`), an "Excess annuity (estimate)" row shows in the breakdown (`exRow()`), and the block reads "Your excess, turned into an annuity · +$X a month". Clarity tags `p_excess_annuity`, `q_excess_annuity`.
 - **Lump sum boxes are green (owner, Nov. 15, 2026, both tiers):** `.lump` uses `--sage` (background 11%, border 50%, icon circle a sage gradient with the icon in `--surface`), for the banked variable and the excess.
+
+## Seminar follow-ups (Nov. 16, 2026, owner; v3.23–3.26)
+
+From the Fund's UFA retirement seminar (notes in the claude.ai project doc `claude/seminar-2026-11-16.md`), checked against the Tiers 1 & 2 SPD (Sept. 2014):
+- **VSF and banked variable, service only (v3.23, both tiers):** the Pension basics VSF answer says neither is paid on a disability pension (3/4s), and both are held while a dual (service + disability) application is pending (SPD p. 35).
+- **First VSF prorated (v3.24, fixed v3.26, both tiers):** personal numbers results show "First VSF: $X (Nov–Dec 2039 only)" under the VSF line (`firstVsf()`), $1,000 for each full month after the retirement month (SPD p. 35: "full months following the month of retirement"); nothing shown for a December retirement. The big yearly number still uses the full $12,000. Pension basics VSF answer explains it. v3.24 wrongly counted the retirement month.
+- **Tier 2 loan at retirement (v3.26):** "Can I borrow from my pension?" adds the 90% loan at retirement (SPD p. 39), 60 days to apply (Connolly), lifetime cut of about 8/10/12% of the loan a year by age 40s/50s/60s (Connolly), taxable with a 10% penalty under 50 unless rolled over.
