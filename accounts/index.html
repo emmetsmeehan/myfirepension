@@ -125,6 +125,8 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .lim tr.gh:first-child th{padding-top:4px}
 .lim tr.gh+tr td{border-top:0}
 .lim td:last-child{text-align:right;font-weight:700;white-space:nowrap;padding-left:12px}
+.lim td:nth-child(2):not(:last-child){text-align:right;font-weight:700;white-space:nowrap;padding-left:12px}
+.lim tr.yh td{font-size:14px;color:var(--muted);font-weight:600;padding-top:0}
 .amt{font-size:17px}
 .amt b{font-size:19px}
 
@@ -175,7 +177,7 @@ a.ver{text-decoration:none}
 <body>
 <main class="app">
   <div class="top"><a class="backbtn homeback" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><svg class="i" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Home</a><details class="news">
-      <summary>Version <b>3.29</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>3.30</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-16">11/16/26:</time> Fixed: Your first VSF payment now accurately reflects the prorated amount based on your retirement date.</li>
@@ -212,20 +214,21 @@ a.ver{text-decoration:none}
       <div class="ahead"><h3 id="a457">457</h3><div class="pills"><span class="pill you">From your paycheck</span><span class="pill">Pre-tax or Roth</span></div></div>
       <div class="key big"><svg class="i" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><p><b>No penalty at any age once you leave the job.</b><span>Retire at 42 and you can use it the next day, with no 10% early-withdrawal penalty. It’s the only account here that can do that, which makes it the most flexible one for retiring early.</span></p></div>
       <p class="what">You pick a percentage of each paycheck and the funds it goes into.</p>
-      <p class="amt">Up to <b>$24,500</b> a year (2026)</p>
+      <p class="amt">Up to <b>$24,500</b> a year in 2026, <b>$25,500</b> in 2027</p>
       <details class="more">
         <summary>Can I put in more?</summary>
         <div class="body">
           <p>Yes, at 50 and up:</p>
           <table class="lim">
-            <tr><td>Under 50</td><td>$24,500</td></tr>
-            <tr><td>50 to 59, or 64 and up</td><td>$32,500</td></tr>
-            <tr><td>60 to 63</td><td>$35,750</td></tr>
+            <tr class="yh"><td></td><td>2026</td><td>2027</td></tr>
+            <tr><td>Under 50</td><td>$24,500</td><td>$25,500</td></tr>
+            <tr><td>50 to 59, or 64 and up</td><td>$32,500</td><td>$34,000</td></tr>
+            <tr><td>60 to 63</td><td>$35,750</td><td>$37,250</td></tr>
           </table>
           <p>That’s separate from the 401(k). You can max out both.</p>
-          <p><b>Close to retirement?</b> In the 3 years before your “normal retirement age,” the 457 may let you put in up to double the limit to make up for past years. The plan calls it Deferral Acceleration for Retirement. Call the plan before using it.</p>
+          <p><b>Close to retirement?</b> For 3 years before you retire, the 457 lets you put in up to double the limit to make up for years you didn’t max out. The plan calls it Deferral Acceleration for Retirement (DAR). For firefighters, the earliest you can start is your 17th year. You can’t use it in the year you retire, so if you plan to go at 25, use years 22 to 24. Call the plan before using it.</p>
           <p><b>Made over $150,000 last year?</b> Any extra catch-up money at 50 and up has to go in as Roth.</p>
-          <p class="hint">2026 limits. The IRS raises them most years.</p>
+          <p class="hint">IRS limits for 2026 and 2027. They go up most years.</p>
         </div>
       </details>
       <details class="note">
@@ -242,19 +245,20 @@ a.ver{text-decoration:none}
       <div class="ahead"><h3 id="a401">401(k)</h3><div class="pills"><span class="pill you">From your paycheck</span><span class="pill">Pre-tax or Roth</span></div></div>
       <p class="what">Works like the 457, with its own separate limit.</p>
       <div class="key"><svg class="i" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><p><b>Penalty-free at 50, or after 25 years on the job.</b><span>Once you leave the job, you can take money out without the 10% penalty at whichever comes first. Before that, the penalty can apply.</span></p></div>
-      <p class="amt">Up to <b>$24,500</b> a year (2026)</p>
+      <p class="amt">Up to <b>$24,500</b> a year in 2026, <b>$25,500</b> in 2027</p>
       <details class="more">
         <summary>Can I put in more?</summary>
         <div class="body">
           <p>Yes, at 50 and up:</p>
           <table class="lim">
-            <tr><td>Under 50</td><td>$24,500</td></tr>
-            <tr><td>50 to 59, or 64 and up</td><td>$32,500</td></tr>
-            <tr><td>60 to 63</td><td>$35,750</td></tr>
+            <tr class="yh"><td></td><td>2026</td><td>2027</td></tr>
+            <tr><td>Under 50</td><td>$24,500</td><td>$25,500</td></tr>
+            <tr><td>50 to 59, or 64 and up</td><td>$32,500</td><td>$34,000</td></tr>
+            <tr><td>60 to 63</td><td>$35,750</td><td>$37,250</td></tr>
           </table>
-          <p>That’s on top of the 457. With both, someone under 50 can put in $49,000 a year.</p>
+          <p>That’s on top of the 457. With both, someone under 50 can put in $49,000 in 2026, or $51,000 in 2027.</p>
           <p><b>Made over $150,000 last year?</b> Any extra catch-up money at 50 and up has to go in as Roth.</p>
-          <p class="hint">2026 limits. The IRS raises them most years.</p>
+          <p class="hint">IRS limits for 2026 and 2027. They go up most years.</p>
         </div>
       </details>
       <details class="note">
@@ -340,6 +344,15 @@ a.ver{text-decoration:none}
       <div class="a">
         <p>Yes, from the pre-tax money in the 457 or 401(k), not the Roth. You pay it back through payroll, with interest that goes back into your own account.</p>
         <p class="hint">Money you borrow isn’t invested while it’s out, and leaving the job with a loan unpaid can make it taxable.</p>
+      </div>
+    </details>
+
+    <details class="q">
+      <summary>Can I move pension money into Voya when I retire?</summary>
+      <div class="a">
+        <p>Yes. When you retire, you can roll your <b>banked variable</b>, your <b>union annuity</b> and (Tier 2) the <b>taxable part of your excess contributions</b> straight into a special Voya 401(k) rollover account. No tax until you take it out.</p>
+        <p>If you live in New York, what you roll in stays free of state and city tax when you take it out. Federal tax still applies, and the growth on it is taxed like the rest of your 401(k).</p>
+        <p>Ask Voya for the “Final Pension Payment, Outstanding Loan and Annuity Fund Rollover” form, and make the request when you retire. The tax-free part of Tier 2 excess can go to a Roth NYCE IRA instead.</p>
       </div>
     </details>
 
