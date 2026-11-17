@@ -1,6 +1,6 @@
 {
  "format": 1,
- "siteVersion": "3.20",
+ "siteVersion": "3.30",
  "tier2": {
   "basics": {
    "title": "Pension basics",
@@ -103,6 +103,16 @@
         "You can borrow up to **75%** of your contributions plus interest, and take up to **2 loans** in any 12 months.",
         "You pay it back through payroll deductions, at least **5% of your gross pay**, and it has to be paid off by your **65th birthday**. You can pay it off early any time.",
         "If you die before you retire, up to $25,000 of what you owe is covered once the loan is 90 days old."
+       ]
+      },
+      {
+       "p": "**Borrowing when you retire.** Within 60 days of your retirement date you can also borrow up to **90%** of your required contributions. Think hard before you do:"
+      },
+      {
+       "ul": [
+        "It cuts your pension **for life**. Roughly, each $10,000 borrowed costs about $800 a year in your 40s, $1,000 in your 50s and $1,200 in your 60s, every year.",
+        "The money is taxable, plus a 10% penalty if you're under 50, unless you roll it into an IRA or your 457/401(k).",
+        "A loan you still owe when you retire cuts your pension the same way. You can pay it off first, or ask the Fund about covering it with your excess contributions."
        ]
       },
       {
@@ -315,7 +325,13 @@
        "p": "The **VSF** (Variable Supplements Fund) pays **$12,000 a year** to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members."
       },
       {
+       "p": "Your **first** VSF covers only part of a year: $1,000 for each full month after the month you retire, through December. Retire in October and your first one is $2,000 (November and December). After that it's the full $12,000."
+      },
+      {
        "p": "The **banked variable**: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000."
+      },
+      {
+       "p": "Both are only for a **service** retirement. On a disability pension (3/4s) you get neither, even with more than 20 years. And if you put in for a service retirement and also file for a disability pension, both are held until the disability case is decided."
       },
       {
        "p": "Until you turn 62, any COLA you get is taken out of your VSF."
@@ -346,6 +362,59 @@
       },
       {
        "p": "That's the \"gamble\": past 20, staying on the job keeps this protection for your family, and retiring on the maximum pension gives it up. The Fund can tell you what your reserve is worth and what each option would cost you."
+      }
+     ]
+    },
+    {
+     "q": "What are my options for my spouse?",
+     "a": [
+      {
+       "p": "When your pension is finalized, you choose how it's paid. Until then you get about 90% of it."
+      },
+      {
+       "ul": [
+        "**Maximum allowance:** the biggest pension, but it stops when you die. Nothing goes to your spouse.",
+        "**Option 2 (100% survivor):** a smaller pension, and your spouse gets the same amount for life after you die. For many members with a spouse about the same age, it costs roughly 10% of the pension. It costs more the older you are.",
+        "**Option 3 (50% survivor):** costs less, and your spouse gets half.",
+        "**Option 4:** you set what your beneficiary gets, either a one-time lump sum or a monthly amount.",
+        "**Pop-up:** add it to Option 2, 3 or 4 for a little more. If your spouse dies first, your pension goes back up to the maximum."
+       ]
+      },
+      {
+       "p": "Once you get your first full pension check, you can't change it. When the Fund sends your option letter, you have 60 days to answer. If you don't, it can stop your pension payments."
+      },
+      {
+       "p": "The calculators show the maximum allowance. Ask the Fund for your option figures; they need your beneficiary's date of birth."
+      }
+     ]
+    },
+    {
+     "q": "Can I work after I retire?",
+     "a": [
+      {
+       "p": "Yes, but a job with New York City or State government can cost you your pension if you don't follow the rules."
+      },
+      {
+       "p": "**Service retirement:**"
+      },
+      {
+       "ul": [
+        "**No limit** for private jobs, federal jobs (like the post office), government jobs in another state, and public authorities like the MTA, Port Authority, NYCHA and NYC Health + Hospitals.",
+        "**A city, state, county, town, village, school district or library job in New York:** under 65 you can earn up to **$35,000 a year** (state law, RSSL § 212). Tell the Fund in writing first. Earn more and your pension is suspended, unless your new employer gets you a § 211 waiver. Going back to work for the City itself, even with a waiver, roughly caps your pay at what your old rank pays now minus your pension.",
+        "From the year you turn **65**, there's no limit."
+       ]
+      },
+      {
+       "p": "**Disability pension (3/4s):**"
+      },
+      {
+       "ul": [
+        "**Before your 20-year date** (the day you would have hit 20 years), any job is limited: roughly the current pay of the rank above yours, minus your pension.",
+        "**After your 20-year date**, private jobs, federal jobs, out-of-state jobs and public authorities have no limit. But any New York City, State or local government job stops your pension for as long as you work there. There are no waivers."
+       ]
+      },
+      {
+       "p": "The Fund checks. Retirees who got this wrong have had to pay back years of pension. Call the Fund before you take any public job in New York."
       }
      ]
     },
@@ -581,7 +650,13 @@
        "p": "The **VSF** (Variable Supplements Fund) pays **$12,000 a year** to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members."
       },
       {
+       "p": "Your **first** VSF covers only part of a year: $1,000 for each full month after the month you retire, through December. Retire in October and your first one is $2,000 (November and December). After that it's the full $12,000."
+      },
+      {
        "p": "The **banked variable**: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000."
+      },
+      {
+       "p": "Both are only for a **service** retirement. On a disability pension (3/4s) you get neither, even with more than 20 years. And if you put in for a service retirement and also file for a disability pension, both are held until the disability case is decided."
       },
       {
        "p": "Until you turn 62, any COLA you get is taken out of your VSF."
@@ -634,6 +709,60 @@
       },
       {
        "p": "This is from the Fund's Tier 3 plan description, revised December 2019. A later law could change it, so check with the Fund."
+      }
+     ]
+    },
+    {
+     "q": "What are my options for my spouse?",
+     "a": [
+      {
+       "p": "When you retire, you choose how your pension is paid. Each option except the maximum gives you a smaller pension so someone gets paid after you die."
+      },
+      {
+       "ul": [
+        "**Maximum allowance:** the biggest pension, but it stops when you die. Nothing goes to your spouse.",
+        "**Option 1 (100% survivor):** your spouse gets your full pension for life after you die.",
+        "**Option 2 (90% or less):** your spouse gets 90%, 80% or less for life. Costs less than Option 1.",
+        "**Option 3 (5 years certain):** if you die within 5 years of retiring, your beneficiary gets your pension until that 5-year mark. After that, nothing.",
+        "**Option 4 (10 years certain):** the same, for 10 years.",
+        "**Option 5 (pop-up):** your spouse gets 50% or 100%, and if your spouse dies first, your pension goes back up to the maximum."
+       ]
+      },
+      {
+       "p": "The Fund's plan description says you have to pick within 30 days of your retirement date, or you get the maximum. Once you get your first full pension check, you can't change it. Under Options 1 and 2, you can't name a new beneficiary later."
+      },
+      {
+       "p": "The calculators show the maximum allowance. Ask the Fund for your option figures; they need your beneficiary's date of birth."
+      }
+     ]
+    },
+    {
+     "q": "Can I work after I retire?",
+     "a": [
+      {
+       "p": "Yes, but a job with New York City or State government can cost you your pension if you don't follow the rules."
+      },
+      {
+       "p": "**Service retirement:**"
+      },
+      {
+       "ul": [
+        "**No limit** for private jobs, federal jobs (like the post office), government jobs in another state, and public authorities like the MTA, Port Authority, NYCHA and NYC Health + Hospitals.",
+        "**A city, state, county, town, village, school district or library job in New York:** under 65 you can earn up to **$35,000 a year** (state law, RSSL § 212). Tell the Fund in writing first. Earn more and your pension is suspended, unless your new employer gets you a § 211 waiver. Going back to work for the City itself, even with a waiver, roughly caps your pay at what your old rank pays now minus your pension.",
+        "From the year you turn **65**, there's no limit."
+       ]
+      },
+      {
+       "p": "**Disability pension (3/4s):**"
+      },
+      {
+       "ul": [
+        "**Before your 20-year date** (the day you would have hit 20 years), any job is limited: roughly the current pay of the rank above yours, minus your pension.",
+        "**After your 20-year date**, private jobs, federal jobs, out-of-state jobs and public authorities have no limit. But any New York City, State or local government job stops your pension for as long as you work there. There are no waivers."
+       ]
+      },
+      {
+       "p": "The Fund checks. Retirees who got this wrong have had to pay back years of pension. Call the Fund before you take any public job in New York."
       }
      ]
     },
