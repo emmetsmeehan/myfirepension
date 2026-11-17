@@ -1,0 +1,60 @@
+# Rebuilds app/content.json (what the iPhone app downloads at launch: Pension basics and Bills in Albany) after every
+# push to main, and commits it if it changed. The scripts in tools/app/ come from the iPhone project
+# (~/code/myfirepension-ios/tools); update them from there, not here.
+# If this run fails, the site is fine; the app just keeps its last good copy. A failure usually means Pension basics
+# or BILLS changed shape: ask Claude Code in the iPhone project to look.
+name: App content
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: [app/content.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: app-content
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install beautifulsoup4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --no-save --no-package-lock acorn
+
+      - name: Build app/content.json
+        run: |
+          python tools/app/export-basics.py . "$RUNNER_TEMP/basics"
+          node tools/app/build-content.mjs . "$RUNNER_TEMP/basics" app/content.json
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet -- app/content.json; then echo "No change."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/content.json
+          git commit -m "app/content.json for $(grep -o 'SITE_VERSION *= *"[^"]*"' version.js | grep -o '[0-9.]*')"
+          git pull --rebase
+          git push
+          echo "pushed=1" >> "$GITHUB_OUTPUT"
+
+      # Pushes made by this workflow's token don't always start a Pages build, so ask for one.
+      - name: Publish
+        if: steps.commit.outputs.pushed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request failed; the next push will publish it."
