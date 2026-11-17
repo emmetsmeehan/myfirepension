@@ -34,6 +34,14 @@ This repository is the source of truth. The calculator used to live on a claude.
 - **Test cases:** `node tests/run.mjs` (run `npm install` in `tests/` once). It loads each tier page in jsdom with a case's dates and earnings saved, runs the page's own `scenario()`, and checks monthly pension, FAS and escalation fraction. `tests/cases.json` are made-up members figured by hand from the rules above (independently of the page code). **Run the tests before every push; if one fails, fix it, and if you can't, don't push that change and tell the owner why** (owner's standing instruction).
 - **Real members' Fund estimates** (from the Fund's member portal, collected by the owner) go in `tests/private-cases.json`, same format, which is gitignored and must never be committed: Cloudflare Pages serves this whole repo publicly (this file included), and pay plus dates identifies a member. Their master copy is the claude.ai project doc `claude/member-test-cases.json`; copy it into `tests/private-cases.json` before running the tests. Use a made-up date of birth unless the case checks the age-62 offset.
 
+## App content file (Nov. 16, 2026)
+
+- `app/content.json` is what the iPhone app downloads at launch: both tiers' Pension basics, `BILLS`, `SESSION_END` and the "Status last checked" date, plus `siteVersion`. **Don't edit it by hand.**
+- The GitHub Action `.github/workflows/app-content.yml` rebuilds it after every push to `main` (using `tools/app/`) and commits it as github-actions[bot], so after a push, `git pull --rebase` before the next push.
+- `tools/app/` is copied from the iPhone project; don't change it here.
+- If the Action fails, the site is unaffected and the app keeps its last good copy; tell the owner to ask Claude Code in the iPhone project to fix it.
+- Changes that reach the app on their own: `rules.js` numbers, Pension basics wording, bills. Changes that need a new app build (tell the owner): formulas, results wording, new rows or features, page layout.
+
 ## How to work on it
 
 - Make small, targeted edits. Do not rewrite the page to make a change. (The owner asked for one full redesign in Oct. 2026; that is done.)
