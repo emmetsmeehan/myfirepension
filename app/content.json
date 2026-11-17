@@ -1,0 +1,898 @@
+{
+ "format": 1,
+ "siteVersion": "3.20",
+ "tier2": {
+  "basics": {
+   "title": "Pension basics",
+   "intro": "",
+   "keys": [
+    {
+     "text": "You get paid ==50%== of your final average salary once you have 20 years."
+    },
+    {
+     "text": "Your final average salary is based off the ==best 3 years== in a row of pay, or your ==last 12 months== if that’s higher, overtime included, with a 20% look-back.",
+     "moreTitle": "What’s the 20% look-back?",
+     "more": [
+      {
+       "p": "Each year in your best 3 only counts up to **120% of the average of the two years before it**. Anything over that is left out. Your last 12 months work the same way: they count only up to 120% of the 12 months before them."
+      },
+      {
+       "ex": "Example: you made $100,000 and then $110,000. Their average is $105,000, so the next year counts only up to $126,000. If you made $140,000 that year, $14,000 of it doesn't count."
+      },
+      {
+       "p": "So a big jump in one year, like a huge overtime year or a promotion, can get cut. Pay that climbs steadily over your last few years counts in full."
+      }
+     ]
+    },
+    {
+     "text": "For every year you work past 20, an additional ==1/60th== of that pay is added on top of your pension."
+    },
+    {
+     "text": "On top of your pension, you get ==$12,000== a year from the VSF (Variable Supplements Fund)."
+    }
+   ],
+   "tiles": [],
+   "questions": [
+    {
+     "q": "What is ITHP, and the annuity?",
+     "a": [
+      {
+       "p": "**ITHP** (Increased-Take-Home-Pay) is money the City pays into your pension account for you, currently 5% of your pay, so less comes out of your check. What the City pays in **after 20 years**, with interest, becomes an extra pension when you retire."
+      },
+      {
+       "p": "If you've paid in more than the required amount, for example by keeping your contributions going after 20 years, the extra can be paid as an **annuity** or taken as a lump sum. Withdrawals can be taxed, and there can be a 10% penalty if you're under 50."
+      },
+      {
+       "p": "The calculators give a rough estimate of the ITHP piece. For the excess, type the taxable and non-taxable amounts from your Pension Portal or Pension Statement, and they show both the lump sum and an estimated monthly annuity."
+      }
+     ]
+    },
+    {
+     "q": "What are taxable and non-taxable excess?",
+     "a": [
+      {
+       "p": "**Excess** is money in your pension account above the minimum the Fund requires, which is set on your 20th anniversary. It comes from contributions you keep making after 20, from waiving the ITHP, or from the 50% indicator, plus the 8.25% interest it all earns."
+      },
+      {
+       "ul": [
+        "**Taxable excess** is money that hasn't been federally taxed yet: your regular contributions since December 1989 (they come out of your check before federal tax), any ITHP-waiver contributions, and all the interest. You pay federal tax on it when you take it out.",
+        "**Non-taxable excess** is money you already paid tax on when it came out of your check: mainly the 50% indicator, plus any contributions from before December 1989. It comes back tax-free."
+       ]
+      },
+      {
+       "p": "When you retire for service or on a line-of-duty disability pension (3/4s), you can take the excess as a **lump sum** or turn it into an **annuity** added to your pension. On an ordinary disability it has to be a lump sum."
+      },
+      {
+       "p": "If you take the taxable part as a lump sum, it's federally taxed that year, and you may owe a **10% penalty if you're under 50** when you retire. You can roll it into your 457, 401(k) or an IRA to put off the tax. Talk to the Fund or a tax professional before you decide."
+      },
+      {
+       "p": "Both amounts are on your Pension Portal or Pension Statement. Type them in the excess boxes in either calculator."
+      }
+     ]
+    },
+    {
+     "q": "What is the 50% indicator?",
+     "a": [
+      {
+       "p": "It's a setting that puts **extra money into your pension account**, on top of what's required: an additional 50% of your required contribution, taken from each paycheck. It's voluntary."
+      },
+      {
+       "ul": [
+        "The extra money is **taxed right away** (federal, state and city). It isn't tax-deferred like your regular contributions.",
+        "It earns interest at the Fund's rate, currently **8.25% a year**.",
+        "When you retire for service or on a line-of-duty disability pension (3/4s), you can take it as a **lump sum** or as an **extra annuity** added to your pension. On an ordinary disability it has to be a lump sum."
+       ]
+      },
+      {
+       "ex": "Example: if your required contribution is 2.5% of your pay, the 50% indicator adds about 1.25% more."
+      },
+      {
+       "p": "It's part of the excess your Pension Portal or Pension Statement shows you: the money you put in is non-taxable, and the interest it earns is taxable; type it in the excess boxes in either calculator. Ask the Fund or a tax professional before taking a lump sum, especially if you're under 50."
+      }
+     ]
+    },
+    {
+     "q": "Can I borrow from my pension?",
+     "a": [
+      {
+       "p": "Yes. Tier 2 members can take a loan from their own contributions."
+      },
+      {
+       "ul": [
+        "You need **3 years** of uniformed City service.",
+        "You can borrow up to **75%** of your contributions plus interest, and take up to **2 loans** in any 12 months.",
+        "You pay it back through payroll deductions, at least **5% of your gross pay**, and it has to be paid off by your **65th birthday**. You can pay it off early any time.",
+        "If you die before you retire, up to $25,000 of what you owe is covered once the loan is 90 days old."
+       ]
+      },
+      {
+       "p": "The calculators don't account for loans. Check your loan balance and any shortage with the Fund before you decide."
+      }
+     ]
+    },
+    {
+     "q": "What is the 1/60th?",
+     "a": [
+      {
+       "p": "Add up everything you earn after your 20th anniversary and divide by 60. That amount is added to your yearly pension."
+      },
+      {
+       "ex": "Example: you stay 5 years past 20 and earn $150,000 each year. That's $750,000, and 1/60th of it is **$12,500 a year** more pension, about $1,040 a month."
+      },
+      {
+       "p": "A bill in Albany, S5058A, would make it **1/40th** instead. It hasn’t passed. See [Bills in Albany](mfp://bills)."
+      }
+     ]
+    },
+    {
+     "q": "When can I retire, and how much do I get?",
+     "a": [
+      {
+       "p": "Once you have **20 years** on the job, you can retire at any age. Your pension is made of a few pieces added together:"
+      },
+      {
+       "ul": [
+        "**50% of your final average salary.**",
+        "**1/60th of everything you earn after your 20th anniversary.**",
+        "**A pension from the City's ITHP money** paid in after 20 years, with interest.",
+        "**An annuity from any extra contributions** left in your account, if you choose that instead of taking them as a lump sum."
+       ]
+      },
+      {
+       "p": "Unlike Tier 3, there's no 50% cap: every year past 20 adds to your pension."
+      }
+     ]
+    },
+    {
+     "q": "What is my final average salary?",
+     "a": [
+      {
+       "p": "It's the **higher** of two numbers, overtime, holiday pay and night differential included:"
+      },
+      {
+       "ul": [
+        "what you earned in the **12 months before you retire**, or",
+        "the average of your **best 3 years in a row**."
+       ]
+      },
+      {
+       "p": "There's a **20% limit**. Your last 12 months count only up to 20% more than the 12 months before them. For the best 3 years, each year counts only up to 20% more than the average of the 2 years before it. Anything above that is cut. (Tier 3's limit is 10%.)"
+      },
+      {
+       "p": "Both line up with your retirement date, not January to December. Retiring Oct. 1, for example, the years run Oct. 1 to Sept. 30. Your best 3 can be any 3 years in your career, not just your last ones."
+      },
+      {
+       "p": "The personal numbers page knows only each year's total, so it splits each year evenly by month. For exact numbers, add your paychecks from ESS under **Find your exact final average salary**."
+      },
+      {
+       "ex": "Example: you made $100,000 and then $110,000. Their average is $105,000, so the next year counts only up to $126,000. If you made $140,000 that year, $14,000 of it doesn't count."
+      },
+      {
+       "p": "We're still confirming the exact rule with the Pension Fund, so treat these numbers as estimates and check your official estimate before you decide."
+      }
+     ]
+    },
+    {
+     "q": "What if I’m hurt on the job? (“three quarters”)",
+     "a": [
+      {
+       "p": "An accident disability retirement (\"three quarters\") pays **75% of your final average salary**, at any length of service, plus 1/60th of your earnings after 20 years, plus pensions from your ITHP account and your own contributions."
+      },
+      {
+       "ul": [
+        "The 75% is free of federal tax. The 1/60th, the ITHP after 20 years and the annuity from tax-deferred contributions are federally taxed. None of it has New York State or City tax.",
+        "**No escalation.** After 5 years retired, at any age, you get the COLA (cost-of-living adjustment, which is different from full escalation): half of inflation, at least 1% and at most 3%, but only on the first $18,000 of your pension.",
+        "You keep health insurance no matter how many years you have."
+       ]
+      },
+      {
+       "p": "It must be approved by the Pension Fund's Medical Board and Board of Trustees."
+      }
+     ]
+    },
+    {
+     "q": "Do I pay taxes on my pension?",
+     "a": [
+      {
+       "p": "A service pension is subject to federal income tax but not New York State or New York City income tax."
+      },
+      {
+       "p": "For a disability pension (3/4s), see the answer above. If you move out of state, check that state's rules or ask a tax professional."
+      }
+     ]
+    },
+    {
+     "q": "Is there an age I have to retire by?",
+     "a": [
+      {
+       "p": "Yes, **65**. City law says uniformed members have to retire when they turn 65 (NYC Administrative Code § 15-121). It goes by your age, not your years on the job, so an earlier equated date doesn't change it."
+      },
+      {
+       "p": "On the personal numbers page, once you put in your date of birth, the slider stops at the most you can work before 65. Without dates it goes up to 50 years."
+      },
+      {
+       "p": "A bill in Albany, A9291 / S9300, would raise the age to 67. It hasn’t passed. You can see what it would mean for you on the personal numbers page, under More options."
+      }
+     ]
+    },
+    {
+     "q": "What is an equated date?",
+     "a": [
+      {
+       "p": "It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to **3 years** of military service once you have 5 years on. Uniformed service right before the FDNY, like EMS or the NYPD, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier **equated date**, which moves your 20-year date, when the 1/60th and ITHP start, the banked variable and the 25-year longevity bonus."
+      },
+      {
+       "p": "If you were out on leave without pay (LWOP), your equated date may be later than your appointment date."
+      }
+     ]
+    },
+    {
+     "q": "What is the longevity bonus?",
+     "a": [
+      {
+       "p": "If you retire with **25 years or more**, a percentage of the **top base pay for your rank** is added to your final average salary. That's the top step on your union's pay scale, not your own pay, and no overtime, night differential or holiday pay: **5% at 25 years, plus 1% for each year after, up to 15% at 35**. It became law in the 2026 state budget, signed May 27, 2026."
+      },
+      {
+       "p": "The law covers any member \"under the plan in which they are enrolled\" with the Fire Pension Fund, so it applies to Tier 2 as well as Tier 3. Its cost estimate even uses a Tier 2 firefighter as the example."
+      },
+      {
+       "ex": "Example: a firefighter retiring at 28 years gets 8% of the top firefighter base pay ($109,352), which is $8,748. That's added to their final average salary, so their pension goes up about $4,374 a year."
+      },
+      {
+       "p": "The law's exact words are 5% of “the highest grade of pay under the applicable collective bargaining agreement” for the rank you retire in. The calculators read that as top base pay. The bill’s cost estimate used higher figures, so your real bonus could come out a little higher."
+      },
+      {
+       "p": "It doesn't apply to a disability pension (3/4s) in these calculators."
+      }
+     ]
+    },
+    {
+     "q": "Does longevity pay count?",
+     "a": [
+      {
+       "p": "Longevity pay is the extra money you get once you hit certain years on the job. Your pension doesn't always count all of it:"
+      },
+      {
+       "ul": [
+        "**Retire with 20 to 24 years:** only the **10-year** longevity amount counts, even if your check already has more.",
+        "**Retire with 25 years or more:** the **20-year** longevity amount counts."
+       ]
+      },
+      {
+       "ex": "Example: you retire at 22 years. Your check includes 20-year longevity, but your pension only counts the 10-year amount, so the difference is left out of your final average salary. Stay to 25 and all of your 20-year longevity counts."
+      },
+      {
+       "p": "The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure."
+      }
+     ]
+    },
+    {
+     "q": "I was out on LODI. Does that pay count?",
+     "a": [
+      {
+       "p": "**Yes.** Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year."
+      },
+      {
+       "p": "But LODI pay is tax-free, so it's **left out of box 5** (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose **Import via screenshot or PDF** in step 2 and add your W-2s, and the page reads LODI from box 14 for you. If you type in your years, put the LODI from box 14 of that year's W-2 in the **LODI** box next to it; the same goes if you import your Tax Summary."
+      },
+      {
+       "p": "The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (**HWB** in box 14): it's in box 5 but doesn't count toward your pension. Import your W-2s and the page takes it out for you; if you type in your years, subtract it from that year."
+      },
+      {
+       "p": "This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure."
+      }
+     ]
+    },
+    {
+     "q": "I was on unpaid leave (LWOP). Does that time count?",
+     "a": [
+      {
+       "p": "**No.** Time on leave without pay, like the LWOP during the 2021–22 COVID vaccine mandate, doesn't count as service. If you were out 3 months, you reach 20, 23 and 25 years 3 months later than your appointment date says."
+      },
+      {
+       "p": "The calculators count from your appointment date unless you enter your equated date in Your personal numbers."
+      },
+      {
+       "p": "Confirm your service dates with the Pension Fund."
+      }
+     ]
+    },
+    {
+     "q": "Does my pension go up after I retire?",
+     "a": [
+      {
+       "p": "Only a little. Tier 2 has **no escalation**. You get the COLA: half of inflation (between 1% and 3%) on the first $18,000 of your pension, about $270 a year when inflation is 3%."
+      },
+      {
+       "p": "It starts at age 62 once you've been retired 5 years, or at 55 once you've been retired 10 years."
+      }
+     ]
+    },
+    {
+     "q": "What are the VSF and the banked variable?",
+     "a": [
+      {
+       "p": "The **VSF** (Variable Supplements Fund) pays **$12,000 a year** to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members."
+      },
+      {
+       "p": "The **banked variable**: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000."
+      },
+      {
+       "p": "Until you turn 62, any COLA you get is taken out of your VSF."
+      }
+     ]
+    },
+    {
+     "q": "Does Social Security lower my pension?",
+     "a": [
+      {
+       "p": "No. The Social Security offset at 62 is a Tier 3 rule. Your Tier 2 pension isn't reduced when you start Social Security."
+      }
+     ]
+    },
+    {
+     "q": "What is the “death gamble”?",
+     "a": [
+      {
+       "p": "It's what your family gets if you die while still on the job with **20 or more years**, from something that isn't line of duty. The Fund figures your pension as if you had retired the day before, and your beneficiary gets its **reserve**: the lump sum it would take to pay that pension for the rest of your life. They can take it as a lump sum or as an annuity."
+      },
+      {
+       "ul": [
+        "**Under 20 years:** it's the ordinary death benefit instead: 3 times your last 12 months' pay (rounded up to the next $1,000), plus your contributions back with interest.",
+        "**After you retire:** the coverage lasts until your first full pension check. After that, what your family gets depends on the option you picked when you retired. With the maximum pension (no option), payments stop when you die.",
+        "**Line of duty:** a separate benefit: a pension for your spouse of 50% of your salary, plus a state benefit that brings the total, with Social Security, up to your last year's pay.",
+        "**Life insurance:** $8,500, tax-free, from the Fire Department Life Insurance Fund."
+       ]
+      },
+      {
+       "p": "That's the \"gamble\": past 20, staying on the job keeps this protection for your family, and retiring on the maximum pension gives it up. The Fund can tell you what your reserve is worth and what each option would cost you."
+      }
+     ]
+    },
+    {
+     "q": "Do I keep my health insurance?",
+     "a": [
+      {
+       "ex": "**These rules change** with new laws, court rulings and union contracts. Always check your coverage directly with your health plan, your union, or the Fire Pension Fund before you make decisions."
+      },
+      {
+       "ul": [
+        "**Who qualifies:** you need at least 10 years of credited service in a City pension system (5 years if you were a City employee on or before December 27, 2001). Retiring on an FDNY service pension meets this.",
+        "**Only while collecting:** health benefits come with collecting a pension, and they're only available while you're actually collecting one. Accident disability retirees get health insurance regardless of years of service.",
+        "**Before 65:** you stay on the same plans as active members. As of January 2026, that's the NYCE PPO.",
+        "**At 65:** you go on traditional Medicare plus a City plan such as Senior Care or HIP VIP. The City dropped its plan to move retirees to Medicare Advantage in 2025.",
+        "**Dental, optical and prescriptions** in retirement come through your union's welfare fund. Check with them for details."
+       ]
+      },
+      {
+       "p": "For details, call Employee Health Benefits at the NYC Office of Labor Relations: [212-306-7390](tel:2123067390)."
+      }
+     ]
+    },
+    {
+     "q": "Does my other City service count? (1/80th)",
+     "a": [
+      {
+       "p": "Yes, if you had a non-uniformed City job before the FDNY (NYCERS or Board of Ed time) and it's credited with the Fire Pension Fund, by transfer or buyback. Uniformed service that didn't come right before the FDNY counts the same way."
+      },
+      {
+       "p": "For each year of that service, your pension adds **1/80th of your average pay over your last 5 years**. It doesn't count toward your 20 years, and it isn't paid on a disability pension (3/4s)."
+      },
+      {
+       "ex": "Example: 3 years of other City service and $150,000 average pay over your last 5 years. 3 × $150,000 ÷ 80 is **$5,625 a year** more pension, about $470 a month."
+      },
+      {
+       "p": "Add it in step 1 of [Your personal numbers](mfp://personal). Ask the Fund what a buyback would cost."
+      }
+     ]
+    },
+    {
+     "q": "Who made this site?",
+     "a": [
+      {
+       "p": "I'm Emmet Meehan, LT in Division 14. I built this on my own time to help members understand and estimate their pensions. I keep it up to date as rules change."
+      },
+      {
+       "p": "Spot a mistake or want something added? Email me at [emmetsmeehan@gmail.com](mailto:emmetsmeehan@gmail.com)."
+      },
+      {
+       "ex": "This is an unofficial planning tool. It isn't affiliated with or endorsed by the FDNY or the NYC Fire Pension Fund. Confirm with the Fund before you decide."
+      }
+     ]
+    }
+   ]
+  },
+  "bills": [
+   {
+    "id": "b40",
+    "title": "1/40th instead of 1/60th after 20 years",
+    "check": "1/40th after 20 years",
+    "nums": [
+     "S5058A"
+    ],
+    "yr": 2025,
+    "intro": "Feb. 18, 2025",
+    "what": "For each year you work past 20, your pension would add 1/40th of your earnings instead of 1/60th, for service and disability (3/4s) pensions. It would also give Tier 3 members an extra 1/40th of final average salary for each year past 20.",
+    "note": "Amended in 2026 (S5058A). An earlier version, S9593, died in committee in 2024.",
+    "committee": "Senate Civil Service and Pensions",
+    "step": 1
+   },
+   {
+    "id": "b67",
+    "personal": true,
+    "title": "Retire by 67 instead of 65",
+    "check": "Retire by 67 instead of 65",
+    "nums": [
+     "A9291",
+     "S9300"
+    ],
+    "yr": 2025,
+    "intro": "Dec. 10, 2025",
+    "what": "Right now uniformed members have to retire at 65. This bill would raise that to 67, giving you up to two more years on the job. It changes City law (Administrative Code § 15-121), the age limit for Tier 2.",
+    "note": "Tier 3’s age limit of 62 is in state law, which this bill doesn’t change. The Senate version, S9300, was introduced Feb. 26, 2026.",
+    "committee": "Assembly Governmental Employees and Senate Civil Service and Pensions",
+    "step": 1
+   },
+   {
+    "id": "yearly",
+    "law": true,
+    "title": "Longevity bonus at 25 years",
+    "nums": [
+     "S9202",
+     "S9008"
+    ],
+    "yr": 2025,
+    "intro": "Feb. 13, 2026",
+    "signed": "May 27, 2026",
+    "chapter": "in the FY2027 state budget",
+    "what": "If you retire with 25 years or more, part of your rank’s top pay is added to the salary your pension is based on: 5% at 25 years, plus 1% more for each year after, up to 15% at 35. The bill covers members of any plan, Tier 2 included.",
+    "note": "This passed in the state budget (S9008-C / A10008-C, Part AAA), so the bill’s own page on nysenate.gov still says “in committee.” Its Assembly version is A10392.",
+    "step": 5
+   },
+   {
+    "id": "ch540",
+    "law": true,
+    "title": "Best 3 years for all Tier 2",
+    "nums": [
+     "S6405"
+    ],
+    "yr": 2021,
+    "intro": "April 27, 2021",
+    "signed": "2021",
+    "chapter": "Chapter 540",
+    "what": "Members appointed on or after July 1, 2000 get the same final average salary as earlier members: the higher of the last 12 months or the best 3 years in a row. Before this law, they got the last 12 months only.",
+    "step": 5
+   }
+  ],
+  "sessionEnd": "This is a 2025–26 bill. The session ends Dec. 31, 2026. If it hasn’t passed by then, it dies and would have to be introduced again in 2027 under a new number.",
+  "billsChecked": "Nov. 12, 2026"
+ },
+ "tier3": {
+  "basics": {
+   "title": "Pension basics",
+   "intro": "",
+   "keys": [
+    {
+     "text": "You get paid ==50%== of your final average salary once you have 20 years."
+    },
+    {
+     "text": "Your final average salary is based off the ==best 3 years== in a row of pay, overtime included, with a 10% look-back.",
+     "moreTitle": "What’s the 10% look-back?",
+     "more": [
+      {
+       "p": "Each year in your best 3 only counts up to **110% of the average of the two years before it**. Anything over that is left out."
+      },
+      {
+       "ex": "Example: you made $100,000 and then $110,000. Their average is $105,000, so the next year counts only up to $115,500. If you made $130,000 that year, $14,500 of it doesn't count."
+      },
+      {
+       "p": "So a big jump in one year, like a huge overtime year or a promotion, can get cut. Pay that climbs steadily over your last few years counts in full."
+      }
+     ]
+    },
+    {
+     "text": "Once you complete ==23 years==, you get full escalation (a cost-of-living raise), so your whole pension keeps up with inflation."
+    },
+    {
+     "text": "On top of your pension, you get ==$12,000== a year from the VSF (Variable Supplements Fund)."
+    }
+   ],
+   "tiles": [],
+   "questions": [
+    {
+     "q": "When can I retire, and what if I leave before 20 years?",
+     "a": [
+      {
+       "p": "You can leave the job whenever you want. What you get depends on how many years you have:"
+      },
+      {
+       "ul": [
+        "**Under 5 years:** no pension. You get back the money you paid in (your contributions).",
+        "**5 to 10 years:** you’re vested, so you pick one: take back the money you paid in, or leave it in and collect a vested pension starting on what would have been your 20-year date. You can’t do both.",
+        "**10 to 20 years:** you can’t take your contributions back. You get a vested pension starting on what would have been your 20-year date."
+       ]
+      },
+      {
+       "p": "A **vested pension** is 2.1% of your final average salary for each year you worked. Leave with 15 years and it’s 31.5%. It starts when you would have hit 20 years, or at age 55 with a small cut if that comes first. There’s no VSF, and it drops at 62 by half your Social Security, like a regular pension."
+      },
+      {
+       "p": "**Once you have 20 years on the job, you can retire and collect 50% of your final average salary for the rest of your life.**"
+      },
+      {
+       "p": "The 50% doesn't go up if you stay longer. (A bill in Albany, S5058A, would add 1/40th of your final average salary for each year past 20. It hasn't passed. See [Bills in Albany](mfp://bills).) Staying can still raise your pension in three ways: your final average salary is usually higher, your pension can grow with inflation (escalation), and you bank extra VSF payments."
+      },
+      {
+       "p": "Tier 3 members must retire by age 62."
+      }
+     ]
+    },
+    {
+     "q": "What is my final average salary?",
+     "a": [
+      {
+       "p": "It's the average of your **best 3 years in a row**, overtime included. They can be any 3 years in your career, not just your last ones, and each year runs from your retirement month and day, not January to December. Retire April 6, and each year runs April 6 to April 5."
+      },
+      {
+       "p": "The personal numbers page uses whole calendar years until you add your paychecks from ESS under **Find your exact best 3**. Then it counts each year the Fund's way."
+      },
+      {
+       "p": "There's one limit: a year only counts up to 10% more than the average of the 2 years before it. Anything above that is cut."
+      },
+      {
+       "ex": "Example: you made $100,000 and then $110,000. Their average is $105,000, so the next year counts only up to $115,500. If you made $130,000 that year, $14,500 of it doesn't count."
+      }
+     ]
+    },
+    {
+     "q": "Why do 23 and 25 years matter?",
+     "a": [
+      {
+       "p": "**Completing 23 years** gets you full escalation. Your pension grows every year and each raise builds on the last."
+      },
+      {
+       "ex": "Example: a $90,000 pension that grows 3% a year is about $162,500 after 20 years. Without escalation, the same pension stays close to $90,000."
+      },
+      {
+       "p": "**25 years** starts the longevity bonus, which raises the salary your pension is figured on."
+      }
+     ]
+    },
+    {
+     "q": "What is the longevity bonus?",
+     "a": [
+      {
+       "p": "If you retire with **25 years or more**, a percentage of the **top base pay for your rank** is added to your final average salary. That's the top step on your union's pay scale, not your own pay, and no overtime, night differential or holiday pay: **5% at 25 years, plus 1% for each year after, up to 15% at 35**. It became law in the 2026 state budget, signed May 27, 2026, and it applies to any uniformed rank."
+      },
+      {
+       "ex": "Example: a firefighter retiring at 28 years gets 8% of the top firefighter base pay ($109,352), which is $8,748. That's added to their final average salary, so their pension goes up about $4,374 a year."
+      },
+      {
+       "p": "The law's exact words are 5% of “the highest grade of pay under the applicable collective bargaining agreement” for the rank you retire in. The calculators read that as top base pay. The bill’s cost estimate used higher figures, so your real bonus could come out a little higher."
+      },
+      {
+       "p": "It doesn't apply to a disability pension (3/4s) in these calculators."
+      }
+     ]
+    },
+    {
+     "q": "What are the VSF and the banked variable?",
+     "a": [
+      {
+       "p": "The **VSF** (Variable Supplements Fund) pays **$12,000 a year** to members who retire for service with 20 or more years. It's paid around December 15 for UFA members and around January 31 for UFOA members."
+      },
+      {
+       "p": "The **banked variable**: for each full month you work past 20 years, $1,000 (one month of the $12,000 VSF) is banked. You get it as a lump sum when you retire. For example, 5 extra years means $60,000, and 2 extra months means $2,000."
+      },
+      {
+       "p": "Until you turn 62, any COLA you get is taken out of your VSF."
+      }
+     ]
+    },
+    {
+     "q": "What is the Social Security offset?",
+     "a": [
+      {
+       "p": "At 62, your pension goes down by **half of a Social Security figure**. That's the Social Security offset. It's a Tier 3 rule."
+      },
+      {
+       "p": "It isn't half of the Social Security check you'll actually get. The Fund works out its own figure (state law, RSSL § 511):"
+      },
+      {
+       "ul": [
+        "Only your pay from a public employer counts. Every other year counts as zero, so private jobs don't add to it.",
+        "It's set the day you retire. Later Social Security raises don't change it.",
+        "A second way of figuring it, from your highest pay in your last 5 years, is used if it comes out lower.",
+        "It's cut 20% because the offset starts before 65."
+       ]
+      },
+      {
+       "ex": "For most members that works out to roughly $700 to $900 a month off at 62. The personal numbers page estimates yours from the earnings you enter."
+      },
+      {
+       "p": "Escalation keeps going after 62, figured on the lower amount. Social Security itself is paid separately, by the federal government."
+      },
+      {
+       "p": "**Albany is fighting it.** [S6289A](https://www.nysenate.gov/legislation/bills/2025/S6289/amendment/A) (Gounardes) would end the offset for FDNY members. It's in the Senate Civil Service and Pensions Committee and hasn't passed either house. Like every 2025–26 bill, it dies Dec. 31, 2026 unless it passes."
+      }
+     ]
+    },
+    {
+     "q": "Does Tier 3 have the “death gamble”?",
+     "a": [
+      {
+       "p": "**No.** In Tier 2, if you die on the job with 20 or more years (not line of duty), your family gets the reserve for your pension: the lump sum it would take to pay it for the rest of your life. That's the \"death gamble.\" The Fund's Tier 3 plan description has no such benefit."
+      },
+      {
+       "p": "In Tier 3, if you die before you retire (not line of duty), your beneficiary gets the **ordinary death benefit** at any length of service: 3 times your last 12 months' pay (rounded up to the next $1,000), plus your contributions back with interest. It doesn't change at 20 years, so staying on the job longer doesn't add protection for your family the way it does in Tier 2."
+      },
+      {
+       "ul": [
+        "**After you retire:** what your family gets depends on the option you pick when you retire. With the maximum pension (no option), payments stop when you die. Options lower your pension to leave something to a beneficiary.",
+        "**Line of duty:** a separate benefit: a pension for your spouse of 50% of your final average salary, plus a state benefit that brings the total, with Social Security, up to your last year's pay.",
+        "**Life insurance:** $8,500, tax-free, from the Fire Department Life Insurance Fund while you're active; $7,500 after you retire."
+       ]
+      },
+      {
+       "p": "This is from the Fund's Tier 3 plan description, revised December 2019. A later law could change it, so check with the Fund."
+      }
+     ]
+    },
+    {
+     "q": "What if I’m hurt on the job? (“three quarters”)",
+     "a": [
+      {
+       "p": "An accident disability retirement (\"three quarters\") pays **75% of your final average salary**, at any length of service, and it's generally not taxed."
+      },
+      {
+       "ul": [
+        "**No escalation.** After 5 years retired, at any age, you get the COLA (cost-of-living adjustment, which is different from full escalation): half of inflation, at least 1% and at most 3%, but only on the first $18,000 of your pension.",
+        "**No Social Security offset at 62.** Your pension doesn't drop at 62.",
+        "You keep health insurance no matter how many years you have."
+       ]
+      },
+      {
+       "p": "It must be approved by the Pension Fund's Medical Board and Board of Trustees. You don't need to qualify for Social Security Disability to get a line-of-duty disability pension."
+      }
+     ]
+    },
+    {
+     "q": "Do I pay taxes on my pension?",
+     "a": [
+      {
+       "p": "A service pension is subject to federal income tax but not New York State or New York City income tax."
+      },
+      {
+       "p": "A line-of-duty disability pension (3/4s) is generally not taxed. If you move out of state, check that state's rules or ask a tax professional."
+      }
+     ]
+    },
+    {
+     "q": "What is an equated date?",
+     "a": [
+      {
+       "p": "It’s the date the Pension Fund counts your service from, and for some members it’s earlier than their appointment date. You can buy up to **3 years** of military service once you have 5 years on. Uniformed service right before the FDNY, like EMS or the NYPD, can count too, and it can be much longer than 3 years. And if you were legally entitled to be hired earlier than you were, you may have been given an earlier date. Any of these gives you an earlier **equated date**, which moves your 20-year date, the 23-year date for full escalation, the banked variable and the 25-year longevity bonus."
+      },
+      {
+       "p": "If you were out on leave without pay (LWOP), your equated date may be later than your appointment date."
+      }
+     ]
+    },
+    {
+     "q": "What is my “minimum required,” and what if I'm in deficit?",
+     "a": [
+      {
+       "p": "You pay a basic **3%** of your pay into the pension, plus about **2%** more. The extra 2% is the “enhanced” contribution, added by a 2016 law to pay for the enhanced disability plan: a disability pension (3/4s) if you're hurt on the job, and a better pension if you're disabled off duty. Everyone appointed on or after June 15, 2016 pays it. Tier 3 members appointed before that had a one-time choice to join. The Fund reviews the rate every three years, and by law it can't go above 3% (RSSL §517(h))."
+      },
+      {
+       "p": "**After 25 years, the basic 3% stops** (RSSL §517). Whether the extra 2% stops too hasn’t been confirmed by the Fund."
+      },
+      {
+       "p": "Your pension account balance earns 5% interest per year."
+      },
+      {
+       "p": "Your **minimum required** is what your account should hold for the service you have so far. If you're below it, you're in **deficit**."
+      },
+      {
+       "p": "You can't retire with a deficit. Pay it off before you go, either in one lump sum or through payroll deductions."
+      }
+     ]
+    },
+    {
+     "q": "Can I borrow from my pension?",
+     "a": [
+      {
+       "p": "No. Tier 3 has no pension loans."
+      },
+      {
+       "p": "If you need to borrow against retirement savings, the City's 457 and 401(k) plans offer loans. See [Other accounts](https://myfirepension.com/accounts/)."
+      }
+     ]
+    },
+    {
+     "q": "Does longevity pay count?",
+     "a": [
+      {
+       "p": "Longevity pay is the extra money you get once you hit certain years on the job. Your pension doesn't always count all of it:"
+      },
+      {
+       "ul": [
+        "**Retire with 20 to 24 years:** only the **10-year** longevity amount counts, even if your check already has more.",
+        "**Retire with 25 years or more:** the **20-year** longevity amount counts."
+       ]
+      },
+      {
+       "ex": "Example: you retire at 22 years. Your check includes 20-year longevity, but your pension only counts the 10-year amount, so the difference is left out of your final average salary. Stay to 25 and all of your 20-year longevity counts."
+      },
+      {
+       "p": "The calculators use your full pay from your W-2, so between 20 and 25 years their numbers can run a little high. Your Fund estimate will show the exact figure."
+      }
+     ]
+    },
+    {
+     "q": "I was out on LODI. Does that pay count?",
+     "a": [
+      {
+       "p": "**Yes.** Pay while you're out on a line-of-duty injury counts toward your pension: payroll takes your pension contribution out of it like any other pay. You don't earn overtime or night differential while you're out, though, so a long LODI can still lower that year."
+      },
+      {
+       "p": "But LODI pay is tax-free, so it's **left out of box 5** (Medicare wages) on your W-2, and out of the NYCAPS Tax Summary the calculators import. The easiest fix: on the personal numbers page, choose **Import via screenshot or PDF** in step 2 and add your W-2s, and the page reads LODI from box 14 for you. If you type in your years, put the LODI from box 14 of that year's W-2 in the **LODI** box next to it; the same goes if you import your Tax Summary."
+      },
+      {
+       "p": "The opposite goes for one-time bonuses, like the 2023 healthcare worker bonus (**HWB** in box 14): it's in box 5 but doesn't count toward your pension. Import your W-2s and the page takes it out for you; if you type in your years, subtract it from that year."
+      },
+      {
+       "p": "This works with imported numbers too; you don't need to start over. Your Fund estimate will show the exact figure."
+      }
+     ]
+    },
+    {
+     "q": "I was on unpaid leave (LWOP). Does that time count?",
+     "a": [
+      {
+       "p": "**No.** Time on leave without pay, like the LWOP during the 2021–22 COVID vaccine mandate, doesn't count as service. If you were out 3 months, you reach 20, 23 and 25 years 3 months later than your appointment date says."
+      },
+      {
+       "p": "The calculators count from your appointment date unless you enter your equated date in Your personal numbers."
+      },
+      {
+       "p": "It won't drag down your salary average, though. If unpaid leave falls in the years your pension is figured on, up to 12 months of it is left out and the same stretch just before those years is used instead. The calculators don't make this swap."
+      },
+      {
+       "p": "Confirm your service dates with the Pension Fund."
+      }
+     ]
+    },
+    {
+     "q": "Does my pension go up after I retire?",
+     "a": [
+      {
+       "p": "It depends on how many years you have when you retire:"
+      },
+      {
+       "ul": [
+        "**23 years or more: full escalation.** Your whole pension goes up with inflation every year, up to 3% a year. The NYC Office of the Actuary sets the rate each April, based on inflation through the previous December. If inflation runs higher than 3% in a year, the extra is saved and added in a later year when inflation is lower (state law, RSSL §510). The calculators assume the same inflation every year, so they don't show this.",
+        "**Between 20 and 23 years: partial escalation.** You get 1/36 of full escalation for each month past 20 years.",
+        "**20 years: no escalation.** You only get a small COLA: half of inflation (between 1% and 3%) on the first $18,000 of your pension, about $270 a year when inflation is 3%. It starts at age 62 once you've been retired 5 years, or at 55 once you've been retired 10 years."
+       ]
+      },
+      {
+       "p": "This changed in the 2026 state budget, signed May 27, 2026. Before that, full escalation took 25 years. Another bill (S9203) would move it to 20 years; it hasn't passed. See [Bills in Albany](mfp://bills)."
+      }
+     ]
+    },
+    {
+     "q": "Do I keep my health insurance?",
+     "a": [
+      {
+       "ex": "**These rules change** with new laws, court rulings and union contracts. Always check your coverage directly with your health plan, your union, or the Fire Pension Fund before you make decisions."
+      },
+      {
+       "ul": [
+        "**Who qualifies:** you need at least 10 years of credited service in a City pension system (5 years if you were a City employee on or before December 27, 2001). Retiring on an FDNY service pension meets this.",
+        "**Only while collecting:** health benefits come with collecting a pension, and they're only available while you're actually collecting one. Accident disability retirees get health insurance regardless of years of service.",
+        "**Before 65:** you stay on the same plans as active members. As of January 2026, that's the NYCE PPO.",
+        "**At 65:** you go on traditional Medicare plus a City plan such as Senior Care or HIP VIP. The City dropped its plan to move retirees to Medicare Advantage in 2025.",
+        "**Dental, optical and prescriptions** in retirement come through your union's welfare fund. Check with them for details."
+       ]
+      },
+      {
+       "p": "For details, call Employee Health Benefits at the NYC Office of Labor Relations: [212-306-7390](tel:2123067390)."
+      }
+     ]
+    },
+    {
+     "q": "Who made this site?",
+     "a": [
+      {
+       "p": "I'm Emmet Meehan, LT in Division 14. I built this on my own time to help members understand and estimate their pensions. I keep it up to date as rules change."
+      },
+      {
+       "p": "Spot a mistake or want something added? Email me at [emmetsmeehan@gmail.com](mailto:emmetsmeehan@gmail.com)."
+      },
+      {
+       "ex": "This is an unofficial planning tool. It isn't affiliated with or endorsed by the FDNY or the NYC Fire Pension Fund. Confirm with the Fund before you decide."
+      }
+     ]
+    }
+   ]
+  },
+  "bills": [
+   {
+    "id": "esc20",
+    "kind": "esc",
+    "val": 20,
+    "title": "Full escalation at 20 years",
+    "check": "Full escalation at 20 years",
+    "nums": [
+     "S9203",
+     "A10254"
+    ],
+    "intro": "Feb. 13, 2026",
+    "what": "Full escalation as soon as you can retire, at 20 years, instead of 23.",
+    "committee": "Senate Civil Service and Pensions",
+    "step": 1
+   },
+   {
+    "id": "b40",
+    "kind": "flag",
+    "title": "Extra 1/40th for each year past 20",
+    "check": "Extra 1/40th for each year past 20",
+    "nums": [
+     "S5058A"
+    ],
+    "intro": "Feb. 18, 2025",
+    "what": "For each year you work past 20, your pension would add 1/40th of your final average salary on top of the 50%. Five extra years would add 12.5% of your final average salary. (Tier 2 members would get 1/40th instead of 1/60th of their earnings after 20.)",
+    "note": "Amended in 2026 (S5058A).",
+    "committee": "Senate Civil Service and Pensions",
+    "step": 1
+   },
+   {
+    "id": "esc23",
+    "law": true,
+    "title": "Full escalation at 23 years",
+    "nums": [
+     "S9204",
+     "A11269",
+     "S9008"
+    ],
+    "intro": "Feb. 13, 2026",
+    "signed": "May 27, 2026",
+    "chapter": "in the FY2027 state budget",
+    "what": "Your whole pension grows with inflation (up to 3% a year) if you retire with 23 years instead of 25. Partial escalation now starts after 20 years instead of 22.",
+    "note": "This passed in the state budget (S9008-C / A10008-C, Part ZZ), so the bill’s own page on nysenate.gov still says “in committee.”",
+    "step": 5
+   },
+   {
+    "id": "yearly",
+    "law": true,
+    "title": "Longevity bonus at 25 years",
+    "nums": [
+     "S9202",
+     "A10392",
+     "S9008"
+    ],
+    "intro": "Feb. 13, 2026",
+    "signed": "May 27, 2026",
+    "chapter": "in the FY2027 state budget",
+    "what": "If you retire with 25 years or more, part of your rank’s top pay is added to the salary your pension is based on: 5% at 25 years, plus 1% more for each year after, up to 15% at 35.",
+    "note": "This passed in the state budget (S9008-C / A10008-C, Part AAA), so the bill’s own page on nysenate.gov still says “in committee.”",
+    "step": 5
+   },
+   {
+    "id": "s4727",
+    "law": true,
+    "title": "50% at 20 years",
+    "nums": [
+     "S4727"
+    ],
+    "intro": "2025",
+    "signed": "Dec. 19, 2025",
+    "chapter": "Chapter 692 of the Laws of 2025",
+    "what": "Tier 3 pays 50% of your final average salary once you have 20 years.",
+    "step": 5
+   }
+  ],
+  "sessionEnd": "This is a 2025–26 bill. The session ends Dec. 31, 2026. If it hasn’t passed by then, it dies and would have to be introduced again in 2027 under a new number.",
+  "billsChecked": "Nov. 12, 2026"
+ }
+}
