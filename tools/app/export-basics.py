@@ -122,6 +122,7 @@ def updates(site, dst):
 
 
 def main(site, outdir):
+    os.makedirs(outdir, exist_ok=True)  # CI passes a fresh temp path that doesn't exist yet
     for tier in ("tier2", "tier3"):
         basics(os.path.join(site, tier, "index.html"), os.path.join(outdir, f"{tier}-basics.json"))
     updates(site, os.path.join(outdir, "updates.json"))
