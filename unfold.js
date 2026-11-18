@@ -30,8 +30,15 @@
     if(inner) d._a.push(inner.animate([{transform:'none',opacity:1},{transform:'translateY(-6px)',opacity:0}],{duration:T_MS*.8,easing:T_EASE,fill:'forwards'}));
     d._a[0].onfinish=function(){d.open=false;stop(d)};
   }
-  /* Answers already open on load (none normally) get the open look. */
+  /* Answers already open on load, or opened by other code (the "Learn more about the Social Security offset"
+     link), get the open look, and the others close. */
+  function isQ(d){return d&&d.matches&&d.matches('.qa>details, .qs>details.q')}
   document.querySelectorAll('.qa>details[open], .qs>details.q[open]').forEach(function(d){d.classList.add('isopen')});
+  document.addEventListener('toggle',function(e){var d=e.target;if(!isQ(d)||d._a) return;
+    if(d.open&&!d.classList.contains('isopen')){d.classList.add('isopen');
+      Array.prototype.forEach.call(d.parentElement.children,function(o){if(o!==d&&o.open){o.open=false;o.classList.remove('isopen')}})}
+    else if(!d.open) d.classList.remove('isopen');
+  },true);
   document.addEventListener('click',function(e){
     var s=e.target.closest&&e.target.closest(SEL);if(!s) return;
     var d=s.parentElement;e.preventDefault();
