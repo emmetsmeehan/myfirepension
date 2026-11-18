@@ -1,4 +1,4 @@
-/* Preview branch only: plainer styling (squarer corners, borders instead of shadows,
+/* Plainer styling (owner, Nov. 18, 2026) (squarer corners, borders instead of shadows,
    no gradients, no frosted bar, no pulsing). Loaded last on every page so it wins. */
 :root:root:root{--r:6px;--r-sm:4px;--pill:6px;--shadow:none}
 .topbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--bg)!important}

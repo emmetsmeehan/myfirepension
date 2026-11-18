@@ -1,4 +1,4 @@
-/* Unfold accordion for Pension basics and the Other accounts questions (matches easyui.site's UnfoldAccordion).
+/* Unfold accordion (owner, Nov. 18, 2026) for Pension basics and the Other accounts questions (matches easyui.site's UnfoldAccordion).
    One open at a time. The chevron flips right away with a slight spring; the answer's height unfolds
    (a calm, no-overshoot curve, ~420ms) while its text rises 6px and fades in a little faster, so it leads.
    Closing runs the same motion backwards. The page doesn't jump. */
