@@ -7,8 +7,21 @@
 .lump .li{background:var(--sage)!important}
 .now .dot::after{animation:none!important;display:none}
 
-/* Unfold accordion: the chevron turns as the answer opens; on close it turns back right away. */
-.qa summary::after,.q summary::after{transition:transform .34s cubic-bezier(.2,.8,.2,1),margin .34s cubic-bezier(.2,.8,.2,1)!important}
-.qa details.closing summary::after{transform:rotate(45deg) translate(-3px,-3px)!important}
-.q.closing summary::after{transform:rotate(45deg)!important;margin-top:-4px!important}
-.qa details,.q{overflow:hidden}
+/* Unfold accordion (matches easyui.site's UnfoldAccordion): one bordered list with divider lines,
+   a chevron that flips 180° with a slight spring, the answer's height unfolds and its text rises into place. */
+.qa{gap:0!important;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.qa>details{border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important}
+.qa>details+details{border-top:1px solid var(--line)!important}
+.qs{gap:0!important}
+.qs>h2{margin-bottom:12px}
+.qs>details.q{border-radius:0!important;border-top-width:0!important}
+.qs>h2+details.q{border-top-width:1px!important;border-radius:var(--r) var(--r) 0 0!important}
+.qs>details.q:last-of-type{border-radius:0 0 var(--r) var(--r)!important}
+.qa summary,.qs summary{transition:background-color .15s}
+@media (hover:hover){.qa summary:hover,.qs summary:hover{background:var(--soft)}}
+/* chevron: a down arrow that turns to point up */
+.qa summary::after,.qs summary::after{content:""!important;flex:none;width:9px!important;height:9px!important;margin:0 4px 0 0!important;
+  border:0!important;border-right:2.5px solid var(--muted)!important;border-bottom:2.5px solid var(--muted)!important;
+  transform:translateY(-2px) rotate(45deg)!important;transition:transform .32s cubic-bezier(.34,1.45,.5,1)!important}
+.qa details.isopen summary::after,.qs details.isopen summary::after{transform:translateY(2px) rotate(225deg)!important}
+.qa .ans,.qs .a{will-change:transform,opacity}
