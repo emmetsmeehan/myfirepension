@@ -1,0 +1,14 @@
+/* Preview branch only: plainer styling (squarer corners, borders instead of shadows,
+   no gradients, no frosted bar, no pulsing). Loaded last on every page so it wins. */
+:root:root:root{--r:6px;--r-sm:4px;--pill:6px;--shadow:none}
+.topbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--bg)!important}
+.law .dot{background:var(--gold)!important;box-shadow:none!important}
+.bill.lawcard{background:var(--surface)!important}
+.lump .li{background:var(--sage)!important}
+.now .dot::after{animation:none!important;display:none}
+
+/* Unfold accordion: the chevron turns as the answer opens; on close it turns back right away. */
+.qa summary::after,.q summary::after{transition:transform .34s cubic-bezier(.2,.8,.2,1),margin .34s cubic-bezier(.2,.8,.2,1)!important}
+.qa details.closing summary::after{transform:rotate(45deg) translate(-3px,-3px)!important}
+.q.closing summary::after{transform:rotate(45deg)!important;margin-top:-4px!important}
+.qa details,.q{overflow:hidden}

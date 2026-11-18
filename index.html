@@ -57,7 +57,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .hometop{min-width:0}.lshort{display:none}
 @media (max-width:360px){.hometop{gap:6px}.hometop .chip{font-size:13.5px;padding:4px 9px}}@media (max-width:430px){.lfull{display:none}.lshort{display:inline}}@media (max-width:360px){.lshort{display:none}}
 .hero{display:grid;gap:14px;padding:0 0 6px}
-.chip{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-weight:600;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:5px 12px;border-radius:999px}
+.chip{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-weight:600;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:5px 12px;border-radius:var(--pill,999px)}
 .hero .sub{font-size:clamp(19px,3.6vw,23px);color:var(--muted);max-width:34ch}
 .pick h2{margin-bottom:12px}
 .tiers{display:grid;gap:14px}
@@ -75,7 +75,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .tier.other b{font-size:clamp(30px,7.5vw,38px)}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
 @media (max-width:560px){.card{padding:16px}}
-.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:var(--pill,999px);background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
 .news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
 .news summary::-webkit-details-marker{display:none}
 .news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
@@ -100,6 +100,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window,document,"clarity","script","z5169eoycz");
 </script>
+<link rel="stylesheet" href="/unslop.css">
 </head>
 <body>
 <main class="app">

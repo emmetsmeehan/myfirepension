@@ -38,7 +38,7 @@ p{margin:0}
 svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .app{max-width:1080px;margin:0 auto;padding:0 16px calc(28px + env(safe-area-inset-bottom));display:grid;gap:22px}
 .hero{display:grid;gap:14px;padding:36px 0 6px}
-.chip{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-weight:600;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:5px 12px;border-radius:999px}
+.chip{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-weight:600;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:5px 12px;border-radius:var(--pill,999px)}
 .hero .sub{font-size:clamp(19px,3.6vw,23px);color:var(--muted);max-width:34ch}
 .pick h2{margin-bottom:12px}
 .tiers{display:grid;gap:14px}
@@ -75,7 +75,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .inp input{flex:1;min-width:0;width:100%;border:0;background:transparent;font-weight:600;font-size:19px;padding:12px 12px 12px 4px}
 .inp input:focus{outline:none}
 .inp:focus-within{border-color:var(--steel);box-shadow:0 0 0 3px color-mix(in srgb,var(--steel) 25%,transparent)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;min-height:50px;padding:0 22px;font-weight:700;font-size:17px;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--pill,999px);min-height:50px;padding:0 22px;font-weight:700;font-size:17px;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none}
 .btn:disabled{opacity:.55;cursor:default}
 .msg{font-size:16px;font-weight:600}
 .msg.ok{color:var(--sage)} .msg.err{color:var(--accent)}
@@ -85,7 +85,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .ask textarea:focus{outline:none;border-color:var(--steel);box-shadow:0 0 0 3px color-mix(in srgb,var(--steel) 25%,transparent)}
 .ask .inp input{padding-left:14px;font-weight:400;font-size:17px}
 .ask .hp{position:absolute;left:-9999px}
-.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
+.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:var(--pill,999px);background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
 button,input,select,textarea{font:inherit;color:inherit}
 .ask h1{margin:0;font-size:30px;line-height:1.15;color:var(--ink)}
 .ask p{margin:0}
@@ -95,7 +95,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .ver{font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap;text-align:right}
 @media (max-width:360px){.ver{font-size:11px}.top .backbtn{padding-right:12px}}
 a.ver{text-decoration:none}
-.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:var(--pill,999px);background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
 .news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
 .news summary::-webkit-details-marker{display:none}
 .news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
@@ -123,6 +123,7 @@ a.ver{text-decoration:none}
   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window,document,"clarity","script","z5169eoycz");
 </script>
+<link rel="stylesheet" href="/unslop.css">
 </head>
 <body>
 <main class="app">

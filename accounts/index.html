@@ -44,7 +44,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .ver{font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap;text-align:right}
 @media (max-width:360px){.ver{font-size:11px}.top .backbtn{padding-right:12px}}
-.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
+.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:var(--pill,999px);background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
 .backbtn svg{width:22px;height:22px}
 .hero{display:grid;gap:12px;padding:10px 0 0}
 .hero .sub{font-size:clamp(19px,3.6vw,22px);color:var(--muted);max-width:40ch}
@@ -68,7 +68,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .pill{white-space:nowrap}
 @media (max-width:420px){.ahead .pill{font-size:13.5px;padding:3px 9px}}
 .pills{display:flex;flex-wrap:wrap;gap:6px}
-.pill{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;padding:4px 11px;border-radius:999px;background:var(--soft)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;padding:4px 11px;border-radius:var(--pill,999px);background:var(--soft)}
 .pill svg{width:16px;height:16px}
 .pill.you{color:var(--steel);background:color-mix(in srgb,var(--steel) 11%,var(--surface))}
 .pill.city{color:var(--sage);background:color-mix(in srgb,var(--sage) 12%,var(--surface))}
@@ -145,7 +145,7 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .draft{border:2px dashed var(--gold);border-radius:var(--r-sm);padding:10px 12px;font-size:15px;color:var(--gold);font-weight:600}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
 a.ver{text-decoration:none}
-.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:var(--pill,999px);background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
 .news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
 .news summary::-webkit-details-marker{display:none}
 .news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
@@ -173,6 +173,7 @@ a.ver{text-decoration:none}
   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window,document,"clarity","script","z5169eoycz");
 </script>
+<link rel="stylesheet" href="/unslop.css">
 </head>
 <body>
 <main class="app">
@@ -393,22 +394,10 @@ a.ver{text-decoration:none}
   </footer>
 </main>
 <script>
-/* A few more things: one question open at a time. Opening one closes the other without moving the page. */
-document.addEventListener('click',e=>{
-  const s=e.target.closest('.qs>details.q>summary');if(!s) return;
-  const d=s.parentElement;e.preventDefault();
-  if(d.open){d.open=false;return}
-  d.parentElement.querySelectorAll(':scope>details.q[open]').forEach(o=>{o.open=false});
-  d.open=true;
-  /* The page stays where it is. Only if the tapped question slid up under the top bar, line it up just below the bar. */
-  const bar=document.querySelector('.view:not([hidden]) .topbar, .top'),off=(bar?bar.getBoundingClientRect().bottom:0)+8,t=s.getBoundingClientRect().top;
-  if(t<off) window.scrollBy({top:t-off,behavior:'instant'});
-});
-</script>
-<script>
 /* A tap outside the Version drop-down closes it. */
 document.addEventListener('click',function(e){var inN=e.target.closest&&e.target.closest('details.news');
   document.querySelectorAll('details.news[open]').forEach(function(d){if(d!==inN)d.open=false})});
 </script>
+<script src="/unfold.js"></script>
 </body>
 </html>

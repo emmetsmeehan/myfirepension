@@ -41,15 +41,15 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .hint{font-size:15.5px;color:var(--muted)}
 .foot{display:grid;gap:6px;font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:4px}
 @media (max-width:560px){.card{padding:16px}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;min-height:50px;padding:0 22px;font-weight:700;font-size:17px;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--pill,999px);min-height:50px;padding:0 22px;font-weight:700;font-size:17px;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none}
 .btn:disabled{opacity:.55;cursor:default}
-.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
+.backbtn{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 16px 0 8px;border-radius:var(--pill,999px);background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow)}
 button,input,select,textarea{font:inherit;color:inherit}
 .backbtn svg{width:22px;height:22px}
 .top{padding-top:calc(14px + env(safe-area-inset-top))}
 
 .lost{display:grid;gap:18px;justify-items:start;padding:28px 0 8px;max-width:620px}
-.lost .box{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:6px 14px;border-radius:999px}
+.lost .box{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:6px 14px;border-radius:var(--pill,999px)}
 .lost .box svg{width:20px;height:20px}
 .lost h1{font-size:clamp(30px,6.5vw,44px)}
 .lost .sub{font-size:clamp(19px,3.6vw,22px);color:var(--muted)}
@@ -64,7 +64,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .top404{display:flex;justify-content:flex-end;padding-top:calc(14px + env(safe-area-inset-top))}
 .ver{font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap}
 a.ver{text-decoration:none}
-.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.news summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--gold);border-radius:var(--pill,999px);background:var(--surface);box-shadow:var(--shadow);font-size:15.5px;font-weight:700;color:var(--ink);white-space:nowrap}
 .news summary{font-size:13px;font-weight:600;min-height:36px;padding:0 11px;gap:6px;border-width:1.5px;color:var(--gold)}.news summary b{font-weight:700}a.ver{text-decoration:none}
 .news summary::-webkit-details-marker{display:none}
 .news summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-4px;flex:none}
@@ -90,6 +90,7 @@ a.ver{text-decoration:none}
   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window,document,"clarity","script","z5169eoycz");
 </script>
+<link rel="stylesheet" href="/unslop.css">
 </head>
 <body>
 <main class="app">
