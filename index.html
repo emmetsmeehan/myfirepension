@@ -53,6 +53,14 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .hometop{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative;padding-top:12px}
 .hometop .chip{white-space:nowrap}
 .hometop>details.news{margin-left:auto}
+/* Headline and Version button share one row (owner, Nov. 18, 2026): no dead space above the headline.
+   Narrower screens shorten the button: "Version 3.31", then "V3.31". */
+.hometop{align-items:flex-start;padding-top:18px}
+.hometop>h1{flex:1;min-width:0}
+.hometop>details.news{flex:none;margin-top:max(0px,calc((clamp(32px,7.5vw,50px)*1.15 - 36px)/2))}
+.hometop+.hero{margin-top:-8px}
+@media (max-width:700px){.hometop .news .lfull,.hometop .news .lshort{display:none!important}}
+@media (max-width:480px){.hometop .news summary{font-size:0;gap:0;padding:0 9px}.hometop .news summary b{font-size:13px;margin-right:6px}.hometop .news summary b::before{content:"V"}}
 .hometop:has(.ver:not([hidden])){padding-bottom:18px}
 .ver{position:absolute;right:2px;bottom:0;font-size:12px;font-weight:600;line-height:1.2;color:var(--gold);white-space:nowrap}
 .hometop{min-width:0}.lshort{display:none}
@@ -106,8 +114,9 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
 <body>
 <main class="app">
   <div class="hometop">
+    <h1>Learn about your FDNY pension.</h1>
     <details class="news">
-      <summary>Version <b>3.31</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>3.32</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
         <li><time datetime="2026-11-18">11/18/26:</time> A cleaner look, and the questions in Pension basics now open and close smoothly.</li>
@@ -122,7 +131,6 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke
     </details>
   </div>
   <header class="hero">
-    <h1>Learn about your FDNY pension.</h1>
     <p class="sub">Everything you need to know, and what you'll collect in retirement.</p>
   </header>
 
