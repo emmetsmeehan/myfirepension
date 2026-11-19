@@ -1,6 +1,6 @@
 {
  "format": 1,
- "siteVersion": "3.38",
+ "siteVersion": "3.39",
  "tier2": {
   "basics": {
    "title": "Pension basics",
@@ -602,7 +602,7 @@
        "p": "It's the average of your **best 3 years in a row**, overtime included. They can be any 3 years in your career, not just your last ones, and each year runs from your retirement month and day, not January to December. Retire April 6, and each year runs April 6 to April 5."
       },
       {
-       "p": "The personal numbers page uses whole calendar years until you add your paychecks from ESS under **Find your exact best 3**. Then it counts each year the Fund's way."
+       "p": "The personal numbers page counts it the same way, in 12-month blocks back from the retirement date you pick. It spreads each year's pay evenly by month, unless you add your paychecks from ESS under **Find your exact best 3**. Then it knows when your overtime actually came in."
       },
       {
        "p": "There's one limit: a year only counts up to 10% more than the average of the 2 years before it. Anything above that is cut."
