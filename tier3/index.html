@@ -677,14 +677,14 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-home" data-title="FDNY Tier 3 Pension">
   <div class="hometop"><a class="backbtn homeback" href="/"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Home</a>
     <details class="news">
-      <summary>Version <b>3.38</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
+      <summary>Version <b>3.39</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
+        <li><time datetime="2026-11-19">11/19/26:</time> Tier 3: your best 3 years are now counted the Fund’s way, in 12-month blocks back from your retirement date, not calendar years.</li>
         <li><time datetime="2026-11-18">11/18/26:</time> Introduced the piggy bank icon. iPhone app coming soon.</li>
         <li><time datetime="2026-11-18">11/18/26:</time> A Tier 3 disabled retirement (3/4s) now explains that it does not get escalation, even with 23+ years.</li>
         <li><time datetime="2026-11-16">11/16/26:</time> Fixed: Your first VSF payment now accurately reflects the prorated amount based on your retirement date.</li>
         <li><time datetime="2026-11-15">11/15/26:</time> Fixed: Tier 2 no longer adds your excess contributions to your pension. It’s shown separately, as the lump sum most members take, with a switch to turn it into monthly payments instead. You can also type your ITHP Over 20 from the Pension Portal for an exact ITHP number.</li>
-        <li><time datetime="2026-11-14">11/14/26:</time> Tier 2: the earnings table in “Your personal numbers” now ends with your 1/60th total: everything you earn after 20 years, divided by 60.</li>
       </ul>
       <p class="newsmore"><a href="/updates/">See older updates</a></p>
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -741,7 +741,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BASICS ===================== -->
 <main class="view" id="v-basics" data-title="Pension basics · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.38</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.39</b> (click for updates)</a></div>
   <div class="vhead"><h1>Pension basics <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1></div>
 
   <ul class="keys">
@@ -769,7 +769,7 @@ body.has-pbar .app{padding-bottom:110px}
       <p>Tier 3 members must retire by age 62.</p></div></details>
     <details><summary>What is my final average salary?</summary><div class="ans">
       <p>It's the average of your <b>best 3 years in a row</b>, overtime included. They can be any 3 years in your career, not just your last ones, and each year runs from your retirement month and day, not January to December. Retire April 6, and each year runs April 6 to April 5.</p>
-      <p>The personal numbers page uses whole calendar years until you add your paychecks from ESS under <b>Find your exact best 3</b>. Then it counts each year the Fund's way.</p>
+      <p>The personal numbers page counts it the same way, in 12-month blocks back from the retirement date you pick. It spreads each year's pay evenly by month, unless you add your paychecks from ESS under <b>Find your exact best 3</b>. Then it knows when your overtime actually came in.</p>
       <p>There's one limit: a year only counts up to 10% more than the average of the 2 years before it. Anything above that is cut.</p>
       <p class="ex">Example: you made $100,000 and then $110,000. Their average is $105,000, so the next year counts only up to $115,500. If you made $130,000 that year, $14,500 of it doesn't count.</p></div></details>
     <details><summary>Why do 23 and 25 years matter?</summary><div class="ans">
@@ -908,7 +908,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== BILLS ===================== -->
 <main class="view" id="v-bills" data-title="Bills in Albany · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.38</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.39</b> (click for updates)</a></div>
   <div class="vhead"><h1>Bills in Albany affecting <span class="tiert" style="--c:var(--accent)">Tier 3</span></h1><p class="hint checked">Status last checked Nov. 12, 2026.</p>
     <p class="session">Current session: <b>2025 and 2026</b>. Any bill not signed into law by Dec. 31, 2026 dies and has to start over in 2027.</p>
     <details class="howlaw"><summary>How does a bill actually become law?</summary><div class="hl"><ol><li><b>A bill is introduced.</b> A senator and an Assembly member each put in their own version, which is why most bills have an S number and an A number.</li><li><b>It goes to committee.</b> Pension bills go to the Senate Civil Service and Pensions Committee and the Assembly Governmental Employees Committee, and each one needs a cost estimate from the City’s actuary. Most bills never get past this step.</li><li><b>The committee votes.</b> If it passes, it usually moves on to Finance in the Senate or Ways and Means in the Assembly, then to Rules. Leadership in each house decides which bills get a floor vote.</li><li><b>The Senate and the Assembly both pass it, with the same wording.</b> If one side changes the bill, the other side has to pass the changed version. That’s what the A or B at the end of a bill number means.</li><li><b>The governor signs it or vetoes it.</b> The legislature decides when to send a passed bill to the governor, so a bill passed in June may not reach her desk until the fall. Once it does, she has 10 days to act, or 30 days if the legislature has gone home for the year.</li><li><b>It becomes law,</b> with a chapter number like “Chapter 692 of 2025,” the law that let Tier 3 retire at 20 years.</li></ol><p>Some pension changes skip these steps and go through the state budget in the spring instead, like the 23-year rule for full escalation in May 2026.</p></div></details></div>
@@ -918,7 +918,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== QUICK ===================== -->
 <main class="view" id="v-quick" data-title="Quick calculator · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.38</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.39</b> (click for updates)</a></div>
   <div class="vhead"><h1>Quick calculator <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Enter your final average salary and your years on the job. That's it.</p></div>
   <div class="qgrid">
     <div class="card calc qa1">
@@ -941,7 +941,7 @@ body.has-pbar .app{padding-bottom:110px}
 
 <!-- ===================== PERSONAL ===================== -->
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 3" hidden>
-  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.38</b> (click for updates)</a></div>
+  <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 3 home</a><a class="ver" href="/updates/">Version <b>3.39</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--accent)">Tier 3</span></h1><p>Use your real earnings to see what you'll collect, when, and how it grows.</p></div>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
@@ -1074,7 +1074,7 @@ body.has-pbar .app{padding-bottom:110px}
           <span class="hint" id="growHint"></span>
         </div>
         <div id="payWrap" hidden>
-          <button type="button" class="growbtn wstog" id="payTog" aria-expanded="false" aria-controls="payBox"><span><b>Find your exact best 3</b><small id="payTogS">Your best 3 here are calendar years. Your real ones can start on any date.</small></span><span class="chev"></span></button>
+          <button type="button" class="growbtn wstog" id="payTog" aria-expanded="false" aria-controls="payBox"><span><b>Find your exact best 3</b><small id="payTogS">Each year’s pay is spread evenly by month here. Paychecks show when it really came in.</small></span><span class="chev"></span></button>
           <div class="panelbox" id="payBox" hidden>
             <p id="payWhy" style="margin:0"></p>
             <ol>
@@ -1704,7 +1704,11 @@ function fasFromEarnings(retDate,appt){
     const avg=(w[0].counted+w[1].counted+w[2].counted)/3;
     if(!best||avg>best.fas) best={fas:avg,start:w[0].y,end:w[2].y,cut:w.reduce((s,r)=>s+(r.v-r.counted),0)};
   }
-  if(hasPays()){const rb=rollBest(retDate,appt);if(rb&&(!best||rb.fas>best.fas+0.5)) return {rows,best:rb,cal:best,lastY};}
+  /* Rolling 12-month blocks back from the retirement date, the Fund's way (owner, Nov. 19, 2026: the Fund never counts calendar years).
+     Each year's step 2 amount is spread evenly by day unless paychecks say when it was earned. The calendar-year result is kept
+     only as a fallback (no full 3-year window yet) and for the paycheck panel's comparison. */
+  const rb=rollBest(retDate,appt);
+  if(rb) return {rows,best:rb,cal:best,lastY};
   return {rows,best,cal:best,lastY};
 }
 /* Exact best 3 (Nov. 2, 2026, owner's request). The Tier 3 plan counts "any five consecutive years, based on the month
@@ -1713,14 +1717,14 @@ function fasFromEarnings(retDate,appt){
    the money was earned (each check covers the 14 days up to its pay date). Each past year's total still comes from
    step 2, so its paychecks are scaled to it; years without paychecks are spread evenly. This year's checks so far are
    used as is, and the rest of the year earns at its step 2 rate. Each year is capped at 110% of the average of the two
-   years before it. Without paychecks, fasFromEarnings keeps the calendar-year method. */
+   years before it. Without paychecks, each year is spread evenly (owner, Nov. 19, 2026: always rolling blocks now). */
 const addY=(t,k)=>{const d=new Date(t);return new Date(d.getFullYear()+k,d.getMonth(),d.getDate()).getTime()};
 function hasPays(){return Object.keys(ST.p.pays||{}).length>0}
-function rollBest(retDate,appt){
+function rollBest(retDate,appt,noPays){
   /* A timeline of pay segments [start, end, amount], earned evenly across each segment. Each paycheck covers the
      14 days up to its pay date. Years without paychecks fill the gap between their neighbors, so every year keeps its
      step 2 total and nothing is counted twice. */
-  const D=864e5,apptY=appt.getFullYear(),retY=retDate.getFullYear(),{vals}=yearValues(apptY,retY),P=ST.p.pays||{},A=appt.getTime(),R=retDate.getTime();
+  const D=864e5,apptY=appt.getFullYear(),retY=retDate.getFullYear(),{vals}=yearValues(apptY,retY),P=noPays?{}:ST.p.pays||{},A=appt.getTime(),R=retDate.getTime();
   const ys=[];
   for(let y=apptY;y<=retY;y++){
     const tot=vals[y]>0?vals[y]:0,ps=(P[y]||[]).map(([d,a])=>[fromISO(d).getTime(),a]).sort((a,b)=>a[0]-b[0]),g=ps.reduce((t,p)=>t+p[1],0);
@@ -1739,7 +1743,15 @@ function rollBest(retDate,appt){
     const prev=ys[i-1],next=ys[i+1];
     let a=prev&&prev.seg?prev.seg[prev.seg.length-1][1]:new Date(o.y,0,1).getTime(),b=next&&next.seg?next.seg[0][0]:new Date(o.y+1,0,1).getTime();
     if(o.y===apptY) a=Math.max(a,A);
-    if(b>a) segs.push([a,b,o.tot]);
+    if(b<=a) return;
+    /* A whole calendar year with no paychecks is spread evenly by month (1/12 a month, each month by its days), so a flat
+       salary gives the same 12-month total from any start date, leap years included. The appointment year is spread over
+       the months worked, the first one prorated by day. */
+    const j0=new Date(o.y,0,1).getTime(),j1=new Date(o.y+1,0,1).getTime();
+    if(b!==j1||(a!==j0&&o.y!==apptY)){segs.push([a,b,o.tot]);return}
+    const ms=[];for(let mo=0;mo<12;mo++){const s0=new Date(o.y,mo,1).getTime(),s1=new Date(o.y,mo+1,1).getTime();if(s1<=a)continue;
+      const st=Math.max(s0,a);ms.push([st,s1,(s1-st)/(s1-s0)])}
+    const w=ms.reduce((t,x)=>t+x[2],0);ms.forEach(x=>segs.push([x[0],x[1],o.tot*x[2]/w]));
   });
   segs.sort((x,y)=>x[0]-y[0]);
   const S0=segs.map(z=>z[0]),C=[0];for(const z of segs) C.push(C[C.length-1]+z[2]);
@@ -1760,7 +1772,7 @@ function rollBest(retDate,appt){
       const c=addY(st,k-2)>=A&&p1>0&&p2>0?Math.min(v,R3.fasCapPct*(p1+p2)/2):v;tot+=c;cut+=v-c;
     }
     const avg=tot/3;
-    if(!best||avg>best.fas+0.005) best={fas:avg,from:new Date(st),to:new Date(e),start:new Date(st).getFullYear(),end:new Date(e-1).getFullYear(),cut,rolling:true};
+    if(!best||avg>best.fas+0.005) best={fas:avg,from:new Date(st),to:new Date(e),start:new Date(st).getFullYear(),end:new Date(e-1).getFullYear(),cut,rolling:true,paid:ys.some(o=>o.seg&&o.y>=new Date(st).getFullYear()&&o.y<=new Date(e-1).getFullYear())};
   }
   return best;
 }
@@ -2016,7 +2028,7 @@ function renderP(){
   $('preview').hidden=you.fas>0;
   const hasFas=you.fas>0||you.baseFas>0,min2=!!(p.min2&&hasFas);
   $('s2Body').hidden=min2;$('s2Min').hidden=!min2;$('s2Done').hidden=!hasFas;$('s2h').closest('section').classList.toggle('min',min2);
-  if(hasFas) $('s2Sum').innerHTML=`Final average salary from your earnings: <b>${usd(you.baseFas)}</b><br><span class="hint">Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span>`;
+  if(hasFas) $('s2Sum').innerHTML=`Final average salary from your earnings: <b>${usd(you.baseFas)}</b><br><span class="hint">Best 3 years: ${bestTxt(you.best)}${you.best.paid?', from your paychecks':''}</span>`;
   const om=ageOutM(c);
   const isNow=m===nowM,todayT=isNow?`That’s today: you have ${fmtSvcLong(nowM)} on the job. `:`You have ${fmtSvcLong(nowM)} on the job today. `;
   pSlider.sub(todayT+(c.dis?'Go out ':m<240?'Leave ':'Retire ')+(isNow?'now':fmtMY(you.retDate))+' at age '+fmtAge(you.retAge)+'.',
@@ -2042,7 +2054,7 @@ function renderP(){
         <span>Time served: <b class="y">${fmtSvcLong(m)}</b></span>
         <span>Age: <b class="y">${fmtAge(you.retAge)}</b></span>
         <span>Final average salary: <b class="g">${usd(you.fas)}</b>${you.bonusAdd>0?' (with the longevity bonus)':''}</span>
-        <span>Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}</span></div>`;
+        <span>Best 3 years: ${bestTxt(you.best)}${you.best.paid?', from your paychecks':''}</span></div>`;
   if(c.dis){
     /* Owner, Nov. 11, 2026: on a 3/4s, taxes and the COLA are one line each at the end of the Assumptions block (they were big
        boxes under the headline); the "At age 85" box and the "75% of your final average salary" line are gone. */
@@ -2096,7 +2108,7 @@ function renderVested(c,m,you){
     <span>Time served: <b class="y">${fmtSvcLong(m)}</b></span>
     <span>Age: <b class="y">${fmtAge(you.retAge)}</b></span>
     ${you.fas>0?`<span>Final average salary: <b class="g">${usd(you.fas)}</b></span>
-    <span>${you.best?`Best 3 years: ${bestTxt(you.best)}${you.best.rolling?', from your paychecks':''}`:''}</span>`:''}</div>`;
+    <span>${you.best?`Best 3 years: ${bestTxt(you.best)}${you.best.paid?', from your paychecks':''}`:''}</span>`:''}</div>`;
   ctag('personal',{...earnTags(),p_source:srcName(p.mode),p_years_entered:Object.keys(known()).length,p_fas:dol(you.baseFas),p_years:Math.floor(m/12),p_ret_age:Math.floor(you.retAge),p_disabled:'no',p_vested:yn(you.base>0),p_ss:dol(you.ssM||0),p_ss_source:ST.p.ssAuto?'estimate':'typed',p_monthly:dol(you.base/12)});
   $('goalCard').hidden=!(you.fas>0);
   if(m<VEST_M){
@@ -2480,19 +2492,18 @@ function renderPays(c,m){
   const P=ST.p.pays,ys=Object.keys(P).sort();
   $('payWrap').hidden=!c.ok;
   if(!c.ok) return;
-  const retDate=addM(c.eq,m),fr=fasFromEarnings(retDate,c.appt),cal=fr.cal,b=fr.best;
+  const retDate=addM(c.eq,m),b=fasFromEarnings(retDate,c.appt).best,ev=rollBest(retDate,c.appt,true);
   $('payTog').setAttribute('aria-expanded',payOpen);$('payBox').hidden=!payOpen;
-  $('payTogS').textContent=ys.length?`Using your paychecks for ${ys.join(', ')}`:'Your best 3 here are calendar years. Your real ones can start on any date.';
+  $('payTogS').textContent=ys.length?`Using your paychecks for ${ys.join(', ')}`:'Each year’s pay is spread evenly by month here. Paychecks show when it really came in.';
   let why='';
-  if(b&&b.rolling) why=`<b>Your best 3 years: ${bestTxt(b)}</b>, an average of ${usd(b.fas)} a year${cal?`, compared with ${usd(cal.fas)} for your best 3 whole years (${cal.start}–${cal.end})`:''}.`;
-  else if(cal){const lo=cal.start-1,hi=Math.min(cal.end+1,retDate.getFullYear(),NOW_Y);
-    why=`Your best 3 whole years are <b>${cal.start}–${cal.end}</b>. The Fund counts each year from your retirement month and day, not January to December, so your real best 3 depend on when your overtime came in. `
-      +(lo>NOW_Y?'Those years are still ahead, so paychecks won’t change much yet. If you made more in the last few years, add those paychecks.':`Add your paychecks for ${lo}${hi>lo?` through ${hi}`:''}, whichever ESS still has.`)
-      +(ys.length?' The paychecks you added don’t beat your best 3 whole years.':' With your paychecks in, the page also finds your best date to retire.')}
+  if(ev){const lo=ev.start,hi=Math.min(ev.end,NOW_Y);
+    why=`Your best 3 years run <b>${bestTxt(ev)}</b>, counted back from your retirement date in 12-month blocks, the way the Fund does. Without paychecks, each year’s earnings are spread evenly by month, so overtime that came in early or late in a year isn’t placed exactly. `
+      +(lo>NOW_Y?'Those years are still ahead, so paychecks won’t change much yet.':`Add your paychecks for ${lo}${hi>lo?` through ${hi}`:''}, whichever ESS still has.`)
+      +(ys.length?'':' With your paychecks in, the page also finds your best date to retire.')}
   let res='';
-  if(ys.length&&cal) res=b&&b.rolling
-    ?`<b>Your exact best 3 years: ${bestTxt(b)}</b><span>Final average salary: <b>${usd(b.fas)}</b> a year. Using calendar years (${cal.start}–${cal.end}) it was ${usd(cal.fas)}.</span>`
-    :`<b>Your best 3 stay ${cal.start}–${cal.end}</b><span>Your paychecks don’t find a better 3 years than those calendar years, so your final average salary stays ${usd(cal.fas)}.</span>`;
+  if(ys.length&&b&&ev) res=b.paid
+    ?`<b>Your exact best 3 years: ${bestTxt(b)}</b><span>Final average salary: <b>${usd(b.fas)}</b> a year. With each year spread evenly it was ${usd(ev.fas)}.</span>`
+    :`<b>Your best 3 years: ${bestTxt(b)}</b><span>The paychecks you added aren’t from those years, so your final average salary stays ${usd(b.fas)}.</span>`;
   $('payWhy').innerHTML=why;$('payWhy').hidden=!!res;
   $('payRes').hidden=!res;
   if(res){$('payRes').innerHTML=res+'<div><button type="button" class="btn green" id="paySee">See my pension</button></div>';
