@@ -1,4 +1,4 @@
-# Redraws the three 1200x630 link preview images (preview.png, preview-tier2.png, preview-tier3.png) in Barlow.
+# Redraws (with the piggy bank logo by the address, Nov. 18, 2026) the three 1200x630 link preview images (preview.png, preview-tier2.png, preview-tier3.png) in Barlow.
 # Needs Playwright for Python and the Barlow files: npm i @fontsource/barlow somewhere, then
 #   python3 tests/make-previews.py /path/to/node_modules/@fontsource/barlow/files
 import sys, base64, os
@@ -20,15 +20,16 @@ h1{font-size:98px;line-height:1.02;font-weight:800;letter-spacing:-.01em}
 .card b{display:block;font-weight:800;font-size:66px;line-height:1.05}
 .card span{display:block;font-weight:600;font-size:25px;line-height:1.3;margin-top:6px}
 .one .card{padding:36px 34px 40px}.one .card b{font-size:112px}.one .card span{font-size:27px;margin-top:10px}
-.foot{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid #dce2e8;padding:26px 0 52px}
-.foot b{font-size:30px;font-weight:700}.foot span{font-size:22px;color:#5a6776}
+.foot{display:flex;justify-content:space-between;align-items:center;border-top:2px solid #dce2e8;padding:26px 0 52px}
+.foot b{font-size:30px;font-weight:700;display:flex;align-items:center;gap:14px}.foot b img{width:44px;height:44px;border-radius:10px}.foot span{font-size:22px;color:#5a6776}
 '''
 def page(chip, sub, cards, url, h1='Learn about your pension.'):
     one = ' one' if len(cards) == 1 else ''
     c = ''.join('<div class="card"><b style="color:%s">%s</b><span>%s</span></div>' % x for x in cards)
     return ('<!doctype html><meta charset="utf-8"><style>%s</style><div class="main"><div class="l">%s'
             '<h1>%s</h1><p class="sub">%s</p></div><div class="r%s">%s</div></div>'
-            '<div class="foot"><b>%s</b><span>Unofficial planning tool</span></div>') % (CSS, ('<div class="chip">%s</div>' % chip) if chip else '', h1, sub, one, c, url)
+            '<div class="foot"><b><img src="%s">%s</b><span>Unofficial planning tool</span></div>') % (CSS, ('<div class="chip">%s</div>' % chip) if chip else '', h1, sub, one, c, PIG, url)
+PIG = 'data:image/png;base64,' + base64.b64encode(open(os.path.join(root, 'apple-touch-icon.png'), 'rb').read()).decode()
 STEEL, RED = '#2f5d8a', '#b3261e'
 P = {
  'preview.png': page('', 'Tier 2 and Tier 3 calculators: see what you’ll collect in retirement.',

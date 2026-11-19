@@ -25,3 +25,9 @@
   transform:translateY(-2px) rotate(45deg)!important;transition:transform .32s cubic-bezier(.34,1.45,.5,1)!important}
 .qa details.isopen summary::after,.qs details.isopen summary::after{transform:translateY(2px) rotate(225deg)!important}
 .qa .ans,.qs .a{will-change:transform,opacity}
+
+/* Logo (owner, Nov. 18, 2026): the piggy bank app icon. Tiny on Home / Tier home buttons, larger beside the root headline. */
+img.pig{width:24px;height:24px;border-radius:5px;flex:none;display:block;margin-right:4px}
+.hometop>img.logo{flex:none;margin-right:4px;width:calc(clamp(32px,7.5vw,50px)*1.15);height:auto;border-radius:22%;display:block}
+/* Narrow phones: logo and Version button share the top row, headline gets the full width below. */
+@media (max-width:380px){.hometop:has(>img.logo){flex-wrap:wrap;row-gap:12px}.hometop>img.logo{width:44px;margin:0}.hometop:has(>img.logo)>h1{order:3;flex-basis:100%}.hometop:has(>img.logo)>details.news{margin-top:4px}}

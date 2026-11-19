@@ -300,3 +300,11 @@ The owner asked to "unslop" the site (make it look less AI-made); tried first on
 - **320px fix (both tiers):** the step 1 date rows (`.dlbl`) wrap at 340px and under, so "Appointment date · Sep 22, 2014 · Edit" no longer pushed the page 11px sideways on 320px phones (it did on the live site before this).
 - Checked every page at 390 and 320px, light and dark, in Chrome: no sideways overflow.
 - **Headline row (owner, Nov. 18, 2026; v3.32, root chooser only):** the `<h1>` now sits inside `.hometop`, on the same row as the Version button, so there's no empty row above the headline. The button is centered on the headline's first line (`margin-top` from the h1's `clamp()` size). It shortens as the screen narrows: "Version 3.32 (click for updates)" above 700px, "Version 3.32" to 481px, "V3.32" at 480px and under (CSS only: the summary's text is hidden with `font-size:0` and a `::before` "V" on the number, so `bump.mjs` and `sync-news.mjs` work unchanged). The drop-down panel opens under the headline row. The tier home pages keep their own Home-button row.
+
+## Logo on the page (Nov. 18, 2026, owner; v3.36)
+
+The piggy bank tab icon (`apple-touch-icon.png`, 180px) is now also shown on the page:
+- **Root chooser:** beside the headline in `.hometop` (`img.logo`), sized to the headline's first line. At 380px and under it moves up to share the top row with the Version button, and the headline takes the full width below (`flex-wrap` in `unslop.css`).
+- **Home buttons:** the house icon in every `.backbtn.homeback` (tier home screens, Other accounts, Updates, Suggestions, Privacy, W-2 guide) is now a 24px pig (`img.pig`), and the section screens' "Tier 2/3 home" buttons have the same pig after the arrow.
+- **Link previews:** `tests/make-previews.py` draws the pig beside the address in the bottom left of all three images; `og:image` is `?v=5`.
+- Styles are at the end of `unslop.css`. Checked at 320, 390 and 1200px, light and dark: no sideways overflow.
