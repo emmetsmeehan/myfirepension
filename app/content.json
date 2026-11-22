@@ -1,6 +1,6 @@
 {
  "format": 1,
- "siteVersion": "3.51",
+ "siteVersion": "3.52",
  "tier2": {
   "basics": {
    "title": "Pension basics",
@@ -582,7 +582,7 @@
        ]
       },
       {
-       "p": "A **vested pension** is 2.1% of your final average salary for each year you worked. Leave with 15 years and it’s 31.5%. It starts when you would have hit 20 years, or at age 55 with a small cut if that comes first. There’s no VSF, and it drops at 62 by half your Social Security, like a regular pension."
+       "p": "A **vested pension** is 2.1% of your final average salary for each year you worked. Leave with 15 years and it’s 31.5%. It starts when you would have hit 20 years, or at age 55 with a small cut if that comes first. There’s no VSF, and it drops at 62 by half your Social Security, like a regular pension. With 10 or more years, you also get health insurance, starting when the vested pension does."
       },
       {
        "p": "**Once you have 20 years on the job, you can retire and collect 50% of your final average salary for the rest of your life.**"
@@ -708,7 +708,7 @@
        ]
       },
       {
-       "p": "This is from the Fund's Tier 3 plan description, revised December 2019. A later law could change it, so check with the Fund."
+       "p": "This is from the Fund's Tier 3 plan description, revised May 2026. A later law could change it, so check with the Fund."
       }
      ]
     },
@@ -813,7 +813,7 @@
        "p": "You pay a basic **3%** of your pay into the pension, plus about **2%** more. The extra 2% is the “enhanced” contribution, added by a 2016 law to pay for the enhanced disability plan: a disability pension (3/4s) if you're hurt on the job, and a better pension if you're disabled off duty. Everyone appointed on or after June 15, 2016 pays it. Tier 3 members appointed before that had a one-time choice to join. The Fund reviews the rate every three years, and by law it can't go above 3% (RSSL §517(h))."
       },
       {
-       "p": "**After 25 years, the basic 3% stops** (RSSL §517). Whether the extra 2% stops too hasn’t been confirmed by the Fund."
+       "p": "**After 25 years, both stop:** the basic 3% (RSSL §517) and the extra 2% (the Fund’s Tier 3 plan description, May 2026)."
       },
       {
        "p": "Your pension account balance earns 5% interest per year."
