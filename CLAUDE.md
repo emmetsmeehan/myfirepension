@@ -308,3 +308,7 @@ The piggy bank tab icon (`apple-touch-icon.png`, 180px) is now also shown on the
 - **Home buttons:** the house icon in every `.backbtn.homeback` (tier home screens, Other accounts, Updates, Suggestions, Privacy, W-2 guide) is now a 24px pig (`img.pig`), and the section screens' "Tier 2/3 home" buttons have the same pig after the arrow.
 - **Link previews:** `tests/make-previews.py` draws the pig beside the address in the bottom left of all three images; `og:image` is `?v=5`.
 - Styles are at the end of `unslop.css`. Checked at 320, 390 and 1200px, light and dark: no sideways overflow.
+
+## Longevity bonus on/off (Nov. 22, 2026, owner; v3.42)
+
+A member asked to see his pension without the longevity bonus, since the Fund hasn't said exactly which pay "the highest grade of pay" means (project doc `claude/union-questions-next.md` #3). Personal numbers page, both tiers: a checkbox "Include the longevity bonus" at the top of More options's bill area (`#lbField`, `#lbOn`), checked by default, hidden on a disability pension (3/4s). Unchecked sets `lbOff` in saved state: Tier 3 `pParams()` passes no `bonus`, Tier 2 `bonusPct` is skipped (`c.lbOff`). At 25+ years the results show a gold note "Leaves out the longevity bonus. Turn it back on in More options" (`data-moreopts`; Tier 2 got the same click handler as Tier 3), and Tier 2's comparison row says "Left out". More options opens on load when it's off. Clarity tag `p_bonus` (on/off/n/a). The quick calculator already leaves the bonus out.
