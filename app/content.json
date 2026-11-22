@@ -1,6 +1,6 @@
 {
  "format": 1,
- "siteVersion": "3.46",
+ "siteVersion": "3.47",
  "tier2": {
   "basics": {
    "title": "Pension basics",
@@ -335,9 +335,6 @@
       },
       {
        "p": "Until you turn 62, any COLA you get is taken out of your VSF."
-      },
-      {
-       "p": "The VSF is paid for **your life only**. It stops when you die and doesn't go to your spouse, whichever pension option you pick."
       }
      ]
     },
@@ -385,9 +382,6 @@
       },
       {
        "p": "Once you get your first full pension check, you can't change it. When the Fund sends your option letter, you have 60 days to answer. If you don't, it can stop your pension payments."
-      },
-      {
-       "p": "These options cover your pension only. The **VSF** ($12,000 a year) stops when you die under every option. Nothing from it goes to your spouse."
       },
       {
        "p": "The calculators show the maximum allowance. Ask the Fund for your option figures; they need your beneficiary's date of birth."
@@ -666,9 +660,6 @@
       },
       {
        "p": "Until you turn 62, any COLA you get is taken out of your VSF."
-      },
-      {
-       "p": "The VSF is paid for **your life only**. It stops when you die and doesn't go to your spouse, whichever pension option you pick."
       }
      ]
     },
@@ -739,9 +730,6 @@
       },
       {
        "p": "The Fund's plan description says you have to pick within 30 days of your retirement date, or you get the maximum. Once you get your first full pension check, you can't change it. Under Options 1 and 2, you can't name a new beneficiary later."
-      },
-      {
-       "p": "These options cover your pension only. The **VSF** ($12,000 a year) stops when you die under every option. Nothing from it goes to your spouse."
       },
       {
        "p": "The calculators show the maximum allowance. Ask the Fund for your option figures; they need your beneficiary's date of birth."
