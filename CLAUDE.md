@@ -312,7 +312,3 @@ The piggy bank tab icon (`apple-touch-icon.png`, 180px) is now also shown on the
 ## Longevity bonus on/off (Nov. 22, 2026, owner; v3.42)
 
 A member asked to see his pension without the longevity bonus, since the Fund hasn't said exactly which pay "the highest grade of pay" means (project doc `claude/union-questions-next.md` #3). Personal numbers page, both tiers: a checkbox "Include the longevity bonus" at the top of More options's bill area (`#lbField`, `#lbOn`), checked by default, hidden on a disability pension (3/4s). Unchecked sets `lbOff` in saved state: Tier 3 `pParams()` passes no `bonus`, Tier 2 `bonusPct` is skipped (`c.lbOff`). At 25+ years the results show a gold note "Leaves out the longevity bonus. Turn it back on in More options" (`data-moreopts`; Tier 2 got the same click handler as Tier 3), and Tier 2's comparison row says "Left out". More options opens on load when it's off. Clarity tag `p_bonus` (on/off/n/a). The quick calculator already leaves the bonus out.
-
-## VSF ends at death (Nov. 22, 2026, owner; v3.44, both tiers)
-
-- From the Fund's member portal FAQ ("The VSF is payable for the life of the member only"): the Pension basics VSF answer now ends with "The VSF is paid for your life only…", and the spouse-options answer says the options cover the pension only and the VSF stops at death under every option.
