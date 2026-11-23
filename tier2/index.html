@@ -319,6 +319,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .mode .mtag{font-style:normal;font-size:12.5px;font-weight:700;line-height:1.2;color:var(--sage);background:color-mix(in srgb,var(--sage) 13%,var(--surface));border-radius:var(--pill,999px);padding:2px 8px}
 @media (max-width:360px){.mode .mtag{font-size:11.5px;padding:2px 6px}}
 .mode[aria-pressed="true"] .tick{display:grid}
+.who{display:grid;gap:14px}.whodsel{grid-template-columns:1fr}.whobtns .btn{min-height:44px;padding:0 16px;font-size:16px}.whoform{display:grid;gap:10px}.whoform .inp input{padding-left:12px;font-size:17px}
 .panelbox{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:14px;background:var(--soft)}
 .panelbox ol{margin:0;padding-left:22px;display:grid;gap:6px}
 .nolodi{color:var(--orange);font-weight:600}
@@ -688,11 +689,11 @@ body.has-pbar .app{padding-bottom:110px}
       <summary>Version <b>3.53</b> <span class="lfull">(click for updates)</span><span class="lshort">(updates)</span></summary>
       <div class="newsbody">
       <ul>
+        <li><time datetime="2026-11-22">11/22/26:</time> You can now save more than one person in “Your personal numbers.” Add a friend’s numbers and switch back to yours without erasing anything.</li>
         <li><time datetime="2026-11-22">11/22/26:</time> Added an option to hide the longevity bonus. The longevity bonus is shown by default and is calculated off a rank’s base pay. The law hasn’t said what number it will be based on, and it might be higher in the future.</li>
         <li><time datetime="2026-11-18">11/18/26:</time> Introduced the piggy bank icon. iPhone app coming soon.</li>
         <li><time datetime="2026-11-18">11/18/26:</time> A Tier 3 disabled retirement (3/4s) now explains that it does not get escalation, even with 23+ years.</li>
         <li><time datetime="2026-11-16">11/16/26:</time> Fixed: Your first VSF payment now accurately reflects the prorated amount based on your retirement date.</li>
-        <li><time datetime="2026-11-15">11/15/26:</time> Fixed: Tier 2 no longer adds your excess contributions to your pension. It’s shown separately, as the lump sum most members take, with a switch to turn it into monthly payments instead. You can also type your ITHP Over 20 from the Pension Portal for an exact ITHP number.</li>
       </ul>
       <p class="newsmore"><a href="/updates/">See older updates</a></p>
       <p class="newsask">Notice something that needs to be fixed? <a href="/suggest/">Submit a request here</a></p>
@@ -990,6 +991,19 @@ body.has-pbar .app{padding-bottom:110px}
 <main class="view" id="v-personal" data-title="Your personal numbers · FDNY Tier 2" hidden>
   <div class="topbar"><a class="backbtn tierhome" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><img class="pig" src="/apple-touch-icon.png?v=3" alt="" width="24" height="24">Tier 2 home</a><a class="ver" href="/updates/">Version <b>3.53</b> (click for updates)</a></div>
   <div class="vhead"><h1>Your personal numbers <span class="tierb" style="--c:var(--steel)">Tier 2</span></h1><p>Use your real earnings to see what you'll collect, and what working longer gets you.</p></div>
+  <section class="card who" id="who" aria-labelledby="whoLbl">
+    <div class="field">
+      <label class="flabel" id="whoLbl" for="whoSel">Whose numbers are these?</label>
+      <div class="dsel whodsel"><span><select id="whoSel"></select></span></div>
+      <p class="hint" id="whoHint">Checking someone else's pension? Add them here and your own numbers stay saved. Switch back any time.</p>
+    </div>
+    <div class="btnrow whobtns" id="whoBtns"><button type="button" class="btn ghost" id="whoAdd">Add someone</button><button type="button" class="btn ghost" id="whoRen">Rename</button><button type="button" class="btn ghost" id="whoDel" hidden>Remove</button></div>
+    <form class="whoform" id="whoForm" hidden>
+      <label class="flabel" for="whoName" id="whoFormLbl">Name</label>
+      <div class="inp"><input id="whoName" maxlength="30" autocomplete="off" placeholder="Like Mike, or Dad"></div>
+      <div class="btnrow whobtns"><button type="submit" class="btn">Save</button><button type="button" class="btn ghost" id="whoCancel">Cancel</button></div>
+    </form>
+  </section>
   <section class="card preview" id="preview" aria-labelledby="pvh" hidden>
     <p class="pvline" id="pvh">Fill in the 3 steps below to see what your pension will be and how it changes over time. Your results show up <span class="pv-ph">after step 3</span><span class="pv-dt">on the right</span>.</p>
   </section>
@@ -2292,6 +2306,56 @@ $('clearAll').addEventListener('click',()=>{
   for(const k of ['fdny-tier3-v2','fdny-tier2-v1']){if(k===KEY)continue;try{const s=JSON.parse(localStorage.getItem(k)||'null');if(s&&s.p&&typeof s.p==='object'){wipe(s.p);localStorage.setItem(k,JSON.stringify(s))}}catch{}}
   location.hash='#personal';location.reload();
 });
+
+/* ---------- saved people (Nov. 22, 2026): more than one person's numbers on this device ----------
+   The person being shown lives in KEY as always. Everyone else's personal numbers (ST.p) sit in KEY+'-people'.
+   Switching stores the current numbers, puts the other person's into KEY and reloads, so every box is filled fresh. */
+const PKEY=KEY+'-people';
+function people(){
+  let s=null;try{s=JSON.parse(localStorage.getItem(PKEY)||'null')}catch{}
+  if(!s||typeof s!=='object'||!Array.isArray(s.list)) s={};
+  const list=(s.list||[]).filter(x=>x&&typeof x.id==='string'&&typeof x.name==='string');
+  if(!list.length) list.push({id:'me',name:'Me'});
+  return {active:list.some(x=>x.id===s.active)?s.active:list[0].id,list};
+}
+let PPL=people();
+const pplSave=()=>{try{localStorage.setItem(PKEY,JSON.stringify(PPL))}catch{}};
+function whoRender(){
+  const sel=$('whoSel');sel.innerHTML='';
+  for(const x of PPL.list){const o=document.createElement('option');o.value=x.id;o.textContent=x.name;o.selected=x.id===PPL.active;sel.appendChild(o)}
+  const many=PPL.list.length>1;$('whoDel').hidden=!many;$('whoHint').hidden=many;
+}
+function whoSwitch(id,keep=true){
+  clearTimeout(saveT);noSave=true;
+  const cur=PPL.list.find(x=>x.id===PPL.active),to=PPL.list.find(x=>x.id===id);if(!to) return;
+  if(keep&&cur) cur.p=JSON.parse(JSON.stringify(ST.p));
+  const p=to.p||{earnV:2};delete to.p;PPL.active=id;pplSave();
+  try{localStorage.setItem(KEY,JSON.stringify({q:ST.q,p}))}catch{}
+  location.hash='#personal';location.reload();
+}
+let whoAct='';
+function whoForm(act){
+  whoAct=act;const f=$('whoForm'),open=!!act;f.hidden=!open;$('whoBtns').hidden=open;
+  if(!open) return;
+  const cur=PPL.list.find(x=>x.id===PPL.active);
+  $('whoFormLbl').textContent=act==='add'?'Who are you adding?':'New name';
+  $('whoName').value=act==='ren'?cur.name:'';$('whoName').focus();
+}
+$('whoSel').addEventListener('change',e=>whoSwitch(e.target.value));
+$('whoAdd').addEventListener('click',()=>whoForm('add'));
+$('whoRen').addEventListener('click',()=>whoForm('ren'));
+$('whoCancel').addEventListener('click',()=>whoForm(''));
+$('whoForm').addEventListener('submit',e=>{e.preventDefault();
+  const n=$('whoName').value.trim().slice(0,30);if(!n){$('whoName').focus();return}
+  if(whoAct==='ren'){PPL.list.find(x=>x.id===PPL.active).name=n;pplSave();whoForm('');whoRender();return}
+  const id='p'+Date.now().toString(36);PPL.list.push({id,name:n});whoSwitch(id);
+});
+$('whoDel').addEventListener('click',()=>{
+  const cur=PPL.list.find(x=>x.id===PPL.active);
+  if(!confirm(`Remove ${cur.name}'s numbers from this device? This can’t be undone.`)) return;
+  PPL.list=PPL.list.filter(x=>x!==cur);PPL.active='';whoSwitch(PPL.list[0].id,false);
+});
+whoRender();
 
 /* ---------- import from NYCAPS ESS: paste the table, or read a screenshot ---------- */
 /* Tax Summary columns: Year, Federal Wages, Soc Sec Wages, Medicare Wages, then taxes. We take the third number after the year.
