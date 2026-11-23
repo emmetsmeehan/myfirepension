@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Saved people: test page</title>
+<link rel="icon" href="/favicon-48.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#f3f5f8;--surface:#fff;--ink:#16202b;--muted:#5a6776;--line:#dce2e8;--accent:#b3261e;--sage:#2f7d55;--gold:#a8730f;--soft:#eef2f6}
+@media (prefers-color-scheme:dark){:root{--bg:#10151b;--surface:#18202a;--ink:#e7ecf1;--muted:#9aa7b5;--line:#2b3643;--accent:#e0574d;--sage:#5fbf88;--gold:#d9a441;--soft:#1f2934;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 Barlow,system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px;display:grid;gap:16px}
+h1{font-size:28px;margin:0}h2{font-size:20px;margin:0 0 8px}
+p{margin:0}.muted{color:var(--muted);font-size:15px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+button,a.btn{font:inherit;font-weight:700;font-size:16px;min-height:46px;padding:0 18px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+button.main{background:var(--accent);border-color:var(--accent);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.on{color:var(--sage);font-weight:700}
+ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.msg{color:var(--sage);font-weight:600;min-height:1.5em}
+pre{background:var(--soft);border-radius:6px;padding:12px;overflow:auto;font-size:13px;margin:0;white-space:pre-wrap;word-break:break-all}
+details summary{cursor:pointer;font-weight:600}
+</style>
+</head>
+<body>
+<main>
+  <div><h1>Saved people: test page</h1><p class="muted">Not linked from the site. Everything here works on this browser's saved numbers for myfirepension only. The people below are made up.</p></div>
+
+  <section class="card">
+    <h2>1. Load the test people</h2>
+    <p>This puts three made-up people on the Tier 3 page and two on the Tier 2 page. Your own numbers are backed up first, and step 4 puts them back.</p>
+    <div class="row"><button class="main" id="seed">Load test people</button><a class="btn" href="/tier3/#personal">Open Tier 3</a><a class="btn" href="/tier2/#personal">Open Tier 2</a></div>
+    <p class="msg" id="msg"></p>
+  </section>
+
+  <section class="card">
+    <h2>2. What's saved on this device right now</h2>
+    <p class="muted">Refreshes every time you come back to this tab. <span class="on">Showing</span> is the person the page opens to.</p>
+    <div id="state"></div>
+    <details><summary>Raw saved data</summary><pre id="raw"></pre></details>
+  </section>
+
+  <section class="card">
+    <h2>3. Things to try</h2>
+    <ol>
+      <li>Open Tier 3. The dropdown at the top says <b>Me</b>, with a birthday of Mar 14, 1990 and earnings from 2015.</li>
+      <li>Pick <b>Mike</b>. The page reloads with his numbers: born Sep 22, 1985, appointed 2010.</li>
+      <li>While on Mike, move the service slider or change his rank. Switch to Me, then back to Mike. Your change should still be there, and Me should be untouched.</li>
+      <li>Pick <b>New guy</b>. Everything should be blank.</li>
+      <li>Tap <b>Add someone</b>, type a name, Save. You land on a blank page with that name picked.</li>
+      <li>Tap <b>Rename</b> and change it. The dropdown updates without reloading.</li>
+      <li>Tap <b>Remove</b>. It asks first, then goes back to Me. Come back here and check that person is gone from the table.</li>
+      <li>On Mike, tap <b>Clear my earnings</b> at the bottom. Mike's earnings go, his dates stay, and Me's earnings are still in the table here.</li>
+      <li>Open Tier 2. It has its own list: <b>Me</b> and <b>Lou</b>, separate from Tier 3.</li>
+      <li>Try it on your phone too, light and dark.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>4. When you're done</h2>
+    <div class="row"><button id="restore">Put my own numbers back</button><button id="wipe">Remove all test people (keep nothing)</button></div>
+    <p class="muted" id="bk"></p>
+  </section>
+</main>
+<script>
+const T3='fdny-tier3-v2',T2='fdny-tier2-v1',BK='fdny-people-test-backup',ALL=[T3,T3+'-people',T2,T2+'-people'];
+const $=id=>document.getElementById(id);
+const get=k=>{try{return JSON.parse(localStorage.getItem(k)||'null')}catch{return null}};
+const set=(k,v)=>v==null?localStorage.removeItem(k):localStorage.setItem(k,JSON.stringify(v));
+/* Made-up yearly earnings: start pay, then a raise each year, rounded. */
+function pay(from,to,start,step){const o={};let v=start;for(let y=from;y<=to;y++){o[y]=Math.round(v/100)*100;v+=step}return o}
+const person=(dob,appt,earn,extra={})=>({dob,appt,mode:'manual',manual:earn,earnV:2,...extra});
+function seed(){
+  if(!get(BK)){const b={};for(const k of ALL)b[k]=localStorage.getItem(k);set(BK,b)}
+  const me3=person('1990-03-14','2015-07-06',pay(2015,2025,42000,14000));
+  const mike=person('1985-09-22','2010-01-04',pay(2010,2025,45000,9500));
+  set(T3,{q:{},p:me3});
+  set(T3+'-people',{active:'me',list:[{id:'me',name:'Me'},{id:'test-mike',name:'Mike',p:mike},{id:'test-new',name:'New guy',p:{earnV:2}}]});
+  const me2=person('1978-05-02','2003-10-12',pay(2003,2025,38000,7500));
+  const lou=person('1966-11-30','1995-02-20',pay(1995,2025,30000,6800));
+  set(T2,{q:{},p:me2});
+  set(T2+'-people',{active:'me',list:[{id:'me',name:'Me'},{id:'test-lou',name:'Lou',p:lou}]});
+  $('msg').textContent='Loaded. Open Tier 3 or Tier 2 to try it.';show();
+}
+function restore(){
+  const b=get(BK);if(!b){$('msg').textContent='No backup on this device.';return}
+  if(!confirm('Put your own numbers back and remove the test people?'))return;
+  for(const k of ALL){if(b[k]==null)localStorage.removeItem(k);else localStorage.setItem(k,b[k])}
+  localStorage.removeItem(BK);$('msg').textContent='Your own numbers are back.';show();
+}
+function wipe(){
+  if(!confirm('Remove all saved numbers on both tiers, including your own? This can’t be undone.'))return;
+  for(const k of ALL)localStorage.removeItem(k);$('msg').textContent='Everything removed.';show();
+}
+const fmt=d=>d?new Date(d+'T12:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'–';
+function yrs(p){const m={...(p&&p.manual),...(p&&p.extra),...(p&&p.imported)},y=Object.keys(m).filter(k=>m[k]>0).sort();return y.length?`${y.length} (${y[0]}–${y[y.length-1]})`:'none'}
+function table(label,key){
+  const main=get(key),ppl=get(key+'-people');
+  const list=ppl&&Array.isArray(ppl.list)?ppl.list:[{id:'me',name:'Me'}],act=ppl&&ppl.active||list[0].id;
+  let h=`<p><b>${label}</b></p><table><tr><th>Name</th><th>Born</th><th>Appointed</th><th>Years of earnings</th></tr>`;
+  for(const x of list){const p=x.id===act?main&&main.p:x.p,n=document.createElement('span');n.textContent=x.name;
+    h+=`<tr><td>${n.innerHTML}${x.id===act?' <span class="on">Showing</span>':''}</td><td>${fmt(p&&p.dob)}</td><td>${fmt(p&&p.appt)}</td><td>${yrs(p)}</td></tr>`}
+  return h+'</table>';
+}
+function show(){
+  $('state').innerHTML=table('Tier 3','fdny-tier3-v2')+'<br>'+table('Tier 2','fdny-tier2-v1');
+  const r={};for(const k of ALL)r[k]=get(k);$('raw').textContent=JSON.stringify(r,null,1);
+  $('bk').textContent=get(BK)?'A backup of your own numbers is saved.':'No backup saved yet. Loading the test people makes one.';
+}
+$('seed').onclick=seed;$('restore').onclick=restore;$('wipe').onclick=wipe;
+addEventListener('pageshow',show);addEventListener('focus',show);document.addEventListener('visibilitychange',()=>{if(!document.hidden)show()});show();
+</script>
+</body>
+</html>
