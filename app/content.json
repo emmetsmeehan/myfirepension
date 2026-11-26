@@ -1,6 +1,6 @@
 {
  "format": 1,
- "siteVersion": "3.55",
+ "siteVersion": "3.56",
  "tier2": {
   "basics": {
    "title": "Pension basics",
@@ -201,17 +201,6 @@
      ]
     },
     {
-     "q": "Do I pay taxes on my pension?",
-     "a": [
-      {
-       "p": "A service pension is subject to federal income tax but not New York State or New York City income tax."
-      },
-      {
-       "p": "For a disability pension (3/4s), see the answer above. If you move out of state, check that state's rules or ask a tax professional."
-      }
-     ]
-    },
-    {
      "q": "Is there an age I have to retire by?",
      "a": [
       {
@@ -308,17 +297,6 @@
      ]
     },
     {
-     "q": "Does my pension go up after I retire?",
-     "a": [
-      {
-       "p": "Only a little. Tier 2 has **no escalation**. You get the COLA: half of inflation (between 1% and 3%) on the first $18,000 of your pension, about $270 a year when inflation is 3%."
-      },
-      {
-       "p": "It starts at age 62 once you've been retired 5 years, or at 55 once you've been retired 10 years."
-      }
-     ]
-    },
-    {
      "q": "What are the VSF and the banked variable?",
      "a": [
       {
@@ -339,14 +317,6 @@
      ]
     },
     {
-     "q": "Does Social Security lower my pension?",
-     "a": [
-      {
-       "p": "No. The Social Security offset at 62 is a Tier 3 rule. Your Tier 2 pension isn't reduced when you start Social Security."
-      }
-     ]
-    },
-    {
      "q": "What is the “death gamble”?",
      "a": [
       {
@@ -362,6 +332,73 @@
       },
       {
        "p": "That's the \"gamble\": past 20, staying on the job keeps this protection for your family, and retiring on the maximum pension gives it up. The Fund can tell you what your reserve is worth and what each option would cost you."
+      }
+     ]
+    },
+    {
+     "q": "Does my other City service count? (1/80th)",
+     "a": [
+      {
+       "p": "Yes, if you had a non-uniformed City job before the FDNY (NYCERS or Board of Ed time) and it's credited with the Fire Pension Fund, by transfer or buyback. Uniformed service that didn't come right before the FDNY counts the same way."
+      },
+      {
+       "p": "For each year of that service, your pension adds **1/80th of your average pay over your last 5 years**. It doesn't count toward your 20 years, and it isn't paid on a disability pension (3/4s)."
+      },
+      {
+       "ex": "Example: 3 years of other City service and $150,000 average pay over your last 5 years. 3 × $150,000 ÷ 80 is **$5,625 a year** more pension, about $470 a month."
+      },
+      {
+       "p": "Add it in step 1 of [Your personal numbers](mfp://personal). Ask the Fund what a buyback would cost."
+      }
+     ]
+    },
+    {
+     "q": "Does my pension go up after I retire?",
+     "a": [
+      {
+       "p": "Only a little. Tier 2 has **no escalation**. You get the COLA: half of inflation (between 1% and 3%) on the first $18,000 of your pension, about $270 a year when inflation is 3%."
+      },
+      {
+       "p": "It starts at age 62 once you've been retired 5 years, or at 55 once you've been retired 10 years."
+      }
+     ]
+    },
+    {
+     "q": "Do I pay taxes on my pension?",
+     "a": [
+      {
+       "p": "A service pension is subject to federal income tax but not New York State or New York City income tax."
+      },
+      {
+       "p": "For a disability pension (3/4s), see the answer above. If you move out of state, check that state's rules or ask a tax professional."
+      }
+     ]
+    },
+    {
+     "q": "Do I keep my health insurance?",
+     "a": [
+      {
+       "ex": "**These rules change** with new laws, court rulings and union contracts. Always check your coverage directly with your health plan, your union, or the Fire Pension Fund before you make decisions."
+      },
+      {
+       "ul": [
+        "**Who qualifies:** you need at least 10 years of credited service in a City pension system (5 years if you were a City employee on or before December 27, 2001). Retiring on an FDNY service pension meets this.",
+        "**Only while collecting:** health benefits come with collecting a pension, and they're only available while you're actually collecting one. Accident disability retirees get health insurance regardless of years of service.",
+        "**Before 65:** you stay on the same plans as active members. As of January 2026, that's the NYCE PPO.",
+        "**At 65:** you go on traditional Medicare plus a City plan such as Senior Care or HIP VIP. The City dropped its plan to move retirees to Medicare Advantage in 2025.",
+        "**Dental, optical and prescriptions** in retirement come through your union's welfare fund. Check with them for details."
+       ]
+      },
+      {
+       "p": "For details, call Employee Health Benefits at the NYC Office of Labor Relations: [212-306-7390](tel:2123067390)."
+      }
+     ]
+    },
+    {
+     "q": "Does Social Security lower my pension?",
+     "a": [
+      {
+       "p": "No. The Social Security offset at 62 is a Tier 3 rule. Your Tier 2 pension isn't reduced when you start Social Security."
       }
      ]
     },
@@ -415,43 +452,6 @@
       },
       {
        "p": "The Fund checks. Retirees who got this wrong have had to pay back years of pension. Call the Fund before you take any public job in New York."
-      }
-     ]
-    },
-    {
-     "q": "Do I keep my health insurance?",
-     "a": [
-      {
-       "ex": "**These rules change** with new laws, court rulings and union contracts. Always check your coverage directly with your health plan, your union, or the Fire Pension Fund before you make decisions."
-      },
-      {
-       "ul": [
-        "**Who qualifies:** you need at least 10 years of credited service in a City pension system (5 years if you were a City employee on or before December 27, 2001). Retiring on an FDNY service pension meets this.",
-        "**Only while collecting:** health benefits come with collecting a pension, and they're only available while you're actually collecting one. Accident disability retirees get health insurance regardless of years of service.",
-        "**Before 65:** you stay on the same plans as active members. As of January 2026, that's the NYCE PPO.",
-        "**At 65:** you go on traditional Medicare plus a City plan such as Senior Care or HIP VIP. The City dropped its plan to move retirees to Medicare Advantage in 2025.",
-        "**Dental, optical and prescriptions** in retirement come through your union's welfare fund. Check with them for details."
-       ]
-      },
-      {
-       "p": "For details, call Employee Health Benefits at the NYC Office of Labor Relations: [212-306-7390](tel:2123067390)."
-      }
-     ]
-    },
-    {
-     "q": "Does my other City service count? (1/80th)",
-     "a": [
-      {
-       "p": "Yes, if you had a non-uniformed City job before the FDNY (NYCERS or Board of Ed time) and it's credited with the Fire Pension Fund, by transfer or buyback. Uniformed service that didn't come right before the FDNY counts the same way."
-      },
-      {
-       "p": "For each year of that service, your pension adds **1/80th of your average pay over your last 5 years**. It doesn't count toward your 20 years, and it isn't paid on a disability pension (3/4s)."
-      },
-      {
-       "ex": "Example: 3 years of other City service and $150,000 average pay over your last 5 years. 3 × $150,000 ÷ 80 is **$5,625 a year** more pension, about $470 a month."
-      },
-      {
-       "p": "Add it in step 1 of [Your personal numbers](mfp://personal). Ask the Fund what a buyback would cost."
       }
      ]
     },
@@ -664,34 +664,6 @@
      ]
     },
     {
-     "q": "What is the Social Security offset?",
-     "a": [
-      {
-       "p": "At 62, your pension goes down by **half of a Social Security figure**. That's the Social Security offset. It's a Tier 3 rule."
-      },
-      {
-       "p": "It isn't half of the Social Security check you'll actually get. The Fund works out its own figure (state law, RSSL § 511):"
-      },
-      {
-       "ul": [
-        "Only your pay from a public employer counts. Every other year counts as zero, so private jobs don't add to it.",
-        "It's set the day you retire. Later Social Security raises don't change it.",
-        "A second way of figuring it, from your highest pay in your last 5 years, is used if it comes out lower.",
-        "It's cut 20% because the offset starts before 65."
-       ]
-      },
-      {
-       "ex": "For most members that works out to roughly $700 to $900 a month off at 62. The personal numbers page estimates yours from the earnings you enter."
-      },
-      {
-       "p": "Escalation keeps going after 62, figured on the lower amount. Social Security itself is paid separately, by the federal government."
-      },
-      {
-       "p": "**Albany is fighting it.** [S6289A](https://www.nysenate.gov/legislation/bills/2025/S6289/amendment/A) (Gounardes) would end the offset for FDNY members. It's in the Senate Civil Service and Pensions Committee and hasn't passed either house. Like every 2025–26 bill, it dies Dec. 31, 2026 unless it passes."
-      }
-     ]
-    },
-    {
      "q": "Does Tier 3 have the “death gamble”?",
      "a": [
       {
@@ -713,60 +685,6 @@
      ]
     },
     {
-     "q": "What are my options for my spouse?",
-     "a": [
-      {
-       "p": "When you retire, you choose how your pension is paid. Each option except the maximum gives you a smaller pension so someone gets paid after you die."
-      },
-      {
-       "ul": [
-        "**Maximum allowance:** the biggest pension, but it stops when you die. Nothing goes to your spouse.",
-        "**Option 1 (100% survivor):** your spouse gets your full pension for life after you die.",
-        "**Option 2 (90% or less):** your spouse gets 90%, 80% or less for life. Costs less than Option 1.",
-        "**Option 3 (5 years certain):** if you die within 5 years of retiring, your beneficiary gets your pension until that 5-year mark. After that, nothing.",
-        "**Option 4 (10 years certain):** the same, for 10 years.",
-        "**Option 5 (pop-up):** your spouse gets 50% or 100%, and if your spouse dies first, your pension goes back up to the maximum."
-       ]
-      },
-      {
-       "p": "The Fund's plan description says you have to pick within 30 days of your retirement date, or you get the maximum. Once you get your first full pension check, you can't change it. Under Options 1 and 2, you can't name a new beneficiary later."
-      },
-      {
-       "p": "The calculators show the maximum allowance. Ask the Fund for your option figures; they need your beneficiary's date of birth."
-      }
-     ]
-    },
-    {
-     "q": "Can I work after I retire?",
-     "a": [
-      {
-       "p": "Yes, but a job with New York City or State government can cost you your pension if you don't follow the rules."
-      },
-      {
-       "p": "**Service retirement:**"
-      },
-      {
-       "ul": [
-        "**No limit** for private jobs, federal jobs (like the post office), government jobs in another state, and public authorities like the MTA, Port Authority, NYCHA and NYC Health + Hospitals.",
-        "**A city, state, county, town, village, school district or library job in New York:** under 65 you can earn up to **$35,000 a year** (state law, RSSL § 212). Tell the Fund in writing first. Earn more and your pension is suspended, unless your new employer gets you a § 211 waiver. Going back to work for the City itself, even with a waiver, roughly caps your pay at what your old rank pays now minus your pension.",
-        "From the year you turn **65**, there's no limit."
-       ]
-      },
-      {
-       "p": "**Disability pension (3/4s):**"
-      },
-      {
-       "ul": [
-        "**Before your 20-year date** (the day you would have hit 20 years), any job is limited: roughly the current pay of the rank above yours, minus your pension.",
-        "**After your 20-year date**, private jobs, federal jobs, out-of-state jobs and public authorities have no limit. But any New York City, State or local government job stops your pension for as long as you work there. There are no waivers."
-       ]
-      },
-      {
-       "p": "The Fund checks. Retirees who got this wrong have had to pay back years of pension. Call the Fund before you take any public job in New York."
-      }
-     ]
-    },
-    {
      "q": "What if I’m hurt on the job? (“three quarters”)",
      "a": [
       {
@@ -781,17 +699,6 @@
       },
       {
        "p": "It must be approved by the Pension Fund's Medical Board and Board of Trustees. You don't need to qualify for Social Security Disability to get a line-of-duty disability pension."
-      }
-     ]
-    },
-    {
-     "q": "Do I pay taxes on my pension?",
-     "a": [
-      {
-       "p": "A service pension is subject to federal income tax but not New York State or New York City income tax."
-      },
-      {
-       "p": "A line-of-duty disability pension (3/4s) is generally not taxed. If you move out of state, check that state's rules or ask a tax professional."
       }
      ]
     },
@@ -910,6 +817,17 @@
      ]
     },
     {
+     "q": "Do I pay taxes on my pension?",
+     "a": [
+      {
+       "p": "A service pension is subject to federal income tax but not New York State or New York City income tax."
+      },
+      {
+       "p": "A line-of-duty disability pension (3/4s) is generally not taxed. If you move out of state, check that state's rules or ask a tax professional."
+      }
+     ]
+    },
+    {
      "q": "Do I keep my health insurance?",
      "a": [
       {
@@ -926,6 +844,88 @@
       },
       {
        "p": "For details, call Employee Health Benefits at the NYC Office of Labor Relations: [212-306-7390](tel:2123067390)."
+      }
+     ]
+    },
+    {
+     "q": "What is the Social Security offset?",
+     "a": [
+      {
+       "p": "At 62, your pension goes down by **half of a Social Security figure**. That's the Social Security offset. It's a Tier 3 rule."
+      },
+      {
+       "p": "It isn't half of the Social Security check you'll actually get. The Fund works out its own figure (state law, RSSL § 511):"
+      },
+      {
+       "ul": [
+        "Only your pay from a public employer counts. Every other year counts as zero, so private jobs don't add to it.",
+        "It's set the day you retire. Later Social Security raises don't change it.",
+        "A second way of figuring it, from your highest pay in your last 5 years, is used if it comes out lower.",
+        "It's cut 20% because the offset starts before 65."
+       ]
+      },
+      {
+       "ex": "For most members that works out to roughly $700 to $900 a month off at 62. The personal numbers page estimates yours from the earnings you enter."
+      },
+      {
+       "p": "Escalation keeps going after 62, figured on the lower amount. Social Security itself is paid separately, by the federal government."
+      },
+      {
+       "p": "**Albany is fighting it.** [S6289A](https://www.nysenate.gov/legislation/bills/2025/S6289/amendment/A) (Gounardes) would end the offset for FDNY members. It's in the Senate Civil Service and Pensions Committee and hasn't passed either house. Like every 2025–26 bill, it dies Dec. 31, 2026 unless it passes."
+      }
+     ]
+    },
+    {
+     "q": "What are my options for my spouse?",
+     "a": [
+      {
+       "p": "When you retire, you choose how your pension is paid. Each option except the maximum gives you a smaller pension so someone gets paid after you die."
+      },
+      {
+       "ul": [
+        "**Maximum allowance:** the biggest pension, but it stops when you die. Nothing goes to your spouse.",
+        "**Option 1 (100% survivor):** your spouse gets your full pension for life after you die.",
+        "**Option 2 (90% or less):** your spouse gets 90%, 80% or less for life. Costs less than Option 1.",
+        "**Option 3 (5 years certain):** if you die within 5 years of retiring, your beneficiary gets your pension until that 5-year mark. After that, nothing.",
+        "**Option 4 (10 years certain):** the same, for 10 years.",
+        "**Option 5 (pop-up):** your spouse gets 50% or 100%, and if your spouse dies first, your pension goes back up to the maximum."
+       ]
+      },
+      {
+       "p": "The Fund's plan description says you have to pick within 30 days of your retirement date, or you get the maximum. Once you get your first full pension check, you can't change it. Under Options 1 and 2, you can't name a new beneficiary later."
+      },
+      {
+       "p": "The calculators show the maximum allowance. Ask the Fund for your option figures; they need your beneficiary's date of birth."
+      }
+     ]
+    },
+    {
+     "q": "Can I work after I retire?",
+     "a": [
+      {
+       "p": "Yes, but a job with New York City or State government can cost you your pension if you don't follow the rules."
+      },
+      {
+       "p": "**Service retirement:**"
+      },
+      {
+       "ul": [
+        "**No limit** for private jobs, federal jobs (like the post office), government jobs in another state, and public authorities like the MTA, Port Authority, NYCHA and NYC Health + Hospitals.",
+        "**A city, state, county, town, village, school district or library job in New York:** under 65 you can earn up to **$35,000 a year** (state law, RSSL § 212). Tell the Fund in writing first. Earn more and your pension is suspended, unless your new employer gets you a § 211 waiver. Going back to work for the City itself, even with a waiver, roughly caps your pay at what your old rank pays now minus your pension.",
+        "From the year you turn **65**, there's no limit."
+       ]
+      },
+      {
+       "p": "**Disability pension (3/4s):**"
+      },
+      {
+       "ul": [
+        "**Before your 20-year date** (the day you would have hit 20 years), any job is limited: roughly the current pay of the rank above yours, minus your pension.",
+        "**After your 20-year date**, private jobs, federal jobs, out-of-state jobs and public authorities have no limit. But any New York City, State or local government job stops your pension for as long as you work there. There are no waivers."
+       ]
+      },
+      {
+       "p": "The Fund checks. Retirees who got this wrong have had to pay back years of pension. Call the Fund before you take any public job in New York."
       }
      ]
     },
