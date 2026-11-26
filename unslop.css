@@ -31,3 +31,7 @@ img.pig{width:24px;height:24px;border-radius:5px;flex:none;display:block;margin-
 .hometop>img.logo{flex:none;margin-right:4px;width:calc(clamp(32px,7.5vw,50px)*1.15);height:auto;border-radius:22%;display:block}
 /* Narrow phones: logo and Version button share the top row, headline gets the full width below. */
 @media (max-width:380px){.hometop:has(>img.logo){flex-wrap:wrap;row-gap:12px}.hometop>img.logo{width:44px;margin:0}.hometop:has(>img.logo)>h1{order:3;flex-basis:100%}.hometop:has(>img.logo)>details.news{margin-top:4px}}
+/* "After you retire" group in Pension basics (owner, Nov. 26, 2026) */
+.qgroup{display:grid;gap:10px;margin-top:6px}
+.qgroup>h2{font-size:21px}
+.qgroup>.hint{margin:0}

@@ -32,18 +32,20 @@
   }
   /* Answers already open on load, or opened by other code (the "Learn more about the Social Security offset"
      link), get the open look, and the others close. */
+  /* Every question on the same screen, so one stays open even across groups ("After you retire"). */
+  function peers(d){var v=d.closest('.view')||d.parentElement.parentElement||d.parentElement;return Array.prototype.slice.call(v.querySelectorAll('.qa>details, .qs>details.q'))}
   function isQ(d){return d&&d.matches&&d.matches('.qa>details, .qs>details.q')}
   document.querySelectorAll('.qa>details[open], .qs>details.q[open]').forEach(function(d){d.classList.add('isopen')});
   document.addEventListener('toggle',function(e){var d=e.target;if(!isQ(d)||d._a) return;
     if(d.open&&!d.classList.contains('isopen')){d.classList.add('isopen');
-      Array.prototype.forEach.call(d.parentElement.children,function(o){if(o!==d&&o.open){o.open=false;o.classList.remove('isopen')}})}
+      peers(d).forEach(function(o){if(o!==d&&o.open){o.open=false;o.classList.remove('isopen')}})}
     else if(!d.open) d.classList.remove('isopen');
   },true);
   document.addEventListener('click',function(e){
     var s=e.target.closest&&e.target.closest(SEL);if(!s) return;
     var d=s.parentElement;e.preventDefault();
     if(d.classList.contains('isopen')){close(d);return}
-    Array.prototype.forEach.call(d.parentElement.children,function(o){if(o!==d&&o.classList&&o.classList.contains('isopen'))close(o)});
+    peers(d).forEach(function(o){if(o!==d&&o.classList.contains('isopen'))close(o)});
     open(d);
     setTimeout(function(){
       var bar=document.querySelector('.view:not([hidden]) .topbar, .top'),off=(bar?bar.getBoundingClientRect().bottom:0)+8,t=s.getBoundingClientRect().top;
